@@ -7,6 +7,14 @@ Master plan: three data layers (generic DTC library → brand DTC groups → per
 ## Repository layout
 ```
 app/                 Web UI that runs inside the Android app (offline, no external resources)
+  js/settings.js       user preferences (language, level, text size, theme, units, voice, my vehicles)
+  js/data.js           app data (sample records until Phase 2/3)
+  js/core.js           DataStore (swap for Firebase here), badges, unit conversion
+  js/i18n.js           UI text in English / Tamil / Sinhala
+  js/app.js            router, header, bottom tabs
+  js/screens.js        home, vehicle picker, vehicle, system, DTC
+  js/screen-settings.js settings screen
+tools/test-app.js    browser test of the whole app (npm test)
 android/             Capacitor Android project (generated; build outputs are git-ignored)
 samples/             The three layout samples (Sample_1/2/3.html) and their sources
 .github/workflows/   apk.yml builds the debug APK on GitHub Actions
@@ -23,9 +31,14 @@ samples/             The three layout samples (Sample_1/2/3.html) and their sour
 
 After editing anything in `app/`, run `npx cap sync android` so the Android project picks it up.
 
+## Test
+`npm test` opens `app/index.html` in a headless browser at phone size and checks first launch, the vehicle picker, DTC search and tabs, every setting, all three languages, and that no screen scrolls sideways or touches the network. It needs Playwright with Chromium.
+
+You can also open `app/index.html` directly in any browser to try the app without building an APK.
+
 ## Status
 - [x] Phase 0: project structure, Capacitor Android project, APK build workflow, placeholder app (language picker)
-- [ ] Phase 1: app shell + full settings
+- [x] Phase 1: app shell (home, vehicle picker, vehicle page with 17 systems, DTC lookup on sample data) + full settings
 - [ ] Phase 2: all DTC codes (generic + brand groups) with search and voice
 - [ ] Phase 3: Toyota KDH 2013 / 1KD-FTV vehicle pack
 - [ ] Phase 4: special functions + manual diagnosis

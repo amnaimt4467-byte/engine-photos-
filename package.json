@@ -1,15 +1,17 @@
 {
   "name": "engine-specs-app",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Automotive engine & vehicle diagnostic knowledge app (Android, offline, English / Tamil / Sinhala)",
   "scripts": {
     "samples": "node samples/build.js",
+    "test": "node tools/test-app.js",
     "sync": "npx cap sync android",
     "apk:debug": "npx cap sync android && cd android && ./gradlew assembleDebug"
   },
   "dependencies": {
     "@capacitor/android": "8.6.0",
+    "@capacitor/app": "8.1.2",
     "@capacitor/core": "8.6.0"
   },
   "devDependencies": {
