@@ -1,0 +1,58 @@
+# Builds a debug APK on every push and on demand.
+# Download it from the run page → "Artifacts" → engine-specs-debug-apk.
+name: Build Android APK
+
+on:
+  push:
+    branches: ["**"]
+    paths:
+      - "app/**"
+      - "data/**"
+      - "android/**"
+      - "package.json"
+      - "package-lock.json"
+      - "capacitor.config.json"
+      - ".github/workflows/apk.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+
+      # ubuntu-latest ships the Android SDK; this makes sure API 36 + build tools are present.
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: "platforms;android-36 build-tools;36.0.0 platform-tools"
+
+      - name: Install JS dependencies
+        run: npm ci
+
+      - name: Copy web app into the Android project
+        run: npx cap sync android
+
+      - name: Build debug APK
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: engine-specs-debug-apk
+          path: android/app/build/outputs/apk/debug/*.apk
+          retention-days: 30
