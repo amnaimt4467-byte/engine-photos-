@@ -42,6 +42,7 @@ var KB_DATA = {
       year: 2013,
       engine: "1KD-FTV",
       fuel: "Diesel",
+      brand: "toyota", engineKey: "toyota_1kd_ftv",   // keys into the DTC library (brand groups for this engine)
       pack: "sample",   // "sample" = demo records only · null = no data pack yet
       specs: [
         { k: t("Displacement", "எஞ்சின் கொள்ளளவு", "එන්ජින් ධාරිතාව"), v: "2,982 cc", status: "published" },
@@ -58,8 +59,8 @@ var KB_DATA = {
     },
     /* Planned vehicles: listed so the picker shows how more makes will look.
        They have NO data pack yet (pack: null) — nothing is shown for them. */
-    { id: "toyota_hilux_2016_1gdftv", make: "Toyota", model: "Hilux", chassis: "", year: 2016, engine: "1GD-FTV", fuel: "Diesel", pack: null, specs: [] },
-    { id: "isuzu_dmax_2013_4jj1", make: "Isuzu", model: "D-Max", chassis: "", year: 2013, engine: "4JJ1-TCX", fuel: "Diesel", pack: null, specs: [] }
+    { id: "toyota_hilux_2016_1gdftv", make: "Toyota", model: "Hilux", chassis: "", year: 2016, engine: "1GD-FTV", fuel: "Diesel", brand: "toyota", engineKey: "toyota_1gd_ftv", pack: null, specs: [] },
+    { id: "isuzu_dmax_2013_4jj1", make: "Isuzu", model: "D-Max", chassis: "", year: 2013, engine: "4JJ1-TCX", fuel: "Diesel", brand: "isuzu", engineKey: "isuzu_4jj1", pack: null, specs: [] }
   ],
 
   /* ---------- 2. SYSTEM CATEGORIES (same list for every vehicle) ---------- */

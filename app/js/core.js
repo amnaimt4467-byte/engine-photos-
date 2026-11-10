@@ -23,7 +23,16 @@ var KB = (function () {
   function L(obj) {
     if (obj == null) return "";
     if (typeof obj === "string") return obj;
-    return obj[lang] || obj.en || "";
+    return obj[lang] || obj.en || obj.ta || obj.si || "";
+  }
+  /* pick(obj) → { text, lang }: like L() but also says which language was really used,
+     so the screen can mark text that is not yet translated into the user's language */
+  function pick(obj) {
+    if (obj == null) return { text: "", lang: lang };
+    if (typeof obj === "string") return { text: obj, lang: lang };
+    var order = [lang, "en", "ta", "si"];
+    for (var i = 0; i < order.length; i++) if (obj[order[i]]) return { text: obj[order[i]], lang: order[i] };
+    return { text: "", lang: lang };
   }
 
   /* common UI strings shared by every layout */
@@ -85,6 +94,7 @@ var KB = (function () {
     published: { cls: "st-pub", icon: "✔", label: { en: "Published spec", ta: "வெளியிடப்பட்ட தகவல்", si: "ප්‍රකාශිත පිරිවිතර" }, tip: { en: "Standard definition or widely published specification.", ta: "நிலையான வரையறை அல்லது பரவலாக வெளியிடப்பட்ட தகவல்.", si: "සම්මත අර්ථ දැක්වීම හෝ පුළුල්ව ප්‍රකාශිත පිරිවිතර." } },
     general:   { cls: "st-gen", icon: "ⓘ", label: { en: "General guidance", ta: "பொது வழிகாட்டல்", si: "සාමාන්‍ය මාර්ගෝපදේශ" }, tip: { en: "General workshop practice — not specific to this vehicle.", ta: "பொது workshop நடைமுறை — இந்த வாகனத்திற்கு மட்டும் உரியதல்ல.", si: "සාමාන්‍ය workshop පිළිවෙත — මෙම වාහනයට විශේෂිත නොවේ." } },
     example:   { cls: "st-ex",  icon: "◇", label: { en: "Illustrative example", ta: "உதாரணம் மட்டும்", si: "නිදර්ශන උදාහරණය" }, tip: { en: "Layout example only.", ta: "வடிவமைப்பு உதாரணம் மட்டும்.", si: "පිරිසැලසුම් උදාහරණය පමණි." } },
+    sourced:   { cls: "st-src", icon: "📄", label: { en: "Cited source", ta: "மேற்கோள் மூலம்", si: "උපුටා දැක්වූ මූලාශ්‍රය" }, tip: { en: "Taken from a cited source; not yet checked against the official manual for your vehicle.", ta: "குறிப்பிட்ட மூலத்திலிருந்து எடுக்கப்பட்டது; உங்கள் வாகனத்தின் அதிகாரப்பூர்வ manual-உடன் இன்னும் சரிபார்க்கப்படவில்லை.", si: "උපුටා දැක්වූ මූලාශ්‍රයකින් ගන්නා ලදී; ඔබේ වාහනයේ නිල manual එක සමඟ තවම පරීක්ෂා කර නැත." } },
     pending:   { cls: "st-pend", icon: "⚠", label: { en: "Needs verification", ta: "சரிபார்க்க வேண்டும்", si: "තහවුරු කළ යුතුයි" }, tip: { en: "Vehicle-specific — intentionally empty until taken from the official repair manual.", ta: "வாகனத்திற்கு உரியது — அதிகாரப்பூர்வ repair manual-இல் இருந்து எடுக்கும் வரை காலியாக.", si: "වාහනයට විශේෂිතයි — නිල repair manual එකෙන් ගන්නා තුරු හිස්ව." } }
   };
   function badge(status, compact) {
@@ -215,7 +225,7 @@ var KB = (function () {
 
   return {
     LANGS: LANGS, setLang: setLang, getLang: getLang,
-    L: L, U: U, UI: UI, badge: badge, legendHTML: legendHTML, val: val, esc: esc, gloss: gloss,
+    L: L, pick: pick, U: U, UI: UI, badge: badge, legendHTML: legendHTML, val: val, esc: esc, gloss: gloss,
     STATUS: STATUS, DataStore: DataStore, convert: convert
   };
 })();

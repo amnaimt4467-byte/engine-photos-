@@ -101,7 +101,7 @@ body.first main{padding-top:calc(2rem + env(safe-area-inset-top))}
 .chip.code{font-family:var(--mono)}
 .chip.on{border-color:var(--or);color:var(--or);background:var(--or-bg)}
 .chip.ghost{opacity:.55}
-.tag{display:inline-flex;align-items:center;gap:.25rem;font-size:.75rem;font-weight:700;border-radius:999px;padding:.1rem .6rem;border:1px solid var(--line);color:var(--dim);margin:0 .3rem .3rem 0;white-space:nowrap}
+.tag{display:inline-flex;align-items:center;gap:.25rem;font-size:.75rem;font-weight:700;border-radius:999px;padding:.1rem .6rem;border:1px solid var(--line);color:var(--dim);margin:0 .3rem .3rem 0;max-width:100%;overflow-wrap:anywhere}
 .tag.high{color:var(--bad);border-color:var(--bad)} .tag.medium{color:var(--warn);border-color:var(--warn)} .tag.low{color:var(--ok);border-color:var(--ok)}
 .tag.sample{color:var(--info);border-color:var(--info)} .tag.planned{color:var(--dim)}
 
@@ -154,6 +154,7 @@ details.x>div{padding:0 .85rem .85rem}
 .st-gen{background:var(--info-bg);color:var(--info)}
 .st-ex{background:var(--card2);color:var(--dim)}
 .st-pend{background:var(--warn-bg);color:var(--warn)}
+.st-src{background:var(--card2);color:var(--text)}
 .pending-val{color:var(--warn);font-size:.86rem}
 .lv{font-size:.72rem;border-radius:.35rem;padding:.05rem .4rem;font-weight:700;margin-left:.25rem}
 .lv.beginner{background:var(--ok-bg);color:var(--ok)} .lv.advanced{background:var(--warn-bg);color:var(--warn)}
@@ -183,3 +184,16 @@ abbr.gl{text-decoration:underline dotted var(--or);text-underline-offset:.2rem}
 /* picker path */
 .path{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:.7rem 0}
 .path .chip{min-height:2.2rem;font-size:.82rem}
+
+/* DTC library pages */
+.tt{font-weight:800;font-size:1.08rem;line-height:1.35;margin:.2rem 0 .3rem}
+.helper{color:var(--dim);font-size:.95rem;line-height:1.4;margin:0 0 .5rem}
+.small{font-size:.82rem;overflow-wrap:anywhere}
+.lg{display:inline-block;font-size:.65rem;font-weight:800;border:1px solid var(--line);border-radius:.3rem;padding:0 .25rem;color:var(--dim);vertical-align:middle}
+.ditem .t b{color:var(--text);font-weight:700}
+.ditem .t small{font-size:.76rem}
+.suggest{margin:.35rem 0 0}
+.suggest .sg{display:block;padding:.6rem .8rem;border:1px solid var(--line);border-top:0;background:var(--card);font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.suggest .sg:first-child{border-top:1px solid var(--line);border-radius:.75rem .75rem 0 0}
+.suggest .sg:last-child{border-radius:0 0 .75rem .75rem}
+.suggest .sg:only-child{border-radius:.75rem}

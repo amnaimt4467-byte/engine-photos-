@@ -82,10 +82,56 @@ async function click(sel) { await page.click(sel); await page.waitForTimeout(80)
   ok("beginner mode hides advanced steps", (await text("#main")).includes("hidden in Beginner mode"));
   await click('[data-act="set:level:advanced"]');
   ok("'Show advanced' switches the level", (await setting("level")) === "advanced" && (await text("#main")).includes("back-leak"));
-  await goto("#/dtc/P9999");
-  ok("unknown code goes to a clear 'not in the app yet' page", (await hash()) === "#/find/P9999" && (await text("#main")).includes("not in the app yet"), await hash());
+
+  console.log("DTC library (layers)");
+  await page.evaluate(() => new Promise((r) => DTC.load(r)));
+  const st = await page.evaluate(() => DTC.stats());
+  ok("library loaded: generic + brand records", st && st.generic >= 600 && st.brand >= 2000, JSON.stringify(st));
+  const top = (code) => page.evaluate((c) => { const h = DTC.resolve(c, KB.DataStore.vehicle(Settings.get("vehicleId"))).hits; return h.length ? { layer: h[0].layer, title: h[0].pack ? h[0].pack.title.en : h[0].entry.rec.t.en, n: h.length, brand: h[0].entry && h[0].entry.brand } : null; }, code);
+  let r = await top("P0087");
+  ok("P0087 with KDH selected → vehicle pack first", r.layer === "pack" && r.n >= 3, JSON.stringify(r));
+  r = await top("P1229");
+  ok("P1229 → Toyota 1KD engine group", r.layer === "engine" && r.brand === "toyota", JSON.stringify(r));
+  r = await top("P0300");
+  ok("P0300 → SAE generic library", r.layer === "generic" && /Misfire/.test(r.title), JSON.stringify(r));
+  await goto("#/dtc/C1201");
+  ok("C1201 with KDH → Toyota meaning shown first, others below", /Engine Control System Malfunction/.test(await text("#main")) && (await text("#main")).includes("Other meanings of this code"));
+  await goto("#/dtc/P1229");
+  ok("brand record page shows source tag, flash code and causes", /Toyota/.test(await text("#main")) && /Flash code 78/.test(await text("#main")) && /SCV stuck/.test(await text("#main")));
+  await goto("#/dtc/P0300");
+  ok("generic record never shows a flash code", !/Flash code/.test(await text(".tt ~ div")));
+  await goto("#/dtc/P0ABC");
+  ok("valid code that is not in the library → structure explained, not a dead end", (await text("#main")).includes("not in the library yet") && (await text("#main")).includes("Powertrain") && (await text("#main")).includes("hybrid"));
+  await goto("#/dtc/XYZ");
+  ok("something that is not a code → clear message", (await text("#main")).includes("does not look like a fault code"));
+  await goto("#/find/49");
+  ok("flash code search finds Toyota codes with blink code 49", /P0190/.test(await text("#main")) && /flash \(blink\) code 49/.test(await text("#main")));
+  await goto("#/find/rail pressure");
+  ok("word search (English) finds rail pressure codes", /P0087/.test(await text("#main")) && /P0190/.test(await text("#main")));
+  await goto("#/find/" + encodeURIComponent("குறைவு"));
+  ok("word search (Tamil) finds codes", (await page.$$("#main a.ditem")).length > 5);
+  await goto("#/find/" + encodeURIComponent("අඩුයි"));
+  ok("word search (Sinhala) finds codes", (await page.$$("#main a.ditem")).length > 5);
+  await goto("#/home"); await goto("#/find/ABS-21");
+  ok("non-standard code format (ABS-21) opens its page", (await hash()) === "#/dtc/ABS21", await hash());
   await page.goBack(); await page.waitForTimeout(80);
-  ok("Back from an unknown code does not bounce", (await hash()) !== "#/find/P9999" && (await hash()) !== "#/dtc/P9999", await hash());
+  ok("Back from a redirected search does not bounce", (await hash()) === "#/home", await hash());
+  await goto("#/dtc");
+  await page.fill('form[data-search] input', "P02"); await page.waitForTimeout(120);
+  ok("typing shows suggestions", (await page.$$(".suggest .sg")).length >= 3);
+  await click(".suggest .sg");
+  ok("tapping a suggestion opens that code and records it", /^#\/dtc\/P02/.test(await hash()) && /^P02/.test((await setting("recent"))[0]), await hash());
+  await goto("#/browse/abs");
+  const codes = await page.$$eval("#main a.ditem .c", (els) => els.map((e) => e.textContent));
+  ok("browse by system lists each code once", codes.length > 20 && new Set(codes).size === codes.length, codes.length + " rows, " + new Set(codes).size + " unique");
+  await goto("#/dtcgroup/toyota/toy_1kd_crs");
+  ok("brand code group page lists its codes", (await page.$$("#main a.ditem")).length === 27);
+  await page.evaluate(() => Settings.set("vehicleId", null));
+  await goto("#/dtc/C1201");
+  ok("maker-specific code with no vehicle → asks to choose a vehicle, no brand privileged", (await text("#main")).includes("manufacturer-specific code") && !(await page.$("#main > .tt")) && (await page.$$("#main > details.x")).length >= 3);
+  r = await top("P0087");
+  ok("P0087 with no vehicle → generic library", r.layer === "generic", JSON.stringify(r));
+  await page.evaluate(() => Settings.set("vehicleId", "toyota_hiace_kdh_2013_1kdftv"));
 
   console.log("Settings");
   await goto("#/settings");
@@ -118,13 +164,15 @@ async function click(sel) { await page.click(sel); await page.waitForTimeout(80)
   ok("reset restores defaults but keeps the language", (await setting("theme")) === "auto" && (await setting("textSize")) === "m" && (await setting("vehicleId")) === null && (await setting("lang")) === "en");
 
   console.log("Every screen × every language × text size (no sideways scrolling)");
-  const screens = ["#/home", "#/pick", "#/vehicle/toyota_hiace_kdh_2013_1kdftv", "#/system/toyota_hiace_kdh_2013_1kdftv/special", "#/dtc", "#/dtc/P0087", "#/dtc/U0100", "#/find/rail", "#/settings", "#/soon/4"];
+  const screens = ["#/home", "#/pick", "#/vehicle/toyota_hiace_kdh_2013_1kdftv", "#/system/toyota_hiace_kdh_2013_1kdftv/special", "#/dtc", "#/dtc/P0087", "#/dtc/U0100",
+    "#/dtc/P1229", "#/dtc/P0300", "#/dtc/C1241", "#/dtc/P0ABC", "#/find/rail", "#/find/49", "#/browse/engine", "#/dtcgroup/toyota/toyota_abs", "#/settings", "#/soon/4"];
+  await page.evaluate(() => Settings.set("vehicleId", "toyota_hiace_kdh_2013_1kdftv"));
   let worst = 0, where = "";
   for (const lang of ["en", "ta", "si"]) for (const size of ["m", "l"]) {
     await page.evaluate(([l, s]) => { Settings.set("lang", l); Settings.set("textSize", s); Settings.set("level", "advanced"); }, [lang, size]);
     for (const s of screens) {
       await goto(s);
-      for (const k of s.startsWith("#/dtc/") ? ["over", "diag", "elec", "rep", "ver"] : [null]) {
+      for (const k of (await page.$(".dtabs")) ? ["over", "diag", "elec", "rep", "ver"] : [null]) {
         if (k) await click('[data-act="tab:' + k + '"]');
         const o = await overflow(); if (o > worst) { worst = o; where = [lang, size, s, k].join(" "); }
       }

@@ -85,9 +85,10 @@ var APP = (function () {
   }
   function block(title, body) { return '<div class="blk"><h4>' + esc(title) + "</h4>" + body + "</div>"; }
   function fold(title, body, open) { return '<details class="x"' + (open ? " open" : "") + "><summary>" + esc(title) + "</summary><div>" + body + "</div></details>"; }
+  /* DTC search box; typing shows suggestions in the box underneath (see screens-dtc.js) */
   function searchForm(value) {
-    return '<form class="sbox" data-search="1"><span>🔍</span><input name="q" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="' +
-      esc(KB.U("search_ph")) + '" value="' + esc(value || "") + '"><button class="btn pri">' + esc(t("search")) + "</button></form>";
+    return '<form class="sbox" data-search="1"><span>🔍</span><input name="q" data-input="dtcSearch" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="' +
+      esc(KB.U("search_ph")) + '" value="' + esc(value || "") + '"><button class="btn pri">' + esc(t("search")) + '</button></form><div class="suggest" data-suggest="1"></div>';
   }
   function vehicleTag(v) {
     return DS.hasPack(v) ? '<span class="tag sample">◇ ' + esc(t("tag_sample")) + "</span>" : '<span class="tag planned">' + esc(t("tag_planned")) + "</span>";
@@ -108,8 +109,8 @@ var APP = (function () {
     if (!e.target.hasAttribute("data-search")) return;
     e.preventDefault();
     var q = (e.target.elements.q.value || "").trim(); if (!q) return;
-    if (DS.dtc(q)) { Settings.addRecent(q); go("#/dtc/" + q.toUpperCase()); }
-    else { if (DS.looksLikeDTC(q)) Settings.addRecent(q); go("#/find/" + encodeURIComponent(q)); }
+    if (DTC.isCode(q)) { Settings.addRecent(DTC.keyOf(q)); go("#/dtc/" + DTC.keyOf(q)); }   // a fault code → its page
+    else go("#/find/" + encodeURIComponent(q));                                               // words / flash number → results
   });
   document.getElementById("back").addEventListener("click", back);
   window.addEventListener("hashchange", render);

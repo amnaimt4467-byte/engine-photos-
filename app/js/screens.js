@@ -24,7 +24,7 @@
   function recentChips() {
     var r = Settings.get("recent"); if (!r.length) return "";
     return '<div class="chips"><span class="dim" style="align-self:center;font-size:.85rem">' + esc(t("recent")) + ":</span>" +
-      r.map(function (c) { return '<a class="chip code' + (DS.dtc(c) ? "" : " ghost") + '" href="' + (DS.dtc(c) ? "#/dtc/" + c : "#/find/" + encodeURIComponent(c)) + '">' + esc(c) + "</a>"; }).join("") + "</div>";
+      r.map(function (c) { return '<a class="chip code" href="#/dtc/' + encodeURIComponent(c) + '">' + esc(c) + "</a>"; }).join("") + "</div>";
   }
   APP.route("home", function () {
     var v = DS.vehicle(Settings.get("vehicleId"));
@@ -158,81 +158,12 @@
     var h = "";
     if (!dt.length && !pr.length && !sp.length) h = '<p class="empty">' + esc(U("no_data")) + "</p>";
     if (dt.length) h += "<h3>DTC</h3>" + dt.map(dtcItem).join("");
+    h += APP.bigLink("📚", APP.t("browse_all", { s: L(c.name) }), "", "#/browse/" + sys);
     if (pr.length) h += "<h3>" + esc(t("procs")) + "</h3>" + pr.map(procFold).join("");
     if (sp.length) h += "<h3>" + esc(U("special_title")) + "</h3>" + ((sys === "key" || sys === "remote" || sys === "special") ? '<div class="safety">🔐 ' + esc(U("no_bypass")) + "</div>" : "") + sp.map(specialFold).join("");
     return { title: c.icon + " " + L(c.name), sub: DS.vehicleName(v) + " · " + DS.vehicleLine(v), html: h, tab: "vehicle" };
   });
 
-  /* ---------------- DTC: list, search results, detail ---------------- */
-  APP.route("dtc", function (code) {
-    if (code) return dtcDetail(code);
-    var h = '<div style="margin-top:.8rem">' + APP.searchForm("") + "</div>" + recentChips() +
-      "<h3>" + esc(t("dtc_in_app")) + "</h3>" + DS.dtcs().map(dtcItem).join("") + '<div class="lock">ℹ️ ' + esc(t("dtc_more")) + "</div>";
-    return { title: t("dtc_title"), html: h, tab: "dtc", top: true };
-  });
-  APP.route("find", function (q) {
-    q = q || "";
-    var r = DS.search(q);
-    var h = '<div style="margin-top:.8rem">' + APP.searchForm(q) + "</div><h3>" + esc(t("results_for")) + " “" + esc(q) + "”</h3>";
-    if (!r.dtcs.length && !r.procedures.length && !r.special.length) h += '<div class="lock">🔎 ' + esc(DS.looksLikeDTC(q) ? t("not_found") : U("no_results")) + "</div>";
-    if (r.dtcs.length) h += r.dtcs.map(dtcItem).join("");
-    if (r.procedures.length) h += "<h3>" + esc(t("procs")) + "</h3>" + r.procedures.map(procFold).join("");
-    if (r.special.length) h += "<h3>" + esc(U("special_title")) + "</h3>" + r.special.map(specialFold).join("");
-    return { title: t("dtc_title"), html: h, tab: "dtc" };
-  });
-
-  var TABS = ["over", "diag", "elec", "rep", "ver"], tab = "over", tabCode = null;
-  APP.action("tab", function (k) { tab = k; APP.render(); });
-  function dtcDetail(code) {
-    var d = DS.dtc(code);
-    if (!d) return APP.redirect("#/find/" + encodeURIComponent(code));
-    if (tabCode !== d.code) { tabCode = d.code; tab = "over"; }
-    var h = '<div class="codehead"><span class="c">' + d.code + '</span><span class="tt">' + esc(L(d.title)) + " " + badge(d.titleStatus, true) + "</span></div>";
-    h += '<div><span class="tag ' + d.severity + '">● ' + esc(U("severity")) + ": " + esc(U("sev_" + d.severity)) + "</span>" +
-      d.system.map(function (s) { var c = DS.category(s); return '<span class="tag">' + c.icon + " " + esc(L(c.name)) + "</span>"; }).join("") + "</div>";
-    h += '<div class="dtabs">' + TABS.map(function (k) { return '<button data-act="tab:' + k + '" class="' + (tab === k ? "on" : "") + '">' + esc(t("t_" + k)) + "</button>"; }).join("") + "</div>";
-    h += { over: tOver, diag: tDiag, elec: tElec, rep: tRep, ver: tVer }[tab](d);
-    return { title: d.code, sub: L(d.title), html: h, tab: "dtc" };
-  }
-  function tOver(d) {
-    var h = d.safety ? '<div class="safety"><b>⚠ ' + esc(U("safety")) + "</b><br>" + esc(L(d.safety)) + "</div>" : "";
-    h += block(U("description"), "<p>" + KB.gloss(esc(L(d.meaning))) + "</p>");
-    h += block(U("applic"), "<p>" + esc(L(d.applicability.text)) + " " + badge(d.applicability.status, true) + "</p>");
-    return h + block(U("causes"), list(d.causes)) + block(U("symptoms"), list(d.symptoms));
-  }
-  function tDiag(d) {
-    var beginner = Settings.get("level") !== "advanced";
-    var steps = beginner ? d.diagnosis.filter(function (s) { return s.level !== "advanced"; }) : d.diagnosis;
-    var hidden = d.diagnosis.length - steps.length;
-    var h = block(U("diagnosis"), list(steps, true));
-    if (hidden) h += '<div class="lock">🔒 ' + esc(t("adv_hidden", { n: hidden })) + '<div class="row" style="margin-top:.6rem"><button class="btn" data-act="set:level:advanced">' + esc(t("show_adv")) + "</button></div></div>";
-    if (!beginner) {
-      if (d.sensorTest.length) h += block(U("sensor"), list(d.sensorTest));
-      if (d.scanner.length) h += block(U("scanner"), list(d.scanner));
-    }
-    return h;
-  }
-  function tElec(d) {
-    var h = block(U("wiring"), list(d.wiring)), p = d.pins, m = d.meterValues;
-    h += block(U("pins"), p.rows.length ? badge(p.status) + '<table class="tbl"><thead><tr><th>' + esc(U("item")) + "</th><th>" + esc(U("connector")) + "</th><th>" + esc(U("pin")) + "</th></tr></thead><tbody>" +
-      p.rows.map(function (r) { return "<tr><td>" + esc(r.item) + "</td><td>" + val(r.connector, r.connector ? "" : "pending") + "</td><td>" + val(r.pin, r.pin ? "" : "pending") + "</td></tr>"; }).join("") + "</tbody></table>" : val("", "pending"));
-    h += block(U("meter"), m.rows.length ? badge(m.status) + '<table class="tbl"><thead><tr><th>' + esc(U("test")) + "</th><th>" + esc(U("expected")) + "</th></tr></thead><tbody>" +
-      m.rows.map(function (r) { return "<tr><td>" + esc(L(r.test)) + "</td><td>" + val(r.expected, r.expected ? m.status : "pending") + "</td></tr>"; }).join("") + "</tbody></table>" : val("", "pending"));
-    return h;
-  }
-  function tRep(d) {
-    var h = block(U("repair"), list(d.repair, true));
-    h += block(U("parts"), d.parts.length ? '<table class="tbl"><tbody>' + d.parts.map(function (p) { return "<tr><td>" + esc(L(p.name)) + "</td><td>" + val(p.partNo, p.status) + "</td></tr>"; }).join("") + "</tbody></table>" : "<p>—</p>");
-    var beginner = Settings.get("level") !== "advanced";
-    var procs = DS.procedures().filter(function (p) { return p.relatedDtc.indexOf(d.code) >= 0 && (!beginner || p.level === "beginner"); });
-    if (procs.length) h += block(t("procs"), procs.map(procFold).join(""));
-    return h;
-  }
-  function tVer(d) {
-    var h = block(U("verify"), list(d.verify, true));
-    if (d.related.length) h += block(U("related"), '<div class="chips">' + d.related.map(function (c) {
-      return DS.dtc(c) ? '<a class="chip code" href="#/dtc/' + c + '">' + c + "</a>" : '<span class="chip code ghost">' + c + "</span>";
-    }).join("") + "</div>");
-    return h;
-  }
+  /* shared with screens-dtc.js */
+  APP.ui = { dtcItem: dtcItem, procFold: procFold, specialFold: specialFold, stepsList: stepsList, recentChips: recentChips };
 })();

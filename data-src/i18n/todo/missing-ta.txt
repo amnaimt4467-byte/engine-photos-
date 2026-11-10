@@ -1,0 +1,1062 @@
+(4D56 2WD only, per Denso manual) — see Mitsubishi service manual
+(CAN MS BUS): Lost Communication with Gateway Module (Main body ECU)
+2nd solenoid open / short
+4WD control unit - CAN data bus
+5 V reference / harness
+61 / 62: battery / charging / ground; 81: modulator-control unit.
+A/F (O2) Sensor Signal Stuck Rich Bank 1 Sensor 2
+A/F (O2) Sensor Signal Stuck Rich Bank 2 Sensor 2
+A/F (primary HO2S) heater system
+A/F Sensor Delayed Response - Lean to Rich Bank 1 Sensor 1
+A/F Sensor Delayed Response - Rich to Lean Bank 1 Sensor 1
+A/F or HO2S sensor
+A/F sensor
+A/F sensor 1 (bank 1) / heater fuse
+A/F sensor harness
+A/T TCC solenoid function (lock-up)
+ABS 30A/40A fusible link
+ABS ECU internal fault
+ABS Low Battery Positive Voltage
+ABS actuator
+ABS actuator and electric unit
+ABS actuator and electric unit (control unit)
+ABS actuator and electric unit (solenoid)
+ABS actuator/pump motor fault
+ABS control module
+ABS control module (internal)
+ABS control module / hydraulic unit
+ABS fuse
+ABS fuse / ground
+ABS fusible link / fuse
+ABS modulator valve fault (open / short in valve or cable). 2nd digit = location: 1 right steer (front), 2 left steer, 3 right drive, 4 left drive, 5 right additional, 6 left additional
+ABS motor fusible link
+ABS motor relay
+ABS pump motor
+ABS rotor (tone ring) damaged/dirty
+ABS rotor damaged
+ABS solenoid relay
+ABS solenoid valve relay
+ABS system disabled
+ABS warning lamp ON
+ABS-ECU
+ABS/Brake warning lamp ON
+ABS/ESP control module
+ABS/VSC system disabled
+ABS/VSC warning lamp ON
+APP sensor harness
+ASCD (cruise) steering switch
+ASCD brake switch
+ASCD vehicle speed sensor
+ATF temp sensor
+Acceleration / deceleration sensor
+Acceleration Sensor Learning Value
+Acceleration sensor internal circuit fault
+Acceleration sensor power supply circuit fault
+Acceleration sensor signal fault
+Accelerator pedal assembly
+Accelerator pedal position (APP) system
+Accelerator pedal sensor 1 out of range high
+Accelerator pedal sensor 1 out of range low
+Accumulator pressure
+Accumulator pressure low
+Accumulator pressure switch
+Active Grille Air Shutter A Missing Message
+Actuator gear wear (high mileage engines)
+Actuator harness / connector
+Actuator internal fault
+Actuator mechanism carbon/debris jam
+Actuator motor wiring/connector fault
+Actuator relay (inside ABS unit)
+Actuator relay system (power to ABS solenoids)
+Actuator wiring/connector fault
+Air / fuel supply to pump
+Air Fuel Ratio Too Rich
+Air bag diagnosis sensor unit
+Airbag sensor assembly (SRS ECU)
+Alternator / IC regulator
+Alternator / charging fault
+Alternator overcharging
+Alternator regulator fault
+Amplifier harness (ECU–amplifier)
+Another ABS DTC stored (e.g. C1249 stop light switch, C1241 low voltage)
+Antenna
+Antenna / amplifier
+Antenna coil around key cylinder
+Anti-scanning — key scanning / too many attempts detected
+Assist Map Number Un-Writing
+Authentication between ECM and SMARTRA failed
+Authentication failed — immobilised condition (EMS)
+Auxiliary gearbox gear 1 incorrect ratio
+B+ short in ABS motor relay circuit
+B+ short in ABS solenoid relay circuit
+B-CAN line / connector
+BCM–ECM communication
+Battery
+Battery / alternator
+Battery / alternator voltage
+Battery / charging
+Battery / charging voltage
+Battery / fuse / harness to EPS unit terminal 17
+Battery cooling fan / duct
+Battery terminal corrosion/loose connection
+Battery voltage
+Battery weak/failing
+Battery/alternator fault
+Battery/charging system over-voltage
+Belt & pulley wear (inspect)
+Belt damage (unexpected gear ratio)
+Belt slip — CVT assembly (TSB: inspect belt via control valve removal)
+Black smoke
+Blocked return
+Boost hose / intercooler leak
+Boost leak
+Boost leak / intercooler hose
+Boost pressure sensor out of range high
+Boost pressure sensor out of range low
+Boost sensor
+Boost sensor drift/fault
+Boost sensor fault
+Brake Assist solenoid valve
+Brake actuator motor circuit fault
+Brake booster
+Brake fluid / bleeding
+Brake fluid level sensor
+Brake light switch
+Brake light switch / adjustment
+Brake lights may not work
+Brake pedal load sensor
+Brake pedal position sensor
+Brake pedal position switch (VSA)
+Brake pressure sensor (VSA)
+Brake switch
+CAC temperature inlet sensor surveillance
+CAN ABS SOH diagnostic
+CAN bus
+CAN bus 2 reset counter overrun
+CAN bus off
+CAN bus wiring fault (steering angle sensor ↔ skid control ECU)
+CAN bus wiring fault (yaw rate sensor module ↔ skid control ECU)
+CAN communication fault
+CAN communication line
+CAN data bus
+CAN time-out EMS
+CAN wiring
+CAN wiring to EBCM
+CKP / TDC sensor connector disconnection
+CKP sensor
+CKP sensor/rotor fault
+CKP/CMP sensor fault
+CMP sensor
+CSS sensor wiring/connector fault
+CVT cooler filter (paper cartridge) clogged
+CVT judder (control valve inspection)
+CVT judder (torque converter inspection)
+CVT judder (transmission inspection — belt slip)
+CVT speed sensor function
+Calibration not done
+Camshaft Position "B" - Timing Over-Retarded (Bank 1)
+Camshaft Position A - Timing Over-Retarded (Bank 1)
+Camshaft Position A - Timing Over-Retarded (Bank 2)
+Camshaft Position B - Timing Over-Retarded (Bank 2)
+Camshaft Position Sensor A (Bank 1 Sensor 2)
+Camshaft position (G) sensor
+Camshaft position sensor disconnection
+Canister / hoses
+Carbon in EGR passage / valve
+Carbon on VTCS shutter valve
+Catalytic converter
+Center airbag sensor assembly (SRS ECU) internal fault
+Center differential lock
+Central differential lock detection switch
+Chafed cable
+Chain of ECM–IMMU
+Chain of ECM–IMMU (communication)
+Chain of ECM–IMMU — communication line BCM–ECM (paired with P1612)
+Chain of IMMU–KEY
+Chain of IMMU–KEY — IMMU cannot receive key ID signal
+Charging system (alternator) fault
+Charging system over-voltage / regulator
+Charging system voltage problem
+Check engine light
+Clock spring
+Clock spring (most common for B1346)
+Clock spring (spiral cable)
+Clogged CVT cooler filter
+Clogged fluid filter / cooler
+Clogged fuel filter
+Clogged fuel filter / air in fuel
+Clogged fuel filter / in-tank strainer, air in fuel
+Clogged in-tank fuel strainer (≈80 % of cases per go-parts)
+Closed loop control function (bank 1) — A/F sensor 1 not allowing closed loop
+Closed loop control function (bank 2)
+Clutch / brake slipping
+Cold start emission reduction strategy monitoring
+Common 1 injector charge circuit open
+Common 2 injector charge circuit open
+Communication line / connector
+Condition for ETCS initialization
+Connector
+Connector / harness
+Connector corrosion
+Connector/wiring fault
+Contact coil (clock spring)
+Contaminated / diluted DEF — test with refractometer (31–34 %)
+Control Module Processor (Brake Override System Input Signal)
+Control module processor
+Control valve (valve body)
+Coolant Thermostat (Coolant Temperature Below Thermostat Regulating Temperature)
+Coolant temp sensor reading cold
+Coolant temperature sensor out of range high
+Coolant temperature sensor out of range low
+Cooling system fault
+Crankshaft position sensor disconnection
+Cruise Control Input Processor
+Cruise control resume switch
+Cruise control set switch
+Crystallised DEF line / filter
+Cylinder 1 injector fault
+Cylinder 1 low compression
+Cylinder 1 spark plug/coil fault
+Cylinder 2 injector fault
+Cylinder 2 low compression
+Cylinder 2 spark plug/coil fault
+Cylinder 3 injector fault
+Cylinder 3 low compression
+Cylinder 3 spark plug/coil fault
+Cylinder 4 injector fault
+Cylinder 4 low compression
+Cylinder 4 spark plug/coil fault
+DAB + or − line shorted to ground → replace harness (manual)
+DAB / clock spring connector
+DAB connector
+DAC / CRAWL switch
+DEF / SCR system fault (BS6 SCR)
+DEF dosing unit / quality input (FMI 31 = DEF quality fault)
+DEF pump
+DEF quality (urea concentration not 32.5 %)
+DEF quality sensor
+DEF tank level (low / very low → inducement)
+DETECTION ITEM TROUBLE Yaw Rate Sensor (Test Mode DTC) Yaw rate and
+DPD Filter Regeneration Duration Exceeded
+DPD Filter Regeneration Incomplete
+DPD Filter Regeneration Interval Exceeded
+DPD Filter Regeneration — Exhaust Differential Pressure Deviation
+DPD clogged
+DPD warning
+DPF differential pressure sensor / hoses
+DPF regeneration excessive frequency
+DPF soot accumulation
+DPR cleaning / replacement
+DPR differential pressure sensor high
+DPR differential pressure sensor low
+DPR soot — run manual regeneration
+Damaged tone ring
+Deceleration (G) sensor
+Deceleration sensor
+Detecting Vehicle Submersion
+Deterioration of Battery
+Diesel Particulate Filter Restriction - Soot Accumulation
+Difference of key
+Difference of key — key ID not registered (paired with P1615)
+Dirty / failed throttle body
+Dirty MAF
+Dirty MAF sensor
+Dirty throttle body
+Dosing valve blocked
+Drain water separator
+Driver air bag (inflator) module
+Driver air bag module
+Driver airbag (DAB) module
+Driver seat side air bag harness low resistance (TSB: harness re-routing)
+Driver's air bag module
+Driver's air bag module (squib) — short to power supply
+Driver's seat belt pre-tensioner (squib) — short to power supply
+E Camshaft Position Actuator Bank 1 Signal Invalid
+EBCM connector water intrusion
+EBCM internal fault
+EBCM power / ground fuse
+EBCM pump motor driver
+ECM / ABS control unit
+ECM / ICM code not matched (ICM side)
+ECM / PCM
+ECM / immobiliser code — learning mode
+ECM DTC (P-code) stored — diagnose, repair and erase P-codes first (Nissan TSB NTB16-116)
+ECM Processor
+ECM back-up power supply
+ECM fault (rare)
+ECM internal A/D processing
+ECM internal EEPROM fault
+ECM internal IC / run pulse
+ECM internal fault
+ECM internal hardware/firmware fault
+ECM main relay fault
+ECM main relay stuck ON/faulty
+ECM or BCM replaced without NATS initialisation
+ECM power / ground
+ECM processor fault
+ECM receives no immobiliser response from ICU (Keyword 2000 serial line)
+ECM to throttle control unit communication
+ECM — replace if code resets
+ECM ↔ skid control ECU communication
+ECU
+ECU code not matched (ICM – injection pump)
+ECU communication ID not registered (after ECU / AKL)
+ECU fail-safe relay fault
+ECU ground
+ECU related fault
+ECU/actuator internal fault
+EDU
+EDU / injector circuit (P0200)
+EDU relay / fuse
+EDU–ECM harness
+EEPROM (EPS control unit)
+EGR closed learning
+EGR cooler / passage blocked
+EGR cooler inferiority
+EGR mass flow rate (FMI 18 = low)
+EGR solenoid coil resistance out-of-spec
+EGR solenoid wiring/connector fault
+EGR valve carbon
+EGR valve carbon build-up
+EGR valve lift insufficient
+EGR valve position sensor open or short (Kia)
+EGR valve sticking/dirty
+EPS assist map number mismatch
+EPS battery power supply (C1601-16 / -17 battery volt)
+EPS control unit — replace steering column assembly (manual)
+EPS motor
+EPS torque sensor 2
+EPS torque sensor deviation excessive
+ESC OFF switch stuck / shorted
+ETC motor relay
+ETS limp-home valve
+ETS throttle motor — target following / rationality
+EVAP canister vent shut valve
+EVAP hose crack
+EVAP incorrect purge flow
+EVAP purge flow switch
+EVAP system large leak
+Electric throttle control (signal to TCM)
+Electric throttle control actuator (bank 1)
+Engine Coolant Pump Actuator Stuck
+Engine Coolant Pump Over Revolution
+Engine ECM DTC stored (read engine codes first)
+Engine Lack of Power
+Engine Oil Temperature Sensor High
+Engine Oil Temperature Sensor Low
+Engine Stall History
+Engine control unit (ECU matching)
+Engine coolant over-temperature
+Engine coolant temperature insufficient for stable operation
+Engine coolant temperature signal from ECM to TCM (Kia)
+Engine coolant temperature — high / low
+Engine does not Start (hybrid)
+Engine light ON
+Engine oil level / quality
+Engine over-speed
+Engine over-temperature
+Engine signal 1 (from ECM via CAN) — ABS/VDC/TCS disabled
+Engine signal 2 (from ECM via CAN) — ABS/VDC/TCS disabled
+Engine signal 3 (from ECM via CAN) — ABS/VDC/TCS disabled
+Engine speed signal
+Estimated vehicle speed signal
+Evaporative Emission Control System Incorrect Purge Flow
+Evaporative Emission System Reference Orifice Clog Up
+Evaporative Emission System Reference Orifice High Flow
+Exhaust Differential Pressure Sensor Learned Value
+Exhaust Gas Recirculation B Control
+Exhaust Gas Recirculation Flow
+Exhaust Pressure Control Valve High
+Exhaust Pressure Control Valve Low
+Exhaust brake valve stick / Exhaust throttle valve stick
+Exhaust gas temperature sensor surveillance
+Exhaust leak
+Exhaust temperature sensor 1 high
+Exhaust temperature sensor 1 low
+External / internal fuel leak (injector return, pipes)
+External pipe leak
+FL wheel speed sensor wiring open
+FR wheel speed sensor signal wire short (ground/voltage)
+FR wheel speed sensor wiring open
+FRP regulator intermittent sticking
+FRP regulator low-side circuit open
+Fail-safe (valve) relay in module
+Fault in immobiliser control module
+Faulty CAN communication
+Faulty FRP regulator
+Fix underlying NATS DTC, then reset lock mode with CONSULT
+Fluid pressure sensor / switch
+Foreign Object is Attached on Tip of Front Speed Sensor LH
+Foreign Object is Attached on Tip of Rear Speed Sensor LH
+Foreign Object is Attached on Tip of Rear Speed Sensor RH
+Foreign matter in pump
+Forward and rearward G sensor
+Front O2 / A-F sensor
+Front airbag sensor LH initialization
+Front airbag sensor RH initialization
+Front airbag sensor lost communication (LH)
+Front airbag sensor lost communication (RH)
+Front airbag — driver loop open
+Front door pressure sensor LH
+Front door pressure sensor LH initialization incomplete
+Front door pressure sensor RH
+Front door pressure sensor RH initialization incomplete
+Front door pressure sensor difference
+Front passenger's air bag module (squib) — short to power supply
+Fuel / rail pressure
+Fuel Pump System (supply pump over-feed)
+Fuel Run Out (hybrid)
+Fuel Sender Open Detected
+Fuel cap loose / seal
+Fuel filter
+Fuel filter / air in fuel
+Fuel filter clogged
+Fuel filter exchange
+Fuel filter freeze (lamp OFF)
+Fuel injection pump not registered (diesel)
+Fuel pressure monitoring — maximum rail pressure exceeded (limp mode)
+Fuel pressure solenoid
+Fuel rail pressure
+Fuel rail pressure low (Isuzu-specific)
+Fuel rail pressure sensor (main) out of range high
+Fuel rail pressure sensor (main) out of range low
+Fuel run out (P1272 / P1273 stored after running dry — refill, bleed, clear)
+Fuel system leak — high-pressure side (injector / pressure limiter / EDU with P0200)
+Fuel system pressure control — high / excessive common rail pressure
+Fuel system pressure control — low (check fuel filter clogging, fuel supply to pump, foreign matter)
+Fuel tank pressure control system
+Fuel tank pressure sensor
+Fuel temperature sensor high
+Fuel temperature sensor intermediate hold
+Fuel temperature sensor low
+Fuse
+Fuse / harness to antenna
+Fusible link
+G sensor / yaw rate sensor
+G-sensor (yaw rate / side G / decel sensor)
+GPCM engine ID diagnostic
+Glow Plug Control Module
+Glow Plug Control Module System Voltage
+Glow plug/relay circuit fault (E12 pin 10)
+Ground G202 / connector
+HECU
+HECU fuse / power supply
+HECU internal
+HECU internal fault
+HECU power or ground connection
+HO2S 1 bank 1 — lambda control limit reached
+HO2S 1 bank 2 — lambda control limit reached
+HO2S no activity, bank 2 sensor 1
+HV battery modules weak (most cases)
+Hard cold-start
+Hard starting
+Harness
+Harness / connector
+Harness / connector (yellow)
+Harness / connector between BCM and ECM
+Harness short to ground
+Harness to ECM
+High fuel temperature
+High target idle speed
+High-pressure fuel line leak
+High-speed CAN communication bus
+Hybrid battery pack deterioration (IMA / HV battery)
+Hydraulic accumulator pressure sensor
+Hydraulic control system function
+Hydraulic modulator pump motor
+Hydraulic modulator solenoid valve - FL
+Hydraulic modulator solenoid valve - FR
+Hydraulic modulator solenoid valve - RL
+Hydraulic modulator solenoid valve - RR
+Hydraulic modulator solenoid valve - STR
+Hydraulic modulator solenoid valve - reservoir isolation
+Hydraulic unit solenoid
+ICU power / ground
+ID discord, IMMU–ECM
+ID discord, IMMU–ECM — ECM / BCM ID mismatch (paired with P1611)
+IG power supply voltage
+IMA battery cell / module
+IMA battery degradation (IMA models)
+IMA battery degraded (IMA models)
+IMA battery — cell over-temperature / imbalance / shorted cell
+Idle RPM higher than expected
+Idle RPM lower than expected
+Idle Up Sensor Signal
+Idle air control system
+Idle air control system RPM higher than expected (do Idle Air Volume Learning)
+Idle air control system RPM lower than expected
+If B1000 is the only code → replace / reprogram SRS ECU (per TSB); if other codes too → fix those first
+Ignition coil / spark plug
+Ignition coil(s) weak/failing
+Immobiliser
+Immobiliser antenna coil open / short
+Immobiliser authentication result fault (EMS)
+Immobiliser function — ECM ↔ immobiliser-ECU communication (older MUT-II models)
+Immobiliser indicator ~2 s ON then blinking = key code not received / not recognised (engine cranks, no start); blinks ~5 s after OFF = system set
+Immobiliser key not programmed into ECM
+Immobiliser — fuelling disabled
+Immobiliser — password / code incorrect
+Immobiliser-ECU
+Immobiliser-keyless control unit
+Immobiliser-keyless control unit lost communication with MICU (DRLOCKSW message)
+Immobiliser-keyless control unit lost communication with gauge control module (A/T message)
+Immobilizer Communication (Wrong ICU Response)
+Immobilizer Security Information Not Programmed
+Improper installation of SRS-ECU (wrong ECU type for the vehicle's airbag set)
+Incorrect gear ratio
+Initialization not Completed
+Injection pump fuel metering control A (cam / rotor / injector)
+Injection pump fuel metering control A high
+Injection pump fuel metering control A low
+Injector
+Injector #1 (TWV 1) load short (coil short/terminal short)
+Injector #1 disconnection
+Injector #2 (TWV 2) load short (coil short/terminal short)
+Injector #2 disconnection
+Injector #3 (TWV 3) load short (coil short/terminal short)
+Injector #3 disconnection
+Injector #4 (TWV 4) load short (coil short/terminal short)
+Injector #4 disconnection
+Injector #5 disconnection
+Injector #6 disconnection
+Injector / fuel pressure
+Injector 1 circuit open (E12 pin 119)
+Injector 2 circuit open (E12 pin 118)
+Injector 3 circuit open (E12 pin 120)
+Injector 4 circuit open (E12 pin 117)
+Injector back-leak
+Injector compensation (multi-point correction) EEPROM — write injector codes
+Injector leak-off
+Injector leak-off (return) high
+Injector return line leak
+Insufficient Coolant Temperature for Closed Loop Fuel
+Insufficient coolant temperature for stable operation (thermostat)
+Intake air leak
+Intake air leak after MAF
+Intake air throttle position sensor high
+Intake air throttle position sensor low
+Intake manifold air control (variable induction) — target position
+Intake manifold runner control — low RPM
+Intake manifold temperature sensor high
+Intake manifold temperature sensor low
+Intake or exhaust leak before sensor
+Intake throttle DC motor output open load
+Intake throttle valve sticking/intermittent sticking
+Intake valve timing control solenoid
+Intermittent ABS activation (unnecessary pulsing)
+Intermittent misfire
+Intermittent wiring
+Invalid / unrecognised key — immobiliser unit ↔ ECM (no-start case Galant 2.4)
+Invalid transponder (ICU)
+Isuzu-specific code — meaning not confirmed; see workshop manual
+J1939 CAN network communication
+Jump-start / charger connected
+Key
+Key / WCM
+Key / amplifier
+Key / transponder
+Key Collation Waiting Time Over
+Key not registered / NATS antenna
+Key transponder damaged / not registered
+Knee airbag (driver) squib short to +B
+LF wheel speed sensor faulty/damaged
+LR (low-reverse) solenoid open / short
+LR wheel speed sensor faulty/damaged
+Lateral acceleration sensor
+Leaking injector / high fuel pressure
+Line pressure control
+Load-sensing switch faulty
+Lock-up solenoid
+Long-term fuel trim (additive) — mixture too lean (idle)
+Long-term fuel trim (additive) — mixture too rich (idle)
+Long-term fuel trim (multiplicative) — too lean (part load)
+Long-term fuel trim (multiplicative) — too rich (part load)
+Loose bearing
+Loose wheel bearing / hub runout
+Loose/damaged fuel line connections
+Lost communication with ABS module (EBCM)
+Lost communication with ECM
+Lost communication with ECM / PCM
+Lost communication with TCM
+Lost communication with VGRS control unit
+Lost communication with combination meter
+Lost communication with front camera module
+Lost communication with front door pressure sensor LH
+Lost communication with front door pressure sensor RH
+Lost communication with main body ECU
+Lost communication with occupant classification module
+Lost communication with ride level control module
+Low / burnt ATF
+Low / dirty engine oil
+Low ATF level
+Low CVT fluid
+Low DEF level — refill; sender unit if inactive code persists
+Low Output Signal of Front Speed Sensor Mode DTC)
+Low Output Signal of Rear Speed Sensor LH (Test Mode DTC)
+Low Output Signal of Rear Speed Sensor Mode DTC)
+Low battery / alternator voltage (check C1241 first)
+Low battery positive voltage (ABS ECU power supply)
+Low battery voltage
+Low compression
+Low compression (timing chain stretch, valve issue)
+Low coolant / cooling fan / thermostat / radiator
+Low fluid
+Low fluid level
+Low fuel level (fuel aeration)
+Low fuel pressure
+Low fuel pressure / clogged injector
+Low oil level / wrong viscosity
+Low target idle speed
+MAF connector
+MAF wiring/connector fault
+MAP/Boost sensor faulty
+MDPS thermal protection (motor overheat — no replacement)
+MICU (if B1155–B1188 also set)
+MIL ON
+MIL ON/flashing
+Manual mode switch
+Metering valve (SCV) coil
+Misfire
+Misrouted vacuum hoses
+Misrouted/disconnected/plugged exhaust differential pressure hoses/pipes
+Mode DTC DETECTION ITEM Low Output Signal of Front Speed Sensor Mode DTC)
+Modulator pump motor
+Modulator valve coil
+Module / pre-tensioner
+Motor current deviation excessive
+Motor fault — motor not running
+Motor fuse / ground
+Motor fuse / power
+Motor ground
+Motor harness / ECM driver
+Motor relay / fuse
+Motor rotation angle sensor
+NATS / immobiliser — lock mode
+NATS antenna amp around key cylinder / push-start
+NATS antenna amp. — IMMU cannot read key (paired with P1614)
+NATS lock mode — engine start prohibited after repeated invalid attempts
+NE (engine speed) signal
+NE sensor / air gap / rotor
+No Response from ID BOX
+No Response from Steering Lock ECU
+No communication in immobiliser system (key ↔ transponder key ECU)
+No faults — system OK
+No transponder code transmitted / coil antenna open or shorted
+No transponder is learnt (ICU)
+No vehicle speed signal (30 s or more)
+No vehicle speed signal (60 s or more)
+No-start
+No-start/stall
+Non-programmed ICU
+O2 sensor
+O2 signal of NOx sensor rationality
+OD (overdrive) solenoid open / short
+Occupant detection sensor zero point calibration incomplete
+Oil pressure switch
+Oil pump / pressure sensor
+Older ECM (No.81): ECM / ICM code not matched · SX4-type: unregistered transponder
+Older ECM (No.84): ECM / ICM code not registered in ECM
+Open / Short in Steering Lock ECU
+Open in pump motor ground
+Open or short in ABS motor relay circuit
+Open or short in ABS solenoid relay circuit
+Open or short in sensor circuit
+Open resistance correction sensor acceptable threshold Heated logic) heater ECM sensor closest to the engine assembly. sensor farthest away from the engine assembly. oxygen sensor has a zirconia element exhaust gas. If the zirconia element is at the
+Open/Short in Brake Pedal Load Sensing Switch
+Other key test
+Overboost
+Overheating warning
+Oxygen (A/F) Sensor Signal Stuck Lean (Bank 2 Sensor 1)
+Oxygen (A/F) Sensor Signal Stuck Rich (Bank 1 Sensor 1)
+Oxygen (A/F) Sensor Signal Stuck Rich (Bank 2 Sensor 1)
+P/S control module
+P1690 / P1691: SMARTRA power / ground / communication line, antenna coil.
+PAB connector / harness under glove box
+PIG Power Supply Overvoltage
+PIG power supply voltage
+PTO Throttle Sensor Signal
+Park / neutral position switch
+Passenger frontal deployment loop resistance low
+Passenger seat belt sensor
+Passenger seat cushion squib short to +B
+Passenger's seat belt pre-tensioner (squib) — short to power supply
+Poor Engine Power (hybrid)
+Power check: +BM, +BS, IG1, grounds (A42-1, A42-30, A42-36, A42-46, A42-14)
+Power comes and goes
+Power loss
+Power loss (limp mode)
+Power loss, hesitation
+Power source circuit to ABS ECU
+Power supply & ground circuit to ABS actuator
+Power supply sensor
+Pre-ignition Detected
+Pressure control solenoid A (primary) function
+Pressure control solenoid A electrical
+Pressure control solenoid B (secondary) function
+Pressure control solenoid B electrical
+Pressure control solenoid D electrical (shift solenoid valve SLT)
+Pressure limiter
+Pressure sensor
+Pressure sensor (in HECU)
+Pressure sensor (in hydraulic unit)
+Pressure sensor function
+Primary (brake) pressure sensor — electrical
+Primary (brake) pressure sensor — signal
+Primary pressure solenoid valve function
+Pulsar (tone ring) fault — 21 FR, 22 FL, 23 RR, 24 RL (e.g. 21-1 right front pulsar)
+Pump does not work properly — fuel leak
+Pump metering valve (IMV / SCV)
+Pump metering valve (IMV / SCV) stuck
+Pump motor
+Pump motor (common failure on Alto / Grand Vitara / Swift units)
+Pump motor / motor relay (inside actuator)
+Pump motor B+ / ground circuit
+Pump motor circuit
+Pump motor locked
+Pump motor seized
+Pump pressure regulator (IMV / SCV / MPROP)
+Pump valve (SCV) — excessive pressure / fuel pump system
+Purge valve stuck open
+Push sensor fully against tone ring
+QR code not programmed (injector)
+RF wheel speed sensor faulty/damaged (metal debris, oxidation)
+RL wheel speed sensor wiring open
+RR wheel speed sensor faulty/damaged
+RR wheel speed sensor wiring open
+Radiator cooling fan control system
+Rail fuel pressure low during power enrichment
+Rail pressure control valve (D4EB / dual-regulator types)
+Rail pressure sensor
+Rail pressure sensor / pressure control valve
+Rail pressure sensor / pressure limiter
+Rail pressure sensor high
+Rail pressure sensor low
+Rail pressure sensor out of range / characteristics
+Rail pressure sensor, pump metering valve (IMV / SCV) duty, injector leak-off (back-flow) test.
+Rail pressure sensor/SCV seal failure
+Re-register key
+Rear O2 sensor
+Rear differential lock detection switch
+Rear pretensioner squib (LH) short to +B
+Rear pretensioner squib (RH) short to +B
+Reductant Leakage
+Reductant Level Sensor A Stuck
+Reference circuit short/open
+Register 30-digit injector codes (Techstream)
+Register injector QR codes with Hino diagnostic tool
+Register key ID (MUT-III)
+Register key with Suzuki scan tool (ENT. TRANS COD)
+Reset steering angle sensor calibration
+Rotation Angle Sensor Initialization Incomplete
+Rotation Angle Sensor Initialization Undone
+Rough Idling
+Rough idle
+Rough idle / power loss
+Rough idle, engine shake
+Rough idle, power loss
+Rough-road / acceleration sensor signal high
+Rough-road / acceleration sensor signal low
+SAS
+SAS harness / CAN
+SAS not calibrated (zero point)
+SCR operator inducement — severe (derate)
+SCV connector / coil (1.5–1.7 Ω)
+SCV stuck
+SCV/HP pump/filter fault
+SDM
+SDM after deployment
+SDM — air bag deployed (crash data stored; SDM must be replaced)
+SFLH / SFLR solenoid circuit
+SFRH / SFRR solenoid circuit
+SMARTRA no response — communication line ECM–SMARTRA (open / short) or SMARTRA (BCM) faulty
+SMARTRA unit
+SRLH / SRLR solenoid circuit
+SRRH / SRRR (SRH / SRR) solenoid circuit
+SRS wire harness / yellow connector
+SRS wire harness / yellow connector (half-connected, corroded, chafed)
+SRS-ECU
+SRSCM
+SX4-type: immobiliser information mismatched
+SX4-type: unregistered keyless start control module
+Seat belt buckle switch (LH)
+Secondary Air Injection System Switching Valve Stuck Close Bank 1
+Secondary pressure down
+Secondary pressure sensor function
+Secondary pressure solenoid / valve body
+Sensor
+Sensor / mounting bolts loose
+Sensor 5 V reference / harness
+Sensor air gap / mounting
+Sensor assembly internal failure
+Sensor cable / connector
+Sensor circuit / connector
+Sensor connector / harness
+Sensor connector fault
+Sensor harness / CAN
+Sensor harness / connector
+Sensor harness / connector (rodent damage common)
+Sensor installation
+Sensor installation gap, dirt / iron powder on sensor
+Sensor installation issue
+Sensor installation loose
+Sensor internal fault
+Sensor internal open
+Sensor module internal fault
+Sensor mounting
+Sensor mounting / calibration
+Sensor output line open / short (ABS-ECU connector ↔ sensor; rear: intermediate connectors)
+Sensor ring (encoder / tone ring) dirty, cracked or rusted
+Sensor rotor (tone ring) / wheel bearing
+Sensor rotor damaged
+Sensor signal missing (sensor or tone ring)
+Sensor source voltage (sensor supply) fault
+Sensor supply circuit short
+Sensor wire harness
+Sensor wire harness / installation
+Sensor wiring / connector (water, corrosion)
+Sensor wiring harness open/short
+Sensor wiring harness open/short (broken/frayed wire — very common)
+Sensor wiring/connector fault
+Sensor-1 code (C1101–C1104) = circuit open/short → harness, connector, sensor resistance; Sensor-2 code (C1105–C1108) = signal abnormal → rotor, bearing, sensor gap, tyre size.
+Sensor/encoder installation area issue
+Serial communication link (A/T – ECM)
+Serial communication problem between ECM and TCM
+Serial data line ECM–ICU
+Shift solenoid A
+Shift solenoid A electrical
+Shift solenoid B
+Shift solenoid B electrical
+Shift solenoid C
+Shift solenoid C electrical
+Shift solenoid D
+Shift solenoid D electrical
+Shift solenoid E
+Shift solenoid E electrical
+Shift solenoid F electrical (6-speed)
+Short-trip use — needs regeneration
+Side airbag sensor No.2 (LH)
+Side airbag sensor No.2 (RH)
+Side airbag sensor No.2 lost communication (LH)
+Side airbag sensor No.2 lost communication (RH)
+Signal connector (slowly reducing assist)
+Signal harness
+Signal plate
+Skewed sensor value
+Skid Control ECU power/ground fault
+Skid Control ECU/Brake Actuator fault
+Software update first (Honda)
+Solenoid electrical code: connector, harness, solenoid resistance; performance code: fluid, valve body, clutch.
+Solenoid supply / shift related (6-speed TSB list)
+Sometimes no obvious drivability symptom (early stage fault)
+Source: Toyota C1201 'Engine Control System Malfunction' (search: Toyota DTC C1201 explanations)
+Source: go-parts.com OBD C1223 (Toyota/Lexus: C1249 / C1241 often trigger it)
+Spark plug / ignition coil
+Spark plugs worn/fouled (multiple cylinders)
+Speed sensor
+Spiral cable (clock spring)
+Squib (airbag / pretensioner) assembly
+Squib harness / connector
+Steering Angle Sensor Initialization Incomplete
+Steering angle sensor
+Steering angle sensor (SAS)
+Steering angle sensor (VSA)
+Steering angle sensor power/ground fault
+Steering angle sensor — electrical
+Steering angle sensor — signal (calibration needed after alignment / SAS replacement)
+Steering pad (driver airbag) squib
+Step motor / harness
+Step motor function
+Stop lamp switch
+Stop lamp switch / adjustment
+Stop lamp switch circuit / fuse
+Stop light circuit / blown bulb or fuse
+Stop light switch
+Stop-light relay circuit fault
+Stop-light switch wiring open
+Supply pump
+Supply pump / SCV
+Supply pump SCV (suction control valve)
+Supply pump excessive forced feed
+Supply pump exchange
+Supply pump protection
+Supply pump protection / supply pump exchange
+Supply pump wear
+Switch circuit / fuse
+Switch harness
+Switch internal fault
+Switch wiring open/short
+System Voltage
+System function — J1939 / CAN link, ATC valve, retarder relay (2nd digit identifies item)
+System voltage
+TCC solenoid electrical
+TCM
+TCM Processor
+TCM power supply
+TCM reprogram first (TSB)
+TCS communication line
+TCS control unit
+TPMS auto ID under registration
+TPMS transmitter ID2 not received
+TPMS transmitter ID2 operation stop
+TPMS transmitter ID3 not received
+TPMS transmitter ID3 operation stop
+TPMS vehicle speed information communication lost
+TPS harness
+Theft Deterrent ECU Communication Stop
+Thermostat stuck open — Mazda TSB 01-011/21 … 01-001/26 (SkyActiv-G)
+Three-way catalyst
+Throttle actuator control system — forced idle
+Throttle actuator control system — forced limited power
+Throttle body
+Throttle body (dirty / failed motor)
+Throttle body (dirty / failed)
+Throttle body dirty — clean & do Idle Air Volume Learning
+Throttle body motor
+Throttle position sensor (main) plausibility
+Throttle position sensor (sub) plausibility
+Throttle position signal from ECM to TCM (Kia)
+Timing chain / belt
+Timing chain jump/stretch
+Timing chain stretch
+Timing chain stretch (also P0011)
+Tire pressure monitor ECU communication stop
+Tire pressure monitor receiver communication stop
+Tone ring / hub (wrong or damaged ring)
+Tone wheel
+Tone wheel (exciter ring) damaged / dirty / rusted
+Torque Sensor Zero Point Adjustment Incomplete
+Torque Sensor Zero Point Adjustment Undone
+Torque converter
+Torque converter clutch (TCC) solenoid open / short
+Torque sensor
+Torque sensor (column assembly)
+Torque sensor 5 V power supply
+Torque sensor 8 V / 9 V power supply (<7 V)
+Torque sensor cable (TSB CHA114) → then column & housing
+Torque sensor deviation excessive
+Torque sensor main/sub signal deviation
+Torque sensor power supply voltage
+Torque sensor sub signal fail
+Torque sensor zero point adjustment incomplete
+Torque sensor zero point adjustment undone
+Transfer L4 range detection switch
+Transmission control module requested MIL illumination (Isuzu flash code 185)
+Transmission control system — TCM requested MIL (read TCM codes)
+Transmission fluid pressure low
+Transmission harness
+Transmitter ID not Received in Main Mode
+Transmitter ID not Registered
+Transmitter ID1 Operation Stop
+Transmitter ID1 not Received (Test Mode DTC)
+Transmitter ID2 not Received (Test Mode DTC)
+Transmitter ID3 not Received (Test Mode DTC)
+Transmitter ID4 not Received (Test Mode DTC)
+Transponder code not matched (key not registered in ICM)
+Transponder code not registered
+Transponder key ECU
+Transponder key amplifier
+Transponder missing — no transponder (ICU)
+Turbo not working correctly
+Turbo over-boost
+Turbo under-boost (low boost)
+Turbo/VNT fault
+Turbo/supercharger engine overboost
+Turbo/supercharger engine underboost
+Turbocharger Overboost Condition
+Turbocharger Underboost
+Turbocharger Wastegate Actuator B
+Turbocharger overboost
+Turbocharger overboost condition
+Turbocharger overrun
+Turbocharger underboost
+Turbocharger wastegate actuator
+Turbocharger wastegate solenoid
+Tyre size
+Tyre size / tone-wheel mismatch between steer and drive axles. 2nd digit = location: 1 right steer (front), 2 left steer, 3 right drive, 4 left drive, 5 right additional, 6 left additional
+Tyre size mismatch
+UD (underdrive) solenoid open / short
+Unmatched key code — key not registered / weak transponder
+Unregistered key
+Unregistered key — register with CONSULT
+Unusual Bank Angle Detected
+VFS solenoid open / short
+VGRS control unit
+VGT actuator / turbo
+VIN not Programmed or Mismatch - ECM / PCM
+VIN registered in ECM unmatched
+VNT (Variable Nozzle Turbine) stuck
+VNT actuator / turbo
+VNT closed abnormality / underboost
+VSC control unit initialization
+VSC/TRAC lamp ON
+VSC/TRAC warning lamp ON
+VTCS actuator
+VTEC oil pressure switch
+VTEC solenoid / screen
+VTEC solenoid spool valve
+Vacuum / intake leak
+Vacuum leak
+Vacuum leak (lean condition, multiple cylinders)
+Vacuum leak on turbo actuator line
+Vacuum/boost line leak
+Valve body
+Valve cable / connector
+Valve relay (in HECU)
+Variable Valve Lift Controller Assembly (actuator) fault
+Variable Valve Lift Controller Assembly (rocker arm actuator) internal fault
+Vehicle Driven with Steering Angle Sensor not Initialized
+Vehicle Speed Sensor
+Vehicle speed sensor
+Vehicle speed sensor (NPR with ABS: from ABS unit)
+Vehicle speed sensor A
+Vehicle speed signal
+WCM / ECM
+WCM: key ID not registered
+WCM: key ID unmatched (key registered to another vehicle / accessory key)
+WCM: key certification result and engine ECM start condition do not match
+Wastegate mechanism fault
+Wastegate/VNT actuator fault
+Water in fuel alarm
+Water-in-fuel sensor
+Weak 12 V battery can contribute
+Weak battery
+Weak battery (HiAce KDH201 case)
+Weak battery (TSB: service battery first)
+Weak battery / slow cranking
+Weak lift pump (or GDI high-pressure pump)
+Wheel bearing / hub play (sensor-rotor gap)
+Wheel bearing play
+Wheel bearing play / sensor gap
+Wheel sensor
+Wheel sensor (open / short)
+Wheel speed sensor
+Wheel speed sensor - Front Left
+Wheel speed sensor - Front Right
+Wheel speed sensor - Rear Left
+Wheel speed sensor - Rear Right
+Wheel speed sensor Front-LH open/short
+Wheel speed sensor Front-RH open/short
+Wheel speed sensor Rear-LH open/short
+Wheel speed sensor Rear-RH open/short
+Wheel speed sensor air gap too large (sensor out of adjustment). 2nd digit = location: 1 right steer (front), 2 left steer, 3 right drive, 4 left drive, 5 right additional, 6 left additional
+Wheel speed sensor open / short
+Wheel speed sensor rotor faulty - Rear
+Wiring harness fault
+Wiring open/short
+Wiring open/short (+BM A42-1 power supply / GND2 A42-14 ground)
+Wiring/connector fault
+Wiring/connector fault (Pin 1=5V Supply, Pin 2=Signal, Pin 3=Ground)
+Worn MDPS motor coupler (Hyundai / Kia)
+Wrong SRS-ECU part number fitted
+Wrong sensor / tone ring
+Wrong transponder (ICU)
+XUV500: driver thorax airbag — resistance value too small
+Yaw / lateral G sensor
+Yaw rate & lateral G sensor — electrical
+Yaw rate & lateral G sensor — signal
+Yaw rate / lateral acceleration sensor
+Yaw rate sensor module (airbag sensor assembly) power/ground fault
+Zero Point Calibration of Yaw Rate Sensor Undone
+Zero-point calibration not done after battery / column / ECU work — perform calibration
+code ECU) Theft Deterrent System Communication Line 1. Wire High Fixation 2. ECM 3. ID code
+code ECU) Theft Deterrent System Presence Detection ECM

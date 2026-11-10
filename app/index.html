@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="dark light">
 <title>Engine Specs</title>
 <!--
-  ENGINE SPECS — app shell (Phase 1)
+  ENGINE SPECS — app shell
   Everything is local: no CDN, no web fonts, no network calls. It must run
   offline inside the Android app and also when opened as a plain file.
 
@@ -15,8 +15,10 @@
     data.js            KB_DATA  (sample records for now)
     core.js            KB       (DataStore, translations helper, badges, units)
     i18n.js            I18N     (app UI text in en / ta / si)
+    dtc.js             DTC      (layered code lookup; loads data/dtc-lib.js on first use)
     app.js             APP      (router, header, tabs, shared helpers)
-    screens.js         home, vehicle picker, vehicle, system, DTC
+    screens.js         home, vehicle picker, vehicle, system
+    screens-dtc.js     DTC lookup, search results, code page, browse
     screen-settings.js settings
 -->
 <link rel="stylesheet" href="css/app.css">
@@ -35,8 +37,10 @@
 <script src="js/data.js"></script>
 <script src="js/core.js"></script>
 <script src="js/i18n.js"></script>
+<script src="js/dtc.js"></script>
 <script src="js/app.js"></script>
 <script src="js/screens.js"></script>
+<script src="js/screens-dtc.js"></script>
 <script src="js/screen-settings.js"></script>
 <script>APP.render();</script>
 </body>

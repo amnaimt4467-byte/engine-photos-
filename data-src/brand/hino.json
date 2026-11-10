@@ -1,0 +1,62 @@
+{
+  "brand": "hino",
+  "name": "Hino",
+  "groups": [
+    {
+      "id": "hino_eng",
+      "title": "Hino common-rail diesel (N04C / J05E / J08E) — DTC + check-engine flash codes",
+      "sys": "engine",
+      "source": "KATO WORKS 'HINO / Mitsubishi engine ECU error codes' (P-code + flash number, Hino engines in Kato machines) + Hino J05D/J08E ECU fault code list (manualmachine: P0045, P0049, P0088, P0093, P0191, P0605) + Denso J05D/J08E CRS service manual (P0087 checks) + Hino 338 workshop manual (P1601)",
+      "steps": [{"ta":"Hino-DX-ல் DTC + freeze frame படிக்கவும்; scanner இல்லையெனில் diagnosis connector-ஐ ground செய்து check-engine lamp flash எண்ணிக்கையை எண்ணவும் (flash எண் code பக்கத்தில்)."},{"ta":"Rail pressure code-களுக்கு: fuel filter, water separator, priming, supply pump PCV, rail pressure sensor."},{"ta":"Injector / ECU மாற்றினால் QR code பதிவு; DPR code-களுக்கு manual regeneration."},{"ta":"Flash code அட்டவணை Kato machine-ல் உள்ள Hino engine-களிலிருந்து — truck-ல் உறுதி செய்யவும்."}],
+      "codes": [
+        {"code":"P0045","title":{"en":"VNT actuator failure"},"status":"sourced","flash":"35"},
+        {"code":"P0049","title":{"en":"Turbocharger overrun"},"status":"sourced","flash":"34"},
+        {"code":"P0087","title":{"en":"Fuel system pressure control — low (check fuel filter clogging, fuel supply to pump, foreign matter)"},"status":"sourced","flash":"76","causes":[{"en":"Fuel filter clogged"},{"en":"Air / fuel supply to pump"},{"en":"Foreign matter in pump"}]},
+        {"code":"P0088","title":{"en":"Fuel system pressure control — high / excessive common rail pressure"},"status":"sourced","flash":"76 / 69"},
+        {"code":"P0093","title":{"en":"Pump does not work properly — fuel leak"},"status":"sourced"},
+        {"code":"P0108","title":{"en":"Boost pressure sensor out of range high"},"status":"sourced","flash":"25"},
+        {"code":"P0237","title":{"en":"Boost pressure sensor out of range low"},"status":"sourced","flash":"25"},
+        {"code":"P0112","title":{"en":"Intake air throttle position sensor low"},"status":"sourced","flash":"17"},
+        {"code":"P0113","title":{"en":"Intake air throttle position sensor high"},"status":"sourced","flash":"17"},
+        {"code":"P0117","title":{"en":"Coolant temperature sensor out of range low"},"status":"sourced","flash":"11"},
+        {"code":"P0118","title":{"en":"Coolant temperature sensor out of range high"},"status":"sourced","flash":"11"},
+        {"code":"P0191","title":{"en":"Rail pressure sensor characteristic malfunction"},"status":"sourced"},
+        {"code":"P0192","title":{"en":"Fuel rail pressure sensor (main) out of range low"},"status":"sourced","flash":"74"},
+        {"code":"P0193","title":{"en":"Fuel rail pressure sensor (main) out of range high"},"status":"sourced","flash":"74"},
+        {"code":"P0201","title":{"en":"Injector #1 disconnection"},"status":"sourced","flash":"61"},
+        {"code":"P0202","title":{"en":"Injector #2 disconnection"},"status":"sourced","flash":"62"},
+        {"code":"P0203","title":{"en":"Injector #3 disconnection"},"status":"sourced","flash":"63"},
+        {"code":"P0204","title":{"en":"Injector #4 disconnection"},"status":"sourced","flash":"64"},
+        {"code":"P0205","title":{"en":"Injector #5 disconnection"},"status":"sourced","flash":"65"},
+        {"code":"P0206","title":{"en":"Injector #6 disconnection"},"status":"sourced","flash":"66"},
+        {"code":"P0217","title":{"en":"Engine coolant over-temperature"},"status":"sourced","flash":"6"},
+        {"code":"P0234","title":{"en":"Overboost"},"status":"sourced","flash":"34"},
+        {"code":"P0335","title":{"en":"Crankshaft position sensor disconnection"},"status":"sourced","flash":"13"},
+        {"code":"P0340","title":{"en":"Camshaft position sensor disconnection"},"status":"sourced","flash":"12"},
+        {"code":"P0545","title":{"en":"Exhaust temperature sensor 1 low"},"status":"sourced","flash":"27"},
+        {"code":"P0546","title":{"en":"Exhaust temperature sensor 1 high"},"status":"sourced","flash":"27"},
+        {"code":"P0562","title":{"en":"Battery voltage low"},"status":"sourced","flash":"5"},
+        {"code":"P0563","title":{"en":"Battery voltage high"},"status":"sourced","flash":"5"},
+        {"code":"P0605","title":{"en":"Flash ROM error — replace ECU"},"status":"sourced","flash":"3"},
+        {"code":"P0606","title":{"en":"Control module processor"},"status":"sourced","flash":"3"},
+        {"code":"P0628","title":{"en":"PCV1 (pump control valve) output short to GND"},"status":"sourced","flash":"72"},
+        {"code":"P0629","title":{"en":"PCV1 malfunction"},"status":"sourced","flash":"72"},
+        {"code":"P1229","title":{"en":"Supply pump excessive forced feed"},"status":"sourced","flash":"76"},
+        {"code":"P1266","title":{"en":"Supply pump malfunction"},"status":"sourced","flash":"76"},
+        {"code":"P1427","title":{"en":"DPR differential pressure sensor low"},"status":"sourced","flash":"28"},
+        {"code":"P1428","title":{"en":"DPR differential pressure sensor high"},"status":"sourced","flash":"28"},
+        {"code":"P1601","title":{"en":"Fuel injector adjustment data (QR code) error"},"status":"sourced","causes":[{"en":"Register injector QR codes with Hino diagnostic tool"}]},
+        {"code":"P2120","title":{"en":"Both accelerator sensors malfunction"},"status":"sourced","flash":"22"},
+        {"code":"P2122","title":{"en":"Accelerator pedal sensor 1 out of range low"},"status":"sourced"},
+        {"code":"P2123","title":{"en":"Accelerator pedal sensor 1 out of range high"},"status":"sourced","flash":"22"},
+        {"code":"P2269","title":{"en":"Water in fuel alarm"},"status":"sourced","flash":"75","causes":[{"en":"Drain water separator"},{"en":"Water-in-fuel sensor"}]},
+        {"code":"P2463","title":{"en":"DPR blockage error 1"},"status":"sourced","flash":"92","causes":[{"en":"DPR soot — run manual regeneration"},{"en":"DPR cleaning / replacement"}]},
+        {"code":"U0073","title":{"en":"CAN bus off"},"status":"sourced","flash":"8"},
+        {"code":"U0100","title":{"en":"Faulty CAN communication"},"status":"sourced"}
+      ]
+    }
+  ],
+  "loose": [
+
+  ]
+}

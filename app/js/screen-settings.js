@@ -48,8 +48,11 @@
       : '<p class="hint" style="margin:0">' + esc(t("none_yet")) + "</p>");
 
     /* offline data */
-    var packs = DS.vehicles().filter(DS.hasPack);
-    h += card("📦", t("s_data"), t("s_data_note"), packs.map(function (v) {
+    var packs = DS.vehicles().filter(DS.hasPack), st = DTC.stats();
+    if (!st) DTC.load(APP.render);                       // show the library line as soon as it is loaded
+    h += card("📦", t("s_data"), t("s_data_note"),
+      '<div class="line"><div class="tx"><b>' + esc(t("data_lib")) + "</b><small>" + esc(st ? t("lib_stats", { g: st.generic, b: st.brand }) + " (" + st.version + ")" : "⏳ " + t("loading")) + "</small></div></div>" +
+      packs.map(function (v) {
       return '<div class="line"><div class="tx"><b>' + esc(DS.vehicleName(v)) + "</b><small>" + esc(DS.vehicleLine(v)) + "<br>" +
         esc(t("data_records", { d: DS.dtcs().length, p: DS.procedures().length, s: DS.specialFunctions().length })) + "</small></div>" + APP.vehicleTag(v) + "</div>";
     }).join(""));

@@ -1,0 +1,47 @@
+{
+  "brand": "ashok_leyland",
+  "name": "Ashok Leyland",
+  "groups": [
+    {
+      "id": "al_bs6_scr",
+      "title": "Ashok Leyland BS-IV / BS6 (Bosch EDC17 + SCR) — J1939 SPN/FMI codes (generic heavy-duty)",
+      "sys": "engine",
+      "source": "SAE J1939-73 SPN/FMI generic definitions + ALSTI Ashok Leyland BS-IV training (H4/H6 iEGR, EDC17 CV54, SCR, DTC chapter — scribd) + Tata BS6 DEF codes 4334/3521 (video index) + Cummins/Detroit SCR TSBs (SPN 4334, 3364, 1761, 3361)",
+      "steps": [{"ta":"Ashok Leyland scan tool (J1939) மூலம் SPN + FMI படிக்கவும் — FMI = fault வகை (0 high, 1 low, 3/4 short, 5 open, 18 low-moderate, 31 condition)."},{"ta":"SCR / DEF code-களுக்கு முதலில் DEF தரம் (refractometer 32.5 %), level, line crystallisation சோதிக்கவும்."},{"ta":"Air / EGR / fuel code-களை SCR code-க்கு முன் சரி செய்யவும் (NOx code-கள் அவற்றால் வரலாம்)."}],
+      "codes": [
+        {"code":"SPN 4334","title":{"en":"DEF (urea) pressure — FMI 16 too high / FMI 18 too low"},"status":"sourced","causes":[{"en":"Crystallised DEF line / filter"},{"en":"DEF pump"},{"en":"Dosing valve blocked"}]},
+        {"code":"SPN 3364","title":{"en":"DEF quality (urea concentration not 32.5 %)"},"status":"sourced","causes":[{"en":"Contaminated / diluted DEF — test with refractometer (31–34 %)"},{"en":"DEF quality sensor"}]},
+        {"code":"SPN 3362","title":{"en":"DEF dosing unit / quality input (FMI 31 = DEF quality fault)"},"status":"sourced"},
+        {"code":"SPN 1761","title":{"en":"DEF tank level (low / very low → inducement)"},"status":"sourced","causes":[{"en":"Low DEF level — refill; sender unit if inactive code persists"}]},
+        {"code":"SPN 3361","title":{"en":"DEF dosing valve circuit (FMI 3 / 4 / 5)"},"status":"sourced"},
+        {"code":"SPN 3521","title":{"en":"DEF / SCR system fault (BS6 SCR)"},"status":"sourced"},
+        {"code":"SPN 5246","title":{"en":"SCR operator inducement — severe (derate)"},"status":"sourced"},
+        {"code":"SPN 110","title":{"en":"Engine coolant temperature — high / low"},"status":"sourced"},
+        {"code":"SPN 157","title":{"en":"Fuel rail pressure"},"status":"sourced"},
+        {"code":"SPN 639","title":{"en":"J1939 CAN network communication"},"status":"sourced"},
+        {"code":"SPN 168","title":{"en":"Battery voltage"},"status":"sourced"},
+        {"code":"SPN 2659","title":{"en":"EGR mass flow rate (FMI 18 = low)"},"status":"sourced"}
+      ]
+    },
+    {
+      "id": "al_wabco_abs",
+      "title": "Ashok Leyland trucks — WABCO air-brake ABS blink codes (generic WABCO chart)",
+      "sys": "abs",
+      "source": "WABCO / Meritor WABCO Maintenance Manual MM-0112 'Truck, Tractor and Bus ABS' blink-code diagnostics (manualshive: 1st digit / 2nd digit 1–6, system function 7: J1939, ATC valve, retarder relay) + WABCO C-version blink code chart (scribd). Ashok Leyland trucks use WABCO-type air ABS — confirm ECU version on vehicle.",
+      "steps": [{"ta":"Ignition ON, blink-code switch-ஐ 1 வினாடி அழுத்தி விடவும் → ABS lamp-ல் முதல் இலக்க flash, 1.5 வி இடைவெளி, இரண்டாம் இலக்க flash."},{"ta":"1-1 = fault இல்லை. மற்ற code-களுக்கு 2nd digit = எந்த சக்கரம் என்று பார்க்கவும்."},{"ta":"சரி செய்த பின் switch-ஐ 3 வினாடி அழுத்தி stored fault clear; 5 mph+ test drive செய்து lamp அணைகிறதா பார்க்கவும்."}],
+      "codes": [
+        {"code":"WABCO 1-1","title":{"en":"No faults — system OK"},"status":"sourced","flash":"1-1"},
+        {"code":"WABCO 2-x","title":{"en":"ABS modulator valve fault (open / short in valve or cable). 2nd digit = location: 1 right steer (front), 2 left steer, 3 right drive, 4 left drive, 5 right additional, 6 left additional"},"status":"sourced","flash":"2-x","causes":[{"en":"Modulator valve coil"},{"en":"Valve cable / connector"}]},
+        {"code":"WABCO 3-x","title":{"en":"Wheel speed sensor air gap too large (sensor out of adjustment). 2nd digit = location: 1 right steer (front), 2 left steer, 3 right drive, 4 left drive, 5 right additional, 6 left additional"},"status":"sourced","flash":"3-x","causes":[{"en":"Push sensor fully against tone ring"},{"en":"Loose wheel bearing / hub runout"}]},
+        {"code":"WABCO 4-x","title":{"en":"Wheel speed sensor short or open circuit. 2nd digit = location: 1 right steer (front), 2 left steer, 3 right drive, 4 left drive, 5 right additional, 6 left additional"},"status":"sourced","flash":"4-x","causes":[{"en":"Sensor"},{"en":"Sensor cable / connector"}]},
+        {"code":"WABCO 5-x","title":{"en":"Wheel speed sensor signal erratic / intermittent. 2nd digit = location: 1 right steer (front), 2 left steer, 3 right drive, 4 left drive, 5 right additional, 6 left additional"},"status":"sourced","flash":"5-x","causes":[{"en":"Damaged tone ring"},{"en":"Loose bearing"},{"en":"Chafed cable"}]},
+        {"code":"WABCO 6-x","title":{"en":"Tyre size / tone-wheel mismatch between steer and drive axles. 2nd digit = location: 1 right steer (front), 2 left steer, 3 right drive, 4 left drive, 5 right additional, 6 left additional"},"status":"sourced","flash":"6-x"},
+        {"code":"WABCO 7-x","title":{"en":"System function — J1939 / CAN link, ATC valve, retarder relay (2nd digit identifies item)"},"status":"sourced","flash":"7-x"},
+        {"code":"WABCO 8-x","title":{"en":"ECU / power supply (voltage too low or high, internal fault)"},"status":"sourced","flash":"8-x","causes":[{"en":"Battery / alternator voltage"},{"en":"ECU ground"},{"en":"ECU"}]}
+      ]
+    }
+  ],
+  "loose": [
+
+  ]
+}
