@@ -14,9 +14,9 @@
 
 /* whole-title patterns that need the words re-ordered */
 const PATTERNS = [
-  [/^Lost Communication [Ww]ith (.+)$/, "$1 உடன் தொடர்பு இழப்பு", "$1 සමඟ සන්නිවේදනය අහිමි විය"],
-  [/^Invalid Data Received [Ff]rom (.+)$/, "$1 இடமிருந்து தவறான data வந்தது", "$1 වෙතින් වැරදි data ලැබුණි"],
-  [/^Software Incompatibility [Ww]ith (.+)$/, "$1 உடன் software பொருந்தவில்லை", "$1 සමඟ software නොගැළපේ"],
+  [/^Lost Communication With (.+)$/i, "$1 உடன் தொடர்பு இழப்பு", "$1 සමඟ සන්නිවේදනය අහිමි විය"],
+  [/^Invalid Data Received From (.+)$/i, "$1 இடமிருந்து தவறான data வந்தது", "$1 වෙතින් වැරදි data ලැබුණි"],
+  [/^Software Incompatibility With (.+)$/i, "$1 உடன் software பொருந்தவில்லை", "$1 සමඟ software නොගැළපේ"],
   [/^Open in (.+)$/i, "$1 – open (இணைப்பு துண்டிப்பு)", "$1 – open (සම්බන්ධතාව විසන්ධි වී ඇත)"],
   [/^Short in (.+)$/i, "$1 – short", "$1 – short"],
   [/^Open or short in (.+)$/i, "$1 – open அல்லது short", "$1 – open හෝ short"]
@@ -24,6 +24,8 @@ const PATTERNS = [
 
 /* [English phrase, Tamil, Sinhala] — matched case-insensitively on word boundaries */
 const PHRASES = [
+  ["Flow Insufficient Detected", "ஓட்டம் போதவில்லை", "ප්‍රවාහය ප්‍රමාණවත් නැත"],
+  ["Flow Excessive Detected", "ஓட்டம் அதிகம்", "ප්‍රවාහය වැඩියි"],
   ["Circuit Range/Performance Problem", "சர்க்யூட் – மதிப்பு வரம்புக்கு வெளியே (Range/Performance)", "පරිපථය – අගය පරාසයෙන් පිටත (Range/Performance)"],
   ["Circuit Range/Performance", "சர்க்யூட் – மதிப்பு வரம்புக்கு வெளியே (Range/Performance)", "පරිපථය – අගය පරාසයෙන් පිටත (Range/Performance)"],
   ["Circuit Range / Performance", "சர்க்யூட் – மதிப்பு வரம்புக்கு வெளியே (Range/Performance)", "පරිපථය – අගය පරාසයෙන් පිටත (Range/Performance)"],

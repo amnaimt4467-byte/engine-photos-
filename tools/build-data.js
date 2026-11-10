@@ -25,8 +25,10 @@ const TM = {
   si: readJSON(path.join(SRC, "i18n", "si.json"), {}),      // English → Sinhala
   en: readJSON(path.join(SRC, "i18n", "en-from-ta.json"), {}) // Tamil-mixed source → English
 };
+/* part names and source notes that mechanics read in English anyway: shown as-is in every language */
+const KEEP = new Set(readJSON(path.join(SRC, "i18n", "keep-english.json"), []));
 const PLACEHOLDER = /^⚠ இந்த code-க்கு step-by-step|^See Repair Manual/;
-const stats = { placeholders: 0, title: { n: 0, ta: 0, si: 0, taAuto: 0, siAuto: 0 }, detail: { n: 0, en: 0, ta: 0, si: 0 } };
+const stats = { placeholders: 0, vehicleOnly: 0, title: { n: 0, ta: 0, si: 0, taAuto: 0, siAuto: 0 }, detail: { n: 0, en: 0, ta: 0, si: 0 } };
 const missing = { ta: new Set(), si: new Set(), en: new Set() };
 
 /* complete a text item {en?,ta?,si?} from the translation memory */
@@ -37,6 +39,7 @@ function fill(t, kind) {
   if (o.en) {
     if (!o.ta && TM.ta[o.en]) o.ta = TM.ta[o.en];
     if (!o.si && TM.si[o.en]) o.si = TM.si[o.en];
+    if (kind !== "title" && KEEP.has(o.en)) { o.ta = o.ta || o.en; o.si = o.si || o.en; }
   }
   if (kind === "title") {
     stats.title.n++;
@@ -53,22 +56,37 @@ function fill(t, kind) {
   }
   return o;
 }
+/* ---- generic layer only: keep it generic ----
+   The old data stored one vehicle's manual steps (connector pins, wire colours, dealer-tool menus,
+   exact voltages) under generic codes. Those lines are wrong for other vehicles, so they are left
+   out of the generic library. They stay in data-src/ and will go into that vehicle's own pack. */
+const PIN_NOTE = /\s*\((?=[^)]*(?:\bpins?\b|\bE\d{2}\b))[^)]*\)/gi;                       // "(E12 pin 119)" → removed from the sentence
+const VEHICLE_ONLY = new RegExp([
+  "\\bpins?\\s?\\d", "\\b[EJ]\\d{2}\\b", "Tech 2", "TIS 2000", "Techstream", "Euro \\d", "Section \\d", "^STEP \\d", "Sensors tab",
+  "Diagnostic System Check", "part எண்", "\\bTSB\\b", "Valvematic", "Variable Valve Lift", "METER fuse", "\\d+-notch", "\\bC1336\\b", "\\bDPD\\b",
+  "\\bPTO\\b", "SVS lamp", "\\bICU\\b", "\\d\\s?(?:mA|V|Ω)(?![A-Za-z])"
+].join("|"), "i");
+function genericOnly(t) {
+  const o = {};
+  for (const l of Object.keys(t)) { const v = t[l].replace(PIN_NOTE, "").trim(); if (VEHICLE_ONLY.test(v)) { stats.vehicleOnly++; return null; } o[l] = v; }
+  return o;
+}
 const real = (t) => { const s = t && (t.ta || t.en || ""); if (PLACEHOLDER.test(s)) { stats.placeholders++; return false; } return !!s; };
-const list = (arr) => (arr || []).filter(real).map((t) => fill(t, "detail"));
+const list = (arr, isGeneric) => (arr || []).filter(real).map((t) => (isGeneric ? genericOnly(t) : t)).filter(Boolean).map((t) => fill(t, "detail"));
 
 /* one record in app form (short keys keep the file small) */
 function pack(r, isGeneric) {
   const o = { t: fill(r.title, "title"), s: r.status };
   if (r.sys) o.y = r.sys;
-  const sym = list(r.symptoms), cau = list(r.causes), st = list(r.steps);
+  const sym = list(r.symptoms, isGeneric), cau = list(r.causes, isGeneric), st = list(r.steps, isGeneric);
   if (sym.length) o.sym = sym;
   if (cau.length) o.cau = cau;
   if (st.length) o.st = st;
-  if (r.repair && real(r.repair)) o.rep = fill(r.repair, "detail");
+  if (r.repair && real(r.repair)) { const rp = isGeneric ? genericOnly(r.repair) : r.repair; if (rp) o.rep = fill(rp, "detail"); }
   /* blink codes differ per manufacturer, so the generic layer never shows one (it stays in data-src) */
   if (r.flash && !isGeneric) o.fl = r.flash;
   if (r.mil) o.mil = r.mil;
-  if (r.related) o.rel = r.related;
+  if (r.related && !isGeneric) o.rel = r.related;
   if (r.source) o.src = r.source;
   if (r.note) o.note = r.note;
   if (r.suspect) o.sus = r.suspect;
@@ -111,7 +129,14 @@ const nBrandCodes = Object.values(lib.brands).reduce((n, b) => n + Object.keys(b
 console.log("generic codes : " + Object.keys(lib.generic).length);
 console.log("brand records : " + nBrandCodes + " (" + Object.keys(lib.brands).length + " brands, " + nGroups + " groups)");
 console.log("placeholders dropped : " + stats.placeholders);
+console.log("vehicle-only lines kept out of the generic layer : " + stats.vehicleOnly);
 console.log("titles  : " + stats.title.n + " · Tamil " + pct(stats.title.ta, stats.title.n) + " (" + stats.title.taAuto + " by glossary) · Sinhala " + pct(stats.title.si, stats.title.n) + " (" + stats.title.siAuto + " by glossary)");
 console.log("details : " + stats.detail.n + " · English " + pct(stats.detail.en, stats.detail.n) + " · Tamil " + pct(stats.detail.ta, stats.detail.n) + " · Sinhala " + pct(stats.detail.si, stats.detail.n));
+{
+  const cov = (b) => { let n = 0, ta = 0, si = 0, en = 0; const each = (t) => { n++; if (t.ta) ta++; if (t.si) si++; if (t.en) en++; };
+    Object.values(lib.brands[b].groups).forEach((g) => { g.st.forEach(each); Object.values(g.codes).forEach((r) => { each(r.t); (r.cau || []).forEach(each); }); });
+    return b + " groups: " + n + " texts · English " + pct(en, n) + " · Tamil " + pct(ta, n) + " · Sinhala " + pct(si, n); };
+  console.log(cov("toyota"));
+}
 console.log("still to translate (unique strings): → Tamil " + missing.ta.size + " · → Sinhala " + missing.si.size + " · → English " + missing.en.size + "   (lists in data-src/i18n/todo/)");
 console.log("wrote " + path.relative(process.cwd(), OUT) + " " + (fs.statSync(OUT).size / 1024).toFixed(0) + " KB");
