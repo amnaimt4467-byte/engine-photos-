@@ -122,11 +122,48 @@ if (fs.existsSync(path.join(SRC, "engines"))) {
   Object.keys(eng).forEach((e) => { if (!engineKeys[e]) err("engine-groups.json", "lists fault-code groups for unknown engine '" + e + "'"); });
 }
 
+/* diagnosis flows */
+if (fs.existsSync(path.join(SRC, "flows.json"))) {
+  const flows = readJSON(path.join(SRC, "flows.json")) || [];
+  const ids = {}; count.flows = flows.length; count.flowSteps = 0;
+  flows.forEach((f) => {
+    const w = "flows.json " + f.id;
+    if (!f.id || ids[f.id]) err(w, "missing or duplicate flow id"); ids[f.id] = 1;
+    if (!f.title || !f.title.en) err(w, "missing title");
+    if (!f.applies || !(f.applies.fuel || (f.applies.engines && f.applies.engines.length))) err(w, "does not say which vehicles it applies to");
+    if (f.applies && f.applies.fuel && !["cr", "mech", "pet", "ev", "dsl", "ice"].includes(f.applies.fuel)) err(w, "unknown fuel class '" + f.applies.fuel + "'");
+    ((f.applies && f.applies.engines) || []).concat((f.applies && f.applies.skip) || []).forEach((e) => { if (!engineKeys[e]) err(w, "names unknown engine '" + e + "'"); });
+    const byN = {}; (f.steps || []).forEach((st) => { if (byN[st.n]) err(w, "step number " + st.n + " used twice"); byN[st.n] = st; });
+    if (!byN[f.start]) err(w, "start step " + f.start + " does not exist");
+    (f.steps || []).forEach((st) => {
+      count.flowSteps++;
+      const ws = w + " step " + st.n;
+      if (!st.title || !st.title.en) err(ws, "missing title");
+      if (!["eye", "ear", "v", "ohm", "scan", "work"].includes(st.tool)) err(ws, "unknown tool '" + st.tool + "'");
+      if (!st.acts || !st.acts.length) err(ws, "no instruction");
+      if (!st.res || !st.res.length) err(ws, "no results to choose from");
+      (st.res || []).forEach((r) => {
+        if (!r.label || !r.label.en) err(ws, "result without a label");
+        const ends = [r.step != null, !!r.fix, !!r.done].filter(Boolean).length;
+        if (ends !== 1) err(ws, "a result must lead to exactly one of: step, fix, done");
+        if (r.step != null && !byN[r.step]) err(ws, "result points at missing step " + r.step);
+      });
+    });
+    /* no path may visit a step twice */
+    (function walk(n, seen) {
+      if (!byN[n]) return;
+      if (seen.indexOf(n) >= 0) return err(w, "loops at step " + n);
+      byN[n].res.forEach((r) => { if (r.step != null) walk(r.step, seen.concat([n])); });
+    })(f.start, []);
+  });
+}
+
 console.log("generic library : " + count.generic + " codes");
 console.log("brand layer     : " + count.groupCodes + " codes in " + count.groups + " groups + " + count.loose + " other brand-specific codes");
 console.log("engine map      : " + Object.keys(eng).length + " engines");
 console.log("engines         : " + (count.engines || 0) + " (" + Object.entries(count.engStatus || {}).map(([k, v]) => k + " " + v).join(" · ") + ")");
 console.log("vehicles        : " + (count.brands || 0) + " brands · " + (count.models || 0) + " models · " + (count.entries || 0) + " year/engine entries");
+console.log("diagnosis flows : " + (count.flows || 0) + " flows · " + (count.flowSteps || 0) + " steps");
 console.log("DTC marked as   : " + STATUSES.map((s) => s + " " + (count.status[s] || 0)).join(" · "));
 console.log("translations    : " + ["ta.json", "si.json", "en-from-ta.json"].map((f) => f + " " + (count["tm_" + f] || 0)).join(" · "));
 if (errors.length) { console.error("\n" + errors.length + " problem(s):\n  " + errors.slice(0, 40).join("\n  ") + (errors.length > 40 ? "\n  …" : "")); process.exit(1); }

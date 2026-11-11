@@ -203,6 +203,70 @@ async function click(sel) { await page.click(sel); await page.waitForTimeout(80)
   await page.evaluate(() => Settings.set("speak", false));
   await page.reload();
 
+  console.log("Guides: symptoms, special functions, lessons");
+  await page.evaluate((id) => Settings.set("vehicleId", id), "toyota~hiace~2000-2016-1kd-ftv");
+  await goto("#/home");
+  const homeLinks = await page.$$eval(".grid2 a.big", (els) => els.map((e) => e.getAttribute("href")));
+  ok("the four Home buttons all lead to real screens", homeLinks.join() === "#/dtc,#/symptoms,#/special,#/learn", homeLinks.join());
+  await goto("#/symptoms"); await page.waitForTimeout(300);
+  ok("symptom guides: the HiAce 1KD guide is listed first for that vehicle", (await page.$eval("#main a.big", (e) => e.getAttribute("href"))) === "#/flow/kd001");
+  const forMine = await page.$$eval("#main > a.big", (els) => els.map((e) => e.getAttribute("href").replace("#/flow/", "")));
+  ok("a common-rail diesel gets diesel guides but no petrol or generic common-rail duplicate", forMine.includes("gen_lp_diesel") && forMine.includes("gen_nocrank") && !forMine.includes("gen_ns_pet") && !forMine.includes("gen_misfire_pet") && !forMine.includes("gen_ns_cr"), forMine.join());
+  const petrol = await page.evaluate(() => KB.DataStore.vehicles().filter((v) => KB.DataStore.engineInfo(v.engineKey).ft === "pet")[0].id);
+  await page.evaluate((id) => Settings.set("vehicleId", id), petrol); await goto("#/symptoms");
+  const forPetrol = await page.$$eval("#main > a.big", (els) => els.map((e) => e.getAttribute("href").replace("#/flow/", "")));
+  ok("a petrol vehicle gets petrol guides and no diesel ones", forPetrol.includes("gen_ns_pet") && forPetrol.includes("gen_misfire_pet") && !forPetrol.includes("gen_lp_diesel") && !forPetrol.includes("kd001"), forPetrol.join());
+  await page.evaluate(() => Settings.set("vehicleId", null)); await goto("#/symptoms");
+  ok("with no vehicle every guide is listed, with a hint to choose one", (await page.$$("#main a.big")).length === 13 && (await text("#main")).includes("Choose your vehicle"));
+  /* walk EVERY path of EVERY flow: each answer must lead to another step, a fix, or a result */
+  const walk = await page.evaluate(() => {
+    let screens = 0, ends = 0; const bad = [];
+    const show = (h) => { history.replaceState(null, "", h); APP.render(); };
+    FLOWS.forEach((f) => {
+      (function visit(path) {
+        const h = "#/flow/" + f.id + (path.length ? "/" + path.join(".") : "");
+        show(h); screens++;
+        const main = document.getElementById("main");
+        if (main.querySelector(".endcard")) { ends++; if (!main.querySelector(".endcard .plain").textContent.trim()) bad.push(h + " empty end"); return; }
+        const answers = main.querySelectorAll("a.big.res");
+        if (!answers.length || !main.querySelector("h2").textContent.trim()) return bad.push(h + " dead end");
+        for (let i = 0; i < answers.length; i++) visit(path.concat([i]));
+      })([]);
+    });
+    show("#/symptoms");
+    return { screens, ends, bad };
+  });
+  ok("every path of all 13 guides ends in a fix or a result (" + walk.screens + " screens, " + walk.ends + " endings)", walk.bad.length === 0 && walk.ends > 80, walk.bad.slice(0, 4).join(" | "));
+  await goto("#/flow/gen_nocrank");
+  ok("a guide step shows the tool, the instruction and the answers", (await text("#main")).includes("Measure voltage") && (await text("#main")).includes("What did you find?") && (await page.$$("a.big.res")).length >= 2);
+  await click("a.big.res.to-fix"); 
+  ok("choosing a faulty result opens the 'Do this' screen with after-repair checks", /^#\/flow\/gen_nocrank\/\d$/.test(await hash()) && (await text("#main")).includes("Do this") && (await text("#main")).includes("After the repair, check"), await hash());
+  await page.goBack(); await page.waitForTimeout(80);
+  ok("Back returns to the step", (await hash()) === "#/flow/gen_nocrank", await hash());
+  await goto("#/special");
+  ok("special functions without a vehicle: asks for one, bypass notice shown", (await text("#main")).includes("Choose your vehicle") && (await text("#main")).includes("never provides immobilizer bypass"));
+  await page.evaluate((id) => Settings.set("vehicleId", id), "toyota~hiace~2000-2016-1kd-ftv"); await goto("#/special"); await page.waitForTimeout(400);
+  ok("special functions for the HiAce: demo wizard entries and the engine's own functions", (await page.$$('#main a.big[href^="#/sfrun/"]')).length === 9 && (await text("#main")).includes("Injector Compensation Code") && (await text("#main")).includes("NOT been checked"));
+  await goto("#/sfrun/injector_comp");
+  ok("a scanner-only function asks about the scanner first", (await text("#main")).includes("needs a scanner"));
+  await click('a.btn[href="#/sfrun/injector_comp/no"]');
+  ok("answering 'No' explains it cannot be done by hand", (await text("#main")).includes("cannot be done correctly by hand"));
+  await goto("#/sfrun/injector_comp/go/0");
+  ok("the wizard shows one step at a time with its trust mark", (await text("#main")).includes("Step 1 of 4") && !!(await page.$("#main .st")));
+  await goto("#/sfrun/injector_comp/go/3");
+  ok("the last step offers Finish", (await text("#main")).includes("Step 4 of 4") && (await text("#main")).includes("Finish"));
+  /* a Nissan whose engine record lists the NATS key registration (not every Nissan engine does) */
+  await page.evaluate(() => new Promise((r) => KB.DataStore.loadEngine(KB.DataStore.vehicles().filter((v) => v.brandId === "nissan")[0].engineKey, r)));
+  const nis = await page.evaluate(() => KB.DataStore.vehicles().filter((v) => { const e = v.brandId === "nissan" && KB.DataStore.engine(v.engineKey); return e && e.sections.special_functions && e.sections.special_functions.rows.some((r) => /NATS/.test(r[0])); })[0].id);
+  await page.evaluate((id) => Settings.set("vehicleId", id), nis); await goto("#/special"); await page.waitForTimeout(400);
+  ok("special functions for a Nissan: its own list, no demo pack", (await page.$$("#main details.x")).length >= 3 && (await page.$$('#main a.big[href^="#/sfrun/"]')).length === 0 && (await text("#main")).includes("NATS"), nis);
+  await goto("#/learn");
+  ok("six testing lessons are listed", (await page.$$('#main a.big[href^="#/lesson/"]')).length === 6);
+  await goto("#/lesson/voltage");
+  ok("the voltage lesson has a drawing and numbered steps", !!(await page.$("#main .illus svg")) && (await page.$$("#main .check")).length === 3);
+  ok("no screen says 'coming in a later update' any more", await page.evaluate(() => !Object.keys(I18N).some((k) => k.startsWith("soon_"))));
+  await page.evaluate((id) => Settings.set("vehicleId", id), "toyota~hiace~2000-2016-1kd-ftv");
+
   console.log("Settings");
   await goto("#/settings");
   await click('[data-act="set:textSize:l"]');
@@ -235,13 +299,14 @@ async function click(sel) { await page.click(sel); await page.waitForTimeout(80)
 
   console.log("Every screen × every language × text size (no sideways scrolling)");
   const screens = ["#/home", "#/pick", "#/vehicle/toyota~hiace~2000-2016-1kd-ftv", "#/system/toyota~hiace~2000-2016-1kd-ftv/special", "#/dtc", "#/dtc/P0087", "#/dtc/U0100",
-    "#/vehicle/nissan~NISSANID", "#/system/toyota~hiace~2000-2016-1kd-ftv/special", "#/system/toyota~hiace~2000-2016-1kd-ftv/wiring", "#/system/toyota~hiace~2000-2016-1kd-ftv/ecu", "#/dtc/P1229", "#/dtc/P0300", "#/dtc/C1241", "#/dtc/P0ABC", "#/find/rail", "#/find/49", "#/browse/engine", "#/dtcgroup/toyota/toyota_abs", "#/settings", "#/soon/4"];
+    "#/vehicle/nissan~NISSANID", "#/system/toyota~hiace~2000-2016-1kd-ftv/special", "#/system/toyota~hiace~2000-2016-1kd-ftv/wiring", "#/system/toyota~hiace~2000-2016-1kd-ftv/ecu", "#/dtc/P1229", "#/dtc/P0300", "#/dtc/C1241", "#/dtc/P0ABC", "#/find/rail", "#/find/49", "#/browse/engine", "#/dtcgroup/toyota/toyota_abs", "#/settings",
+    "#/symptoms", "#/flow/kd001", "#/flow/gen_ns_cr/0", "#/flow/snd_noise", "#/flow/gen_nocrank/1", "#/special", "#/sfrun/injector_comp", "#/sfrun/abs_bleed/go/1", "#/learn", "#/lesson/voltage", "#/lesson/connector"];
   await page.evaluate(() => Settings.set("vehicleId", "toyota~hiace~2000-2016-1kd-ftv"));
   let worst = 0, where = "";
   for (const lang of ["en", "ta", "si"]) for (const size of ["m", "l"]) {
     await page.evaluate(([l, s]) => { Settings.set("lang", l); Settings.set("textSize", s); Settings.set("level", "advanced"); }, [lang, size]);
     for (const s of screens) {
-      await goto(s.replace("nissan~NISSANID", nissan)); if (/vehicle|system/.test(s)) await page.waitForTimeout(250);
+      await goto(s.replace("nissan~NISSANID", nissan)); if (/vehicle|system|special|flow|symptoms/.test(s)) await page.waitForTimeout(250);
       await page.evaluate(() => document.querySelectorAll("details").forEach((d) => { d.open = true; }));
       for (const k of (await page.$(".dtabs")) ? ["over", "diag", "elec", "rep", "ver"] : [null]) {
         if (k) await click('[data-act="tab:' + k + '"]');

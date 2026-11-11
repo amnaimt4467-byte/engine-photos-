@@ -208,3 +208,24 @@ abbr.gl{text-decoration:underline dotted var(--or);text-underline-offset:.2rem}
 .sub-card{border:1px solid var(--line);border-radius:.7rem;padding:.5rem .6rem;margin-bottom:.5rem}
 details.x>div{overflow-wrap:anywhere}
 details.x p{margin:0 0 .5rem}
+
+/* guides: flows, special-function wizard, lessons */
+.prog{height:.4rem;border-radius:.2rem;background:var(--card2);margin:.9rem 0 .5rem;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--or);border-radius:.2rem}
+.stepname{display:flex;justify-content:space-between;align-items:center;gap:.5rem;font-size:.82rem;color:var(--dim);margin-bottom:.3rem}
+.plain{font-size:1.08rem;line-height:1.55;overflow-wrap:anywhere}
+.big.res{min-height:3.6rem}
+.big.res.to-fix{border-left:.3rem solid var(--warn)}
+.big.res.to-ok{border-left:.3rem solid var(--ok)}
+.endcard{border-radius:1.1rem;padding:1.1rem;margin:.6rem 0;border:2px solid var(--line);background:var(--card)}
+.endcard.fix{border-color:var(--warn)} .endcard.ok{border-color:var(--ok)}
+.endcard .ic{font-size:2.4rem;line-height:1}
+.endcard h2{margin:.3rem 0 .4rem}
+.check{display:flex;gap:.6rem;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:.9rem;padding:.8rem;margin-bottom:.5rem;font-weight:600}
+.check .n{display:inline-flex;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--or-bg);color:var(--or);font-weight:800;align-items:center;justify-content:center;flex:none}
+.illus{background:var(--card);border:1px solid var(--line);border-radius:.9rem;padding:.6rem;margin:.5rem 0 .8rem;text-align:center}
+.illus svg{max-width:100%;height:auto}
+.illus small{display:block;color:var(--dim);font-size:.76rem;margin-top:.25rem}
+.m-body{fill:var(--card2);stroke:var(--dim)} .m-part{fill:var(--card2);stroke:var(--dim)} .m-text{fill:var(--text)} .m-lead{stroke:var(--text)}
+.okc{color:var(--ok)} .warnc{color:var(--warn)}
+.btn[hidden]{display:none}

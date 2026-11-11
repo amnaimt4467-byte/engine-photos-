@@ -41,15 +41,10 @@
     h += APP.searchForm("") + recentChips();
     h += "<h2>" + esc(t("hello")) + '</h2><div class="grid2">' +
       APP.bigLink("🔢", t("a_code"), t("a_code_s"), "#/dtc") +
-      APP.bigLink("🩺", t("a_sym"), t("a_sym_s"), "#/soon/4") +
-      APP.bigLink("🛠️", t("a_sf"), t("a_sf_s"), "#/soon/4") +
-      APP.bigLink("📖", t("a_learn"), t("a_learn_s"), "#/soon/4") + "</div>";
+      APP.bigLink("🩺", t("a_sym"), t("a_sym_s"), "#/symptoms") +
+      APP.bigLink("🛠️", t("a_sf"), t("a_sf_s"), "#/special") +
+      APP.bigLink("📖", t("a_learn"), t("a_learn_s"), "#/learn") + "</div>";
     return { title: t("app_name"), html: h, tab: "home", top: true };
-  });
-
-  APP.route("soon", function (n) {
-    var h = '<div class="empty"><div style="font-size:3rem">🚧</div><h2>' + esc(t("soon_title")) + "</h2><p>" + esc(t("soon_body", { n: n || "" })) + '</p><a class="btn pri" href="#/home">' + esc(t("go_home")) + "</a></div>";
-    return { title: t("soon_title"), html: h, tab: "home" };
   });
 
   /* ---------------- VEHICLE PICKER ----------------
@@ -180,6 +175,7 @@
       (mine ? '<span class="btn on">✓ ' + esc(t("is_current")) + "</span>" : '<button class="btn pri" data-act="set:vehicleId:' + v.id + '">' + esc(t("use_vehicle")) + "</button>") +
       '<button class="btn' + (fav ? " on" : "") + '" data-act="fav:' + v.id + '">' + (fav ? "★ " + esc(t("fav_remove")) : "☆ " + esc(t("fav_add"))) + "</button></div>";
     h += trustBanner(v);
+    h += '<div class="row" style="margin-bottom:.4rem"><a class="btn" href="' + (mine ? "#/symptoms" : "#/pick") + '"' + (mine ? "" : ' hidden') + '>🩺 ' + esc(t("guides_for_vehicle")) + '</a><a class="btn" href="#/special"' + (mine ? "" : ' hidden') + '>🛠️ ' + esc(t("a_sf")) + "</a></div>";
 
     h += "<h3>" + esc(t("systems")) + '</h3><div class="tiles">' + DS.categories().map(function (c) {
       var n = systemCount(v, info, c.id);
@@ -247,5 +243,5 @@
   });
 
   /* shared with screens-dtc.js */
-  APP.ui = { dtcItem: dtcItem, procFold: procFold, specialFold: specialFold, stepsList: stepsList, recentChips: recentChips };
+  APP.ui = { dtcItem: dtcItem, procFold: procFold, specialFold: specialFold, stepsList: stepsList, recentChips: recentChips, node: node, trustBanner: trustBanner };
 })();

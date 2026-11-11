@@ -1,0 +1,467 @@
+Cranking speed
+Selector in P or N. Turn the key to START and watch / listen to the engine cranking.
+Cranks at normal speed
+Cranks slowly
+Charge / replace the battery (≥12.4 V off, >9.6 V while cranking), clean terminals, check starter. A weak battery can also set B2799 / P1604. Then try again.
+Does not crank
+Check P/N position (neutral start switch), starter relay / fuse, battery and starter.
+Security (immobiliser) light
+Turn the key to ON (IG) and look at the security light on the dash.
+Key off: blinking is normal. Key ON: it must go off. 'Light ON = immobiliser ON'.
+Light goes OFF
+Light stays ON or keeps blinking
+Read engine DTCs
+Connect the scanner to DLC3 (16-pin under dash). Read ENGINE codes and also IMMOBILISER codes.
+No code (or only P1604)
+Codes are shown
+Type each code in the app's fault-code box and follow its steps. Most important for no-start: P0335 (crank sensor), P0340, P0627 / P1229 (SCV), P0200 (EDU), P0093 (leak), P0190–P0193 (rail sensor), B2795–B2799 (immobiliser).
+Engine RPM while cranking (scanner data list)
+Open the data list: Engine speed. Crank the engine and watch the RPM.
+With no RPM (NE) signal the ECM does not inject at all.
+RPM shows (about 200–300 rpm)
+RPM stays 0
+Crankshaft position (NE) sensor
+Check the crank sensor connector (loose / corroded / oil), the wiring to the ECM (NE+ / NE−), and the sensor tip and timing rotor (36-2 teeth) for damage or metal dirt.
+Connector / wire fault found
+Repair the connector / wiring, then check RPM again while cranking.
+Wiring OK
+Replace the crankshaft position sensor. Check RPM again. If still 0, check the timing rotor and the ECM.
+Fuel supply basics
+Enough diesel in the tank? Drain the water separator, check the fuel filter, pump the priming (hand) pump until it is hard, look for air bubbles / leaks in the fuel lines.
+All OK
+Water / air / blocked filter found
+Replace the filter / drain water, bleed the air out with the priming pump, then try to start.
+Rail pressure while cranking
+Data list: Common rail pressure (actual) and target. Crank for 5–10 s and watch the actual pressure.
+Key ON engine off ≈ 0–5 MPa; idle target ≈ 25–35 MPa (app data).
+Actual rises and follows target
+Actual stays low (does not rise)
+Pressure OK but no start — EDU / glow / injectors
+Check EDU relay and fuse, EDU connector (P0200). If cold: glow indicator lights at key ON and glow plugs heat. Listen for injector ticking while cranking.
+EDU relay / fuse / connector fault
+Repair the EDU power / relay / connector, or replace the EDU.
+Glow plugs / glow relay faulty (cold start)
+Replace faulty glow plugs / glow relay.
+Low rail pressure — SCV / injector leak / pump
+SCV connector and resistance (engine off, connector off): about 1.5–1.7 Ω. Do an injector back-leak (return flow) test while cranking.
+SCV resistance / connector wrong
+Repair harness or replace the SCV, then do 'Supply pump initialization' with the scanner.
+One or more injectors leak back a lot
+Replace / overhaul the leaking injectors (new seat washers) and register the injector codes (P1601).
+SCV and injectors OK
+Suspect the supply pump or pressure limiter (P1271 / P1272). Test / replace, then supply pump initialization.
+Compression
+Compression test at cranking (250 rpm). Standard 2,700 kPa, minimum 2,200 kPa, max difference 500 kPa.
+Compression low
+Engine mechanical repair (valves, rings, head gasket, timing).
+Compression OK
+Check cam (G) sensor / timing, ECM power and ground; consult dealer for ECM.
+Immobiliser — try the other key
+Try to start with another programmed key of this vehicle.
+Starts with the other key
+The first key is faulty: re-register it or replace it (key registration with Techstream / tool).
+Does not start with any key
+Immobiliser codes (transponder key ECU)
+Scanner: Immobiliser / Transponder key ECU → read codes and data list (should change UNSET → SET with key).
+B2795 (unmatched key code)
+Register the key (or replace the key).
+B2796 / B2798 (no communication with key)
+Check key transponder → transponder key amplifier and its harness → transponder key ECU.
+B2797 / B2799 (key ECU ↔ ECM)
+No code but light stays on
+Battery and ECU communication ID
+Measure battery voltage. Ask: was the ECM, key ECU or all keys replaced / programmed recently?
+Battery low
+Charge / replace the battery and try again (weak battery has caused B2799 on HiAce KDH201).
+Battery OK
+Register the 'ECU communication ID' between transponder key ECU and ECM with Techstream (needed after ECM / key ECU replacement or all-keys-lost). Then check harness ECM ↔ key ECU; replace key ECU or ECM only after that.
+Clear all codes with the scanner.
+Start the engine and let it idle; check rail pressure and no MIL.
+Read codes again.
+Engine cranks but does not start
+Selector in P/N (or clutch pressed). Turn the key to START.
+Charge / replace the battery (≥12.4 V off, >9.6 V while cranking), clean terminals and earth straps, check the starter.
+Open the guide 'Engine does not crank' below.
+Security / immobiliser light
+Key ON: watch the immobiliser (key / security) light.
+Key-OFF blinking is normal; at key ON the light must go off.
+Goes off normally
+Stays ON / blinks
+Vehicle has no immobiliser
+Read codes
+Scanner: read ENGINE and IMMOBILISER codes.
+No code
+Codes shown
+Type each code into the app's fault-code box and follow its guide (crank / cam sensor, fuel pressure, injector and immobiliser codes first).
+Engine RPM while cranking
+Scanner data list: Engine speed while cranking (or watch the tachometer).
+No crank (RPM) signal = no injection / no spark.
+RPM shows (about 150–300 rpm)
+Crankshaft position sensor
+Check the crank sensor connector, wiring to the ECM, sensor tip and the reluctor / timing ring.
+Connector / wiring fault found
+Repair it and check RPM again while cranking.
+Replace the crankshaft position sensor and re-check RPM. If still 0: reluctor ring, timing belt / chain, ECM.
+Fuel basics
+Diesel in tank? Drain the water separator, check the filter, prime with the hand pump until firm, look for air / leaks.
+OK
+Water / air / blocked filter
+Fix it, bleed the air and try again.
+Data list: rail pressure actual vs target while cranking 5–10 s.
+Actual rises with target
+Actual stays low
+Pressure OK — injectors / glow / power
+Check injector driver / EDU relay & fuse (if fitted), injector connectors, glow plugs (cold engine), ECM power & ground.
+Fault found
+Repair the circuit / replace the part.
+Low rail pressure
+Check the pump regulator (SCV / IMV) connector & resistance, injector back-leak test, pressure limiter / relief valve.
+Regulator fault
+Repair / replace the SCV / IMV, then the pump learning / initialisation if the brand needs it.
+Injector back-leak high
+Replace / overhaul the leaking injectors and code them into the ECM.
+Suspect the high-pressure pump or relief valve; test / replace.
+Compression test; compare with the engine's spec in the app.
+Low
+Engine mechanical repair (valves, rings, gasket, timing).
+Check cam sensor / timing and ECM; consult the dealer.
+Immobiliser — other key
+Try another programmed key.
+First key faulty: re-register or replace it with the brand's tool.
+No key works
+Immobiliser codes and battery
+Read the immobiliser / key ECU codes (type them in the app). Measure battery voltage. Ask if the ECM / key unit was replaced recently.
+Charge / replace the battery and try again.
+Codes for key / antenna
+Check key transponder, antenna / amplifier ring and its harness, then the immobiliser unit.
+Codes for ECM ↔ immobiliser communication / ID
+Check the wiring ECM ↔ immobiliser; after ECM / unit replacement do the brand's key / ECU ID registration (dealer PIN may be needed).
+Start / run the engine and re-check the symptom.
+Read the codes again.
+Fuel pump and pressure
+Key ON: listen for the fuel pump running ~2 s. Check fuel pump fuse / relay, fuel level, fuel pressure with a gauge if possible.
+Pump runs, pressure OK
+No pump sound / low pressure
+Check fuse, relay, pump wiring, inertia / cut-off switch (if fitted), filter, pump.
+Spark
+Check spark with a spark tester on one coil while cranking.
+Good spark
+No spark
+Check coil power fuse, ignition relay, coils / igniter, cam sensor and ECM ignition signal.
+Injector pulse / flooding
+Check injector pulse (noid light / scope) and whether plugs are wet (flooded).
+No injector pulse
+Check injector power, ECM power / ground, immobiliser status.
+Plugs wet / flooded
+Clear flood (full throttle while cranking, if supported), dry / replace plugs, check leaking injectors and coolant temp sensor.
+Pulse OK
+Compression / timing
+Compression test and timing belt / chain check.
+Low / timing jumped
+Engine mechanical repair / timing.
+Check intake for blockage, ECM; consult the dealer.
+Fuel and air in fuel
+Diesel in tank? Drain water, check filter, prime / bleed air at the filter and pump until bubble-free.
+Air / water / blocked
+Fix, bleed and try again.
+Fuel cut (stop) solenoid
+Key ON: a click at the injection pump solenoid; 12 / 24 V at its terminal.
+Clicks, voltage OK
+No voltage
+Repair fuse / key switch / wiring to the solenoid.
+Voltage but no click
+Replace the fuel cut solenoid.
+Glow plugs (cold engine)
+Glow indicator lights at key ON? Check glow relay / timer and each glow plug.
+Fault
+Replace glow plugs / relay.
+Fuel at injectors
+Loosen one injector line while cranking (safety!) — does fuel spurt?
+Fuel comes
+No fuel
+Injection pump fault / timing; test / overhaul the pump.
+Compression test, injection timing and timing belt / gears.
+Low / wrong timing
+Mechanical repair / reset timing.
+Check injectors (pop test) and air intake / exhaust blockage.
+Engine does not crank at all
+Battery
+Battery voltage with key off; switch on headlights — do they stay bright when you try to start?
+≥12.4 V, lights stay bright
+Low / lights dim
+Charge / replace battery, clean terminals and earth straps.
+Start conditions
+Auto: selector in P or N. Manual: clutch fully pressed (clutch start switch). Smart key: brake pressed, key detected.
+Conditions OK
+Starts after fixing
+Adjust / replace the neutral, clutch or brake switch.
+Starter signal
+Key START: voltage at the starter's small (S / 50) terminal; check starter relay and fuse.
+Voltage present, starter does nothing
+Starter motor / solenoid fault (or engine seized — try turning the crank by hand).
+Trace relay, fuse, ignition switch, immobiliser / ECM starter cut and wiring.
+Engine overheating
+Coolant level (engine cold!)
+Never open a hot radiator cap. Check reservoir and radiator level, look for leaks.
+Level OK, no leak
+Low / leaking
+Repair the leak (hose, radiator, water pump, heater core), refill and bleed air.
+Cooling fan
+Engine hot / A/C on: does the fan run? (Viscous fan: does it lock up when hot?)
+Fan OK
+Fan not running
+Check fan fuse / relay, coolant temp sensor / switch, fan motor or viscous clutch.
+Thermostat / radiator flow
+Upper and lower radiator hoses both get hot? Radiator fins blocked?
+Both hot, radiator clean
+Lower hose cold / radiator blocked
+Replace thermostat, flush / clean / replace radiator.
+Head gasket check
+Bubbles in coolant, coolant loss with white smoke, CO₂ (block) test, pressure test.
+Positive
+Head gasket / head repair; check the head for warping.
+Negative
+Check water pump impeller / belt and the temperature gauge / sensor reading.
+Low power / black smoke
+Codes and limp mode
+Read codes (boost, rail pressure, EGR, DPF, MAF).
+Codes
+Type each code into the app and follow its guide.
+Air intake
+Air filter, intake / intercooler hoses for leaks or splits, MAF sensor dirty.
+Replace filter / repair hoses / clean or replace MAF.
+Boost / turbo
+Data list: boost actual vs target under load; turbo / VNT actuator movement, oil in intake.
+Boost OK
+Boost low
+Check VNT actuator / vanes (carbon), boost sensor, turbo bearings, exhaust leak before turbo.
+Fuel and injectors
+Fuel filter, rail pressure under load, injector correction / balance values, back-leak.
+Replace filter / repair injectors (and code them).
+EGR / DPF / exhaust
+EGR valve stuck open (carbon), DPF soot load / differential pressure, blocked catalyst.
+Clean / replace EGR, regenerate / clean DPF, repair exhaust.
+Compression test and valve clearance; check clutch slip / brakes dragging.
+Rough idle / misfire
+Read codes: P0300–P0304 misfire, fuel trim (P0171 / P0172), sensor codes.
+Misfire on one cylinder
+Random / lean / rich
+Other codes
+Swap coil / plug
+Swap the coil (and plug) of the misfiring cylinder with a good cylinder; clear codes; re-test.
+Misfire moves with the coil / plug
+Replace that coil / plug.
+Misfire stays
+Injector / compression of that cylinder
+Swap injector or check its resistance / pulse; compression test of that cylinder.
+Injector fault
+Replace / clean the injector.
+Low compression
+Valve / ring / gasket repair.
+Vacuum / fuel / MAF
+Vacuum leaks (hoses, intake gasket, PCV), dirty MAF / throttle body, fuel pressure, O2 sensor.
+Repair the leak / clean MAF and throttle / fix fuel pressure; then idle relearn.
+Check timing (cam / crank correlation) and ignition system.
+Vehicle does not go READY
+12 V battery
+12 V battery voltage (≥12.4 V). A weak 12 V battery is the most common reason for no READY.
+Charge / replace the 12 V battery.
+Key / brake / gear
+Smart key detected (try the key on the start button), brake pressed, gear in P, charging cable unplugged.
+Works after fixing
+Replace key battery / note the cause.
+HV system codes
+Read codes from BMS, motor / inverter, VCU (type them in the app). HV work only with insulated tools and the maker's HV disable procedure.
+Isolation / interlock codes
+Check HV interlock connectors and isolation (dealer / trained technician).
+Other codes / none
+Follow each code's guide; contact the dealer for HV faults.
+Find the fault by engine sound
+What kind of sound?
+Listen at idle, then rev slowly. Use a mechanic's stethoscope or a long screwdriver to the ear to find where it is loudest.
+Safety: keep hands, hair and clothes away from belts and the fan.
+Light 'tick-tick' from the top, faster with RPM
+Deep heavy 'knock' from the bottom
+Metallic 'pinging' when accelerating (petrol)
+Loud diesel clatter / knock
+Squeal / screech
+Whine / whistle rising with RPM
+Hissing
+Rattle (loose metal) / chain rattle at cold start
+Puffing / ticking near the exhaust manifold
+Top-end ticking
+Check engine oil level and grade first. Then note when the tick happens.
+Oil level low / very old oil
+Top up / change oil and filter with the correct grade; re-check the noise after a short drive.
+Loud at cold start, goes away when warm
+Hydraulic lifters / lash adjusters bleeding down: oil change, then replace noisy lifters if it continues.
+Always there, steady
+Where is it loudest?
+Stethoscope on valve cover, each injector, and exhaust manifold.
+Valve cover
+Check / adjust valve clearance (engines with shims or screw adjusters), worn rocker / cam lobe.
+One injector
+A light injector tick is normal (diesel / direct injection). Much louder than the others → test / replace that injector.
+Exhaust manifold
+Bottom-end knock — check oil pressure
+Fit an oil-pressure gauge, or watch the oil light. Do a cylinder cut-out test: disconnect one injector / coil at a time and listen.
+Oil pressure low / oil light flickers
+STOP running the engine. Likely bearing wear or oil pump / pickup fault: drop the sump, check bearings and pump.
+Knock stops when one cylinder is cut
+Connecting-rod bearing of that cylinder (or that piston / pin). Engine repair needed.
+Louder cold, fades when warm
+Piston slap (worn piston / bore). Measure clearances at overhaul.
+Deep rumble under load at low RPM
+Main bearings or crank end-float; also check flywheel / flex-plate bolts and engine mounts.
+Pinging / detonation (petrol)
+Happens on acceleration or uphill, under load.
+After a new fuel fill
+Wrong / low-octane fuel: use the octane the maker specifies.
+Engine also runs hot
+Fix cooling first (see the overheating guide), then re-check.
+Neither
+Check knock sensor & its connector, ignition timing, carbon build-up (decarbon), lean mixture / vacuum leak, EGR, correct spark plug heat range.
+Diesel knock — find the cylinder
+Cut-out test: crack each injector line (mechanical) or unplug each injector (common-rail) one at a time. Or scanner injector balance / correction values.
+Knock stops on one cylinder
+That injector is dripping / stuck / poor spray: back-leak test, pop test, replace (and code it on common-rail).
+All cylinders, worse cold
+Check glow plugs, injection timing, compression, fuel quality / cetane.
+Started after a fuel fill
+Contaminated fuel (water / petrol in diesel): drain tank, flush lines, change filters.
+Metallic knock with black smoke
+Injection timing too advanced / pump fault: check timing marks and pump.
+Squeal — belt test
+With the engine idling, spray a little water on the ribbed side of the belt.
+Noise stops for a moment
+Belt glazed / dry / slipping: replace belt, check tension.
+Noise gets louder
+Pulley misalignment or weak tensioner: check alignment and tensioner.
+No change
+Bearing noise: remove the belt and spin each pulley by hand (tensioner, idler, alternator, water pump, A/C) — rough / noisy one is the fault.
+Whine / whistle
+Note what changes the sound.
+Louder when turning the steering
+Power-steering pump: fluid level / air, pump wear.
+Rises with boost (turbo engine)
+Turbo bearing wear or intake / intercooler leak: check shaft play and hoses, oil in intake.
+Changes with electrical load (lights, A/C)
+Alternator bearing / diode whine: test alternator.
+Constant with RPM from front of engine
+Water pump or idler bearing (belt test), timing gears (some gear whine is normal on diesel).
+Find the source with the engine idling (and under load if possible).
+At idle, rough idle (petrol)
+Vacuum leak: hoses, intake gasket, brake booster hose, PCV. Smoke test if available.
+Under load, low power (turbo)
+Boost leak: intercooler hoses / clamps, intercooler.
+From radiator / hoses, engine hot
+Coolant leak / pressure: let it cool, pressure-test the cooling system (see overheating guide).
+Rattle
+Note when: cold start only, idle, or over bumps / at certain RPM.
+Few seconds at cold start, from timing cover
+Timing chain stretched / tensioner weak: check chain, tensioner and guides (cam / crank correlation codes).
+Underneath, at certain RPM / over bumps
+Loose heat shield, exhaust hanger / clamp, catalytic converter internals (tap with a rubber mallet).
+Whole engine shakes at idle
+Engine / gearbox mounts; also a misfire — see the intermittent-running guide.
+Exhaust leak
+Cold engine: look for black soot marks at manifold joints, cracks, broken studs. Listen at cold start (leak is loudest before metal expands).
+Leak found
+Replace manifold gasket / studs, repair cracked manifold or pipe.
+No leak found
+Re-check valve clearance and injector seat (diesel injector washer leak also puffs).
+Fix, then listen again at cold start, idle and under load.
+How does it start? (hard / long crank / stalls)
+How does it start?
+Note engine temperature (cold morning or hot after driving) and how long it cranks.
+Starts normally
+Start is normal. If a light or noise is the problem, use the noise / smoke guides.
+Hard start only when cold
+Hard start only when hot
+Long cranking every time
+Starts, then stalls
+Starts rough / misses, then smooths out
+Cold hard start
+Which fuel?
+Diesel
+Glow plugs & glow relay / timer (resistance, current), injector spray / back-leak, compression, air entering the fuel system overnight (hand pump soft in the morning).
+Petrol
+Coolant temp sensor (reads warm when cold → too little fuel), fuel pressure holding, spark plugs, dirty throttle / idle valve.
+Hot hard start
+Worn injection pump (internal leakage when hot), injectors, weak starter / battery cables when hot, fuel temperature sensor.
+Leaking injector / flooding (try starting with full throttle), fuel pressure regulator / pump check valve, coolant temp sensor, crank sensor failing when hot.
+Long cranking — prime test
+Turn key ON (not start) 2–3 times for a few seconds each (petrol: pump primes; diesel: use the hand pump until firm), then start.
+Starts quickly after priming
+Fuel pressure drains back when parked: pump check valve, leaking injector, regulator (petrol); air leak at filter housing / lines, return line, non-return valve (diesel).
+No difference
+Use the 'cranks but does not start' guide: RPM signal (crank / cam sensor), timing, compression.
+Starts then stalls
+Watch the security / immobiliser light and time how long it runs.
+Runs 1–3 s, security light blinks / stays on
+Immobiliser rejecting the key: see the immobiliser steps in 'cranks but does not start' and the immobiliser codes.
+Stalls when returning to idle (petrol)
+Dirty throttle body / idle air valve, vacuum leak, MAF; clean then do idle relearn.
+Runs a while then dies, fuel starving (diesel)
+Blocked filter / tank strainer, air leak in suction side, fuel cut solenoid weak, tank vent blocked.
+Dies at random after running
+Use the 'cuts out / runs uneven' guide: crank sensor when hot, relays, ignition switch, earth wires.
+Rough start that clears
+Is there smoke at the start?
+White smoke, clears when warm (diesel)
+One or more glow plugs dead, injector spray poor, low compression on a cylinder.
+Petrol, misses for a few seconds
+Leaking injector (flooding one cylinder), coil / plug lead tracking in damp weather, coolant temp sensor.
+Blue smoke for a few seconds
+Valve stem seals letting oil in overnight — see the smoke guide.
+Find the fault by smoke colour
+Smoke colour
+Look at the exhaust at cold start, at idle when warm, and when revving / accelerating. Smell it.
+White / grey
+Blue (burning oil smell)
+Black
+White smoke — what kind?
+Check coolant level (cold engine) and oil dipstick for milky oil.
+Thin, only on a cold / humid morning, disappears in minutes
+Normal condensation (water vapour). No repair needed.
+Thick, sweet smell, coolant dropping / milky oil
+Coolant entering the cylinders: head gasket, cracked head / block, EGR cooler (diesel). Do a block (CO₂) test and pressure test.
+Diesel: grey-white raw-fuel smell, clears when warm
+Unburnt fuel: glow plugs, injection timing retarded, poor injector spray, low compression, water in fuel.
+Blue smoke — when?
+Check oil level / consumption; on turbo engines remove the intake hose after the turbo and look for oil.
+Puff at start or after long idle, then clears
+Valve stem seals / valve guides.
+Constant, worse when accelerating
+Worn piston rings / bores (do compression and leak-down test), blocked PCV / breather.
+Oil inside intake / intercooler (turbo)
+Turbo oil seals leaking or turbo oil drain blocked; check shaft play.
+Black smoke — rich mixture
+Which fuel? Check the air filter first.
+Air filter blocked
+Replace the air filter, check the intake for blockage.
+Low boost (turbo / VNT, intercooler leak), EGR stuck open, dripping injectors, over-fuelling pump / timing, MAF / boost sensor. See the low-power guide.
+Leaking injector, fuel pressure too high (regulator), coolant temp / O2 / MAF sensor reading wrong, ignition misfire.
+Runs uneven / cuts out intermittently
+When does it run uneven?
+Feel / listen: shake, hesitation, jerks or engine cutting out.
+At idle only (shakes / hunts up and down)
+Under load / accelerating (jerks)
+Cuts out completely, then restarts
+Uneven idle — cylinder test
+Cut-out test one cylinder at a time (or scanner cylinder balance). A cylinder whose cut-out makes no difference is the weak one.
+One cylinder weak
+Petrol: plug / coil / injector of that cylinder. Diesel: injector. Both: compression of that cylinder.
+All similar, RPM hunts
+Vacuum leak, dirty throttle / idle valve, EGR stuck open (petrol); air in fuel, worn pump governor (diesel). Check engine mounts too.
+Jerks under load
+Ignition breaking down under load: plugs (gap / wear), coils, leads; then fuel pressure / clogged filter, dirty injectors, MAF.
+Fuel filter / supply restriction, air in fuel, rail pressure dropping (common-rail), turbo / boost control, EGR.
+Cuts out — find the pattern
+Note if it happens when hot, over bumps, or with the tachometer dropping to 0 first. With the engine running, wiggle harnesses and connectors (crank sensor, ECM, relays, earth straps).
+Only when hot, tacho drops to 0
+Crankshaft position sensor failing when hot — replace.
+Over bumps / when wiggling wiring
+Loose connector, broken wire or poor earth: repair the found point; check the ignition switch and main / EFI relay.
+Fuel-related (dies after a while, restarts after rest)
+Tank vent blocked, fuel pump overheating, clogged filter / strainer.
