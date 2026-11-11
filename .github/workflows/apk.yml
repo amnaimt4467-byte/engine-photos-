@@ -7,7 +7,8 @@ on:
     branches: ["**"]
     paths:
       - "app/**"
-      - "data/**"
+      - "data-src/**"
+      - "tools/**"
       - "android/**"
       - "package.json"
       - "package-lock.json"
@@ -40,6 +41,10 @@ jobs:
 
       - name: Install JS dependencies
         run: npm ci
+
+      # data-src/ is the source of truth: check it, then rebuild app/data/ from it
+      - name: Validate and build app data
+        run: npm run data
 
       - name: Copy web app into the Android project
         run: npx cap sync android
