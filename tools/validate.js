@@ -76,10 +76,58 @@ Object.entries(eng).forEach(([e, gs]) => gs.forEach((g) => { if (!groupIds[g]) e
   count["tm_" + f] = Object.keys(tm).length;
 });
 
+/* engines + vehicle catalogue */
+const engineKeys = {}; count.engines = 0; count.engStatus = {};
+function checkNode(n, where, depth) {
+  if (!n || typeof n !== "object") return err(where, "empty section value");
+  if (n.v !== undefined) { if (typeof n.v !== "string" || !n.v.trim()) err(where, "empty text"); return; }
+  if (n.list) { if (!n.list.length) err(where, "empty list"); return n.list.forEach((x, i) => checkNode(x, where + "[" + i + "]", depth + 1)); }
+  if (n.rows) { if (!n.rows.length) err(where, "empty rows"); return n.rows.forEach((r) => { if (typeof r[0] !== "string" || !r[0]) err(where, "row without a label"); checkNode(r[1], where + " > " + r[0], depth + 1); }); }
+  err(where, "unknown value shape");
+}
+if (fs.existsSync(path.join(SRC, "engines"))) {
+  for (const f of fs.readdirSync(path.join(SRC, "engines")).sort()) {
+    const list = readJSON(path.join(SRC, "engines", f)); if (!list) continue;
+    list.forEach((e) => {
+      const w = "engines/" + f + " " + e.key;
+      if (!e.key) return err("engines/" + f, "engine without a key");
+      if (engineKeys[e.key]) err(w, "duplicate engine key (also in " + engineKeys[e.key] + ")"); engineKeys[e.key] = f;
+      if (!e.name) err(w, "missing name");
+      if (!["sourced", "pending", "published"].includes(e.status)) err(w, "unknown status '" + e.status + "'");
+      if (!e.sections || !e.sections.general_specs) err(w, "missing general_specs");
+      Object.entries(e.sections || {}).forEach(([id, n]) => checkNode(n, w + " " + id, 0));
+      count.engines++; count.engStatus[e.status] = (count.engStatus[e.status] || 0) + 1;
+    });
+  }
+  const brands = readJSON(path.join(SRC, "vehicles.json")) || [];
+  count.brands = brands.length; count.models = 0; count.entries = 0;
+  const brandIds = {};
+  brands.forEach((b) => {
+    if (brandIds[b.id]) err("vehicles.json", "brand " + b.id + " listed twice"); brandIds[b.id] = 1;
+    if (!b.name) err("vehicles.json " + b.id, "missing brand name");
+    const modelIds = {};
+    b.models.forEach((m) => {
+      count.models++;
+      if (modelIds[m.id]) err("vehicles.json " + b.id, "model " + m.id + " listed twice"); modelIds[m.id] = 1;
+      const ids = {};
+      m.entries.forEach((e) => {
+        count.entries++;
+        const w = "vehicles.json " + b.id + "/" + m.id + "/" + e.id;
+        if (!e.id || /[~/#\s]/.test(e.id)) err(w, "entry id must be simple (no spaces, ~ / #)");
+        if (ids[e.id]) err(w, "entry id used twice"); ids[e.id] = 1;
+        if (!engineKeys[e.engine]) err(w, "points at unknown engine '" + e.engine + "'");
+      });
+    });
+  });
+  Object.keys(eng).forEach((e) => { if (!engineKeys[e]) err("engine-groups.json", "lists fault-code groups for unknown engine '" + e + "'"); });
+}
+
 console.log("generic library : " + count.generic + " codes");
 console.log("brand layer     : " + count.groupCodes + " codes in " + count.groups + " groups + " + count.loose + " other brand-specific codes");
 console.log("engine map      : " + Object.keys(eng).length + " engines");
-console.log("marked as       : " + STATUSES.map((s) => s + " " + (count.status[s] || 0)).join(" · "));
+console.log("engines         : " + (count.engines || 0) + " (" + Object.entries(count.engStatus || {}).map(([k, v]) => k + " " + v).join(" · ") + ")");
+console.log("vehicles        : " + (count.brands || 0) + " brands · " + (count.models || 0) + " models · " + (count.entries || 0) + " year/engine entries");
+console.log("DTC marked as   : " + STATUSES.map((s) => s + " " + (count.status[s] || 0)).join(" · "));
 console.log("translations    : " + ["ta.json", "si.json", "en-from-ta.json"].map((f) => f + " " + (count["tm_" + f] || 0)).join(" · "));
 if (errors.length) { console.error("\n" + errors.length + " problem(s):\n  " + errors.slice(0, 40).join("\n  ") + (errors.length > 40 ? "\n  …" : "")); process.exit(1); }
 console.log("\nOK — no problems found");

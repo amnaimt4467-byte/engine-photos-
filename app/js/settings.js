@@ -27,6 +27,11 @@ var Settings = (function () {
     Object.keys(DEFAULTS).forEach(function (k) {
       out[k] = s[k] !== undefined ? s[k] : (Array.isArray(DEFAULTS[k]) ? [] : DEFAULTS[k]);
     });
+    /* ids changed when the full vehicle catalogue arrived (app 0.4): keep the user's vehicle */
+    var RENAMED = { toyota_hiace_kdh_2013_1kdftv: "toyota~hiace~2000-2016-1kd-ftv" };
+    var fix = function (id) { return RENAMED[id] || (id && id.indexOf("~") < 0 ? null : id); };
+    out.vehicleId = fix(out.vehicleId);
+    out.favorites = out.favorites.map(fix).filter(Boolean);
     return out;
   }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }

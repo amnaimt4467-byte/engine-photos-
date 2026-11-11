@@ -1,10 +1,14 @@
 /* =====================================================================
    SCREENS — first launch, home, vehicle picker, vehicle page, system page,
-   DTC list / search results / DTC detail, and "coming soon" placeholders.
+   and "coming soon" placeholders.  (DTC screens: screens-dtc.js)
+
+   Vehicles come from the catalogue (data/catalog.js). The engine record for a
+   vehicle (specs, torque, special functions …) is loaded on demand with
+   DS.loadEngine(), so the app starts fast even with 259 engines.
    ===================================================================== */
 (function () {
   var DS = KB.DataStore, L = KB.L, U = KB.U, esc = KB.esc, badge = KB.badge, val = KB.val;
-  var t = APP.t, list = APP.list, block = APP.block, fold = APP.fold;
+  var t = APP.t, fold = APP.fold;
 
   /* ---------------- FIRST LAUNCH: pick a language ---------------- */
   APP.route("first", function () {
@@ -19,7 +23,7 @@
 
   /* ---------------- HOME ---------------- */
   function vehicleCard(v) {
-    return '<div class="card vehicle"><span class="ic">🚐</span><div class="tx"><b>' + esc(DS.vehicleName(v)) + "</b><small>" + esc(DS.vehicleLine(v)) + "</small></div></div>";
+    return '<div class="card vehicle"><span class="ic">' + (v.icon || "🚐") + '</span><div class="tx"><b>' + esc(DS.vehicleName(v)) + "</b><small>" + esc(DS.vehicleLine(v)) + "</small></div></div>";
   }
   function recentChips() {
     var r = Settings.get("recent"); if (!r.length) return "";
@@ -40,7 +44,6 @@
       APP.bigLink("🩺", t("a_sym"), t("a_sym_s"), "#/soon/4") +
       APP.bigLink("🛠️", t("a_sf"), t("a_sf_s"), "#/soon/4") +
       APP.bigLink("📖", t("a_learn"), t("a_learn_s"), "#/soon/4") + "</div>";
-    h += '<div class="notice">' + esc(L(DS.meta().notice)) + "</div>";
     return { title: t("app_name"), html: h, tab: "home", top: true };
   });
 
@@ -50,42 +53,46 @@
   });
 
   /* ---------------- VEHICLE PICKER ----------------
-     Make → Model → Chassis → Year → Engine. A level with only one possible
-     value is filled in automatically, so the mechanic taps as little as possible. */
-  var LEVELS = ["make", "model", "chassis", "year", "engine"];
+     Make → Model → Years · Engine. A level with only one possible value is
+     filled in automatically, so the mechanic taps as little as possible. */
   var sel = {};
   function distinct(vehicles, key) {
     var seen = [];
     vehicles.forEach(function (v) { var x = String(v[key]); if (seen.indexOf(x) < 0) seen.push(x); });
     return seen;
   }
-  /* fill single-choice levels; returns the next level the user must choose, or null when done */
-  function advance() {
-    for (var i = 0; i < LEVELS.length; i++) {
-      var k = LEVELS[i]; if (k in sel) continue;
+  /* returns the next level to choose: "make", "model", or "entry" (= list the vehicles) */
+  function nextLevel() {
+    var levels = ["make", "model"];
+    for (var i = 0; i < levels.length; i++) {
+      var k = levels[i]; if (k in sel) continue;
       var opts = distinct(DS.vehiclesWhere(sel), k);
       if (opts.length === 1) { sel[k] = opts[0]; continue; }
       return k;
     }
-    return null;
+    return "entry";
+  }
+  function statusTag(v) {
+    return (DS.hasPack(v) ? '<span class="tag sample">◇ ' + esc(t("tag_sample")) + "</span>" : "") +
+      (v.status === "sourced" ? '<span class="tag">📄 ' + esc(t("tag_sourced")) + "</span>" : '<span class="tag medium">⚠ ' + esc(t("tag_unverified")) + "</span>");
   }
   function vehicleRow(v) {
-    return APP.bigLink("🚐", DS.vehicleName(v), DS.vehicleLine(v), "#/vehicle/" + v.id, "<div>" + APP.vehicleTag(v) + "</div>");
+    return APP.bigLink(v.icon || "🚐", DS.vehicleName(v), DS.vehicleLine(v), "#/vehicle/" + v.id, "<div>" + statusTag(v) + "</div>");
   }
   function pickerBody() {
-    var level = advance(), pool = DS.vehiclesWhere(sel);
-    var h = "";
-    var chosen = LEVELS.filter(function (k) { return k in sel && sel[k] !== ""; });
+    var level = nextLevel(), pool = DS.vehiclesWhere(sel), h = "";
+    var chosen = ["make", "model"].filter(function (k) { return k in sel; });
     if (chosen.length) {
-      h += '<div class="path">' + chosen.map(function (k) { return '<span class="chip on">' + esc(sel[k]) + "</span>"; }).join("<span class=\"dim\">›</span>") +
+      h += '<div class="path">' + chosen.map(function (k) { return '<span class="chip on">' + esc(sel[k]) + "</span>"; }).join('<span class="dim">›</span>') +
         '<button class="chip" data-act="pickReset">↺ ' + esc(t("pick_restart")) + "</button></div>";
     }
-    if (!level) return h + pool.map(vehicleRow).join("");
     h += "<h3>" + esc(t("pick_" + level)) + "</h3>";
+    if (level === "entry") return h + pool.map(vehicleRow).join("");
     distinct(pool, level).forEach(function (opt) {
       var probe = {}; Object.keys(sel).forEach(function (k) { probe[k] = sel[k]; }); probe[level] = opt;
-      var n = DS.vehiclesWhere(probe).length;
-      h += APP.bigAct(level === "make" ? "🏭" : level === "year" ? "📅" : level === "engine" ? "⚙️" : "🚐", opt || "—", t("n_vehicles", { n: n }), "pick:" + level + ":" + opt);
+      var list = DS.vehiclesWhere(probe);
+      var sub = level === "make" ? t("n_models", { n: distinct(list, "model").length }) : t("n_vehicles", { n: list.length });
+      h += APP.bigAct(level === "make" ? list[0].icon || "🏭" : "🚐", opt, sub, "pick:" + level + ":" + opt);
     });
     return h;
   }
@@ -96,38 +103,97 @@
   });
   APP.action("pick", function (arg) {
     var i = arg.indexOf(":"); sel[arg.slice(0, i)] = arg.slice(i + 1);
-    if (!advance()) {                       // every level decided → open that vehicle
-      var found = DS.vehiclesWhere(sel); sel = {};
-      if (found.length === 1) return APP.go("#/vehicle/" + found[0].id);
-    }
-    APP.render();
+    nextLevel();
+    var found = DS.vehiclesWhere(sel);
+    if (found.length === 1) { sel = {}; return APP.go("#/vehicle/" + found[0].id); }   // only one vehicle left → open it
+    APP.render(); window.scrollTo(0, 0);
   });
   APP.action("pickReset", function () { sel = {}; APP.render(); });
   APP.onInput("pickSearch", function (q) {
     var box = document.getElementById("pickBody"); if (!box) return;
     if (!q.trim()) { box.innerHTML = pickerBody(); return; }
-    var found = DS.findVehicles(q);
+    var found = DS.findVehicles(q, 40);
     box.innerHTML = found.length ? found.map(vehicleRow).join("") : '<p class="empty">' + esc(t("pick_none")) + "</p>";
   });
 
+  /* ---------------- ENGINE DATA: sections of an engine record ----------------
+     A section is a small tree made by tools/migrate-v34-engines.js:
+       { v, u?, src? }  text (u = this value is not verified, src = where it came from)
+       { list: [...] }  list
+       { rows: [[label, node], ...] }  label / value pairs, possibly nested */
+  var SECTIONS = [                       // [id, icon, system it belongs to]
+    ["general_specs", "📋", "engine"], ["versions", "🧬", "engine"], ["versions_delphi", "🧬", "engine"], ["variants", "🧬", "engine"],
+    ["fuel_pressure", "⛽", "fuel"], ["scv_diagnostics", "⛽", "fuel"], ["hp_pump_service", "⛽", "fuel"],
+    ["valve_clearance", "📐", "engine"], ["torque_specs", "🔩", "engine"],
+    ["sensor_voltage", "📍", "sensors"], ["sensors", "📍", "sensors"], ["live_data", "📈", "sensors"],
+    ["ecm", "🧠", "ecu"], ["wiring_diagram", "〰️", "wiring"],
+    ["diagnosis_priority", "🧭", "engine"], ["common_problems", "⚠️", "engine"],
+    ["turbo_diagnostics", "🌀", "engine"], ["egr_diagnostics", "♻️", "engine"], ["dpf_diagnostics", "♻️", "engine"],
+    ["special_functions", "🛠️", "special"], ["abs_vsc", "🛑", "abs"], ["chassis_systems", "🛑", "abs"],
+    ["manufacturer_dtc", "🧾", "engine"], ["maintenance_schedule", "🗓️", "repair"], ["service_procedure", "📘", "repair"],
+    ["special_tools", "🧰", "repair"], ["repair_manual", "📕", "repair"], ["notes", "📝", "engine"], ["_note", "ℹ️", "engine"]
+  ];
+  function flag(n) { return (n.u ? " " + badge("pending", true) : "") + (n.src ? '<div class="dim small">' + esc(t("source_lbl")) + ": " + esc(n.src) + "</div>" : ""); }
+  function text(n) { return esc(String(n.v).replace(/^[A-Z]+:/, "").replace(/\|/g, " / ")).replace(/\n/g, "<br>") + flag(n); }
+  function lbl(k) { return esc(typeof k === "string" ? k.replace(/_/g, " ") : L(k)); }
+  function node(n) {
+    if (!n) return "";
+    if (n.v !== undefined) return "<p>" + text(n) + "</p>";
+    if (n.list) {
+      var simple = n.list.every(function (x) { return x.v !== undefined; });
+      return simple ? '<ol class="lst">' + n.list.map(function (x) { return "<li>" + text(x) + "</li>"; }).join("") + "</ol>"
+                    : n.list.map(function (x) { return '<div class="sub-card">' + node(x) + "</div>"; }).join("");
+    }
+    var h = "", rows = "";
+    var flush = function () { if (rows) { h += '<table class="tbl kv"><tbody>' + rows + "</tbody></table>"; rows = ""; } };
+    n.rows.forEach(function (r) {
+      if (r[1].v !== undefined) rows += "<tr><th>" + lbl(r[0]) + "</th><td>" + text(r[1]) + "</td></tr>";
+      else { flush(); h += '<div class="blk"><h4>' + lbl(r[0]) + "</h4>" + node(r[1]) + "</div>"; }
+    });
+    flush();
+    return h;
+  }
+  function sectionFold(id, icon, eng, open) { return fold(icon + " " + t("sec_" + id), node(eng.sections[id]), open); }
+  function trustBanner(v) {
+    return v.status === "sourced" ? '<p class="dim small">📄 ' + esc(t("eng_sourced")) + "</p>" : '<div class="notice">⚠ ' + esc(t("eng_unverified")) + "</div>";
+  }
+  /* how many things each of the 17 systems has for this vehicle */
+  function systemCount(v, info, sys) {
+    var n = 0;
+    SECTIONS.forEach(function (s) { if (s[2] === sys && info.sec.indexOf(s[0]) >= 0) n++; });
+    if (DS.hasPack(v)) { var c = DS.categoryCounts(sys); n += c.dtc + c.proc + c.special; }
+    if (DTC.ready()) DTC.groupsFor(v).forEach(function (g) { if (g.sys === sys) n++; });
+    return n;
+  }
+
   /* ---------------- VEHICLE PAGE ---------------- */
   APP.route("vehicle", function (id) {
-    var v = DS.vehicle(id); if (!v) { sel = {}; return { title: t("pick_title"), html: '<div id="pickBody">' + pickerBody() + "</div>", tab: "vehicle" }; }
+    var v = DS.vehicle(id);
+    if (!v) { sel = {}; return { title: t("pick_title"), html: '<div id="pickBody">' + pickerBody() + "</div>", tab: "vehicle" }; }
+    var info = DS.engineInfo(v.engineKey), eng = DS.engine(v.engineKey);
+    if (!eng) DS.loadEngine(v.engineKey, APP.render);
+    if (!DTC.ready()) DTC.load(APP.render);                 // for the code-group counts on the tiles
     var mine = Settings.get("vehicleId") === v.id, fav = Settings.isFavorite(v.id);
-    var h = '<div style="margin-top:.8rem">' + vehicleCard(v) + "</div><div>" + APP.vehicleTag(v) + "</div>";
+    var h = '<div style="margin-top:.8rem">' + vehicleCard(v) + "</div>";
+    h += '<p class="small"><b>' + esc(t("engine_lbl")) + ":</b> " + esc(info.n) + (info.v ? '<br><span class="dim">' + esc(t("used_in")) + ": " + esc(info.v) + "</span>" : "") + "</p>";
     h += '<div class="row" style="margin:.6rem 0 1rem">' +
       (mine ? '<span class="btn on">✓ ' + esc(t("is_current")) + "</span>" : '<button class="btn pri" data-act="set:vehicleId:' + v.id + '">' + esc(t("use_vehicle")) + "</button>") +
       '<button class="btn' + (fav ? " on" : "") + '" data-act="fav:' + v.id + '">' + (fav ? "★ " + esc(t("fav_remove")) : "☆ " + esc(t("fav_add"))) + "</button></div>";
-    if (!DS.hasPack(v)) return { title: DS.vehicleName(v), sub: DS.vehicleLine(v), html: h + '<div class="lock">📦 ' + esc(t("no_pack")) + "</div>", tab: "vehicle" };
+    h += trustBanner(v);
 
-    h += fold("📋 " + U("specs"), '<table class="tbl"><tbody>' + v.specs.map(function (s) {
-      return "<tr><td>" + esc(L(s.k)) + "</td><td>" + (s.v ? esc(s.v) : val("", "pending")) + "</td><td>" + badge(s.status, true) + "</td></tr>";
-    }).join("") + "</tbody></table>", true);
     h += "<h3>" + esc(t("systems")) + '</h3><div class="tiles">' + DS.categories().map(function (c) {
-      var n = DS.categoryCounts(c.id), tot = n.dtc + n.proc + n.special;
-      return '<a class="tile' + (tot ? "" : " empty-t") + '" href="#/system/' + v.id + "/" + c.id + '"><span class="ic">' + c.icon + '</span><span class="nm">' + esc(L(c.name)) + '</span><span class="ct">' + (tot ? "📄 " + tot : "—") + "</span></a>";
+      var n = systemCount(v, info, c.id);
+      return '<a class="tile' + (n ? "" : " empty-t") + '" href="#/system/' + v.id + "/" + c.id + '"><span class="ic">' + c.icon + '</span><span class="nm">' + esc(L(c.name)) + '</span><span class="ct">' + (n ? "📄 " + n : "—") + "</span></a>";
     }).join("") + "</div>";
-    h += '<div class="notice">' + esc(L(DS.meta().notice)) + "</div>";
+
+    h += "<h3>" + esc(t("all_engine_data")) + "</h3>";
+    if (!eng) h += '<p class="empty">⏳ ' + esc(t("loading_engine")) + "</p>";
+    else {
+      h += SECTIONS.filter(function (s) { return eng.sections[s[0]]; }).map(function (s) { return sectionFold(s[0], s[1], eng, s[0] === "general_specs"); }).join("");
+      if (eng.linkedDtc) h += fold("🔢 " + t("linked_codes") + " (" + eng.linkedDtc.length + ")", '<div class="chips">' + eng.linkedDtc.map(function (c) {
+        return '<a class="chip code" href="#/dtc/' + encodeURIComponent(c) + '">' + esc(c) + "</a>"; }).join("") + "</div>");
+    }
+    if (DS.hasPack(v)) h += '<div class="notice">' + esc(L(DS.meta().notice)) + "</div>";
     return { title: DS.vehicleName(v), sub: DS.vehicleLine(v), html: h, tab: "vehicle", top: mine };
   });
   APP.action("fav", function (id) { Settings.toggleFavorite(id); });
@@ -154,13 +220,29 @@
   APP.route("system", function (vid, sys) {
     var v = DS.vehicle(vid), c = DS.category(sys);
     if (!v || !c) return APP.redirect("#/home");
-    var dt = DS.dtcsBySystem(sys), pr = sys === "repair" ? DS.procedures() : DS.proceduresBySystem(sys), sp = sys === "special" ? DS.specialFunctions() : DS.specialBySystem(sys);
-    var h = "";
-    if (!dt.length && !pr.length && !sp.length) h = '<p class="empty">' + esc(U("no_data")) + "</p>";
-    if (dt.length) h += "<h3>DTC</h3>" + dt.map(dtcItem).join("");
-    h += APP.bigLink("📚", APP.t("browse_all", { s: L(c.name) }), "", "#/browse/" + sys);
-    if (pr.length) h += "<h3>" + esc(t("procs")) + "</h3>" + pr.map(procFold).join("");
-    if (sp.length) h += "<h3>" + esc(U("special_title")) + "</h3>" + ((sys === "key" || sys === "remote" || sys === "special") ? '<div class="safety">🔐 ' + esc(U("no_bypass")) + "</div>" : "") + sp.map(specialFold).join("");
+    var eng = DS.engine(v.engineKey);
+    if (!eng) DS.loadEngine(v.engineKey, APP.render);
+    if (!DTC.ready()) DTC.load(APP.render);
+    var h = "", any = false;
+    /* 1. this engine's data for the system */
+    if (eng) {
+      var mine = SECTIONS.filter(function (s) { return s[2] === sys && eng.sections[s[0]]; });
+      if (mine.length) { any = true; h += '<div style="margin-top:.8rem">' + trustBanner(v) + "</div>" + mine.map(function (s) { return sectionFold(s[0], s[1], eng, mine.length === 1); }).join(""); }
+    } else h += '<p class="empty">⏳ ' + esc(t("loading_engine")) + "</p>";
+    /* 2. the demo pack (HiAce 1KD-FTV only) */
+    if (DS.hasPack(v)) {
+      var dt = DS.dtcsBySystem(sys), pr = sys === "repair" ? DS.procedures() : DS.proceduresBySystem(sys), sp = sys === "special" ? DS.specialFunctions() : DS.specialBySystem(sys);
+      if (dt.length || pr.length || sp.length) {
+        any = true; h += "<h3>◇ " + esc(t("demo_pack")) + "</h3>";
+        h += dt.map(dtcItem).join("") + pr.map(procFold).join("");
+        if (sp.length) h += ((sys === "key" || sys === "remote" || sys === "special") ? '<div class="safety">🔐 ' + esc(U("no_bypass")) + "</div>" : "") + sp.map(specialFold).join("");
+      }
+    }
+    /* 3. fault-code groups for this system */
+    var groups = DTC.ready() ? DTC.groupsFor(v).filter(function (g) { return g.sys === sys; }) : [];
+    if (groups.length) { any = true; h += "<h3>🏭 " + esc(t("for_vehicle")) + "</h3>" + groups.map(function (g) { return APP.bigLink(c.icon, g.title.split(" — ")[0], t("n_codes", { n: g.count }), "#/dtcgroup/" + g.brand + "/" + g.id); }).join(""); }
+    if (!any && eng) h += '<p class="empty">' + esc(U("no_data")) + "</p>";
+    h += APP.bigLink("📚", t("browse_all", { s: L(c.name) }), "", "#/browse/" + sys);
     return { title: c.icon + " " + L(c.name), sub: DS.vehicleName(v) + " · " + DS.vehicleLine(v), html: h, tab: "vehicle" };
   });
 

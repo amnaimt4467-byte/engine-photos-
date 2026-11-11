@@ -24,7 +24,7 @@ var t = function (en, ta, si) { return { en: en, ta: ta, si: si }; };
 var KB_DATA = {
   meta: {
     version: "sample-0.1",
-    demoVehicleId: "toyota_hiace_kdh_2013_1kdftv",
+    demoVehicleId: "toyota~hiace~2000-2016-1kd-ftv",
     notice: t(
       "SAMPLE DATA. Vehicle-specific values marked 'Needs verification' are intentionally empty and must be taken from the official Toyota repair manual.",
       "இது மாதிரி டேட்டா மட்டும். 'சரிபார்க்க வேண்டும்' என்று குறிக்கப்பட்ட வாகன அளவுகள் வேண்டுமென்றே காலியாக விடப்பட்டுள்ளன — Toyota repair manual-இல் இருந்து மட்டுமே நிரப்ப வேண்டும்.",
@@ -32,36 +32,7 @@ var KB_DATA = {
     )
   },
 
-  /* ---------- 1. VEHICLE TREE: make → model → year → engine ---------- */
-  vehicles: [
-    {
-      id: "toyota_hiace_kdh_2013_1kdftv",
-      make: "Toyota",
-      model: "HiAce (H200 series)",
-      chassis: "KDH",
-      year: 2013,
-      engine: "1KD-FTV",
-      fuel: "Diesel",
-      brand: "toyota", engineKey: "toyota_1kd_ftv",   // keys into the DTC library (brand groups for this engine)
-      pack: "sample",   // "sample" = demo records only · null = no data pack yet
-      specs: [
-        { k: t("Displacement", "எஞ்சின் கொள்ளளவு", "එන්ජින් ධාරිතාව"), v: "2,982 cc", status: "published" },
-        { k: t("Layout", "அமைப்பு", "සැකැස්ම"), v: "Inline 4-cyl, DOHC 16-valve", status: "published" },
-        { k: t("Bore × Stroke", "Bore × Stroke", "Bore × Stroke"), v: "96.0 × 103.0 mm", status: "published" },
-        { k: t("Firing order", "Firing order", "Firing order"), v: "1-3-4-2", status: "published" },
-        { k: t("Fuel system", "எரிபொருள் அமைப்பு", "ඉන්ධන පද්ධතිය"), v: "Common-rail direct injection (Denso)", status: "published" },
-        { k: t("Aspiration", "காற்று உள்ளீடு", "වාතය ඇතුළුවීම"), v: "Turbocharged (intercooler / turbo type depends on variant)", status: "pending" },
-        { k: t("Power / Torque", "Power / Torque", "Power / Torque"), v: "", status: "pending" },
-        { k: t("Compression ratio", "Compression ratio", "Compression ratio"), v: "", status: "pending" },
-        { k: t("Engine oil capacity", "எஞ்சின் ஆயில் அளவு", "එන්ජින් ඔයිල් ප්‍රමාණය"), v: "", status: "pending" },
-        { k: t("Injector type", "Injector வகை", "Injector වර්ගය"), v: "", status: "pending" }
-      ]
-    },
-    /* Planned vehicles: listed so the picker shows how more makes will look.
-       They have NO data pack yet (pack: null) — nothing is shown for them. */
-    { id: "toyota_hilux_2016_1gdftv", make: "Toyota", model: "Hilux", chassis: "", year: 2016, engine: "1GD-FTV", fuel: "Diesel", brand: "toyota", engineKey: "toyota_1gd_ftv", pack: null, specs: [] },
-    { id: "isuzu_dmax_2013_4jj1", make: "Isuzu", model: "D-Max", chassis: "", year: 2013, engine: "4JJ1-TCX", fuel: "Diesel", brand: "isuzu", engineKey: "isuzu_4jj1", pack: null, specs: [] }
-  ],
+  /* vehicles now come from data/catalog.js (see core.js); the records below are the HiAce 1KD-FTV demo pack */
 
   /* ---------- 2. SYSTEM CATEGORIES (same list for every vehicle) ---------- */
   categories: [

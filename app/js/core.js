@@ -133,27 +133,68 @@ var KB = (function () {
     return "";
   }
 
+  /* ---------- vehicles (from data/catalog.js) ----------
+     One "vehicle" = brand → model → a years/engine entry, e.g. Toyota → Hiace → "2000-2016 · 1KD-FTV".
+     id = "brand~model~entry" so it fits in one piece of the URL. */
+  var DTC_BRAND = { hyundai: "hyundai_kia", kia: "hyundai_kia" };          // brand id used by the DTC library
+  var OLD_IDS = { toyota_hiace_kdh_2013_1kdftv: "toyota~hiace~2000-2016-1kd-ftv", toyota_hilux_2016_1gdftv: null, isuzu_dmax_2013_4jj1: null };
+  var VEH = [], VEH_BY_ID = {}, engineWaiters = {};
+  ((window.CATALOG && CATALOG.brands) || []).forEach(function (b) {
+    b.models.forEach(function (m) {
+      m.entries.forEach(function (e) {
+        var info = CATALOG.engines[e.engine] || {};
+        var v = {
+          id: [b.id, m.id, e.id].join("~"), brandId: b.id, brand: DTC_BRAND[b.id] || b.id, icon: b.icon, make: b.name, model: m.name, modelId: m.id,
+          year: e.years, engine: e.variant, entry: [e.years, e.variant].filter(Boolean).join(" · "), engineKey: e.engine, engineName: info.n || "", status: info.s || "pending",
+          /* the demo data pack (6 sample DTCs, procedures) belongs to the HiAce 1KD-FTV until the real manual data replaces it */
+          pack: e.engine === "toyota_1kd_ftv" && m.id === "hiace" ? "sample" : null
+        };
+        v.hay = [b.name, m.name, e.years, e.variant, info.n, info.v].join(" ").toLowerCase();
+        VEH.push(v); VEH_BY_ID[v.id] = v;
+      });
+    });
+  });
+
   var DataStore = {
     meta: function () { return D.meta; },
-    vehicles: function () { return D.vehicles; },
-    vehicle: function (id) { return byId(D.vehicles, id); },
+    vehicles: function () { return VEH; },
+    vehicle: function (id) { return VEH_BY_ID[OLD_IDS[id] || id] || null; },
+    brands: function () { return (window.CATALOG && CATALOG.brands) || []; },
     hasPack: function (v) { return !!(v && v.pack); },
     vehicleName: function (v) { return v ? [v.make, v.model].join(" ") : ""; },
-    vehicleLine: function (v) { return v ? [v.chassis, v.year, v.engine, v.fuel].filter(Boolean).join(" · ") : ""; },
-    /* picker: vehicles matching the choices made so far, e.g. {make:"Toyota", model:"Hilux"} */
+    vehicleLine: function (v) { return v ? v.entry : ""; },
+    /* picker: vehicles matching the choices made so far, e.g. {make:"Toyota", model:"Hiace"} */
     vehiclesWhere: function (sel) {
-      return D.vehicles.filter(function (v) {
+      return VEH.filter(function (v) {
         return Object.keys(sel).every(function (k) { return String(v[k]) === String(sel[k]); });
       });
     },
-    /* picker: free-text search over make / model / chassis / engine / year */
-    findVehicles: function (q) {
+    /* picker: free-text search over make / model / years / engine name / the vehicles that engine is used in */
+    findVehicles: function (q, max) {
       var words = String(q || "").toLowerCase().split(/\s+/).filter(Boolean);
       if (!words.length) return [];
-      return D.vehicles.filter(function (v) {
-        var hay = [v.make, v.model, v.chassis, v.engine, v.year].join(" ").toLowerCase();
-        return words.every(function (w) { return hay.indexOf(w) >= 0; });
-      });
+      return VEH.filter(function (v) { return words.every(function (w) { return v.hay.indexOf(w) >= 0; }); }).slice(0, max || 40);
+    },
+    /* engines: a short index is always there; the full record loads with its brand file on demand */
+    engineInfo: function (key) { return (window.CATALOG && CATALOG.engines[key]) || null; },
+    engine: function (key) {
+      var info = this.engineInfo(key);
+      return (info && window.ENGINES && ENGINES[info.f] && ENGINES[info.f][key]) || null;
+    },
+    loadEngine: function (key, cb) {
+      var info = this.engineInfo(key);
+      if (!info || (window.ENGINES && ENGINES[info.f])) return cb && cb();
+      if (engineWaiters[info.f]) return engineWaiters[info.f].push(cb);
+      engineWaiters[info.f] = [cb];
+      var s = document.createElement("script");
+      s.src = "data/engines/" + info.f + ".js";
+      s.onload = s.onerror = function () { var w = engineWaiters[info.f]; delete engineWaiters[info.f]; w.forEach(function (f) { if (f) f(); }); };
+      document.head.appendChild(s);
+    },
+    catalogStats: function () {
+      var c = window.CATALOG; if (!c) return null;
+      var models = 0; c.brands.forEach(function (b) { models += b.models.length; });
+      return { brands: c.brands.length, models: models, vehicles: VEH.length, engines: Object.keys(c.engines).length };
     },
     categories: function () { return D.categories; },
     category: function (id) { return byId(D.categories, id); },

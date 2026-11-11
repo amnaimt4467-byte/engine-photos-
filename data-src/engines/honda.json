@@ -1,0 +1,1219 @@
+[
+ {
+  "key": "honda_k20a",
+  "make": "Honda",
+  "name": "Honda K20A (2.0L DOHC i-VTEC)",
+  "vehicles": "CR-V RD5, Stream, Stepwgn, Civic FD (EU), Integra DC5",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2001–2011"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4 DOHC 16v"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1998cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Fuel System",
+      {
+       "v": "PGM-FI MPI"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "CR-V RD5, Stream, Stepwgn, Civic FD (EU), Integra DC5"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "mymotorlist K20A/Z",
+       "v": "86 × 86 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "mymotorlist K20A/Z",
+       "v": "9.7–9.8:1 (K20A1/A3/A4/A6) · 11.0–11.7:1 (K20A / A2 sport)"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "mymotorlist K20A/Z",
+       "v": "K20A4 CR-V ~150 PS; Type-R K20A 225 PS @ 8000"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "mymotorlist K20A/Z",
+       "v": "4.2 L"
+      }
+     ],
+     [
+      "Engine Oil (Grade)",
+      {
+       "u": 1,
+       "src": "mymotorlist K20A/Z",
+       "v": "5W-30"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "mymotorlist K20A/Z",
+       "v": "Chain"
+      }
+     ],
+     [
+      "Hydraulic Lifters",
+      {
+       "u": 1,
+       "src": "mymotorlist K20A/Z",
+       "v": "இல்லை"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "Exhaust camshaft wear",
+      {
+       "u": 1,
+       "src": "cararac K-series review",
+       "v": "K series exhaust cam lobe wear, throttle body அழுக்கு, oil leak"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "DTC படிக்க / Clear",
+      {
+       "u": 1,
+       "src": "Honda service manual DTC procedure (HDS) — general",
+       "v": "OBD-II DLC (dash கீழே, driver பக்கம்) — generic scanner engine code படிக்கும்; ABS / VSA / SRS / hybrid code-களுக்கு Honda HDS (i-HDS) அல்லது Honda-ஆதரவு scanner தேவை. சரி செய்து clear செய்த பின் test drive."
+      }
+     ],
+     [
+      "Idle relearn (battery கழற்றிய பின்)",
+      {
+       "u": 1,
+       "src": "Honda idle learn procedure (service manual, general)",
+       "v": "Battery / ECM reset-க்குப் பின் idle நிலையற்றால்: engine-ஐ start செய்து electrical load எல்லாம் OFF வைத்து fan ஓடும் வரை (சுமார் 10 நிமிடம்) idle-ல் விடவும் — ECM idle learn செய்யும் (HDS-ல் 'ECM/PCM reset' + 'CKP pattern clear/learn' கூட உள்ளது)."
+      }
+     ],
+     [
+      "Key adding / immobiliser rewrite (Honda HDS)",
+      {
+       "u": 1,
+       "src": "Honda TSB A02-053 (HDS, 1st password from iN) + Honda Element SB 2016 + Acura TSB immobiliser Type 7 + Honda Jazz immobiliser troubleshooting (rewrite with HDS)",
+       "v": "Honda key blank + HDS (i-HDS) மூலம்: HDS immobiliser menu → add key; dealer iN 'Immobilizer Code Inquiry'-ல் பெறும் password / PCM code தேவை. HDS-ல் date / time சரியாக இருக்க வேண்டும். Receiver மாற்றிய பின் HDS மூலம் rewrite செய்யவும். (Acura Type 7: control unit மொத்தம் 6 transponder code வரை.)"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "honda_k24a",
+  "make": "Honda",
+  "name": "Honda K24A / K24Z (2.4L DOHC i-VTEC)",
+  "vehicles": "CR-V RD / RE, Accord, Odyssey, Stepwgn, Element",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2002–2020"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4 DOHC 16v"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "2354cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Fuel System",
+      {
+       "v": "PGM-FI MPI"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "CR-V RD / RE, Accord, Odyssey, Stepwgn, Element"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "honda-tech K series thread + autopartswd K24 guide",
+       "v": "87 × 99 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "honda-tech K series thread + autopartswd K24 guide",
+       "v": "9.6:1 (K24A1) · 9.7:1 (K24A4/A8/Z1) · 10.5:1 (K24Z2/Z3)"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "honda-tech K series thread + autopartswd K24 guide",
+       "v": "K24A1 CR-V: 160 hp · K24Z1: 166 hp @ 5800, 161 lb-ft"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "autohints K24A",
+       "v": "4.2 L"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "autopartswd K24 guide",
+       "v": "Chain"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "Front main seal / timing chain tensioner / exhaust cam wear",
+      {
+       "u": 1,
+       "src": "thinktuning K24A guide",
+       "v": "K24A பொதுவான பிரச்சனைகள்"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "DTC படிக்க / Clear",
+      {
+       "u": 1,
+       "src": "Honda service manual DTC procedure (HDS) — general",
+       "v": "OBD-II DLC (dash கீழே, driver பக்கம்) — generic scanner engine code படிக்கும்; ABS / VSA / SRS / hybrid code-களுக்கு Honda HDS (i-HDS) அல்லது Honda-ஆதரவு scanner தேவை. சரி செய்து clear செய்த பின் test drive."
+      }
+     ],
+     [
+      "Idle relearn (battery கழற்றிய பின்)",
+      {
+       "u": 1,
+       "src": "Honda idle learn procedure (service manual, general)",
+       "v": "Battery / ECM reset-க்குப் பின் idle நிலையற்றால்: engine-ஐ start செய்து electrical load எல்லாம் OFF வைத்து fan ஓடும் வரை (சுமார் 10 நிமிடம்) idle-ல் விடவும் — ECM idle learn செய்யும் (HDS-ல் 'ECM/PCM reset' + 'CKP pattern clear/learn' கூட உள்ளது)."
+      }
+     ],
+     [
+      "Key adding / immobiliser rewrite (Honda HDS)",
+      {
+       "u": 1,
+       "src": "Honda TSB A02-053 (HDS, 1st password from iN) + Honda Element SB 2016 + Acura TSB immobiliser Type 7 + Honda Jazz immobiliser troubleshooting (rewrite with HDS)",
+       "v": "Honda key blank + HDS (i-HDS) மூலம்: HDS immobiliser menu → add key; dealer iN 'Immobilizer Code Inquiry'-ல் பெறும் password / PCM code தேவை. HDS-ல் date / time சரியாக இருக்க வேண்டும். Receiver மாற்றிய பின் HDS மூலம் rewrite செய்யவும். (Acura Type 7: control unit மொத்தம் 6 transponder code வரை.)"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "honda_l13a",
+  "make": "Honda",
+  "name": "Honda L13A (1.3L i-DSI / i-VTEC)",
+  "vehicles": "Fit / Jazz (GD, GE), City, Civic (EU)",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2001–2014"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4 SOHC (8v i-DSI / 16v i-VTEC)"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1339cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Fuel System",
+      {
+       "v": "PGM-FI MPI"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Fit / Jazz (GD, GE), City, Civic (EU)"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "carfromjapan Fit L13A spec + mymotorlist L13A",
+       "v": "73.0 × 80.0 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "carfromjapan Fit L13A spec + mymotorlist L13A",
+       "v": "10.8:1 (i-DSI) / 10.5:1 (i-VTEC)"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "carfromjapan Fit L13A spec + mymotorlist L13A",
+       "v": "i-DSI: 86 PS @ 5700, 119 N·m @ 2800 · i-VTEC: 100 PS"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "mymotorlist L13A/L13B",
+       "v": "3.6 L"
+      }
+     ],
+     [
+      "Engine Oil (Grade)",
+      {
+       "u": 1,
+       "src": "mymotorlist L13A/L13B",
+       "v": "5W-30"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "mymotorlist L13A/L13B",
+       "v": "Chain"
+      }
+     ],
+     [
+      "Firing Order",
+      {
+       "u": 1,
+       "src": "Honda L / R series data (motor-car.net)",
+       "v": "1-3-4-2"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "Ignition coil failure",
+      {
+       "u": 1,
+       "src": "hackmd Fit GD series owner notes (IG coil heat failure L13A/L15A)",
+       "v": "L13A / L15A-ல் exhaust manifold-க்கு அருகில் உள்ள ignition coil வெப்பத்தால் பழுதாகும் (misfire P0301–P0304)"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "DTC படிக்க / Clear",
+      {
+       "u": 1,
+       "src": "Honda service manual DTC procedure (HDS) — general",
+       "v": "OBD-II DLC (dash கீழே, driver பக்கம்) — generic scanner engine code படிக்கும்; ABS / VSA / SRS / hybrid code-களுக்கு Honda HDS (i-HDS) அல்லது Honda-ஆதரவு scanner தேவை. சரி செய்து clear செய்த பின் test drive."
+      }
+     ],
+     [
+      "Idle relearn (battery கழற்றிய பின்)",
+      {
+       "u": 1,
+       "src": "Honda idle learn procedure (service manual, general)",
+       "v": "Battery / ECM reset-க்குப் பின் idle நிலையற்றால்: engine-ஐ start செய்து electrical load எல்லாம் OFF வைத்து fan ஓடும் வரை (சுமார் 10 நிமிடம்) idle-ல் விடவும் — ECM idle learn செய்யும் (HDS-ல் 'ECM/PCM reset' + 'CKP pattern clear/learn' கூட உள்ளது)."
+      }
+     ],
+     [
+      "Key adding / immobiliser rewrite (Honda HDS)",
+      {
+       "u": 1,
+       "src": "Honda TSB A02-053 (HDS, 1st password from iN) + Honda Element SB 2016 + Acura TSB immobiliser Type 7 + Honda Jazz immobiliser troubleshooting (rewrite with HDS)",
+       "v": "Honda key blank + HDS (i-HDS) மூலம்: HDS immobiliser menu → add key; dealer iN 'Immobilizer Code Inquiry'-ல் பெறும் password / PCM code தேவை. HDS-ல் date / time சரியாக இருக்க வேண்டும். Receiver மாற்றிய பின் HDS மூலம் rewrite செய்யவும். (Acura Type 7: control unit மொத்தம் 6 transponder code வரை.)"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "honda_l15a",
+  "make": "Honda",
+  "name": "Honda L15A (1.5L VTEC / i-VTEC)",
+  "vehicles": "Fit / Jazz (GD3, GE8), City, Freed, Airwave, Fit Aria",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2001–2014"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4 SOHC 16v"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1496cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Fuel System",
+      {
+       "v": "PGM-FI MPI"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Fit / Jazz (GD3, GE8), City, Freed, Airwave, Fit Aria"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "Honda L engine (Wikipedia mirror) (L15A1 / L15A7)",
+       "v": "73.0 × 89.4 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "Honda L engine (Wikipedia mirror) (L15A1 / L15A7)",
+       "v": "10.4:1 (VTEC / i-VTEC) · 10.8:1 (i-DSI)"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "Honda L engine (Wikipedia mirror) (L15A1 / L15A7)",
+       "v": "L15A1: 109 hp @ 5800, 143 N·m · GE8 i-VTEC: 120 PS @ 6600, 145 N·m @ 4300"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "Honda Jazz service manual spec (hondziarze)",
+       "v": "3.6 L (with filter) · overhaul 4.2 L"
+      }
+     ],
+     [
+      "Engine Oil (Grade)",
+      {
+       "u": 1,
+       "src": "autohints L15A",
+       "v": "0W-20 / 5W-30"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "mymotorlist L15A",
+       "v": "Chain"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "Ignition coil failure",
+      {
+       "u": 1,
+       "src": "hackmd Fit GD series owner notes (IG coil heat failure L13A/L15A)",
+       "v": "L13A / L15A-ல் exhaust manifold-க்கு அருகில் உள்ள ignition coil வெப்பத்தால் பழுதாகும் (misfire P0301–P0304)"
+      }
+     ],
+     [
+      "First-gen CVT start clutch",
+      {
+       "u": 1,
+       "src": "autohints L15A",
+       "v": "GD Fit / Jazz முதல் தலைமுறை CVT start clutch பலவீனம் (judder / take-off)"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "DTC படிக்க / Clear",
+      {
+       "u": 1,
+       "src": "Honda service manual DTC procedure (HDS) — general",
+       "v": "OBD-II DLC (dash கீழே, driver பக்கம்) — generic scanner engine code படிக்கும்; ABS / VSA / SRS / hybrid code-களுக்கு Honda HDS (i-HDS) அல்லது Honda-ஆதரவு scanner தேவை. சரி செய்து clear செய்த பின் test drive."
+      }
+     ],
+     [
+      "Idle relearn (battery கழற்றிய பின்)",
+      {
+       "u": 1,
+       "src": "Honda idle learn procedure (service manual, general)",
+       "v": "Battery / ECM reset-க்குப் பின் idle நிலையற்றால்: engine-ஐ start செய்து electrical load எல்லாம் OFF வைத்து fan ஓடும் வரை (சுமார் 10 நிமிடம்) idle-ல் விடவும் — ECM idle learn செய்யும் (HDS-ல் 'ECM/PCM reset' + 'CKP pattern clear/learn' கூட உள்ளது)."
+      }
+     ],
+     [
+      "Key adding / immobiliser rewrite (Honda HDS)",
+      {
+       "u": 1,
+       "src": "Honda TSB A02-053 (HDS, 1st password from iN) + Honda Element SB 2016 + Acura TSB immobiliser Type 7 + Honda Jazz immobiliser troubleshooting (rewrite with HDS)",
+       "v": "Honda key blank + HDS (i-HDS) மூலம்: HDS immobiliser menu → add key; dealer iN 'Immobilizer Code Inquiry'-ல் பெறும் password / PCM code தேவை. HDS-ல் date / time சரியாக இருக்க வேண்டும். Receiver மாற்றிய பின் HDS மூலம் rewrite செய்யவும். (Acura Type 7: control unit மொத்தம் 6 transponder code வரை.)"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "honda_l15b",
+  "make": "Honda",
+  "name": "Honda L15B (1.5L DOHC i-VTEC Earth Dreams, direct injection)",
+  "vehicles": "Fit GK5, Vezel RU1, Grace GM6, Shuttle GK8, Freed GB5, City",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2013–2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4 DOHC 16v"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1496cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Fuel System",
+      {
+       "v": "Direct injection (DI)"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Fit GK5, Vezel RU1, Grace GM6, Shuttle GK8, Freed GB5, City"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "carfromjapan Vezel L15B spec + Wikipedia L engine table (JDM L15B)",
+       "v": "73.0 × 89.4 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "carfromjapan Vezel L15B spec + Wikipedia L engine table (JDM L15B)",
+       "v": "11.5:1 (JDM L15B) · turbo 10.3–10.6:1"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "carfromjapan Vezel L15B spec + Wikipedia L engine table (JDM L15B)",
+       "v": "Fit GK5: 132 PS @ 6600, 155 N·m @ 4600 · Vezel RU1: 131 PS"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "autohints L15B + mymotorlist L15B",
+       "v": "3.3 L (autohints / carsart) · mymotorlist 3.7 L"
+      }
+     ],
+     [
+      "Engine Oil (Grade)",
+      {
+       "u": 1,
+       "src": "carsart L15B + autohints",
+       "v": "0W-20 / 5W-30"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "mymotorlist L15B",
+       "v": "Chain"
+      }
+     ],
+     [
+      "Hydraulic Lifters",
+      {
+       "u": 1,
+       "src": "mymotorlist L15B",
+       "v": "இல்லை (valve clearance adjust தேவை)"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "DTC படிக்க / Clear",
+      {
+       "u": 1,
+       "src": "Honda service manual DTC procedure (HDS) — general",
+       "v": "OBD-II DLC (dash கீழே, driver பக்கம்) — generic scanner engine code படிக்கும்; ABS / VSA / SRS / hybrid code-களுக்கு Honda HDS (i-HDS) அல்லது Honda-ஆதரவு scanner தேவை. சரி செய்து clear செய்த பின் test drive."
+      }
+     ],
+     [
+      "Idle relearn (battery கழற்றிய பின்)",
+      {
+       "u": 1,
+       "src": "Honda idle learn procedure (service manual, general)",
+       "v": "Battery / ECM reset-க்குப் பின் idle நிலையற்றால்: engine-ஐ start செய்து electrical load எல்லாம் OFF வைத்து fan ஓடும் வரை (சுமார் 10 நிமிடம்) idle-ல் விடவும் — ECM idle learn செய்யும் (HDS-ல் 'ECM/PCM reset' + 'CKP pattern clear/learn' கூட உள்ளது)."
+      }
+     ],
+     [
+      "Key adding / immobiliser rewrite (Honda HDS)",
+      {
+       "u": 1,
+       "src": "Honda TSB A02-053 (HDS, 1st password from iN) + Honda Element SB 2016 + Acura TSB immobiliser Type 7 + Honda Jazz immobiliser troubleshooting (rewrite with HDS)",
+       "v": "Honda key blank + HDS (i-HDS) மூலம்: HDS immobiliser menu → add key; dealer iN 'Immobilizer Code Inquiry'-ல் பெறும் password / PCM code தேவை. HDS-ல் date / time சரியாக இருக்க வேண்டும். Receiver மாற்றிய பின் HDS மூலம் rewrite செய்யவும். (Acura Type 7: control unit மொத்தம் 6 transponder code வரை.)"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "honda_lda",
+  "make": "Honda",
+  "name": "Honda LDA (1.3L i-VTEC + IMA hybrid)",
+  "vehicles": "Fit Hybrid GP1, Insight ZE2, CR-Z (LEA 1.5)",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2009–2013"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4 SOHC 16v + IMA motor"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1339cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol Hybrid"
+      }
+     ],
+     [
+      "Fuel System",
+      {
+       "v": "PGM-FI + IMA"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Fit Hybrid GP1, Insight ZE2, CR-Z (LEA 1.5)"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "goo-net Fit Hybrid LDA spec",
+       "v": "73.0 × 80.0 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "goo-net Fit Hybrid LDA spec",
+       "v": "10.8:1"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "goo-net Fit Hybrid LDA spec",
+       "v": "88 PS @ 5800 rpm (engine only)"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "Honda L series (motor-car.net)",
+       "v": "Chain"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "IMA battery deterioration",
+      {
+       "u": 1,
+       "src": "electricvehicleforums / ecomodder IMA owner reports",
+       "v": "IMA (NiMH) battery பழுதாகும் போது P0A7F / P1447 / P1449; IMA light + assist குறைவு"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "DTC படிக்க / Clear",
+      {
+       "u": 1,
+       "src": "Honda service manual DTC procedure (HDS) — general",
+       "v": "OBD-II DLC (dash கீழே, driver பக்கம்) — generic scanner engine code படிக்கும்; ABS / VSA / SRS / hybrid code-களுக்கு Honda HDS (i-HDS) அல்லது Honda-ஆதரவு scanner தேவை. சரி செய்து clear செய்த பின் test drive."
+      }
+     ],
+     [
+      "Idle relearn (battery கழற்றிய பின்)",
+      {
+       "u": 1,
+       "src": "Honda idle learn procedure (service manual, general)",
+       "v": "Battery / ECM reset-க்குப் பின் idle நிலையற்றால்: engine-ஐ start செய்து electrical load எல்லாம் OFF வைத்து fan ஓடும் வரை (சுமார் 10 நிமிடம்) idle-ல் விடவும் — ECM idle learn செய்யும் (HDS-ல் 'ECM/PCM reset' + 'CKP pattern clear/learn' கூட உள்ளது)."
+      }
+     ],
+     [
+      "Key adding / immobiliser rewrite (Honda HDS)",
+      {
+       "u": 1,
+       "src": "Honda TSB A02-053 (HDS, 1st password from iN) + Honda Element SB 2016 + Acura TSB immobiliser Type 7 + Honda Jazz immobiliser troubleshooting (rewrite with HDS)",
+       "v": "Honda key blank + HDS (i-HDS) மூலம்: HDS immobiliser menu → add key; dealer iN 'Immobilizer Code Inquiry'-ல் பெறும் password / PCM code தேவை. HDS-ல் date / time சரியாக இருக்க வேண்டும். Receiver மாற்றிய பின் HDS மூலம் rewrite செய்யவும். (Acura Type 7: control unit மொத்தம் 6 transponder code வரை.)"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "honda_leb",
+  "make": "Honda",
+  "name": "Honda LEB (1.5L i-VTEC + i-DCD hybrid)",
+  "vehicles": "Fit Hybrid GP5, Vezel Hybrid RU3, Grace Hybrid GM4, Shuttle Hybrid GP7, Freed Hybrid GB7",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2013–2020"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4 DOHC 16v + i-DCD motor (7-speed DCT)"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1496cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol Hybrid"
+      }
+     ],
+     [
+      "Fuel System",
+      {
+       "v": "PGM-FI + i-DCD (Li-ion)"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Fit Hybrid GP5, Vezel Hybrid RU3, Grace Hybrid GM4, Shuttle Hybrid GP7, Freed Hybrid GB7"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "carfromjapan Fit Hybrid LEB spec + Honda Grace spec sheet (pakwheels) + goo-net Vezel LEB",
+       "v": "73.0 × 89.4 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "carfromjapan Fit Hybrid LEB spec + Honda Grace spec sheet (pakwheels) + goo-net Vezel LEB",
+       "v": "13.5:1 (Fit / Grace hybrid, Atkinson) · 11.5:1 (Vezel hybrid)"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "carfromjapan Fit Hybrid LEB spec + Honda Grace spec sheet (pakwheels) + goo-net Vezel LEB",
+       "v": "Fit GP5: 110 PS @ 6000, 134 N·m (engine) · Vezel RU3: 132 PS, 156 N·m (engine) · system Fit 137 PS"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "mymotorlist LEB",
+       "v": "3.6 L"
+      }
+     ],
+     [
+      "Engine Oil (Grade)",
+      {
+       "u": 1,
+       "src": "mymotorlist LEB",
+       "v": "5W-20 / 0W-20"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "mymotorlist LEB",
+       "v": "Chain"
+      }
+     ],
+     [
+      "Hybrid battery",
+      {
+       "u": 1,
+       "src": "Honda Vezel 2016 web catalogue spec",
+       "v": "Li-ion, 48 cells (Vezel Hybrid)"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "i-DCD DCT judder / jerk",
+      {
+       "u": 1,
+       "src": "Honda Fit Hybrid i-DCD recall history (general)",
+       "v": "குறைந்த வேகத்தில் DCT jerk — Honda software update / recall (Fit Hybrid GP5 2013–2014)"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "DTC படிக்க / Clear",
+      {
+       "u": 1,
+       "src": "Honda service manual DTC procedure (HDS) — general",
+       "v": "OBD-II DLC (dash கீழே, driver பக்கம்) — generic scanner engine code படிக்கும்; ABS / VSA / SRS / hybrid code-களுக்கு Honda HDS (i-HDS) அல்லது Honda-ஆதரவு scanner தேவை. சரி செய்து clear செய்த பின் test drive."
+      }
+     ],
+     [
+      "Idle relearn (battery கழற்றிய பின்)",
+      {
+       "u": 1,
+       "src": "Honda idle learn procedure (service manual, general)",
+       "v": "Battery / ECM reset-க்குப் பின் idle நிலையற்றால்: engine-ஐ start செய்து electrical load எல்லாம் OFF வைத்து fan ஓடும் வரை (சுமார் 10 நிமிடம்) idle-ல் விடவும் — ECM idle learn செய்யும் (HDS-ல் 'ECM/PCM reset' + 'CKP pattern clear/learn' கூட உள்ளது)."
+      }
+     ],
+     [
+      "Key adding / immobiliser rewrite (Honda HDS)",
+      {
+       "u": 1,
+       "src": "Honda TSB A02-053 (HDS, 1st password from iN) + Honda Element SB 2016 + Acura TSB immobiliser Type 7 + Honda Jazz immobiliser troubleshooting (rewrite with HDS)",
+       "v": "Honda key blank + HDS (i-HDS) மூலம்: HDS immobiliser menu → add key; dealer iN 'Immobilizer Code Inquiry'-ல் பெறும் password / PCM code தேவை. HDS-ல் date / time சரியாக இருக்க வேண்டும். Receiver மாற்றிய பின் HDS மூலம் rewrite செய்யவும். (Acura Type 7: control unit மொத்தம் 6 transponder code வரை.)"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "honda_r18",
+  "make": "Honda",
+  "name": "Honda R18A / R18Z (1.8L SOHC i-VTEC)",
+  "vehicles": "Civic FD1 / FB, Stream RN6, HR-V, City",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2005–2020"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4 SOHC 16v"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1799cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Fuel System",
+      {
+       "v": "PGM-FI MPI"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Civic FD1 / FB, Stream RN6, HR-V, City"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "motorreviewer R18A/R18Z + motor-car.net R18",
+       "v": "81.0 × 87.3 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "motorreviewer R18A/R18Z + motor-car.net R18",
+       "v": "10.5:1 (R18A) · 10.6:1 (R18Z)"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "motorreviewer R18A/R18Z + motor-car.net R18",
+       "v": "140–141 hp @ 6300–6500, 174 N·m @ 4300"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "motorreviewer R18A/R18Z",
+       "v": "3.7 L"
+      }
+     ],
+     [
+      "Engine Oil (Grade)",
+      {
+       "u": 1,
+       "src": "motorreviewer R18A/R18Z",
+       "v": "0W-20 / 5W-30"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "mymotorlist R18A",
+       "v": "Chain"
+      }
+     ],
+     [
+      "Firing Order",
+      {
+       "u": 1,
+       "src": "motorreviewer / motor-car.net R18A",
+       "v": "1-3-4-2"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "Fuel / oil sensitivity",
+      {
+       "u": 1,
+       "src": "mymotorlist R18A",
+       "v": "தரம் குறைந்த petrol → catalyst / O2 sensor விரைவாக பழுது"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "DTC படிக்க / Clear",
+      {
+       "u": 1,
+       "src": "Honda service manual DTC procedure (HDS) — general",
+       "v": "OBD-II DLC (dash கீழே, driver பக்கம்) — generic scanner engine code படிக்கும்; ABS / VSA / SRS / hybrid code-களுக்கு Honda HDS (i-HDS) அல்லது Honda-ஆதரவு scanner தேவை. சரி செய்து clear செய்த பின் test drive."
+      }
+     ],
+     [
+      "Idle relearn (battery கழற்றிய பின்)",
+      {
+       "u": 1,
+       "src": "Honda idle learn procedure (service manual, general)",
+       "v": "Battery / ECM reset-க்குப் பின் idle நிலையற்றால்: engine-ஐ start செய்து electrical load எல்லாம் OFF வைத்து fan ஓடும் வரை (சுமார் 10 நிமிடம்) idle-ல் விடவும் — ECM idle learn செய்யும் (HDS-ல் 'ECM/PCM reset' + 'CKP pattern clear/learn' கூட உள்ளது)."
+      }
+     ],
+     [
+      "Key adding / immobiliser rewrite (Honda HDS)",
+      {
+       "u": 1,
+       "src": "Honda TSB A02-053 (HDS, 1st password from iN) + Honda Element SB 2016 + Acura TSB immobiliser Type 7 + Honda Jazz immobiliser troubleshooting (rewrite with HDS)",
+       "v": "Honda key blank + HDS (i-HDS) மூலம்: HDS immobiliser menu → add key; dealer iN 'Immobilizer Code Inquiry'-ல் பெறும் password / PCM code தேவை. HDS-ல் date / time சரியாக இருக்க வேண்டும். Receiver மாற்றிய பின் HDS மூலம் rewrite செய்யவும். (Acura Type 7: control unit மொத்தம் 6 transponder code வரை.)"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "honda_r20a",
+  "make": "Honda",
+  "name": "Honda R20A (2.0L SOHC i-VTEC)",
+  "vehicles": "CR-V RE5 / RE6, Accord CP1, Civic FB3",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2006–2020"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4 SOHC 16v"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1997cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Fuel System",
+      {
+       "v": "PGM-FI MPI"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "CR-V RE5 / RE6, Accord CP1, Civic FB3"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "Honda R engine (Wikipedia mirrors / wikiwand)",
+       "v": "81.0 × 96.9 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "Honda R engine (Wikipedia mirrors / wikiwand)",
+       "v": "10.5:1 (R20A1/A2) · 10.6:1 (R20A9 / R20Z)"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "Honda R engine (Wikipedia mirrors / wikiwand)",
+       "v": "CR-V RE5: 152 PS @ 6200, 190 N·m @ 4200"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "Honda R engine (wikiwand)",
+       "v": "Chain"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "DTC படிக்க / Clear",
+      {
+       "u": 1,
+       "src": "Honda service manual DTC procedure (HDS) — general",
+       "v": "OBD-II DLC (dash கீழே, driver பக்கம்) — generic scanner engine code படிக்கும்; ABS / VSA / SRS / hybrid code-களுக்கு Honda HDS (i-HDS) அல்லது Honda-ஆதரவு scanner தேவை. சரி செய்து clear செய்த பின் test drive."
+      }
+     ],
+     [
+      "Idle relearn (battery கழற்றிய பின்)",
+      {
+       "u": 1,
+       "src": "Honda idle learn procedure (service manual, general)",
+       "v": "Battery / ECM reset-க்குப் பின் idle நிலையற்றால்: engine-ஐ start செய்து electrical load எல்லாம் OFF வைத்து fan ஓடும் வரை (சுமார் 10 நிமிடம்) idle-ல் விடவும் — ECM idle learn செய்யும் (HDS-ல் 'ECM/PCM reset' + 'CKP pattern clear/learn' கூட உள்ளது)."
+      }
+     ],
+     [
+      "Key adding / immobiliser rewrite (Honda HDS)",
+      {
+       "u": 1,
+       "src": "Honda TSB A02-053 (HDS, 1st password from iN) + Honda Element SB 2016 + Acura TSB immobiliser Type 7 + Honda Jazz immobiliser troubleshooting (rewrite with HDS)",
+       "v": "Honda key blank + HDS (i-HDS) மூலம்: HDS immobiliser menu → add key; dealer iN 'Immobilizer Code Inquiry'-ல் பெறும் password / PCM code தேவை. HDS-ல் date / time சரியாக இருக்க வேண்டும். Receiver மாற்றிய பின் HDS மூலம் rewrite செய்யவும். (Acura Type 7: control unit மொத்தம் 6 transponder code வரை.)"
+      }
+     ]
+    ]
+   }
+  }
+ }
+]

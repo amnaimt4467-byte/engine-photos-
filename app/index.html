@@ -12,7 +12,8 @@
 
   Load order matters:
     settings.js        user preferences (language, theme, text size …)
-    data.js            KB_DATA  (sample records for now)
+    data/catalog.js    CATALOG  (brands, models, year/engine entries, engine index — generated)
+    data.js            KB_DATA  (demo pack for the HiAce 1KD-FTV, categories, glossary)
     core.js            KB       (DataStore, translations helper, badges, units)
     i18n.js            I18N     (app UI text in en / ta / si)
     dtc.js             DTC      (layered code lookup; loads data/dtc-lib.js on first use)
@@ -35,6 +36,7 @@
 <nav class="tabs"><div class="in" id="tabsIn"></div></nav>
 
 <script src="js/settings.js"></script>
+<script src="data/catalog.js"></script>
 <script src="js/data.js"></script>
 <script src="js/core.js"></script>
 <script src="js/i18n.js"></script>

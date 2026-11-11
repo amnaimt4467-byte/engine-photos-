@@ -1,0 +1,798 @@
+[
+ {
+  "key": "mahindra_di2523",
+  "make": "Mahindra",
+  "name": "Mahindra DI 2523 (2.5L DI)",
+  "vehicles": "Bolero, Commander",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2000–2010"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "2523cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "No"
+      }
+     ],
+     [
+      "பயன்படுத்தப்பட்ட வாகனங்கள்",
+      {
+       "v": "Bolero, Commander"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "cardekho — Bolero 2011-2019 DI BSII / DI BS III",
+       "v": "63 bhp @3200 / 180 N·m @1440–1500 (Bolero DI)"
+      }
+     ],
+     [
+      "Valvetrain",
+      {
+       "u": 1,
+       "src": "cartrade — Bolero 2011 EX AC BS IV",
+       "v": "2 valves/cylinder, SOHC (Bolero 2523 cc)"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "Engine DTC availability",
+      {
+       "u": 1,
+       "src": "Engine records (DI / MDI mechanical) — general",
+       "v": "DI 2523 / MDI 2500 — mechanical injection pump; engine ECM DTC இல்லை."
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "mahindra_mdi2500",
+  "make": "Mahindra",
+  "name": "Mahindra MDI 2500 (2.5L MDI)",
+  "vehicles": "Bolero",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2002–2010"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "2523cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "பயன்படுத்தப்பட்ட வாகனங்கள்",
+      {
+       "v": "Bolero"
+      }
+     ],
+     [
+      "Engine code",
+      {
+       "u": 1,
+       "src": "rolling.hu (Schaeffler catalogue) — Bolero 2.5 D",
+       "v": "m2DiCR / MDI 3200 TC L (2523 cc, Bolero)"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "automoli.com — Mahindra Bolero EX (m2DiCR) + cardekho + trucksbuses.com",
+       "v": "63 PS @3200 / 195 N·m @1400–2200 (m2DiCR) · Bolero Camper/Pik-Up: 75 hp / 200 N·m"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "automoli.com — Mahindra Bolero EX (m2DiCR)",
+       "v": "7 L"
+      }
+     ],
+     [
+      "Coolant Capacity",
+      {
+       "u": 1,
+       "src": "automoli.com — Mahindra Bolero EX (m2DiCR)",
+       "v": "8 L"
+      }
+     ]
+    ]
+   },
+   "valve_clearance": {
+    "rows": [
+     [
+      "Intake (Cold)",
+      {
+       "u": 1,
+       "src": "Team-BHP 4x4 Technical forum (SPIKE ARRESTOR)",
+       "v": "0.45 mm (18 thou) — MDI 3200TC"
+      }
+     ],
+     [
+      "Exhaust (Cold)",
+      {
+       "u": 1,
+       "src": "Team-BHP 4x4 Technical forum (SPIKE ARRESTOR)",
+       "v": "0.55 mm (22 thou) — MDI 3200TC"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "Engine DTC availability",
+      {
+       "u": 1,
+       "src": "Engine records (DI / MDI mechanical) — general",
+       "v": "DI 2523 / MDI 2500 — mechanical injection pump; engine ECM DTC இல்லை."
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "mahindra_mhawk12_g80",
+  "make": "Mahindra",
+  "name": "Mahindra mHawk 1.2 G80 (Turbo Petrol)",
+  "vehicles": "XUV300",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2019–2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I3"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1197cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "பயன்படுத்தப்பட்ட வாகனங்கள்",
+      {
+       "v": "XUV300"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "CarWale XUV300 specs + Spinny + CarWale XUV 3XO",
+       "v": "110 PS @5000 / 200 N·m @2000–3500 (TCMPFi) · TGDi version: 130 PS / 230–250 N·m"
+      }
+     ],
+     [
+      "Fuel Injection",
+      {
+       "u": 1,
+       "src": "auto-data.net XUV300 1.2 TCMPFI + CarWale",
+       "v": "Multi-port injection (TCMPFi); later 1.2 TGDi direct injection"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "auto-data.net / automoli — XUV300 1.2 petrol",
+       "v": "4 L"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "mahindra_mhawk15",
+  "make": "Mahindra",
+  "name": "Mahindra mHawk 1.5",
+  "vehicles": "Marazzo, XUV300",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2018–2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1497cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "பயன்படுத்தப்பட்ட வாகனங்கள்",
+      {
+       "v": "Marazzo, XUV300"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "91wheels XUV300 1.5 W6",
+       "v": "116 PS @3750 / 300 N·m @1500 (XUV300)"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "auto-data.net — XUV300 1.5 CRDi",
+       "v": "6 L"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "Bosch EDC — injector change",
+      {
+       "u": 1,
+       "src": "Mahindra Diagnostic Manual (EMS) MAN-00057-5 contents: IQA code, EMS ECU programming / flashing",
+       "v": "Injector மாற்றினால் IQA code-ஐ ECU-ல் பதிவு செய்ய வேண்டும்; ECU reprogramming / flashing dealer tool மூலம்."
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "mahindra_mhawk199",
+  "make": "Mahindra",
+  "name": "Mahindra mHawk 1.99",
+  "vehicles": "XUV500, Scorpio",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2016–2020"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1997cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "பயன்படுத்தப்பட்ட வாகனங்கள்",
+      {
+       "v": "XUV500, Scorpio"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "Bosch EDC — injector change",
+      {
+       "u": 1,
+       "src": "Mahindra Diagnostic Manual (EMS) MAN-00057-5 contents: IQA code, EMS ECU programming / flashing",
+       "v": "Injector மாற்றினால் IQA code-ஐ ECU-ல் பதிவு செய்ய வேண்டும்; ECU reprogramming / flashing dealer tool மூலம்."
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "mahindra_mhawk20",
+  "make": "Mahindra",
+  "name": "Mahindra mHawk 2.0 (mStallion Diesel)",
+  "vehicles": "சில சந்தைகளில்",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2023–2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1997cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "குறிப்பு",
+      {
+       "v": "* சில சந்தைகளில் மட்டும் அறிமுகம்"
+      }
+     ],
+     [
+      "பயன்படுத்தப்பட்ட வாகனங்கள்",
+      {
+       "v": "சில சந்தைகளில்"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "mahindra_mhawk22",
+  "make": "Mahindra",
+  "name": "Mahindra mHawk 2.2",
+  "vehicles": "Scorpio, XUV500, Thar, Xylo",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2009–2024"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "2179cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "பயன்படுத்தப்பட்ட வாகனங்கள்",
+      {
+       "v": "Scorpio, XUV500, Thar, Xylo"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "CarExpert AU — Mahindra Pik-Up mHawk specs + Wikipedia — Mahindra Scorpio (mHawk section)",
+       "v": "85 x 96 mm (2179 cc)"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "Wikipedia — Mahindra Scorpio (mHawk section)",
+       "v": "16.5:1 – 18.5:1 (model படி)"
+      }
+     ],
+     [
+      "Valvetrain",
+      {
+       "u": 1,
+       "src": "Wikipedia — Mahindra Scorpio (mHawk section)",
+       "v": "Chain-driven overhead camshafts + hydraulic lash adjusters"
+      }
+     ],
+     [
+      "Fuel Injection",
+      {
+       "u": 1,
+       "src": "Wikipedia — Mahindra Scorpio (mHawk section)",
+       "v": "Bosch common-rail, solenoid injectors"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "Wikipedia Mahindra Genio + Wikipedia Scorpio + auto-data.net + cmhmahindra.co.za",
+       "v": "120 PS / 280 N·m (Genio, Scorpio 120hp) · 140 PS / 320 N·m (Scorpio mHawk 140) · Pik-Up S6: 103 kW / 320 N·m"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "auto-data.net — Scorpio I facelift 2017 2.2 mHawk",
+       "v": "6 L"
+      }
+     ],
+     [
+      "Coolant Capacity",
+      {
+       "u": 1,
+       "src": "auto-data.net — Scorpio I facelift 2017 2.2 mHawk",
+       "v": "6 L"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "Bosch EDC — injector change",
+      {
+       "u": 1,
+       "src": "Mahindra Diagnostic Manual (EMS) MAN-00057-5 contents: IQA code, EMS ECU programming / flashing",
+       "v": "Injector மாற்றினால் IQA code-ஐ ECU-ல் பதிவு செய்ய வேண்டும்; ECU reprogramming / flashing dealer tool மூலம்."
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "mahindra_mhawk22_gen2",
+  "make": "Mahindra",
+  "name": "Mahindra mHawk 2.2 Gen2",
+  "vehicles": "Scorpio-N, Thar, XUV700",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2022–2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "2184cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "பயன்படுத்தப்பட்ட வாகனங்கள்",
+      {
+       "v": "Scorpio-N, Thar, XUV700"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "91wheels — Scorpio-N 2.2L Gen II mHawk specs",
+       "v": "16.5:1"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "91wheels — Scorpio-N Z6 2.2L Gen II mHawk specs",
+       "v": "6 L"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "Autocar India Scorpio-N specs + 91wheels + auto-data.net + MarkLines XUV700 launch + Hitavada Thar launch",
+       "v": "Scorpio-N: 130 hp @3750 / 300–370 N·m (lower variants), 172–175 hp / 370–400 N·m (higher) · XUV700: 185 PS @3500 / 420 N·m @1600–2800 · Thar: 130 hp / 300 N·m"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "Bosch EDC — injector change",
+      {
+       "u": 1,
+       "src": "Mahindra Diagnostic Manual (EMS) MAN-00057-5 contents: IQA code, EMS ECU programming / flashing",
+       "v": "Injector மாற்றினால் IQA code-ஐ ECU-ல் பதிவு செய்ய வேண்டும்; ECU reprogramming / flashing dealer tool மூலம்."
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "mahindra_mstallion20_tgdi",
+  "make": "Mahindra",
+  "name": "Mahindra mStallion 2.0 TGDi (Turbo Petrol)",
+  "vehicles": "Thar, Scorpio-N, XUV700",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2020–2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1997cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "Fuel System",
+      {
+       "v": "TGDi"
+      }
+     ],
+     [
+      "பயன்படுத்தப்பட்ட வாகனங்கள்",
+      {
+       "v": "Thar, Scorpio-N, XUV700"
+      }
+     ],
+     [
+      "Stroke",
+      {
+       "u": 1,
+       "src": "CarExpert NZ XUV700 specs + Autocar India mStallion reveal",
+       "v": "92.0 mm (1997 cc) — long-stroke (undersquare) design"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "MarkLines XUV700 launch + auto-data.net Thar II + Hitavada Thar launch",
+       "v": "XUV700: 200 PS @5000 / 380 N·m @1750–3000 · Thar: ~150 hp / 300–320 N·m"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "mahindra_nef_crde",
+  "make": "Mahindra",
+  "name": "Mahindra NEF CRDe (2.5L)",
+  "vehicles": "Scorpio, Bolero",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2005–2014"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "2498cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "Fuel System",
+      {
+       "v": "CRDe"
+      }
+     ],
+     [
+      "பயன்படுத்தப்பட்ட வாகனங்கள்",
+      {
+       "v": "Scorpio, Bolero"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "Bosch EDC — injector change",
+      {
+       "u": 1,
+       "src": "Mahindra Diagnostic Manual (EMS) MAN-00057-5 contents: IQA code, EMS ECU programming / flashing",
+       "v": "Injector மாற்றினால் IQA code-ஐ ECU-ல் பதிவு செய்ய வேண்டும்; ECU reprogramming / flashing dealer tool மூலம்."
+      }
+     ]
+    ]
+   }
+  }
+ }
+]

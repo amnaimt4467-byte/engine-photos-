@@ -1,0 +1,742 @@
+[
+ {
+  "key": "ashok_leyland_1_5l_diesel",
+  "make": "Ashok Leyland",
+  "name": "Ashok Leyland 1.5L Diesel (1478cc)",
+  "vehicles": "Dost Lite",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2015-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1478cc (1.5L)"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Dost Lite"
+      }
+     ],
+     [
+      "Cylinders (source)",
+      {
+       "u": 1,
+       "src": "trucksbuses.com Dost / Dost Lite / Dost Plus specs",
+       "v": "3-cylinder, 1478 cc, turbocharged common rail (TDCR) — ⚠ app-ல் I4 என உள்ளது, சரிபார்க்கவும்"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "trucksbuses.com + 91trucks",
+       "v": "Dost/Dost Lite: 58 HP @3300 / 158 N·m @1600–2400 · Dost Strong/XL, Bada Dost i1/i2: 70 HP / 170–190 N·m · Dost Plus, Bada Dost i3/i4: 80 HP @3300 / 190 N·m @1600–2400 · CNG: 42–45 HP / 105 N·m"
+      }
+     ],
+     [
+      "Emission tech",
+      {
+       "u": 1,
+       "src": "trucksbuses.com Bada Dost i3/i4",
+       "v": "BS6: intercooled + Lean NOx Trap (LNT) (Bada Dost i3/i4)"
+      }
+     ],
+     [
+      "Service Interval",
+      {
+       "u": 1,
+       "src": "trucksbuses.com Dost Lite vs Dost Strong",
+       "v": "10,000 km (Dost Lite / Dost Strong)"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "ashok_leyland_2_0l_diesel",
+  "make": "Ashok Leyland",
+  "name": "Ashok Leyland 2.0L Diesel (1999cc)",
+  "vehicles": "Bada Dost",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2021-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1999cc (2.0L)"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Bada Dost"
+      }
+     ],
+     [
+      "Note (source)",
+      {
+       "u": 1,
+       "src": "trucksbuses.com Bada Dost comparisons + 91trucks",
+       "v": "Bada Dost i1/i2/i3/i4 — trucksbuses/91trucks படி 1.5 L 3-cyl 1478 cc (70–80 HP, 170–190 N·m) பயன்படுத்துகிறது; 2.0 L 1999 cc engine-க்கான source கிடைக்கவில்லை — app entry-ஐ சரிபார்க்கவும்"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "ashok_leyland_avtr",
+  "make": "Ashok Leyland",
+  "name": "Ashok Leyland AVTR Engine (5660-7698cc)",
+  "vehicles": "AVTR Series",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2020-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I6"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "5660-7698cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "AVTR Series"
+      }
+     ],
+     [
+      "A-series engines (AVTR)",
+      {
+       "u": 1,
+       "src": "trucksbuses.com (A-series trucks) + lectura-specs A4/A6",
+       "v": "A4: 4-cyl 5.3 L, 248 HP @2200 / 900 N·m @1100–1800 (iGen6 CRS) · A6: 6-cyl 8 L, up to 268.5 kW / 1475 N·m @2200, bore 112 mm"
+      }
+     ],
+     [
+      "H-series in AVTR",
+      {
+       "u": 1,
+       "src": "trucksbuses.com — Ashok Leyland H-series trucks (2825/3525 H6, 4825, Boss 1916)",
+       "v": "H6 5660 cc 246–247 HP / 900 N·m"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "ashok_leyland_h_series_3_0",
+  "make": "Ashok Leyland",
+  "name": "Ashok Leyland H Series 3.0 (2953cc)",
+  "vehicles": "Dost, Partner",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2011-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "2953cc (3.0L)"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Dost, Partner"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "ashok_leyland_h_series_4cyl",
+  "make": "Ashok Leyland",
+  "name": "Ashok Leyland H Series (4-Cylinder, 3839cc)",
+  "vehicles": "Ecomet",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2000-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "3839cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Ecomet"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "ashok_leyland_h_series_6cyl",
+  "make": "Ashok Leyland",
+  "name": "Ashok Leyland H Series (6-Cylinder, 5660cc)",
+  "vehicles": "U-Truck, Boss",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2005-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I6"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "5660cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "U-Truck, Boss"
+      }
+     ],
+     [
+      "Fuel System",
+      {
+       "u": 1,
+       "src": "trucksbuses.com — Ashok Leyland H-series trucks (2825/3525 H6, 4825, Boss 1916)",
+       "v": "Common rail (H-series CRS, iGen6 technology)"
+      }
+     ],
+     [
+      "Power / Torque (variants)",
+      {
+       "u": 1,
+       "src": "trucksbuses.com — Ashok Leyland H-series trucks (2825/3525 H6, 4825, Boss 1916)",
+       "v": "160 HP @2400 / 550 N·m @1200–1900 (Boss 1916, iEGR) · 200 HP / 700 N·m @1200–2000 · 246–247 HP @2400 / 900 N·m @1200–1900"
+      }
+     ]
+    ]
+   },
+   "maintenance_schedule": {
+    "rows": [
+     [
+      "Oil Change Interval (H-series BS6 tractor)",
+      {
+       "u": 1,
+       "src": "trucksbuses.com — 5525 AM H-Series",
+       "v": "80,000 km (5525 AM H-series)"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "ashok_leyland_h4_series",
+  "make": "Ashok Leyland",
+  "name": "Ashok Leyland H4 Series (2953cc)",
+  "vehicles": "Bada Dost i3+, i4",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2021-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "2953cc (3.0L)"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Bada Dost i3+, i4"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "ashok_leyland_iegr_bs6_i4",
+  "make": "Ashok Leyland",
+  "name": "Ashok Leyland H Series BS6 iEGR (4-Cylinder, 3839cc)",
+  "vehicles": "Ecomet (BS6)",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2020-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "3839cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "Emission Norm",
+      {
+       "v": "BS6"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Ecomet (BS6)"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "ashok_leyland_iegr_bs6_i6",
+  "make": "Ashok Leyland",
+  "name": "Ashok Leyland H Series BS6 iEGR (6-Cylinder, 5660cc)",
+  "vehicles": "Boss (BS6)",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2020-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I6"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "5660cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "Emission Norm",
+      {
+       "v": "BS6"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Boss (BS6)"
+      }
+     ],
+     [
+      "Fuel System",
+      {
+       "u": 1,
+       "src": "trucksbuses.com — Ashok Leyland H-series trucks (2825/3525 H6, 4825, Boss 1916)",
+       "v": "Common rail (H-series CRS, iGen6 technology)"
+      }
+     ],
+     [
+      "Power / Torque (variants)",
+      {
+       "u": 1,
+       "src": "trucksbuses.com — Ashok Leyland H-series trucks (2825/3525 H6, 4825, Boss 1916)",
+       "v": "160 HP @2400 / 550 N·m @1200–1900 (Boss 1916, iEGR) · 200 HP / 700 N·m @1200–2000 · 246–247 HP @2400 / 900 N·m @1200–1900"
+      }
+     ],
+     [
+      "Emission tech",
+      {
+       "u": 1,
+       "src": "trucksbuses.com — Boss 1916",
+       "v": "iEGR (intelligent EGR) + TCIC — Boss 1916 BS6"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "ashok_leyland_neptune_6",
+  "make": "Ashok Leyland",
+  "name": "Ashok Leyland Neptune 6 (5660cc)",
+  "vehicles": "Captain, U-Series",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2014-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I6"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "5660cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Captain, U-Series"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "ashok_leyland_neptune_8",
+  "make": "Ashok Leyland",
+  "name": "Ashok Leyland Neptune 8 (7698cc)",
+  "vehicles": "3120, 4020, 4220",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2014-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I6"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "7698cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "3120, 4020, 4220"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "MotorBeam FAT 6x6 review + Automotive World Neptune launch",
+       "v": "8.0 L I6: 360 HP / 1400 N·m from ~1300 rpm (FAT 6x6) · Neptune 205 HP CRS (3120 Sankagiri Express)"
+      }
+     ],
+     [
+      "Control",
+      {
+       "u": 1,
+       "src": "Business Today / PTI 2012",
+       "v": "Fully electronically governed common rail"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "ashok_leyland_zd30",
+  "make": "Ashok Leyland",
+  "name": "Ashok Leyland / Nissan ZD30DDTi (2953cc)",
+  "vehicles": "Dost (சில மாடல்கள்)",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2011-2016"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "2953cc (3.0L)"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Dost (சில மாடல்கள்)"
+      }
+     ],
+     [
+      "Partner Super (BS6)",
+      {
+       "u": 1,
+       "src": "91trucks — Ashok Leyland Partner Super",
+       "v": "ZD30 BS-VI, CRS direct injection, 104 kW (140 hp) @2750 rpm (torque band 1350–2750 rpm)"
+      }
+     ],
+     [
+      "Bore x Stroke (Nissan ZD30)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com — Nissan ZD30",
+       "v": "96 x 102 mm, chain timing, no hydraulic lifters"
+      }
+     ]
+    ]
+   }
+  }
+ }
+]

@@ -46,29 +46,57 @@ async function click(sel) { await page.click(sel); await page.waitForTimeout(80)
   await goto("#/pick");
   ok("picker starts with makes", (await text("#pickBody")).includes("Toyota") && (await text("#pickBody")).includes("Isuzu"));
   await click('[data-act="pick:make:Toyota"]');
-  ok("Toyota → model list", (await text("#pickBody")).includes("HiAce") && (await text("#pickBody")).includes("Hilux"));
-  await click('[data-act^="pick:model:HiAce"]');
-  ok("HiAce → remaining levels auto-filled → vehicle page", (await hash()) === "#/vehicle/toyota_hiace_kdh_2013_1kdftv", await hash());
+  ok("Toyota → model list", (await text("#pickBody")).includes("Hiace") && (await text("#pickBody")).includes("Hilux"));
+  await click('[data-act="pick:model:Hiace"]');
+  ok("Hiace → list of years / engines with a trust mark on each", (await text("#pickBody")).includes("2000-2016 · 1KD-FTV") && (await text("#pickBody")).includes("Not verified"));
+  ok("no engine file is loaded until a vehicle is opened", await page.evaluate(() => !window.ENGINES));
+  await click('a.big[href="#/vehicle/toyota~hiace~2000-2016-1kd-ftv"]'); await page.waitForTimeout(400);
+  ok("choosing an entry opens the vehicle page", (await hash()) === "#/vehicle/toyota~hiace~2000-2016-1kd-ftv", await hash());
+  ok("vehicle page shows the engine, a 'not verified' warning and its specs", (await text("#main")).includes("1KD-FTV (3.0 D-4D)") && (await text("#main")).includes("NOT been checked") && (await text("#main")).includes("2982cc"));
+  ok("torque and special-function sections are present", (await text("#main")).includes("Tightening torque") && (await text("#main")).includes("Special functions and resets"));
+  ok("only that brand's engine file was loaded", await page.evaluate(() => Object.keys(window.ENGINES || {}).join(",") === "toyota"));
   ok("vehicle page shows 17 systems", (await page.$$(".tile")).length === 17);
   await click('[data-act^="set:vehicleId:"]');
-  ok("'Use as my vehicle' is saved", (await setting("vehicleId")) === "toyota_hiace_kdh_2013_1kdftv");
+  ok("'Use as my vehicle' is saved", (await setting("vehicleId")) === "toyota~hiace~2000-2016-1kd-ftv");
   await click('[data-act^="fav:"]');
   ok("vehicle saved to favourites", (await setting("favorites")).length === 1);
+  await goto("#/system/toyota~hiace~2000-2016-1kd-ftv/fuel"); await page.waitForTimeout(200);
+  ok("a system page shows this engine's data for that system", (await text("#main")).includes("Fuel pressure") && (await text("#main")).includes("25 - 35 MPa"));
   await goto("#/pick");
   await page.fill('[data-input="pickSearch"]', "kdh"); await page.waitForTimeout(80);
-  ok("search 'kdh' finds the HiAce", (await page.$$("#pickBody a.big")).length === 1 && (await text("#pickBody")).includes("HiAce"));
+  ok("search 'kdh' finds the HiAce entries", (await page.$$("#pickBody a.big")).length >= 1 && (await text("#pickBody")).includes("Hiace") && (await text("#pickBody")).includes("KDH201V"));
+  await page.fill('[data-input="pickSearch"]', "4jj1"); await page.waitForTimeout(80);
+  ok("search '4jj1' finds Isuzu vehicles", (await page.$$("#pickBody a.big")).length >= 1 && (await text("#pickBody")).includes("Isuzu"));
+  await page.fill('[data-input="pickSearch"]', "d-max"); await page.waitForTimeout(80);
+  ok("search 'd-max' finds the D-Max", (await page.$$("#pickBody a.big")).length >= 1 && /D-?Max/i.test(await text("#pickBody")));
   await page.fill('[data-input="pickSearch"]', "zzzz"); await page.waitForTimeout(80);
   ok("search with no match explains itself", (await text("#pickBody")).includes("No vehicle matches"));
   await page.fill('[data-input="pickSearch"]', ""); await page.waitForTimeout(80);
-  await click('[data-act="pick:make:Isuzu"]');
-  ok("vehicle without a data pack says so", (await hash()) === "#/vehicle/isuzu_dmax_2013_4jj1" && (await text("#main")).includes("not built yet"));
+  const cat = await page.evaluate(() => KB.DataStore.catalogStats());
+  ok("catalogue holds every engine and vehicle from the old app", cat.brands === 13 && cat.models === 214 && cat.vehicles === 565 && cat.engines === 259, JSON.stringify(cat));
+  const broken = await page.evaluate(() => KB.DataStore.vehicles().filter((v) => !KB.DataStore.engineInfo(v.engineKey)).length);
+  ok("every vehicle entry points at an engine", broken === 0, broken + " broken");
+  /* another brand: its own engine file, its own fault-code groups first */
+  const isuzu = await page.evaluate(() => KB.DataStore.findVehicles("isuzu 4jj1")[0].id);
+  await goto("#/vehicle/" + isuzu); await page.waitForTimeout(400);
+  ok("an Isuzu 4JJ1 vehicle opens with its engine data", (await text("#main")).includes("4JJ1") && (await page.$$("#main details.x")).length >= 2, isuzu);
+  await page.evaluate(() => new Promise((r) => DTC.load(r)));
+  const isz = await page.evaluate((id) => { const h = DTC.resolve("P0087", KB.DataStore.vehicle(id)).hits[0]; return h.layer + ":" + (h.entry && h.entry.brand); }, isuzu);
+  ok("for the Isuzu, P0087 resolves to Isuzu's own code group first", isz === "engine:isuzu", isz);
+  const nissan = await page.evaluate(() => KB.DataStore.vehicles().filter((v) => v.brandId === "nissan")[0].id);
+  await goto("#/vehicle/" + nissan); await page.waitForTimeout(400);
+  ok("a Nissan vehicle opens with its engine data", (await text("#main")).includes("Nissan") && (await page.$$("#main details.x")).length >= 1, nissan);
+  /* a vehicle saved by an older app version keeps working */
+  await page.evaluate(() => { const s = JSON.parse(localStorage.getItem("es_settings_v1")); s.vehicleId = "toyota_hiace_kdh_2013_1kdftv"; s.favorites = ["toyota_hiace_kdh_2013_1kdftv", "isuzu_dmax_2013_4jj1"]; localStorage.setItem("es_settings_v1", JSON.stringify(s)); });
+  await page.reload();
+  ok("a vehicle saved by the previous app version is carried over", (await setting("vehicleId")) === "toyota~hiace~2000-2016-1kd-ftv" && (await setting("favorites")).join() === "toyota~hiace~2000-2016-1kd-ftv");
 
   console.log("Home");
   await goto("#/home");
-  ok("home shows my vehicle", (await text("#main")).includes("Toyota HiAce"));
+  ok("home shows my vehicle", (await text("#main")).includes("Toyota Hiace"));
 
   console.log("Systems + DTC");
-  await goto("#/system/toyota_hiace_kdh_2013_1kdftv/fuel");
+  await goto("#/system/toyota~hiace~2000-2016-1kd-ftv/fuel");
   ok("fuel system lists P0087", (await text("#main")).includes("P0087"));
   await goto("#/home");
   await page.fill('form[data-search] input', "p0087"); await page.press('form[data-search] input', "Enter"); await page.waitForTimeout(80);
@@ -131,7 +159,7 @@ async function click(sel) { await page.click(sel); await page.waitForTimeout(80)
   ok("maker-specific code with no vehicle → asks to choose a vehicle, no brand privileged", (await text("#main")).includes("manufacturer-specific code") && !(await page.$("#main > .tt")) && (await page.$$("#main > details.x")).length >= 3);
   r = await top("P0087");
   ok("P0087 with no vehicle → generic library", r.layer === "generic", JSON.stringify(r));
-  await page.evaluate(() => Settings.set("vehicleId", "toyota_hiace_kdh_2013_1kdftv"));
+  await page.evaluate(() => Settings.set("vehicleId", "toyota~hiace~2000-2016-1kd-ftv"));
 
   console.log("Voice");
   const spoken = [
@@ -197,7 +225,7 @@ async function click(sel) { await page.click(sel); await page.waitForTimeout(80)
   await click('[data-act="set:voiceLang:ta"]');
   await click('[data-act="voiceTest"]');
   ok("voice test reports a result", (await text("#voiceMsg")).length > 0, await text("#voiceMsg"));
-  ok("favourite is listed in Settings", (await text("#main")).includes("Toyota HiAce"));
+  ok("favourite is listed in Settings", (await text("#main")).includes("Toyota Hiace"));
   await page.reload();
   ok("settings survive a restart", (await setting("textSize")) === "l" && (await setting("theme")) === "light" && (await setting("units")) === "imperial" && (await setting("level")) === "advanced");
   await click('[data-act="clearRecent"]');
@@ -206,14 +234,15 @@ async function click(sel) { await page.click(sel); await page.waitForTimeout(80)
   ok("reset restores defaults but keeps the language", (await setting("theme")) === "auto" && (await setting("textSize")) === "m" && (await setting("vehicleId")) === null && (await setting("lang")) === "en");
 
   console.log("Every screen × every language × text size (no sideways scrolling)");
-  const screens = ["#/home", "#/pick", "#/vehicle/toyota_hiace_kdh_2013_1kdftv", "#/system/toyota_hiace_kdh_2013_1kdftv/special", "#/dtc", "#/dtc/P0087", "#/dtc/U0100",
-    "#/dtc/P1229", "#/dtc/P0300", "#/dtc/C1241", "#/dtc/P0ABC", "#/find/rail", "#/find/49", "#/browse/engine", "#/dtcgroup/toyota/toyota_abs", "#/settings", "#/soon/4"];
-  await page.evaluate(() => Settings.set("vehicleId", "toyota_hiace_kdh_2013_1kdftv"));
+  const screens = ["#/home", "#/pick", "#/vehicle/toyota~hiace~2000-2016-1kd-ftv", "#/system/toyota~hiace~2000-2016-1kd-ftv/special", "#/dtc", "#/dtc/P0087", "#/dtc/U0100",
+    "#/vehicle/nissan~NISSANID", "#/system/toyota~hiace~2000-2016-1kd-ftv/special", "#/system/toyota~hiace~2000-2016-1kd-ftv/wiring", "#/system/toyota~hiace~2000-2016-1kd-ftv/ecu", "#/dtc/P1229", "#/dtc/P0300", "#/dtc/C1241", "#/dtc/P0ABC", "#/find/rail", "#/find/49", "#/browse/engine", "#/dtcgroup/toyota/toyota_abs", "#/settings", "#/soon/4"];
+  await page.evaluate(() => Settings.set("vehicleId", "toyota~hiace~2000-2016-1kd-ftv"));
   let worst = 0, where = "";
   for (const lang of ["en", "ta", "si"]) for (const size of ["m", "l"]) {
     await page.evaluate(([l, s]) => { Settings.set("lang", l); Settings.set("textSize", s); Settings.set("level", "advanced"); }, [lang, size]);
     for (const s of screens) {
-      await goto(s);
+      await goto(s.replace("nissan~NISSANID", nissan)); if (/vehicle|system/.test(s)) await page.waitForTimeout(250);
+      await page.evaluate(() => document.querySelectorAll("details").forEach((d) => { d.open = true; }));
       for (const k of (await page.$(".dtabs")) ? ["over", "diag", "elec", "rep", "ver"] : [null]) {
         if (k) await click('[data-act="tab:' + k + '"]');
         const o = await overflow(); if (o > worst) { worst = o; where = [lang, size, s, k].join(" "); }

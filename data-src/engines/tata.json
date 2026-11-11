@@ -1,0 +1,1159 @@
+[
+ {
+  "key": "tata_105_revotorq",
+  "make": "Tata",
+  "name": "Tata 1.05 Revotorq",
+  "vehicles": "Tiago, Tigor",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2016–2020"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I3"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1047cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "Engine Family / Origin",
+      {
+       "v": "Tata in-house (Revotorq)"
+      }
+     ],
+     [
+      "பயன்படுத்தப்பட்ட வாகனங்கள்",
+      {
+       "v": "Tiago, Tigor"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "CarIndia — Tata Tigor tech specs",
+       "v": "75 x 79 mm (1047 cc)"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "CarIndia — Tata Tigor tech specs",
+       "v": "16.5:1"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "CarIndia + Rushlane",
+       "v": "70 PS @4000 / 140 N·m @1800–3000"
+      }
+     ],
+     [
+      "Construction",
+      {
+       "u": 1,
+       "src": "CarIndia — Tata Tigor tech specs",
+       "v": "Aluminium head, cast-iron block, DOHC 4-valve"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ABS / Airbag code list",
+      {
+       "u": 1,
+       "src": "Web search Nov 2026 — no public Tata ABS/SRS DTC list found",
+       "v": "Tata-வின் ABS / airbag (C / B code) பட்டியல் இணையத்தில் பொதுவாக கிடைக்கவில்லை. Tata dealer tool அல்லது multi-brand scanner (Launch / Autel) code பெயரைக் காட்டும் — அதைப் பதிவு செய்து app-ல் சேர்க்கலாம்."
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "tata_12_revotron",
+  "make": "Tata",
+  "name": "Tata 1.2 Revotron",
+  "vehicles": "Tiago, Tigor",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2016–2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I3"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1199cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "No"
+      }
+     ],
+     [
+      "Engine Family / Origin",
+      {
+       "v": "Tata in-house (Revotron)"
+      }
+     ],
+     [
+      "பயன்படுத்தப்பட்ட வாகனங்கள்",
+      {
+       "v": "Tiago, Tigor"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "Wikipedia — Tata Revotron engine",
+       "v": "77 x 85.8 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "Wikipedia — Tata Revotron engine + 91wheels Tiago",
+       "v": "10.8:1"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "91wheels Tiago + Rushlane",
+       "v": "85–86 PS @6000 / 113–114 N·m @3300–3500"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "auto-data.net Tiago 1.2 Revotron + 91wheels",
+       "v": "3.5 L"
+      }
+     ],
+     [
+      "Coolant Capacity",
+      {
+       "u": 1,
+       "src": "auto-data.net — Tiago 1.2 Revotron",
+       "v": "4 L"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ABS / Airbag code list",
+      {
+       "u": 1,
+       "src": "Web search Nov 2026 — no public Tata ABS/SRS DTC list found",
+       "v": "Tata-வின் ABS / airbag (C / B code) பட்டியல் இணையத்தில் பொதுவாக கிடைக்கவில்லை. Tata dealer tool அல்லது multi-brand scanner (Launch / Autel) code பெயரைக் காட்டும் — அதைப் பதிவு செய்து app-ல் சேர்க்கலாம்."
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "tata_12_revotron_turbo",
+  "make": "Tata",
+  "name": "Tata 1.2 Revotron Turbo",
+  "vehicles": "Nexon, Altroz Racer",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2017–2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I3"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1199cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "Engine Family / Origin",
+      {
+       "v": "Tata in-house (Revotron Turbo)"
+      }
+     ],
+     [
+      "பயன்படுத்தப்பட்ட வாகனங்கள்",
+      {
+       "v": "Nexon, Altroz Racer"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "Autocar India — 2017 Nexon tech specs",
+       "v": "77 x 85.8 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "Autocar India — 2017 Nexon tech specs",
+       "v": "9.6:1"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "automoli / 91wheels — Nexon 1.2 turbo",
+       "v": "120 PS @5500 / 170 N·m @1750–4000 (Nexon)"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "auto-data.net — Nexon 1.2 Revotron (2023)",
+       "v": "3.5 L"
+      }
+     ],
+     [
+      "Coolant Capacity",
+      {
+       "u": 1,
+       "src": "auto-data.net — Nexon 1.2 Revotron (2023)",
+       "v": "5.5 L"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ABS / Airbag code list",
+      {
+       "u": 1,
+       "src": "Web search Nov 2026 — no public Tata ABS/SRS DTC list found",
+       "v": "Tata-வின் ABS / airbag (C / B code) பட்டியல் இணையத்தில் பொதுவாக கிடைக்கவில்லை. Tata dealer tool அல்லது multi-brand scanner (Launch / Autel) code பெயரைக் காட்டும் — அதைப் பதிவு செய்து app-ல் சேர்க்கலாம்."
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "tata_12_tgdi_hyperion",
+  "make": "Tata",
+  "name": "Tata 1.2 TGDi Hyperion (Turbo GDI)",
+  "vehicles": "Curvv, Nexon (புதிய மாடல்கள்)",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2024–2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I3"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1199cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "Fuel System",
+      {
+       "v": "TGDi (Turbo GDI)"
+      }
+     ],
+     [
+      "Engine Family / Origin",
+      {
+       "v": "Tata in-house (Hyperion)"
+      }
+     ],
+     [
+      "பயன்படுத்தப்பட்ட வாகனங்கள்",
+      {
+       "v": "Curvv, Nexon (New Gen)"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "Autocar Professional + SAE paper 2026-26-0071",
+       "v": "125 PS @5000 / 225 N·m @1700–3500 (transient 250 N·m)"
+      }
+     ],
+     [
+      "Displacement (exact)",
+      {
+       "u": 1,
+       "src": "Autocar India + auto-data.net Curvv",
+       "v": "1198–1199 cc, 3-cyl, E20 compliant"
+      }
+     ],
+     [
+      "Timing",
+      {
+       "u": 1,
+       "src": "Autocar Professional — Tata 1.2/1.5 TGDi",
+       "v": "New valvetrain + timing chain (long life)"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ABS / Airbag code list",
+      {
+       "u": 1,
+       "src": "Web search Nov 2026 — no public Tata ABS/SRS DTC list found",
+       "v": "Tata-வின் ABS / airbag (C / B code) பட்டியல் இணையத்தில் பொதுவாக கிடைக்கவில்லை. Tata dealer tool அல்லது multi-brand scanner (Launch / Autel) code பெயரைக் காட்டும் — அதைப் பதிவு செய்து app-ல் சேர்க்கலாம்."
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "tata_13_quadrajet",
+  "make": "Tata",
+  "name": "Tata 1.3 Quadrajet (Multijet)",
+  "vehicles": "Indica Vista, Manza, Bolt, Zest",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2008–2020"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1248cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "Fuel System",
+      {
+       "v": "Multijet Common Rail"
+      }
+     ],
+     [
+      "Engine Family / Origin",
+      {
+       "v": "Fiat Multijet அடிப்படையிலானது"
+      }
+     ],
+     [
+      "பயன்படுத்தப்பட்ட வாகனங்கள்",
+      {
+       "v": "Indica Vista, Manza, Bolt, Zest"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "fastcarcheck.uk — Tata Indica 1.3 Quadrajet",
+       "v": "69.6 x 82.0 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "fastcarcheck.uk — Tata Indica 1.3 Quadrajet",
+       "v": "17.6:1"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "cartrade Indica Vista review + rushlane Zest",
+       "v": "75 PS / 190 N·m @1750 (Indica Vista) · Zest 90 hp / 200 N·m"
+      }
+     ]
+    ]
+   },
+   "variants": {
+    "rows": [
+     [
+      "quadrajet_bs3",
+      {
+       "rows": [
+        [
+         "label",
+         {
+          "v": "BS3"
+         }
+        ]
+       ]
+      }
+     ],
+     [
+      "quadrajet_bs4",
+      {
+       "rows": [
+        [
+         "label",
+         {
+          "v": "BS4"
+         }
+        ]
+       ]
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ABS / Airbag code list",
+      {
+       "u": 1,
+       "src": "Web search Nov 2026 — no public Tata ABS/SRS DTC list found",
+       "v": "Tata-வின் ABS / airbag (C / B code) பட்டியல் இணையத்தில் பொதுவாக கிடைக்கவில்லை. Tata dealer tool அல்லது multi-brand scanner (Launch / Autel) code பெயரைக் காட்டும் — அதைப் பதிவு செய்து app-ல் சேர்க்கலாம்."
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "tata_14_dicor",
+  "make": "Tata",
+  "name": "Tata 1.4 DICOR (CRDi)",
+  "vehicles": "Indica Vista",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2008–2013"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1405cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "Fuel System",
+      {
+       "v": "DICOR Common Rail"
+      }
+     ],
+     [
+      "Engine Family / Origin",
+      {
+       "v": "Tata in-house"
+      }
+     ],
+     [
+      "பயன்படுத்தப்பட்ட வாகனங்கள்",
+      {
+       "v": "Indica Vista"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ABS / Airbag code list",
+      {
+       "u": 1,
+       "src": "Web search Nov 2026 — no public Tata ABS/SRS DTC list found",
+       "v": "Tata-வின் ABS / airbag (C / B code) பட்டியல் இணையத்தில் பொதுவாக கிடைக்கவில்லை. Tata dealer tool அல்லது multi-brand scanner (Launch / Autel) code பெயரைக் காட்டும் — அதைப் பதிவு செய்து app-ல் சேர்க்கலாம்."
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "tata_15_revotorq",
+  "make": "Tata",
+  "name": "Tata 1.5 Revotorq",
+  "vehicles": "Nexon, Altroz",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2017–2023"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1497cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "Engine Family / Origin",
+      {
+       "v": "Tata in-house (Revotorq)"
+      }
+     ],
+     [
+      "பயன்படுத்தப்பட்ட வாகனங்கள்",
+      {
+       "v": "Nexon, Altroz"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "Autocar India — 2017 Nexon tech specs",
+       "v": "76 x 82.5 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "Autocar India — 2017 Nexon tech specs",
+       "v": "16:1"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "auto-data.net Nexon facelift + rushlane",
+       "v": "Nexon 110–115 hp / 260 N·m · Altroz 89 bhp / 200 N·m"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "auto-data.net — Nexon 1.5 Revotorq",
+       "v": "5 L"
+      }
+     ],
+     [
+      "Coolant Capacity",
+      {
+       "u": 1,
+       "src": "auto-data.net — Nexon 1.5 Revotorq",
+       "v": "6.5 L"
+      }
+     ]
+    ]
+   },
+   "variants": {
+    "rows": [
+     [
+      "revotorq15_bs4",
+      {
+       "rows": [
+        [
+         "label",
+         {
+          "v": "BS4"
+         }
+        ]
+       ]
+      }
+     ],
+     [
+      "revotorq15_bs6",
+      {
+       "rows": [
+        [
+         "label",
+         {
+          "v": "BS6"
+         }
+        ]
+       ]
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ABS / Airbag code list",
+      {
+       "u": 1,
+       "src": "Web search Nov 2026 — no public Tata ABS/SRS DTC list found",
+       "v": "Tata-வின் ABS / airbag (C / B code) பட்டியல் இணையத்தில் பொதுவாக கிடைக்கவில்லை. Tata dealer tool அல்லது multi-brand scanner (Launch / Autel) code பெயரைக் காட்டும் — அதைப் பதிவு செய்து app-ல் சேர்க்கலாம்."
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "tata_15_revotron_petrol",
+  "make": "Tata",
+  "name": "Tata 1.5 Revotron",
+  "vehicles": "Indigo eCS",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2014–2018"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1497cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "No"
+      }
+     ],
+     [
+      "Engine Family / Origin",
+      {
+       "v": "Tata in-house (Revotron)"
+      }
+     ],
+     [
+      "பயன்படுத்தப்பட்ட வாகனங்கள்",
+      {
+       "v": "Indigo eCS"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ABS / Airbag code list",
+      {
+       "u": 1,
+       "src": "Web search Nov 2026 — no public Tata ABS/SRS DTC list found",
+       "v": "Tata-வின் ABS / airbag (C / B code) பட்டியல் இணையத்தில் பொதுவாக கிடைக்கவில்லை. Tata dealer tool அல்லது multi-brand scanner (Launch / Autel) code பெயரைக் காட்டும் — அதைப் பதிவு செய்து app-ல் சேர்க்கலாம்."
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "tata_20_kryotec",
+  "make": "Tata",
+  "name": "Tata 2.0 Kryotec",
+  "vehicles": "Harrier, Safari",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2019–2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1956cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "Engine Family / Origin",
+      {
+       "v": "Fiat 2.0 Multijet II அடிப்படையில் Tata தழுவியது (Kryotec)"
+      }
+     ],
+     [
+      "பயன்படுத்தப்பட்ட வாகனங்கள்",
+      {
+       "v": "Harrier, Safari"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "91wheels — Harrier Adventure specs",
+       "v": "16.5:1"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "Rushlane Harrier engine specs + auto-data.net Harrier 2.0d",
+       "v": "140 PS (2019 launch) → 170 PS @3750 / 350 N·m @1750–2500"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "auto-data.net Harrier 2.0d + 91wheels",
+       "v": "5 L"
+      }
+     ],
+     [
+      "Coolant Capacity",
+      {
+       "u": 1,
+       "src": "auto-data.net — Harrier 2.0d",
+       "v": "7 L"
+      }
+     ]
+    ]
+   },
+   "variants": {
+    "rows": [
+     [
+      "kryotec_bs6_phase1",
+      {
+       "rows": [
+        [
+         "label",
+         {
+          "v": "BS6 Phase 1"
+         }
+        ]
+       ]
+      }
+     ],
+     [
+      "kryotec_bs6_phase2",
+      {
+       "rows": [
+        [
+         "label",
+         {
+          "v": "BS6 Phase 2"
+         }
+        ]
+       ]
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ABS / Airbag code list",
+      {
+       "u": 1,
+       "src": "Web search Nov 2026 — no public Tata ABS/SRS DTC list found",
+       "v": "Tata-வின் ABS / airbag (C / B code) பட்டியல் இணையத்தில் பொதுவாக கிடைக்கவில்லை. Tata dealer tool அல்லது multi-brand scanner (Launch / Autel) code பெயரைக் காட்டும் — அதைப் பதிவு செய்து app-ல் சேர்க்கலாம்."
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "tata_475di_turbo",
+  "make": "Tata",
+  "name": "Tata 475 DI Turbo (1.4L Diesel)",
+  "vehicles": "Indica, Indigo",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2003–2010"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1405cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "Engine Family / Origin",
+      {
+       "v": "Tata in-house (DI Turbo)"
+      }
+     ],
+     [
+      "பயன்படுத்தப்பட்ட வாகனங்கள்",
+      {
+       "v": "Indica, Indigo"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "auto-data.net — Tata Indica 1.4 TD (71 hp)",
+       "v": "75 x 79.5 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "auto-data.net — Tata Indica 1.4 TD",
+       "v": "22:1"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "auto-data.net — Tata Indica 1.4 TD",
+       "v": "71 hp @5000 / 135 N·m @2500"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "auto-data.net + Team-BHP forum (475 IDI TC / Vista TDI)",
+       "v": "5.5 L (service manual) — owners report ~5 L fill"
+      }
+     ],
+     [
+      "Coolant Capacity",
+      {
+       "u": 1,
+       "src": "auto-data.net — Tata Indica 1.4 TD",
+       "v": "6 L"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "Engine DTC availability",
+      {
+       "u": 1,
+       "src": "Engine records — general",
+       "v": "475 IDI / 475 DI — mechanical injection; engine ECM DTC இல்லை."
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "tata_475idi",
+  "make": "Tata",
+  "name": "Tata 475 IDI (1.4L Diesel)",
+  "vehicles": "Indica",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2000–2007"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1405cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "No"
+      }
+     ],
+     [
+      "Engine Family / Origin",
+      {
+       "v": "Tata in-house (IDI - Indirect Injection)"
+      }
+     ],
+     [
+      "பயன்படுத்தப்பட்ட வாகனங்கள்",
+      {
+       "v": "Indica"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "IIT Kanpur ERL — Tata Indica 475 IDI engine test spec",
+       "v": "75 x 79.5 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "IIT Kanpur ERL — Tata Indica 475 IDI engine test spec",
+       "v": "22:1"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "IIT Kanpur ERL — Tata Indica 475 IDI engine test spec",
+       "v": "39 kW @5000 / 85 N·m @2500 (BS-II)"
+      }
+     ],
+     [
+      "Fuel Injection",
+      {
+       "u": 1,
+       "src": "IIT Kanpur ERL + Schaeffler catalogue",
+       "v": "Rotary pump + electric stop solenoid, pre-chamber (IDI)"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "Team-BHP forum — 475 IDI oil capacity",
+       "v": "~4.5 L (NA)"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "Engine DTC availability",
+      {
+       "u": 1,
+       "src": "Engine records — general",
+       "v": "475 IDI / 475 DI — mechanical injection; engine ECM DTC இல்லை."
+      }
+     ]
+    ]
+   }
+  }
+ }
+]

@@ -201,3 +201,10 @@ abbr.gl{text-decoration:underline dotted var(--or);text-underline-offset:.2rem}
 /* microphone button in the search box */
 .mic{width:2.8rem;height:2.8rem;border-radius:.75rem;border:1px solid var(--line);background:var(--card2);font-size:1.2rem;flex:none}
 .mic.on{border-color:var(--bad);background:var(--bad-bg)}
+
+/* engine data sections */
+.tbl.kv th{width:42%;color:var(--text);font-weight:700;font-size:.86rem;overflow-wrap:anywhere}
+.tbl.kv td{overflow-wrap:anywhere}
+.sub-card{border:1px solid var(--line);border-radius:.7rem;padding:.5rem .6rem;margin-bottom:.5rem}
+details.x>div{overflow-wrap:anywhere}
+details.x p{margin:0 0 .5rem}
