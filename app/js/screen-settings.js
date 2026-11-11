@@ -66,6 +66,10 @@
       "<p>" + esc(t("disclaimer")) + '</p><div class="sub">' + esc(t("legend")) + "</div>" + KB.legendHTML() +
       '<p class="hint" style="margin:.8rem 0 0">' + esc(t("app_name")) + " · " + esc(t("version")) + " " + APP.VERSION + " · data " + esc(DS.meta().version) + "</p>");
 
+    /* update: the app never checks by itself (it stays offline); this only opens the download in the browser */
+    h += card("⬇️", t("upd_title"), t("upd_hint"),
+      '<p class="hint" style="margin:0 0 .6rem">' + esc(t("upd_now", { v: APP.VERSION })) + '</p><a class="btn pri block" id="updateLink" href="' + esc(APP.CONFIG.updateUrl) + '" target="_blank" rel="noopener">' + esc(t("upd_btn")) + "</a>");
+
     h += '<button class="btn danger block" data-act="resetAll" style="margin-bottom:1rem">' + esc(t("s_reset")) + "</button>";
     return { title: t("s_title"), html: h, tab: "settings", top: true };
   });

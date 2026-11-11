@@ -238,6 +238,10 @@ var I18N = {
   s_report_hint: { en: "Found a mistake? Send it so it can be fixed.", ta: "தவறு கண்டீர்களா? திருத்த அனுப்புங்கள்.", si: "වැරැද්දක් හමු වුණාද? නිවැරදි කිරීමට එවන්න." },
   report_send: { en: "Write a report", ta: "அறிக்கை எழுது", si: "වාර්තාවක් ලියන්න" },
   report_subject: { en: "Engine Specs — wrong data report", ta: "Engine Specs — wrong data report", si: "Engine Specs — wrong data report" },
+  upd_title: { en: "Update the app", ta: "App-ஐ update செய்", si: "App එක update කරන්න" },
+  upd_hint: { en: "The app does not update by itself. Download the newest version, then tap the downloaded file to install it. Your settings and vehicles are kept.", ta: "App தானாக update ஆகாது. புதிய version-ஐ download செய்து, download ஆன file-ஐ தட்டி install செய்யுங்கள். உங்கள் அமைப்புகளும் வாகனங்களும் அப்படியே இருக்கும்.", si: "App එක ස්වයංක්‍රීයව update නොවේ. නවතම version එක download කර, download වූ file එක තට්ටු කර install කරන්න. ඔබේ සැකසුම් සහ වාහන එලෙසම පවතී." },
+  upd_now: { en: "Installed now: version {v}", ta: "இப்போது உள்ளது: version {v}", si: "දැන් ඇත්තේ: version {v}" },
+  upd_btn: { en: "Download the newest version", ta: "புதிய version-ஐ download செய்", si: "නවතම version එක download කරන්න" },
   s_about: { en: "About", ta: "பற்றி", si: "පිළිබඳව" },
   disclaimer: {
     en: "This app is a workshop guide. Always confirm critical values (torque, pressure, voltage, pin numbers) in the official repair manual before working. Values marked 'Needs verification' are not confirmed. The app does not provide immobilizer bypass or unauthorized key access.",

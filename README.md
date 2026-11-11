@@ -2,7 +2,7 @@
 
 An offline Android app for mechanics in **English, Tamil and Sinhala**: vehicles and engines, fault codes (DTC), repair steps, and voice search.
 
-## What is in the app (version 0.5.0)
+## What is in the app (version 0.5.1)
 
 | Area | Content |
 |---|---|
@@ -86,8 +86,19 @@ samples/                The three early layout samples
 
 You can open `app/index.html` directly in a browser to try the app without building an APK.
 
+## Install or update on a phone
+Permanent link, always the newest test build:
+
+**https://github.com/amnaimt4467-byte/engine-photos-/releases/latest/download/engine-specs.apk**
+
+Download it on the phone and tap the file to install. The same link is in the app under *Settings → Update the app*. The app never updates by itself.
+
+- Every test build is signed with the same key (`android/app/test-signing.keystore`), so a new build installs over the previous one and settings are kept.
+- Builds made before version 0.5.1 used a different key each time: uninstall the old app once before installing 0.5.1 or later.
+- **The test key is in this public repository.** Anyone can sign an APK with it, so install only from the link above. A Play Store or wide release must use a separate private key kept in GitHub Secrets, never this one.
+
 ## Build the APK
-Every push that touches `app/`, `data-src/`, `tools/`, `android/` or the config runs **Build Android APK** on GitHub Actions. Download the APK from the run page under *Artifacts → engine-specs-debug-apk*.
+Every push that touches `app/`, `data-src/`, `tools/`, `android/` or the config runs **Build Android APK** on GitHub Actions. The workflow checks the signing certificate and publishes the APK as the `latest` release (the link above). The run page also keeps it under *Artifacts → engine-specs-debug-apk* for 30 days.
 
 ## Adding or correcting data
 1. Edit the JSON in `data-src/` (or add translations in `data-src/i18n/`).

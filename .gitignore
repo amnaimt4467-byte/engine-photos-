@@ -12,4 +12,6 @@ android/app/src/main/assets/public/
 *.apk
 *.aab
 *.keystore
+# the one exception: the shared key for TEST builds (see android/app/build.gradle)
+!android/app/test-signing.keystore
 *.jks

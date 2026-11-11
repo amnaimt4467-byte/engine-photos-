@@ -10,9 +10,11 @@
    ===================================================================== */
 var APP = (function () {
   var DS = KB.DataStore, L = KB.L, esc = KB.esc;
-  var VERSION = "0.5.0";
+  var VERSION = "0.5.1";
   var CONFIG = {
-    feedbackEmail: ""   // address that receives "Report wrong data" (empty = user picks the recipient)
+    feedbackEmail: "",  // address that receives "Report wrong data" (empty = user picks the recipient)
+    /* always the newest test build; opened in the phone's browser only when the user taps "Download" */
+    updateUrl: "https://github.com/amnaimt4467-byte/engine-photos-/releases/latest/download/engine-specs.apk"
   };
 
   /* t("key", {n: 3}) → UI text in the current language */

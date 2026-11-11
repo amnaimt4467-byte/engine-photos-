@@ -1,6 +1,10 @@
-# Builds a debug APK on every push and on demand.
-# Download it from the run page → "Artifacts" → engine-specs-debug-apk.
+# Builds the test APK on every push and on demand, then publishes it as the "latest" release.
+# Permanent download link (always the newest build):
+#   https://github.com/<owner>/<repo>/releases/latest/download/engine-specs.apk
 name: Build Android APK
+
+permissions:
+  contents: write   # needed to publish the release
 
 on:
   push:
@@ -54,6 +58,30 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew assembleDebug --no-daemon
+
+      # every test build must carry the same certificate, otherwise it cannot be installed over the previous one
+      - name: Check the signing certificate
+        run: |
+          APKSIGNER="$(ls -d "$ANDROID_HOME"/build-tools/*/ | sort -V | tail -1)apksigner"
+          "$APKSIGNER" verify --print-certs android/app/build/outputs/apk/debug/app-debug.apk | tee cert.txt
+          WANT="$(keytool -list -v -keystore android/app/test-signing.keystore -storepass android | grep 'SHA256:' | sed 's/.*SHA256: //' | tr -d ':' | tr 'A-F' 'a-f')"
+          grep -qi "SHA-256 digest: $WANT" cert.txt || { echo "::error::APK is not signed with the shared test key"; exit 1; }
+          echo "Signed with the shared test key ($WANT)"
+
+      - name: Publish as the latest release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="$(node -p "require('./package.json').version")"
+          cp android/app/build/outputs/apk/debug/app-debug.apk engine-specs.apk
+          gh release delete latest --cleanup-tag --yes || true
+          gh release create latest engine-specs.apk \
+            --target "$GITHUB_SHA" \
+            --title "Engine Specs $VERSION (test build)" \
+            --notes "Test build $VERSION · $(date -u +%Y-%m-%d) · commit ${GITHUB_SHA::7}
+
+          Install: download engine-specs.apk and open it on the phone. It installs over the previous test build and keeps your settings.
+          This is a test build signed with the shared test key, not a store release."
 
       - name: Upload APK
         uses: actions/upload-artifact@v4

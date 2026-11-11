@@ -289,6 +289,7 @@ async function click(sel) { await page.click(sel); await page.waitForTimeout(80)
   await click('[data-act="set:voiceLang:ta"]');
   await click('[data-act="voiceTest"]');
   ok("voice test reports a result", (await text("#voiceMsg")).length > 0, await text("#voiceMsg"));
+  ok("Settings offers the update download with the permanent link and the installed version", (await page.$eval("#updateLink", (e) => e.getAttribute("href"))) === "https://github.com/amnaimt4467-byte/engine-photos-/releases/latest/download/engine-specs.apk" && (await text("#main")).includes("Installed now: version " + (await page.evaluate(() => APP.VERSION))));
   ok("favourite is listed in Settings", (await text("#main")).includes("Toyota Hiace"));
   await page.reload();
   ok("settings survive a restart", (await setting("textSize")) === "l" && (await setting("theme")) === "light" && (await setting("units")) === "imperial" && (await setting("level")) === "advanced");
