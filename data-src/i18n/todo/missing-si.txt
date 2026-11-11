@@ -302,7 +302,6 @@ Exhaust Pressure Control Valve High
 Exhaust Pressure Control Valve Low
 Exhaust brake valve stick / Exhaust throttle valve stick
 Exhaust gas temperature sensor surveillance
-Exhaust leak
 Exhaust temperature sensor 1 high
 Exhaust temperature sensor 1 low
 External / internal fuel leak (injector return, pipes)
@@ -479,7 +478,6 @@ Low DEF level — refill; sender unit if inactive code persists
 Low Output Signal of Front Speed Sensor Mode DTC)
 Low Output Signal of Rear Speed Sensor LH (Test Mode DTC)
 Low Output Signal of Rear Speed Sensor Mode DTC)
-Low compression
 Low coolant / cooling fan / thermostat / radiator
 Low fluid
 Low fuel level (fuel aeration)

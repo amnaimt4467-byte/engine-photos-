@@ -10,7 +10,7 @@
    ===================================================================== */
 var APP = (function () {
   var DS = KB.DataStore, L = KB.L, esc = KB.esc;
-  var VERSION = "0.4.0";
+  var VERSION = "0.5.0";
   var CONFIG = {
     feedbackEmail: ""   // address that receives "Report wrong data" (empty = user picks the recipient)
   };
