@@ -88,8 +88,31 @@ var APP = (function () {
   /* DTC search box; typing shows suggestions in the box underneath (see screens-dtc.js) */
   function searchForm(value) {
     return '<form class="sbox" data-search="1"><span>🔍</span><input name="q" data-input="dtcSearch" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="' +
-      esc(KB.U("search_ph")) + '" value="' + esc(value || "") + '"><button class="btn pri">' + esc(t("search")) + '</button></form><div class="suggest" data-suggest="1"></div>';
+      esc(KB.U("search_ph")) + '" value="' + esc(value || "") + '">' +
+      (Voice.canListen() ? '<button type="button" class="mic" data-act="mic" aria-label="' + esc(t("mic")) + '">🎤</button>' : "") +
+      '<button class="btn pri">' + esc(t("search")) + '</button></form><div class="suggest" data-suggest="1"></div>';
   }
+
+  /* 🎤: listen, then open the code that was spoken (or search for the words) */
+  action("mic", function (arg, btn) {
+    var box = btn.form.parentNode.querySelector("[data-suggest]");
+    var say = function (key) { if (box) box.innerHTML = key ? '<div class="sg">' + esc(t(key)) + "</div>" : ""; };
+    btn.classList.add("on"); say("mic_listening");
+    Voice.listen(function (r) {
+      btn.classList.remove("on");
+      if (r.error) return say(r.error === "denied" ? "mic_denied" : r.error === "unavailable" ? "mic_unavailable" : "mic_none");
+      var heard = r.texts[0], code = null;
+      r.texts.some(function (x) { code = Voice.parseCode(x); return !!code; });
+      if (!code) { say(""); return go("#/find/" + encodeURIComponent(heard)); }
+      var pick = code.code;
+      DTC.load(function () {             // Tamil "பி" can mean P or B: prefer the reading the library knows
+        var v = DS.vehicle(Settings.get("vehicleId"));
+        var rank = function (c) { var h = DTC.resolve(c, v).hits[0]; return h ? ["pack", "engine", "brand", "generic", "other"].indexOf(h.layer) : 9; };
+        if (code.alt && rank(code.alt) < rank(pick)) pick = code.alt;     // the reading that fits this vehicle better wins
+        Settings.addRecent(pick); go("#/dtc/" + pick);
+      });
+    });
+  });
   function vehicleTag(v) {
     return DS.hasPack(v) ? '<span class="tag sample">◇ ' + esc(t("tag_sample")) + "</span>" : '<span class="tag planned">' + esc(t("tag_planned")) + "</span>";
   }

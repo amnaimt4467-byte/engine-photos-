@@ -133,6 +133,20 @@
     return h;
   }
 
+  /* ---------- reading a code aloud ---------- */
+  var speakText = "", spokenFor = null;
+  function speakBtn() { return Voice.canSpeak() ? '<button class="btn" data-act="speak">🔊 ' + esc(t("read_aloud")) + '</button> <span class="dim small" id="speakMsg"></span>' : ""; }
+  function sayIt() { Voice.speak(speakText, function (ok) { var m = document.getElementById("speakMsg"); if (m) m.textContent = ok ? "" : "⚠ " + t("voice_none"); }); }
+  APP.action("speak", sayIt);
+  /* what is read: the code spelled out, its meaning, then up to three causes — in the voice language */
+  function setSpeech(code, title, causes) {
+    var parts = [Voice.spell(code) + ".", KB.pick(title).text + "."];
+    if (causes && causes.length) parts.push(U("causes") + ": " + causes.slice(0, 3).map(function (c) { return KB.pick(c.text || c).text; }).join(". ") + ".");
+    speakText = parts.join(" ");
+    /* "Read answers aloud" setting: speak once when the page for this code opens, not on every redraw */
+    if (Settings.get("speak") && Voice.canSpeak() && spokenFor !== location.hash) { spokenFor = location.hash; setTimeout(sayIt, 150); }
+  }
+
   /* ---------- CODE PAGE ---------- */
   function codePage(raw) {
     var wait = needLib(); if (wait) return wait;
@@ -153,7 +167,8 @@
       if (d.valid) h += fold("🔤 " + t("decode_title"), decodeBlock(d), true);
       return { title: first.code, html: h, tab: "dtc" };
     }
-    h += first.layer === "pack" ? packPage(first.pack) : libHead(first) + '<div style="margin-top:.9rem">' + libBody(first) + "</div>";
+    if (first.layer === "pack") { setSpeech(first.code, first.pack.title, first.pack.causes); h += '<div style="margin:.2rem 0 .4rem">' + speakBtn() + "</div>" + packPage(first.pack); }
+    else { setSpeech(first.code, first.entry.rec.t, first.entry.rec.cau); h += libHead(first) + '<div style="margin:.5rem 0 .9rem">' + speakBtn() + "</div>" + libBody(first); }
     if (rest.length) h += "<h3>" + esc(t("other_meanings")) + " (" + rest.length + ")</h3>" + rest.map(otherFold).join("");
     if (d.valid) h += fold("🔤 " + t("decode_title"), decodeBlock(d));
     var title = first.layer === "pack" ? L(first.pack.title) : first.entry.rec.t.en;

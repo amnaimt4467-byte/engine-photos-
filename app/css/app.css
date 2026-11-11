@@ -197,3 +197,7 @@ abbr.gl{text-decoration:underline dotted var(--or);text-underline-offset:.2rem}
 .suggest .sg:first-child{border-top:1px solid var(--line);border-radius:.75rem .75rem 0 0}
 .suggest .sg:last-child{border-radius:0 0 .75rem .75rem}
 .suggest .sg:only-child{border-radius:.75rem}
+
+/* microphone button in the search box */
+.mic{width:2.8rem;height:2.8rem;border-radius:.75rem;border:1px solid var(--line);background:var(--card2);font-size:1.2rem;flex:none}
+.mic.on{border-color:var(--bad);background:var(--bad-bg)}

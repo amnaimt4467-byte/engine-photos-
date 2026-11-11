@@ -72,17 +72,13 @@
   APP.action("clearRecent", function () { Settings.clearRecent(); });
   APP.action("resetAll", function () { if (window.confirm(t("reset_confirm"))) Settings.reset(); });
 
-  /* speak a short sentence with the phone's own text-to-speech */
+  /* speak a short sentence so the mechanic can hear whether this language works on the phone */
   APP.action("voiceTest", function () {
-    var msg = document.getElementById("voiceMsg");
-    if (!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") { if (msg) msg.textContent = "⚠ " + t("voice_none"); return; }
-    var id = Settings.get("voiceLang") === "app" ? KB.getLang() : Settings.get("voiceLang");
-    var lang = KB.LANGS.filter(function (l) { return l.id === id; })[0] || KB.LANGS[0];
-    var u = new SpeechSynthesisUtterance(I18N.voice_sample[lang.id] || I18N.voice_sample.en);
-    u.lang = lang.bcp47;
-    u.onerror = function () { if (msg) msg.textContent = "⚠ " + t("voice_none"); };
-    window.speechSynthesis.cancel(); window.speechSynthesis.speak(u);
-    if (msg) msg.textContent = "🔊 " + lang.label + " (" + lang.bcp47 + ")";
+    var msg = document.getElementById("voiceMsg"), lang = Voice.langInfo();
+    if (!Voice.canSpeak()) { if (msg) msg.textContent = "⚠ " + t("voice_none"); return; }
+    Voice.speak(I18N.voice_sample[lang.id] || I18N.voice_sample.en, function (ok) {
+      if (msg) msg.textContent = ok ? "🔊 " + lang.label + " (" + lang.bcp47 + ")" : "⚠ " + t("voice_none");
+    });
   });
 
   /* opens the phone's mail app with the details already filled in */

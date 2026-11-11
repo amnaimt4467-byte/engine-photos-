@@ -133,6 +133,48 @@ async function click(sel) { await page.click(sel); await page.waitForTimeout(80)
   ok("P0087 with no vehicle → generic library", r.layer === "generic", JSON.stringify(r));
   await page.evaluate(() => Settings.set("vehicleId", "toyota_hiace_kdh_2013_1kdftv"));
 
+  console.log("Voice");
+  const spoken = [
+    ["P zero zero eight seven", "P0087"], ["p0087", "P0087"], ["P double zero eight seven", "P0087"], ["P oh oh 87", "P0087"], ["pee zero zero eighty seven", "P0087"],
+    ["search for P 0 3 0 0 please", "P0300"], ["code is U zero one zero zero", "U0100"], ["C one two zero one", "C1201"], ["bee one four two one", "B1421"], ["P two A zero zero", "P2A00"], ["you zero one zero zero", "U0100"],
+    ["பி பூஜ்யம் பூஜ்யம் எட்டு ஏழு", "P0087"], ["பி ஜீரோ ஜீரோ எட்டு ஏழு", "P0087"], ["பி சைபர் சைபர் எய்ட் செவன்", "P0087"], ["பி பூஜ்யம் மூன்று பூஜ்யம் பூஜ்யம்", "P0300"], ["சி ஒன்று இரண்டு பூஜ்யம் ஒன்று", "C1201"],
+    ["யு பூஜ்யம் ஒன்று பூஜ்யம் பூஜ்யம்", "U0100"], ["பி ஒண்ணு ரெண்டு ரெண்டு ஒம்பது", "P1229"], ["பி டபுள் பூஜ்யம் எட்டு ஏழு", "P0087"], ["பி 0087", "P0087"], ["கோட் பி பூஜ்யம் நாலு பூஜ்யம் ஒன்னு", "P0401"],
+    ["පී බිංදුව බිංදුව අට හත", "P0087"], ["පී සීරෝ සීරෝ අට හත", "P0087"], ["පී බිංදුව තුන බිංදුව බිංදුව", "P0300"], ["සී එක දෙක බිංදුව එක", "C1201"], ["බී එක හතර දෙක එක", "B1421"],
+    ["යූ බිංදුව එක බිංදුව බිංදුව", "U0100"], ["පී එක දෙක දෙක නවය", "P1229"], ["පී ඩබල් බිංදුව අට හත", "P0087"], ["පී 0087", "P0087"], ["පී බිංදුව හතර බිංදුව පහ", "P0405"],
+    ["rail pressure", null], ["search for something", null], ["zero zero eight seven", null], ["you see one of them", null], ["எரிபொருள் அழுத்தம் குறைவு", null], ["P zero zero eight", null]
+  ];
+  const wrong = await page.evaluate((cases) => cases.filter(([say, want]) => { const r = Voice.parseCode(say); return (r ? r.code : null) !== want; }).map((c) => c[0]), spoken);
+  ok("spoken codes are understood in English, Tamil and Sinhala (" + spoken.length + " phrases)", wrong.length === 0, "wrong: " + wrong.join(" | "));
+  ok("Tamil 'பி' offers the B reading as well", (await page.evaluate(() => Voice.parseCode("பி ஒன்று நான்கு இரண்டு ஒன்று").alt)) === "B1421");
+  await goto("#/dtc");
+  ok("microphone button is shown exactly when the device can listen", !!(await page.$('[data-act="mic"]')) === (await page.evaluate(() => Voice.canListen())));
+  /* pretend the mechanic spoke: replace the listener, then tap the microphone */
+  const speakAndTap = async (result) => {
+    await goto("#/dtc");
+    await page.evaluate((r) => { Voice.canListen = () => true; Voice.listen = (cb) => cb(r); APP.render(); }, result);
+    await click('[data-act="mic"]'); await page.waitForTimeout(150);
+  };
+  await speakAndTap({ texts: ["பி பூஜ்யம் பூஜ்யம் எட்டு ஏழு"] });
+  ok("speaking a code in Tamil opens that code", (await hash()) === "#/dtc/P0087" && (await setting("recent"))[0] === "P0087", await hash());
+  await speakAndTap({ texts: ["hmm", "P zero three zero zero"] });
+  ok("a later recognition alternative with a code is used", (await hash()) === "#/dtc/P0300", await hash());
+  await speakAndTap({ texts: ["பி ஒன்று நான்கு இரண்டு ஒன்று"] });
+  ok("Tamil 'பி' falls back to the B code when only that one exists", (await hash()) === "#/dtc/B1421", await hash());
+  await speakAndTap({ texts: ["rail pressure"] });
+  ok("speaking words runs a word search", (await hash()) === "#/find/rail%20pressure", await hash());
+  await speakAndTap({ error: "denied" });
+  ok("microphone permission refused → clear message, stays on the page", (await hash()) === "#/dtc" && (await text(".suggest")).includes("permission"));
+  await speakAndTap({ error: "none" });
+  ok("nothing heard → asks to try again", (await text(".suggest")).includes("Nothing was heard"));
+  await goto("#/dtc/P1229");
+  const said = await page.evaluate(() => new Promise((res) => { Voice.canSpeak = () => true; Voice.speak = (t, cb) => { res(t); cb(true); }; APP.render(); document.querySelector('[data-act="speak"]').click(); }));
+  ok("'Read aloud' speaks the code, its meaning and causes", /P 1 2 2 9/.test(said) && /Pump valve/.test(said) && /SCV stuck/.test(said), said);
+  await page.evaluate(() => Settings.set("speak", true));
+  const auto = await page.evaluate(() => new Promise((res) => { Voice.speak = (t, cb) => { res(t); cb(true); }; location.hash = "#/dtc/P0300"; setTimeout(() => res(null), 1500); }));
+  ok("with 'Read answers aloud' on, opening a code speaks it once", !!auto && /P 0 3 0 0/.test(auto), String(auto));
+  await page.evaluate(() => Settings.set("speak", false));
+  await page.reload();
+
   console.log("Settings");
   await goto("#/settings");
   await click('[data-act="set:textSize:l"]');
