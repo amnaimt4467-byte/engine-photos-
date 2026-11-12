@@ -2,12 +2,12 @@
    VOICE — speak a fault code to search, and have answers read aloud.
 
    Inside the Android app the browser's own speech features do not work,
-   so two native plugins are used when present:
-     Capacitor.Plugins.SpeechRecognition   (listening; needs the microphone
-                                            permission and the phone's speech service)
-     Capacitor.Plugins.TextToSpeech        (reading aloud)
+   so two native plugins are used (see js/native.js):
+     SpeechRecognition   listening; needs the microphone permission and the
+                         phone's speech service (Google), usually with internet
+     TextToSpeech        reading aloud; needs a voice for the language on the phone
    In a desktop browser the Web Speech API is used instead.
-   When neither exists, canListen() / canSpeak() are false and the buttons are hidden.
+   Inside the app the browser API is never used as a fallback: it only pretends to work.
 
    Voice.parseCode(text) is plain logic (no device needed):
      "P zero zero eight seven"        → P0087
@@ -15,10 +15,9 @@
      "පී බිංදුව බිංදුව අට හත"            → P0087
    ===================================================================== */
 var Voice = (function () {
-  var cap = window.Capacitor, plugins = (cap && cap.Plugins) || {};
-  var nativeSR = plugins.SpeechRecognition || null, nativeTTS = plugins.TextToSpeech || null;
-  var WebSR = window.SpeechRecognition || window.webkitSpeechRecognition || null;
-  var webTTS = "speechSynthesis" in window && typeof SpeechSynthesisUtterance !== "undefined";
+  var nativeSR = Native.plugin("SpeechRecognition"), nativeTTS = Native.plugin("TextToSpeech");
+  var WebSR = Native.isApp ? null : (window.SpeechRecognition || window.webkitSpeechRecognition || null);
+  var webTTS = !Native.isApp && "speechSynthesis" in window && typeof SpeechSynthesisUtterance !== "undefined";
 
   function langInfo() {
     var id = Settings.get("voiceLang") === "app" ? KB.getLang() : Settings.get("voiceLang");
@@ -73,10 +72,31 @@ var Voice = (function () {
 
   /* ---------- listening ---------- */
   function canListen() { return !!(nativeSR || WebSR); }
-  /* listen(cb): cb({ texts: [...] }) on success, cb({ error: "denied" | "none" | "unavailable" }) otherwise */
-  function listen(cb) {
+  function hasPopup() { return !!nativeSR; }            // the "Speak now" window exists only inside the app
+  /* what a failure from the phone's recogniser means for the user:
+       "none"     nothing was heard / understood, or the "Speak now" window was closed → try again
+       "denied"   no microphone permission
+       "network"  the speech service needs internet
+       "language" the phone cannot recognise this language
+       "failed"   anything else (the raw text is passed along). The plugin's "Didn't understand, please
+                  try again." belongs here: it is its text for every error number it does not know,
+                  which includes Android's "language not supported / not downloaded". */
+  function errorKind(message) {
+    var m = String(message || "").toLowerCase();
+    if (/permission/.test(m)) return "denied";
+    if (/network|server/.test(m)) return "network";
+    if (/language/.test(m)) return "language";
+    if (/no match|no speech|^0$/.test(m)) return "none";
+    return "failed";
+  }
+  /* listen(cb, opts): cb({ texts: [...] }) on success, cb({ error: kind, detail }) otherwise.
+     opts.popup = true uses the phone's own "Speak now" window (Google) instead of listening silently
+     inside the app; some phones only recognise speech reliably that way. */
+  function listen(cb, opts) {
+    var popup = !!(opts && opts.popup);
     var lang = langInfo().bcp47, done = false;
     var finish = function (r) { if (!done) { done = true; cb(r); } };
+    var fail = function (e) { var msg = (e && (e.message || e.errorMessage)) || String(e || ""); finish({ error: errorKind(msg), detail: msg }); };
     if (nativeSR) {
       nativeSR.available().then(function (a) {
         if (!a || !a.available) return finish({ error: "unavailable" });
@@ -84,11 +104,11 @@ var Voice = (function () {
           return p.speechRecognition === "granted" ? p : nativeSR.requestPermissions();
         }).then(function (p) {
           if (p.speechRecognition !== "granted") return finish({ error: "denied" });
-          return nativeSR.start({ language: lang, maxResults: 5, popup: false, partialResults: false }).then(function (res) {
+          return nativeSR.start({ language: lang, maxResults: 5, popup: popup, partialResults: false }).then(function (res) {
             finish(res && res.matches && res.matches.length ? { texts: res.matches } : { error: "none" });
           });
         });
-      }).catch(function () { finish({ error: "none" }); });
+      }).catch(fail);
       return;
     }
     if (!WebSR) return finish({ error: "unavailable" });
@@ -96,29 +116,33 @@ var Voice = (function () {
       var rec = new WebSR();
       rec.lang = lang; rec.interimResults = false; rec.maxAlternatives = 5;
       rec.onresult = function (e) { var alts = []; for (var i = 0; i < e.results[0].length; i++) alts.push(e.results[0][i].transcript); finish({ texts: alts }); };
-      rec.onerror = function (e) { finish({ error: e.error === "not-allowed" || e.error === "service-not-allowed" ? "denied" : "none" }); };
+      rec.onerror = function (e) { finish({ error: e.error === "not-allowed" || e.error === "service-not-allowed" ? "denied" : e.error === "network" ? "network" : "none", detail: e.error }); };
       rec.onend = function () { finish({ error: "none" }); };
       rec.start();
     } catch (e) { finish({ error: "unavailable" }); }
   }
-  function stopListening() { if (nativeSR && nativeSR.stop) nativeSR.stop().catch(function () {}); }
+  function stopListening() { if (nativeSR) nativeSR.stop().catch(function () {}); }
 
   /* ---------- reading aloud ---------- */
   function canSpeak() { return !!(nativeTTS || webTTS); }
-  /* speak(text, cb): cb(true) when speech started, cb(false) when the device cannot speak this language */
+  /* speak(text, cb): cb(true) when it was spoken, cb(false, "language" | "failed") when it could not be */
   function speak(text, cb) {
     var lang = langInfo().bcp47; cb = cb || function () {};
     if (nativeTTS) {
-      nativeTTS.stop().catch(function () {}).then(function () { return nativeTTS.speak({ text: text, lang: lang, rate: 1.0, pitch: 1.0, volume: 1.0 }); })
-        .then(function () { cb(true); }).catch(function () { cb(false); });
+      nativeTTS.isLanguageSupported({ lang: lang }).then(function (r) {
+        if (!r || !r.supported) return cb(false, "language");
+        return nativeTTS.stop().catch(function () {}).then(function () {
+          return nativeTTS.speak({ text: text, lang: lang, rate: 1.0, pitch: 1.0, volume: 1.0 });
+        }).then(function () { cb(true); });
+      }).catch(function () { cb(false, "failed"); });
       return;
     }
-    if (!webTTS) return cb(false);
+    if (!webTTS) return cb(false, "failed");
     try {
       var u = new SpeechSynthesisUtterance(text); u.lang = lang;
-      u.onerror = function () { cb(false); };
+      u.onerror = function () { cb(false, "failed"); };
       window.speechSynthesis.cancel(); window.speechSynthesis.speak(u); cb(true);
-    } catch (e) { cb(false); }
+    } catch (e) { cb(false, "failed"); }
   }
   function stop() {
     if (nativeTTS) nativeTTS.stop().catch(function () {});
@@ -127,5 +151,20 @@ var Voice = (function () {
   /* "P0087" → "P 0 0 8 7" so the voice reads each character */
   function spell(code) { return String(code).split("").join(" "); }
 
-  return { parseCode: parseCode, canListen: canListen, listen: listen, stopListening: stopListening, canSpeak: canSpeak, speak: speak, stop: stop, spell: spell, langInfo: langInfo };
+  /* ---------- what this phone can do (shown in Settings so a problem can be reported exactly) ---------- */
+  function diagnose(cb) {
+    var out = { app: Native.isApp, listen: nativeSR ? "plugin" : WebSR ? "browser" : "none", speak: nativeTTS ? "plugin" : webTTS ? "browser" : "none", service: null, permission: null, voices: {} };
+    var jobs = [];
+    if (nativeSR) {
+      jobs.push(nativeSR.available().then(function (a) { out.service = !!(a && a.available); }).catch(function () { out.service = false; }));
+      jobs.push(nativeSR.checkPermissions().then(function (p) { out.permission = p.speechRecognition; }).catch(function () {}));
+    }
+    if (nativeTTS) KB.LANGS.forEach(function (l) {
+      jobs.push(nativeTTS.isLanguageSupported({ lang: l.bcp47 }).then(function (r) { out.voices[l.id] = !!(r && r.supported); }).catch(function () { out.voices[l.id] = false; }));
+    });
+    Promise.all(jobs).then(function () { cb(out); }, function () { cb(out); });
+  }
+
+  return { parseCode: parseCode, canListen: canListen, hasPopup: hasPopup, listen: listen, stopListening: stopListening, errorKind: errorKind,
+    canSpeak: canSpeak, speak: speak, stop: stop, spell: spell, langInfo: langInfo, diagnose: diagnose };
 })();

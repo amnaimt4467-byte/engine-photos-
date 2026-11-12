@@ -226,3 +226,13 @@ console.log("wrote " + path.relative(process.cwd(), OUT) + " " + (fs.statSync(OU
   const steps = flows.reduce((k, f) => k + f.steps.length, 0);
   console.log("flows     : " + flows.length + " flows · " + steps + " steps → app/data/flows.js " + (js.length / 1024).toFixed(0) + " KB · texts " + n + " · Tamil " + pct(ta, n) + " · Sinhala " + pct(si, n));
 }
+
+
+/* the page needs the @capacitor/core runtime to reach native plugins (see app/js/native.js);
+   it is copied here so it always matches the version the Android project is built with */
+{
+  const from = path.join(__dirname, "..", "node_modules", "@capacitor", "core", "dist", "capacitor.js");
+  const to = path.join(__dirname, "..", "app", "js", "vendor", "capacitor.js");
+  if (fs.existsSync(from)) { fs.mkdirSync(path.dirname(to), { recursive: true }); fs.copyFileSync(from, to); console.log("vendor    : app/js/vendor/capacitor.js ← @capacitor/core " + require(path.join(__dirname, "..", "node_modules", "@capacitor", "core", "package.json")).version); }
+  else if (!fs.existsSync(to)) throw new Error("app/js/vendor/capacitor.js is missing and @capacitor/core is not installed (run npm ci)");
+}

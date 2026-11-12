@@ -10,7 +10,7 @@
    ===================================================================== */
 var APP = (function () {
   var DS = KB.DataStore, L = KB.L, esc = KB.esc;
-  var VERSION = "0.5.1";
+  var VERSION = "0.5.2";
   var CONFIG = {
     feedbackEmail: "",  // address that receives "Report wrong data" (empty = user picks the recipient)
     /* always the newest test build; opened in the phone's browser only when the user taps "Download" */
@@ -95,17 +95,27 @@ var APP = (function () {
       '<button class="btn pri">' + esc(t("search")) + '</button></form><div class="suggest" data-suggest="1"></div>';
   }
 
-  /* 🎤: listen, then open the code that was spoken (or search for the words) */
-  action("mic", function (arg, btn) {
-    var box = btn.form.parentNode.querySelector("[data-suggest]");
-    var say = function (key) { if (box) box.innerHTML = key ? '<div class="sg">' + esc(t(key)) + "</div>" : ""; };
-    btn.classList.add("on"); say("mic_listening");
+  /* 🎤: listen, then open the code that was spoken (or search for the words).
+     When the phone's recogniser fails, the reason is shown as it came from the phone, and inside
+     the app the other way of listening is offered: the phone's own "Speak now" window, or listening
+     inside the app. The way that worked is remembered (setting micPopup). */
+  function runMic(btn, popup) {
+    var box = btn.form ? btn.form.parentNode.querySelector("[data-suggest]") : btn.closest("[data-suggest]");
+    var show = function (html) { if (box) box.innerHTML = html ? '<div class="sg wrap">' + html + "</div>" : ""; };
+    show(esc(t("mic_listening")));
+    btn.classList.add("on");
     Voice.listen(function (r) {
       btn.classList.remove("on");
-      if (r.error) return say(r.error === "denied" ? "mic_denied" : r.error === "unavailable" ? "mic_unavailable" : "mic_none");
+      if (r.error) {
+        var key = { denied: "mic_denied", unavailable: "mic_unavailable", network: "mic_network", language: "mic_language", none: "mic_none" }[r.error] || "mic_failed";
+        var other = Voice.hasPopup() && r.error !== "denied" && r.error !== "unavailable";
+        return show(esc(t(key)) + (r.detail ? ' <span class="dim small">(' + esc(r.detail) + ")</span>" : "") +
+          (other ? '<br><button type="button" class="btn" data-act="' + (popup ? "micPlain" : "micPopup") + '" style="margin-top:.5rem">🎙️ ' + esc(t(popup ? "mic_plain" : "mic_popup")) + "</button>" : ""));
+      }
+      if (Voice.hasPopup() && Settings.get("micPopup") !== popup) Settings.set("micPopup", popup);   // remember the way that works on this phone
       var heard = r.texts[0], code = null;
       r.texts.some(function (x) { code = Voice.parseCode(x); return !!code; });
-      if (!code) { say(""); return go("#/find/" + encodeURIComponent(heard)); }
+      if (!code) { show(""); return go("#/find/" + encodeURIComponent(heard)); }
       var pick = code.code;
       DTC.load(function () {             // Tamil "பி" can mean P or B: prefer the reading the library knows
         var v = DS.vehicle(Settings.get("vehicleId"));
@@ -113,8 +123,12 @@ var APP = (function () {
         if (code.alt && rank(code.alt) < rank(pick)) pick = code.alt;     // the reading that fits this vehicle better wins
         Settings.addRecent(pick); go("#/dtc/" + pick);
       });
-    });
-  });
+    }, { popup: popup });
+  }
+  action("mic", function (arg, btn) { runMic(btn, Voice.hasPopup() && Settings.get("micPopup")); });
+  action("micPopup", function (arg, btn) { runMic(btn, true); });
+  action("micPlain", function (arg, btn) { runMic(btn, false); });
+
   function vehicleTag(v) {
     return DS.hasPack(v) ? '<span class="tag sample">◇ ' + esc(t("tag_sample")) + "</span>" : '<span class="tag planned">' + esc(t("tag_planned")) + "</span>";
   }
@@ -150,8 +164,8 @@ var APP = (function () {
 
   /* Android hardware back button (only inside the installed app) */
   (function () {
-    var cap = window.Capacitor, plugin = cap && cap.Plugins && cap.Plugins.App;
-    if (!plugin || !plugin.addListener) return;
+    var plugin = Native.plugin("App");
+    if (!plugin) return;
     plugin.addListener("backButton", function () {
       if (!current || !current.top) back();
       else if (parse().name !== "home") go("#/home");

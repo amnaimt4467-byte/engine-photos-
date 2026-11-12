@@ -11,6 +11,8 @@
   offline inside the Android app and also when opened as a plain file.
 
   Load order matters:
+    vendor/capacitor.js  the @capacitor/core runtime (needed to reach native plugins inside the app)
+    native.js          Native   (plugin access in the app; null in a browser)
     settings.js        user preferences (language, theme, text size …)
     data/catalog.js    CATALOG  (brands, models, year/engine entries, engine index — generated)
     data.js            KB_DATA  (demo pack for the HiAce 1KD-FTV, categories, glossary)
@@ -36,6 +38,8 @@
 <main id="main"></main>
 <nav class="tabs"><div class="in" id="tabsIn"></div></nav>
 
+<script src="js/vendor/capacitor.js"></script>
+<script src="js/native.js"></script>
 <script src="js/settings.js"></script>
 <script src="data/catalog.js"></script>
 <script src="js/data.js"></script>

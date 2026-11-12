@@ -12,6 +12,7 @@ var Settings = (function () {
     units: "metric",     // "metric" | "imperial"
     voiceLang: "app",    // "app" | "en" | "ta" | "si"
     speak: false,        // read answers aloud
+    micPopup: false,     // voice search through the phone's own "Speak now" window (set by itself when that way works)
     vehicleId: null,     // the mechanic's current vehicle
     favorites: [],       // vehicle ids
     recent: []           // recently searched codes, newest first

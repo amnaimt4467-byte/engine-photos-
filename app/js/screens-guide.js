@@ -74,7 +74,9 @@
     return (function depth(n) { var m = 0; byN[n].res.forEach(function (r) { if (r.step != null) m = Math.max(m, depth(r.step)); }); return 1 + m; })(f.start);
   }
   var speakText = "";
-  APP.action("speakStep", function () { Voice.speak(speakText); });
+  APP.action("speakStep", function (arg, btn) {
+    Voice.speak(speakText, function (ok, why) { if (!ok) btn.textContent = "⚠ " + t(why === "language" ? "voice_lang_missing" : "voice_none", { l: Voice.langInfo().label }); });
+  });
   APP.route("flow", function (id, path) {
     var wait = needFlows(); if (wait) return wait;
     var f = flowById(id); if (!f) return APP.redirect("#/symptoms");

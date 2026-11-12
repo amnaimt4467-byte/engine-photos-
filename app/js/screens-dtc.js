@@ -136,7 +136,7 @@
   /* ---------- reading a code aloud ---------- */
   var speakText = "", spokenFor = null;
   function speakBtn() { return Voice.canSpeak() ? '<button class="btn" data-act="speak">🔊 ' + esc(t("read_aloud")) + '</button> <span class="dim small" id="speakMsg"></span>' : ""; }
-  function sayIt() { Voice.speak(speakText, function (ok) { var m = document.getElementById("speakMsg"); if (m) m.textContent = ok ? "" : "⚠ " + t("voice_none"); }); }
+  function sayIt() { Voice.speak(speakText, function (ok, why) { var m = document.getElementById("speakMsg"); if (m) m.textContent = ok ? "" : "⚠ " + t(why === "language" ? "voice_lang_missing" : "voice_none", { l: Voice.langInfo().label }); }); }
   APP.action("speak", sayIt);
   /* what is read: the code spelled out, its meaning, then up to three causes — in the voice language */
   function setSpeech(code, title, causes) {

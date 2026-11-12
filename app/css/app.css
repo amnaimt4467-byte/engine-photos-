@@ -229,3 +229,4 @@ details.x p{margin:0 0 .5rem}
 .m-body{fill:var(--card2);stroke:var(--dim)} .m-part{fill:var(--card2);stroke:var(--dim)} .m-text{fill:var(--text)} .m-lead{stroke:var(--text)}
 .okc{color:var(--ok)} .warnc{color:var(--warn)}
 .btn[hidden]{display:none}
+.suggest .sg.wrap{white-space:normal;overflow:visible}

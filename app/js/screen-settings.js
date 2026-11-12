@@ -33,7 +33,8 @@
       '<div class="sub">' + esc(t("s_voice_lang")) + "</div>" +
       seg("voiceLang", [["app", t("voice_app")]].concat(KB.LANGS.map(function (l) { return [l.id, l.label]; }))) +
       '<div class="sub">' + esc(t("s_speak")) + "</div>" + seg("speak", [[false, t("off")], [true, t("on")]]) +
-      '<div class="row" style="margin-top:.75rem"><button class="btn" data-act="voiceTest">▶ ' + esc(t("voice_test")) + '</button></div><p class="hint" id="voiceMsg" style="margin:.5rem 0 0"></p>');
+      (Voice.hasPopup() ? '<div class="sub">' + esc(t("s_mic_popup")) + "</div>" + seg("micPopup", [[false, t("off")], [true, t("on")]]) : "") +
+      '<div class="row" style="margin-top:.75rem"><button class="btn" data-act="voiceTest">▶ ' + esc(t("voice_test")) + '</button><button class="btn" data-act="voiceCheck">🩺 ' + esc(t("voice_check")) + '</button></div><p class="hint" id="voiceMsg" style="margin:.5rem 0 0"></p><p class="hint" id="voiceDiag" style="margin:.5rem 0 0"></p>');
 
     /* my vehicles */
     var favs = Settings.get("favorites").map(DS.vehicle).filter(Boolean);
@@ -81,8 +82,25 @@
   APP.action("voiceTest", function () {
     var msg = document.getElementById("voiceMsg"), lang = Voice.langInfo();
     if (!Voice.canSpeak()) { if (msg) msg.textContent = "⚠ " + t("voice_none"); return; }
-    Voice.speak(I18N.voice_sample[lang.id] || I18N.voice_sample.en, function (ok) {
-      if (msg) msg.textContent = ok ? "🔊 " + lang.label + " (" + lang.bcp47 + ")" : "⚠ " + t("voice_none");
+    Voice.speak(I18N.voice_sample[lang.id] || I18N.voice_sample.en, function (ok, why) {
+      if (msg) msg.textContent = ok ? "🔊 " + lang.label + " (" + lang.bcp47 + ")" : "⚠ " + t(why === "language" ? "voice_lang_missing" : "voice_none", { l: lang.label });
+    });
+  });
+  /* a plain list of what voice features this phone has, so a problem can be reported exactly */
+  APP.action("voiceCheck", function () {
+    var box = document.getElementById("voiceDiag"); if (!box) return;
+    box.textContent = "…";
+    Voice.diagnose(function (d) {
+      var yes = function (b) { return b ? "✅" : "❌"; };
+      var lines = [
+        (d.app ? "📱 " : "🖥️ ") + t(d.app ? "vd_app" : "vd_browser"),
+        yes(d.listen !== "none") + " " + t("vd_listen") + ": " + d.listen,
+        d.service === null ? null : yes(d.service) + " " + t("vd_service"),
+        d.permission === null ? null : yes(d.permission === "granted") + " " + t("vd_permission") + ": " + d.permission,
+        yes(d.speak !== "none") + " " + t("vd_speak") + ": " + d.speak
+      ];
+      KB.LANGS.forEach(function (l) { if (l.id in d.voices) lines.push(yes(d.voices[l.id]) + " " + t("vd_voice", { l: l.label })); });
+      box.innerHTML = lines.filter(Boolean).map(function (x) { return esc(x); }).join("<br>");
     });
   });
 

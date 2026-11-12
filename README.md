@@ -2,7 +2,7 @@
 
 An offline Android app for mechanics in **English, Tamil and Sinhala**: vehicles and engines, fault codes (DTC), repair steps, and voice search.
 
-## What is in the app (version 0.5.1)
+## What is in the app (version 0.5.2)
 
 | Area | Content |
 |---|---|
@@ -12,7 +12,7 @@ An offline Android app for mechanics in **English, Tamil and Sinhala**: vehicles
 | Special functions | each engine's reset and registration notes, plus a scanner-first wizard for the demo pack |
 | Testing lessons | six multimeter lessons, when a scanner is needed, glossary |
 | Demo pack | Toyota HiAce 1KD-FTV: 6 sample DTCs with the full 15-field layout, 3 procedures, 9 special functions |
-| Voice | Speak a code in English, Tamil or Sinhala; have a code page read aloud |
+| Voice | Speak a code in English, Tamil or Sinhala; have a code page read aloud. Uses the phone's speech service (normally needs internet). If it fails the phone's own reason is shown, the phone's "Speak now" window is offered, and Settings → Voice → "Check voice on this phone" lists what the phone can do. **Not yet confirmed on a real phone.** |
 | Settings | Language, level, text size, appearance, units, voice, my vehicles, recent searches, offline data, report wrong data |
 
 ### How far the data can be trusted
@@ -41,6 +41,8 @@ The generic layer shows only generic content. Lines that belong to one vehicle's
 ```
 app/                    Web UI that runs inside the Android app (offline, no external resources)
   index.html, css/app.css
+  js/vendor/capacitor.js  the @capacitor/core runtime (copied from node_modules by `npm run data`)
+  js/native.js            access to Android plugins inside the app (null in a browser)
   js/settings.js          user preferences
   js/data.js              demo pack, the 17 system categories, glossary
   js/core.js              DataStore (vehicles, engines, demo pack), badges, units

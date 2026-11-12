@@ -1,6 +1,6 @@
 {
   "name": "engine-specs-app",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "private": true,
   "description": "Automotive engine & vehicle diagnostic knowledge app (Android, offline, English / Tamil / Sinhala)",
   "scripts": {

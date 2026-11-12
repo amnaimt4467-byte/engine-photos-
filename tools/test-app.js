@@ -317,6 +317,121 @@ async function click(sel) { await page.click(sel); await page.waitForTimeout(80)
   }
   ok("no screen is wider than the phone", worst <= 0, worst + "px at " + where);
 
+  console.log("Inside the Android app (simulated native bridge, real Capacitor runtime)");
+  {
+    /* The page cannot tell this fake bridge from the real one: js/vendor/capacitor.js sees an Android
+       bridge, and every plugin call goes through Capacitor.nativePromise / nativeCallback like on a phone. */
+    const actx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+    const ap = await actx.newPage();
+    ap.on("pageerror", (e) => errors.push("[app] " + e.message));
+    ap.on("console", (m) => { if (m.type() === "error") errors.push("[app] " + m.text()); });
+    ap.on("request", (r) => { if (!r.url().startsWith("file://")) external.push(r.url()); });
+    await ap.addInitScript(() => {
+      const N = (window.__native = { calls: [], listeners: {}, sr: { available: true, perm: "granted", afterRequest: "granted", result: { matches: ["P zero zero eight seven"] }, popupResult: { matches: ["P zero three zero zero"] } }, voices: { "en-US": true }, spoken: null, exited: false });
+      const m = (names, rtype) => names.map((name) => ({ name, rtype }));
+      window.androidBridge = { postMessage() {} };
+      window.Capacitor = {
+        PluginHeaders: [
+          { name: "App", methods: m(["exitApp"], "promise").concat(m(["addListener", "removeListener"], "none")) },
+          { name: "SpeechRecognition", methods: m(["available", "start", "stop", "checkPermissions", "requestPermissions"], "promise").concat(m(["addListener", "removeListener"], "none")) },
+          { name: "TextToSpeech", methods: m(["speak", "stop", "isLanguageSupported"], "promise") }
+        ],
+        nativeCallback(plugin, method, opts, cb) { N.calls.push([plugin, method, opts]); if (method === "addListener") N.listeners[plugin + ":" + opts.eventName] = cb; return "cb1"; },
+        nativePromise(plugin, method, opts) {
+          N.calls.push([plugin, method, opts]);
+          const fail = (msg) => Promise.reject(Object.assign(new Error(msg), { errorMessage: msg }));
+          if (plugin === "SpeechRecognition") {
+            if (method === "available") return Promise.resolve({ available: N.sr.available });
+            if (method === "checkPermissions") return Promise.resolve({ speechRecognition: N.sr.perm });
+            if (method === "requestPermissions") return Promise.resolve({ speechRecognition: N.sr.afterRequest });
+            if (method === "start") { const r = opts.popup ? N.sr.popupResult : N.sr.result; return r.error ? fail(r.error) : Promise.resolve(r); }
+            if (method === "stop") return Promise.resolve();
+          }
+          if (plugin === "TextToSpeech") {
+            if (method === "isLanguageSupported") return Promise.resolve({ supported: !!N.voices[opts.lang] });
+            if (method === "speak") { N.spoken = opts; return Promise.resolve(); }
+            if (method === "stop") return Promise.resolve();
+          }
+          if (plugin === "App" && method === "exitApp") { N.exited = true; return Promise.resolve(); }
+          return fail("not implemented: " + plugin + "." + method);
+        }
+      };
+    });
+    await ap.goto(URL);
+    const A = (fn, arg) => ap.evaluate(fn, arg);
+    const ahash = () => A(() => location.hash);
+    const amain = () => A(() => document.getElementById("main").innerText);
+    const ago = async (h) => { await A((x) => { location.hash = x; }, h); await ap.waitForTimeout(100); };
+    const tapMic = async () => { await ago("#/dtc"); await ap.click('[data-act="mic"]'); await ap.waitForTimeout(250); };
+    await A(() => { Settings.set("lang", "en"); Settings.set("vehicleId", "toyota~hiace~2000-2016-1kd-ftv"); });
+
+    ok("the page knows it runs inside the app and finds all three plugins", await A(() => Native.isApp && !!Native.plugin("App") && !!Native.plugin("SpeechRecognition") && !!Native.plugin("TextToSpeech") && Voice.canListen() && Voice.canSpeak() && Voice.hasPopup()));
+    await tapMic();
+    ok("app: microphone → native recogniser → the spoken code opens", (await ahash()) === "#/dtc/P0087", await ahash());
+    const startCall = await A(() => __native.calls.filter((c) => c[0] === "SpeechRecognition" && c[1] === "start").pop()[2]);
+    ok("app: the recogniser is started in the chosen language, without the popup", startCall.language === "en-US" && startCall.popup === false && startCall.maxResults === 5, JSON.stringify(startCall));
+
+    await A(() => { __native.sr.perm = "prompt"; __native.sr.afterRequest = "denied"; });
+    await tapMic();
+    ok("app: permission asked and refused → clear message", (await amain()).includes("Microphone permission was not given") && (await A(() => __native.calls.some((c) => c[1] === "requestPermissions"))));
+    await A(() => { __native.sr.perm = "granted"; });
+
+    const expectError = async (nativeText, shown) => {
+      await A((e) => { __native.sr.result = { error: e }; }, nativeText);
+      await tapMic();
+      const txt = await amain();
+      return txt.includes(shown) && txt.includes("(" + nativeText + ")");
+    };
+    ok("app: 'No match' from the phone → 'nothing heard', with the phone's own reason shown", await expectError("No match", "Nothing was heard"));
+    ok("app: the 'Speak now' window is offered after a failure", !!(await ap.$('[data-act="micPopup"]')));
+    await ap.click('[data-act="micPopup"]'); await ap.waitForTimeout(250);
+    ok("app: the 'Speak now' window works as a second way", (await ahash()) === "#/dtc/P0300" && (await A(() => __native.calls.filter((c) => c[1] === "start").pop()[2].popup)) === true, await ahash());
+    ok("app: the way that worked is remembered", (await A(() => Settings.get("micPopup"))) === true);
+    await A(() => { __native.sr.popupResult = { matches: ["P zero one seven one"] }; });
+    await tapMic();
+    ok("app: the next tap on the microphone opens the 'Speak now' window straight away", (await ahash()) === "#/dtc/P0171" && (await A(() => __native.calls.filter((c) => c[1] === "start").pop()[2].popup)) === true, await ahash());
+    await A(() => { __native.sr.popupResult = { error: "0" }; __native.sr.result = { matches: ["P zero four two zero"] }; });
+    await tapMic();
+    ok("app: 'Speak now' window closed without speaking → 'nothing heard', listening inside the app is offered", (await amain()).includes("Nothing was heard") && !!(await ap.$('[data-act="micPlain"]')) && !(await ap.$('[data-act="micPopup"]')));
+    await ap.click('[data-act="micPlain"]'); await ap.waitForTimeout(250);
+    ok("app: listening inside the app works again and becomes the remembered way", (await ahash()) === "#/dtc/P0420" && (await A(() => Settings.get("micPopup"))) === false, await ahash());
+    await ago("#/settings");
+    ok("app: Settings has a switch for the 'Speak now' window", !!(await ap.$('[data-act="set:micPopup:true"]')));
+    ok("app: 'Network error' → says internet is needed", await expectError("Network error", "needs internet"));
+    ok("app: language not supported → says so", await expectError("Language not supported", "cannot recognise speech in the chosen voice language"));
+    ok("app: any other failure → shows the raw reason and points to the voice check", await expectError("Client side error", "Voice search did not work"));
+    ok("app: the plugin's catch-all text is not passed off as 'nothing heard'", await expectError("Didn't understand, please try again.", "Voice search did not work"));
+    await A(() => { __native.sr.available = false; });
+    await tapMic();
+    ok("app: no speech service on the phone → says voice search is not available", (await amain()).includes("Voice search is not available"));
+    await A(() => { __native.sr.available = true; __native.sr.result = { matches: ["rail pressure"] }; });
+    await tapMic();
+    ok("app: spoken words run a word search", (await ahash()) === "#/find/rail%20pressure", await ahash());
+
+    await ago("#/dtc/P1229"); await ap.waitForTimeout(300);
+    await ap.click('[data-act="speak"]'); await ap.waitForTimeout(200);
+    const spoken = await A(() => __native.spoken);
+    ok("app: 'Read aloud' goes to the native voice in the right language", spoken && spoken.lang === "en-US" && /P 1 2 2 9/.test(spoken.text), JSON.stringify(spoken));
+    await A(() => { Settings.set("voiceLang", "ta"); __native.spoken = null; });
+    await ap.click('[data-act="speak"]'); await ap.waitForTimeout(200);
+    ok("app: no Tamil voice on the phone → explains how to add it, speaks nothing", (await amain()).includes("no voice for தமிழ்") && (await A(() => __native.spoken)) === null);
+    await ago("#/settings");
+    await ap.click('[data-act="voiceCheck"]'); await ap.waitForTimeout(200);
+    const diag = await ap.evaluate(() => document.getElementById("voiceDiag").innerText);
+    ok("app: Settings voice check lists what the phone can do", /installed app/.test(diag) && /✅ Voice search: plugin/.test(diag) && /✅ Microphone permission: granted/.test(diag) && /✅ Voice installed for English/.test(diag) && /❌ Voice installed for தமிழ்/.test(diag), diag.replace(/\n/g, " | "));
+
+    const pressBack = async () => { await A(() => __native.listeners["App:backButton"]({ canGoBack: true })); await ap.waitForTimeout(150); };
+    ok("app: the hardware back button is connected", await A(() => typeof __native.listeners["App:backButton"] === "function"));
+    await ago("#/home"); await ago("#/dtc"); await ago("#/dtc/P0300");
+    await pressBack();
+    ok("app: Back on a code page returns to the previous screen", (await ahash()) === "#/dtc", await ahash());
+    await pressBack();
+    ok("app: Back on a main tab goes Home", (await ahash()) === "#/home", await ahash());
+    await pressBack();
+    ok("app: Back on Home closes the app", await A(() => __native.exited === true));
+    await actx.close();
+  }
+
   console.log("Health");
   ok("no JavaScript errors", errors.length === 0, errors.slice(0, 3).join(" | "));
   ok("no network requests (fully offline)", external.length === 0, external.slice(0, 3).join(" | "));
