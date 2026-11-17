@@ -1,0 +1,13 @@
+[
+  "ABS solenoid relay", "ABS motor relay", "ABS actuator", "Wheel speed sensor", "Battery", "Alternator / IC regulator",
+  "Deceleration (G) sensor", "Deceleration sensor", "Stop light switch", "ABS pump motor", "Brake light switch",
+  "Steering pad (driver airbag) squib", "Airbag sensor assembly (SRS ECU)", "Squib (airbag / pretensioner) assembly",
+  "ATF temp sensor", "Transmission harness", "Speed sensor", "Lock-up solenoid", "Valve body", "Torque converter",
+  "Oil pump / pressure sensor", "Torque sensor (column assembly)", "Pressure limiter", "EDU", "EDU relay / fuse",
+  "EDU–ECM harness", "Harness", "Harness to ECM", "Supply pump", "Rail pressure sensor", "Immobiliser",
+  "Antenna / amplifier", "Transponder key amplifier", "Transponder key ECU", "Key", "Key / amplifier",
+  "SFRH / SFRR solenoid circuit", "SFLH / SFLR solenoid circuit", "SRRH / SRRR (SRH / SRR) solenoid circuit", "SRLH / SRLR solenoid circuit",
+  "Sensor wire harness", "Pump motor circuit", "Fuel / rail pressure", "EDU / injector circuit (P0200)",
+  "Source: Toyota C1201 'Engine Control System Malfunction' (search: Toyota DTC C1201 explanations)",
+  "Source: go-parts.com OBD C1223 (Toyota/Lexus: C1249 / C1241 often trigger it)"
+]

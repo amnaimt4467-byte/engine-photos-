@@ -1,0 +1,222 @@
+1-1 = fault இல்லை. மற்ற code-களுக்கு 2nd digit = எந்த சக்கரம் என்று பார்க்கவும்.
+12 V battery, battery cooling fan / duct (அடைப்பு) சோதிக்கவும்.
+4-digit user password பதிவு செய்திருந்தால் immobiliser பழுதின் போது limp home மூலம் engine start செய்யலாம் (கீழே special function).
+A42-1 (+BM) always 11-14V இருக்கானு check பண்ணுங்க
+A42-10 (STPO) output check பண்ணுங்க
+A42-14 (GND2) 1Ω-க்கு கீழ resistance இருக்கானு check பண்ணுங்க
+A42-17 (FSW+) load switch OFF→ON-ல் 950-1050Ω → 203-223Ω resistance மாறுதானு check பண்ணுங்க
+A42-21 (FR+)/A42-26 (FR-) continuity check பண்ணுங்க
+A42-22 (RR+)/A42-37 (RR-) continuity check பண்ணுங்க
+A42-24 (FL+)/A42-7 (FL-) continuity check பண்ணுங்க
+A42-39 (RL+)/A42-23 (RL-) continuity check பண்ணுங்க
+A42-42 (STP) input check பண்ணுங்க
+A42-44 (STP2) brake pressed→released-ல் 11-14V→1.5V-க்கு கீழ மாறுதானு check பண்ணுங்க
+ABS pump motor operate ஆகாது
+ABS system disable ஆகும்
+ABS system disable ஆகும் — normal hydraulic brakes வேலை செய்யும்
+ABS-ECU connector ↔ sensor wiring open/short சோதிக்கவும் (rear sensor-க்கு intermediate connectors முதலில்).
+ABS-capable scan tool (Isuzu IDSS / G-IDSS அல்லது Autel/Launch) மூலம் DTC + sub-code (எ.கா. C0035 5A) படிக்கவும் — generic OBD-II scanner ABS-ஐ படிக்காது.
+ABS/VSC/TRAC system முழுசா disable ஆகலாம்
+ASTC-ECU-க்கும் sensor-க்கும் இடையே wiring harness fault
+ASTC-ECU-க்கும் wheel speed sensor-க்கும் இடையே wiring harness/connector particular-ஆ check பண்ணுங்க
+Acceleration sensor (Airbag Sensor Assembly) replace பண்ணுங்க (⚠ replace பண்ணின பிறகு zero-point calibration compulsory).
+Acceleration sensor power supply circuit check பண்ணுங்க
+Active test-ல் ABS Solenoids/pump motor operate பண்ணிப் பாருங்க
+Actuator connector/wiring check பண்ணுங்க
+Actuator motor circuit check பண்ணுங்க
+Air / EGR / fuel code-களை SCR code-க்கு முன் சரி செய்யவும் (NOx code-கள் அவற்றால் வரலாம்).
+Alternator output check பண்ணுங்க
+Ashok Leyland scan tool (J1939) மூலம் SPN + FMI படிக்கவும் — FMI = fault வகை (0 high, 1 low, 3/4 short, 5 open, 18 low-moderate, 31 condition).
+Automatic regeneration complete ஆகாம disregard/forget ஆகி இருக்கலாம் (பெரும்பாலும் driver error)
+B1021 (deployed) இருந்தால் SDM மாற்ற வேண்டும்; பின் 'Enable the SRS' செய்து DTC clear.
+B1346 (DAB high) பெரும்பாலும் clock spring — horn / steering switch வேலை செய்கிறதா பார்க்கவும்.
+Battery disconnect/dead battery-க்கு பிறகு calibration reset ஆகி இருக்கிறது
+Battery terminals clean/tight-ஆ இருக்கானு பாருங்க
+Battery voltage load test பண்ணுங்க
+Battery voltage/charging system check பண்ணுங்க (C1241 group)
+Battery − கழற்றி குறைந்தது 1 நிமிடம் காத்திருக்கவும்; airbag connector-ஐ multimeter-ஆல் ஒருபோதும் அளக்க வேண்டாம்.
+Battery/charging system fault confirம் ஆகி repair பண்ணுங்க. Battery weak-ஆ இருந்தா replace பண்ணுங்க.
+Battery/charging voltage check பண்ணுங்க (engine running-ல் 13.5-14.5V range normal — இதற்கு மேல் தொடர்ந்து இருந்தா over-charging)
+Brake actuator assembly repair/replace பண்ணுங்க.
+Brake pad metal dust sensor tip-ல் accumulate ஆகி இருக்கிறது
+Brake system-ல் general malfunction indication
+C0200/C0205/C0210/C0215 group DTCs இருக்கானு முதலில் check பண்ணுங்க — இருந்தா அதை முதலில் diagnose பண்ணுங்க
+C1057 இருந்தால் முதலில் battery / charging voltage சோதிக்கவும்.
+C1130–C1132 இருந்தால் முதலில் ECM P-code-களை சரி செய்து அழிக்கவும் (TSB NTB16-116).
+C1336 உடன் சேர்ந்து வரலாம் (calibration complete ஆகாது)
+C1336/C1419 உடன் சேர்ந்து வரலாம்
+C1336/C1420 உடன் சேர்ந்து வரலாம்
+CAN communication check பண்ணுங்க
+CONSULT (அல்லது generic OBD-II scanner) மூலம் DTC + freeze frame படிக்கவும்; scanner இல்லையெனில் 'Diagnostic Test Mode II' (accelerator method) பயன்படுத்தவும்.
+CONSULT அல்லது OBD-II scanner மூலம் DTC + freeze frame (rail pressure actual vs target) படிக்கவும்.
+CONSULT-III plus (அல்லது ABS-capable tool) மூலம் self-diagnosis result படிக்கவும்.
+CONSULT-III plus மூலம் SRS self-diagnosis result படிக்கவும் (current / past).
+Charging system components repair/replace பண்ணுங்க.
+Charging voltage (engine running) check பண்ணுங்க — 13.5-14.5V range-ல் இருக்கணும்
+Code-க்கு ஏற்ப sensor connector, harness, 5 V reference, ground சோதிக்கவும்; DATA MONITOR-ல் sensor மதிப்பை ஒப்பிடவும்.
+Code-ன் சரியான பொருளை வாகனத்தின் service manual-ல் உறுதி செய்யவும் — இந்த B-code definitions பல brand-களுக்கு பொதுவானவை.
+DPD filter-ல் அதிக ash accumulation
+DPD lamp circuit fix பண்ணுங்க.
+DPD regen தேவை
+DPD system diagnosis பண்ணுங்க — regeneration cycle complete ஆகுதான்னு பாருங்க.
+ECM / BCM / key மாற்றினால் CONSULT 'Immobilizer → key registration / NATS initialisation' (dealer NATS PIN தேவை); பின் P1610 lock mode clear.
+ECM, ETACS-ECU அல்லது WCM மாற்றினால் கீழே உள்ள registration முறை.
+ECM-ICU இடையே CAN communication fault (connector/wiring issue)
+EGR valve stuck/dirty — clean/replace பண்ணுங்க.
+Electromagnetic interference (EMI) — intermittent condition-ஐ affect பண்ணலாம்
+FL sensor connector/harness-ல் open இருக்கானு check பண்ணுங்க (hub/encoder area உட்பட)
+FL sensor அல்லது wiring harness repair/replace பண்ணுங்க.
+FR sensor connector/harness-ல் open இருக்கானு check பண்ணுங்க
+FR sensor அல்லது wiring harness repair/replace பண்ணுங்க.
+Fault persist ஆனா sensor replace பண்ணுங்க
+Flash code அட்டவணை Kato machine-ல் உள்ள Hino engine-களிலிருந்து — truck-ல் உறுதி செய்யவும்.
+Forced DPD regeneration cycle run பண்ணுங்க (Tech 2).
+Fuel filter, air in fuel, low-pressure side முதலில் சோதிக்கவும் — பல rail pressure code-களுக்கு இதுவே காரணம்.
+Full scan பண்ணி current + history DTCs எல்லாம் பாருங்க — C1A50-உடன் வேற specific ABS/VSC codes (C1330/C1331/C1332/C1333, C1336, முதலியன) set ஆகி இருக்கானு check பண்ணுங்க
+GDS / Hi-Scan-ல் 'Immobilizer' current data பார்க்கவும்: learnt key எண்ணிக்கை, ECM status (virgin / learnt / neutral), key status.
+GDS / KDS அல்லது ABS-capable scan tool மூலம் DTC படிக்கவும் (generic OBD-II engine scanner ABS படிக்காது).
+GDS / KDS மூலம் DTC + current data படிக்கவும்.
+GTS (Global Techstream) அல்லது equivalent scan tool connect பண்ணுங்க
+Group-ஆ P2646/P265B/P10A0-உடன் சேர்த்து diagnose பண்ணுங்க
+HDS மூலம் DTC (எ.கா. 21-1 — முதல் பகுதி code, இரண்டாவது sub-code) படிக்கவும்.
+Hino-DX-ல் DTC + freeze frame படிக்கவும்; scanner இல்லையெனில் diagnosis connector-ஐ ground செய்து check-engine lamp flash எண்ணிக்கையை எண்ணவும் (flash எண் code பக்கத்தில்).
+History DTC 40 drive cycle-க்குப் பின் தானாக அழியும் (அல்லது scan tool).
+Honda HDS மூலம் hybrid / IMA / BMS code படிக்கவும்; முதலில் Honda software update உள்ளதா பார்க்கவும்.
+Hub / bearing play இருந்தால் sensor gap பெரிதாகும் — சரி செய்த பின் code clear செய்து test drive.
+ICM / ECM மாற்றினால் 'Procedure after ECM / ICM replacement' + key registration (Suzuki scan tool).
+ICU (Immobilizer Control Unit) faulty ஆகி தவறான response அனுப்புது
+ICU / ECM மாற்றினால் Tech 2 'Programming ICU, ECM' — dealer security code தேவை; புதிய ICU program செய்யாவிட்டால் DTC வரும்.
+Ignition OFF நிலையில் MUT-II / MUT-III-ஐ 16-pin DLC-ல் இணைத்து, ignition ON செய்து DTC படிக்கவும்.
+Ignition ON, blink-code switch-ஐ 1 வினாடி அழுத்தி விடவும் → ABS lamp-ல் முதல் இலக்க flash, 1.5 வி இடைவெளி, இரண்டாம் இலக்க flash.
+Immobiliser indicator நிலை பார்க்கவும்; HDS 'All DTC check' (PGM-FI + body B-CAN).
+Injector / ECU மாற்றினால் QR code பதிவு; DPR code-களுக்கு manual regeneration.
+Injector / pump மாற்றிய பின் CONSULT மூலம் தேவையான adaptation / registration செய்து DTC erase, road test.
+Injector group 1 charge circuit fix பண்ணுங்க.
+Injector group 2 charge circuit fix பண்ணுங்க.
+Injector மாற்றினால் injector code (IQA / C2I / QR) ECU-ல் பதிவு செய்து DTC erase, road test.
+Isuzu SRS code-களை airbag-capable scan tool மூலம் மட்டுமே படிக்க / clear செய்ய முடியும் (flash code இல்லை).
+Key / ECM / SMARTRA மாற்றினால் key teaching — dealer-இடமிருந்து பெறும் 6-digit PIN தேவை; அதிகபட்சம் 8 key.
+Key / coil antenna / ICM–ECM serial line சோதிக்கவும்.
+Key ID / VIN / Secret Key Code பொருந்தாமை என்றால் key / ECM registration.
+Key/transponder-க்கும் ICU-க்கும் mismatch (wrong/duplicate key program ஆகி இருக்கலாம்)
+Line-க்கு ஏற்ப connector, clock spring (DAB), seat / B-pillar harness சோதிக்கவும்; short to ground என்றால் manual harness மாற்றச் சொல்கிறது.
+Live data-ல் Deceleration Sensor readings abnormal-ஆ இருக்கானு பாருங்க
+Live data-ல் Deceleration Sensor/Deceleration Sensor2 readings பாருங்க
+Live data-ல் நான்கு wheel speed-ம் ஒன்றுக்கொன்று ~4 km/h-க்குள் உள்ளதா ஒப்பிடவும்.
+Low battery voltage (C1241 உடன் சேர்ந்து வரலாம்)
+MAF sensor பிரச்சனை (P0101 refer பண்ணுங்க)
+MUT-III (அல்லது ABS-capable tool) மூலம் code படிக்கவும்; புதிய மாடல்களில் இதே fault C-code வடிவில் காட்டப்படலாம் — scan tool description-ஐ ஒப்பிடவும்.
+MUT-III மூலம் Engine + Immobilizer / ETACS / WCM-ல் code படிக்கவும்.
+Mahindra airbag diagnostic tester / scan tool-ல் DTC + STA (status) படிக்கவும் — STA தான் ground / plus / short எது என்று சொல்கிறது.
+Mahindra diagnostic tool மூலம் ICU, EMS இரண்டிலும் code படிக்கவும்.
+Manual repair order: harness → module → spiral cable → air bag diagnosis sensor unit (code-க்கு ஏற்ப).
+No-start — engine crank ஆகும், ஆனா start ஆகாது
+OBD-II / brand scan tool மூலம் DTC + freeze frame படிக்கவும் (P0 = generic, P1 = brand-specific — brand list-ல் மட்டும் பார்க்கவும்).
+P0087 diagnostic steps பாருங்க — இதே root cause
+P0633/U0167 வேற ஏதாவது set ஆகி இருந்தா அதை முதலில் diagnose பண்ணுங்க. ICU/key mismatch confirm ஆனா key/immobilizer re-program பண்ணுங்க. ICU fault confirm ஆனா ICU replace பண்ணி program பண்ணுங்க. ECM fault confirm ஆனா ECM replace பண்ணி program/learn பண்ணுங்க. Code clear பண்ணி engine start பண்ணி confirm பண்ணுங்க.
+P0A7F திரும்ப வந்தால் HV battery module test / மாற்றம். HV வேலை service plug கழற்றி insulated tools உடன் மட்டும்.
+P1832 / P1833: ICU–EMS authentication — key / ECU learning மீண்டும் செய்ய வேண்டி இருக்கலாம் (dealer tool).
+P2646/P265B/P1055 இருக்கானு check பண்ணுங்க — group-ஆ diagnose பண்ணுங்க
+P2646/P265B/P1055-உடன் சேர்ந்து வரலாம்
+P2646/P265B/P10A0-உடன் சேர்ந்து வரலாம்
+P8040–P8043: key transponder / ICU antenna coil / key learning சோதிக்கவும்.
+Pin 121 (common injector charge voltage cyl 1&4) check பண்ணுங்க
+Pin 17 (SVS lamp control) circuit check பண்ணுங்க
+Pin 9 (DPD amber lamp control) circuit check பண்ணுங்க
+Power/ground/CAN fault confirம் ஆகி repair பண்ணுங்க. மேல steps clear-ஆ இருந்தும் persistent-ஆ இருந்தா Skid Control ECU/Brake Actuator replace பண்ணுங்க.
+RL sensor connector/harness-ல் open இருக்கானு check பண்ணுங்க
+RL sensor அல்லது wiring harness repair/replace பண்ணுங்க.
+RR sensor connector/harness-ல் open இருக்கானு check பண்ணுங்க
+RR sensor அல்லது wiring harness repair/replace பண்ணுங்க.
+Rail pressure code-களுக்கு: fuel filter, water separator, priming, supply pump PCV, rail pressure sensor.
+Rail pressure sensor மதிப்பு, SCV (suction control valve) duty, injector leak-off (back-flow) சோதிக்கவும்.
+Receiver / ECM மாற்றினால் HDS மூலம் rewrite / key registration.
+Resistance high/low code-களுக்கு connector, contact coil, inflator சோதிக்கவும் (squib-ஐ meter-ஆல் அளக்க வேண்டாம்).
+Root cause (sensor/wiring/battery) confirம் ஆகி repair பண்ணுங்க. Root cause கிடைக்கலைனா ABS actuator assembly replace consider பண்ணுங்க.
+Rough idle, power loss, fuel economy குறையலாம்
+SAS / yaw sensor மாற்றியதும் அல்லது wheel alignment-க்குப் பின் scan tool-ல் SAS calibration (zero point) + longitudinal G calibration செய்யவும்.
+SCR / DEF code-களுக்கு முதலில் DEF தரம் (refractometer 32.5 %), level, line crystallisation சோதிக்கவும்.
+SCV/HP pump/filter check பண்ணுங்க.
+SDT / Tech 2 / airbag-capable tool மூலம் current & history DTC படிக்கவும்.
+SDT-II / Suzuki scan tool அல்லது ABS-capable tool மூலம் DTC படிக்கவும்.
+STEP 1: Diagnostic System Check - Engine Controls perform பண்ணீங்களா? இல்லைனா முதலில் அதை பண்ணுங்க
+STEP 2: Scan tool-ஐ Immobilizer Data table வழியா ICU-உடன் communicate பண்ண try பண்ணுங்க. Communicate ஆகுதா? இல்லைனா Section 9I Security and Lock-ல் Diagnostic System Check - Immobilizer Controls பாருங்க
+STEP 3: Scan tool-ல் 'Wrong Immobilizer Signal' மற்றும் 'Immobilizer Signal' parameters live-ஆ monitor பண்ணுங்க — key cycle பண்ணும் போது wrong response repeat ஆகுதானு பாருங்க
+STEP 4: ICU harness connector (B-109) மற்றும் CAN circuit-ல் poor connection/corrosion இருக்கானு check பண்ணுங்க
+STEP 5: மேல steps-ல் root cause கிடைக்கலைனா — ICU fault confirm ஆனா replace பண்ணி program பண்ணுங்க (Important: Replacement ICU must be programmed); ECM fault confirm ஆனா replace பண்ணி program/learn பண்ணுங்க
+STEP 6: DTCs clear பண்ணுங்க → ignition 30 நொடி OFF → ignition ON (engine OFF) → DTC திரும்ப fail ஆகுதான்னு பாருங்க
+SVS lamp ON ஆகும் (Euro 4 spec) அல்லது MIL ON ஆகும் (Except Euro 4 spec)
+SVS lamp circuit fix பண்ணுங்க.
+Scan tool மூலம் DTC erase → 5 வினாடிக்கு மேல் காத்திருந்து மீண்டும் படித்து உறுதி செய்யவும்.
+Scan tool-ல் 'Wrong Immobilizer Signal' = Yes-ன்னு காட்டும்
+Scan tool-ல் DTC + freeze frame, rail pressure actual vs target படிக்கவும்.
+Scan tool-ல் Valvematic angle live data monitor பண்ணுங்க
+Security lamp நிலை பார்க்கவும்; ECM (P161x) மற்றும் BCM / IMMU (B219x) இரண்டிலும் CONSULT மூலம் code படிக்கவும்.
+Sensor connector, harness, 5 V reference, ground சோதிக்கவும்; live data-வில் sensor மதிப்பை ஒப்பிடவும்.
+Sensor connector/wiring check பண்ணுங்க
+Sensor gap/rotor check பண்ணுங்க
+Sensor installation tight-ஆ இருக்கானு பாருங்க
+Sensor mounting bolts இறுக்கம், sensor resistance, rotor (tone ring) சேதம் பார்க்கவும்.
+Sensor remove பண்ணி tip-ல் metal debris/dust check பண்ணுங்க
+Sensor resistance measure பண்ணுங்க
+Sensor signal live data check பண்ணுங்க
+Sensor signal wire-ஐ ground/power wire-உடன் short ஆகி இருக்கானு continuity test பண்ணுங்க
+Sensor tip-ல் இருக்குற metal debris clean பண்ணுங்க (non-metallic tool use பண்ணி). Cleaning repeat-ஆ தேவைப்பட்டா sensor replace பண்ண consider பண்ணுங்க.
+Sensor wiring அல்லது sensor assembly repair/replace பண்ணுங்க (⚠ sensor replace பண்ணின பிறகு zero-point calibration compulsory).
+Sensor, connector, tone ring, EBCM connector-ல் நீர் / துரு உள்ளதா பார்க்கவும்.
+Sensor-rotor air gap measure பண்ணுங்க (spec: service manual பாருங்க)
+Sensor-க்கும் rotor-க்கும் இடையே air gap அதிகமா/குறைவா இருக்கிறது
+Skid Control ECU (brake actuator) அல்லது Yaw Rate & Acceleration Sensor (airbag sensor assembly) replace பண்ணின பிறகு calibration procedure பண்ணாதது (மிகவும் common காரணம்)
+Spare key-ஆல் முயற்சிக்கவும்; key / antenna / BCM–ECM line சோதிக்கவும்.
+Stop-light relay circuit check பண்ணுங்க
+Stop-light relay circuit அல்லது actuator repair/replace பண்ணுங்க.
+Stop-light switch connector/harness check பண்ணுங்க
+Stop-light switch அல்லது wiring harness repair/replace பண்ணுங்க.
+Suzuki scan tool-ல் 'BCM → IMMOBILIZER' மற்றும் ECM இரண்டிலும் code படிக்கவும் (பழைய மாடல்: MIL flash No.81–84).
+Switch continuity measure பண்ணுங்க
+Switch/wiring fault confirம் ஆகி repair அல்லது replace பண்ணுங்க.
+Switch/wiring inspect பண்ணுங்க
+TSB reference பண்ணுங்க — இது known Valvematic issue group
+Tech 2 (அல்லது Isuzu-ஆதரவு scanner) மூலம் ECM + ICU code படிக்கவும்; flash code 56 = P1613.
+Throttle body சுத்தம் / battery கழற்றல் / ECM மாற்றம் பிறகு idle / throttle adaptation reset செய்யவும் (brand tool).
+Throttle body சுத்தம் / மாற்றம், battery கழற்றல், ECM மாற்றம் ஆகியவற்றுக்குப் பின்: Accelerator Pedal Released Position Learning → Throttle Valve Closed Position Learning → Idle Air Volume Learning.
+Toyota GTS scan tool-ல்: <b>Chassis → ABS/VSC/TRAC/EPB → Utility → Reset Memory</b> select பண்ணி zero-point calibration incomplete flag clear பண்ணுங்க. அதுக்கு பிறகு on-screen prompts படி — வண்டியை straight-ஆ ~35 km/h-க்கு மேல சில நொடி ஓட்டி calibration complete பண்ணுங்க (GTS request பண்ணா). DTC clear பண்ணி மறுபடியும் set ஆகலைனு confirம் பண்ணுங்க.
+Transponder key, ICU antenna, ECM–ICU serial line சோதிக்கவும்.
+U0073, U0123, U0126 DTCs-உம் ஒண்ணா set ஆகி இருக்கானு check பண்ணுங்க — இருந்தா அந்த CAN communication issue-ஐ முதலில் diagnose பண்ணி fix பண்ணுங்க (calibration procedure அதுக்கு பிறகுதான் complete ஆகும்)
+U0123/U0126 (CAN communication loss to yaw rate sensor) group fault-ஆல் calibration complete ஆகாம போச்சு
+Underlying ABS/VSC DTC (wheel speed sensor, acceleration sensor, ECU) fix ஆகாதது
+VSC system disable ஆகலாம் — stability control assist கிடைக்காது
+Variable Valve Lift Controller Assembly replace பண்ணுங்க. DTC clear பண்ணி relearn பண்ணுங்க.
+Wheel sensor code: sensor, connector, pulsar ring (அழுக்கு / உடைவு), wheel bearing சோதிக்கவும்.
+Wheel speed code-க்கு: sensor resistance / harness, tone wheel, bearing play, air gap; Current data-ல் 4 wheel speed ஒப்பிடவும்.
+Wheel speed code-க்கு: sensor resistance, harness (எலி கடி — Maruti Suzuki-ல் அடிக்கடி), sensor ring, bearing play பார்க்கவும்.
+Wiring short confirm ஆனா repair பண்ணுங்க. Sensor fault confirம் ஆனா replace பண்ணுங்க.
+இந்த 2-digit எண்கள் பழைய SRS-ECU-களுக்கானவை; புதிய மாடல்களில் B-code (எ.கா. B1631 knee air bag) காட்டப்படும்.
+சரி செய்த பின் DTC clear செய்து 20 km/h-க்கு மேல் ஓட்டி மீண்டும் சோதிக்கவும்.
+சரி செய்த பின் DTC clear செய்து SRS lamp சில வினாடிகள் (சுமார் 6 s) எரிந்து அணைகிறதா பார்க்கவும்.
+சரி செய்த பின் DTC clear செய்து airbag lamp ~6 வினாடியில் அணைகிறதா பார்க்கவும்.
+சரி செய்த பின் DTC clear செய்து test drive (வேகம் 20 km/h+) செய்யவும்.
+சரி செய்த பின் DTC erase செய்து DTC Confirmation Procedure (drive cycle) செய்யவும்.
+சரி செய்த பின் DTC erase செய்து drive cycle ஓட்டி code திரும்ப வருகிறதா பார்க்கவும்.
+சரி செய்த பின் clear செய்து test drive — VSA-க்கு steering angle / sensor calibration HDS-ல் தேவைப்படலாம்.
+சரி செய்த பின் code erase செய்து SRS light சில வினாடிகள் எரிந்து அணைகிறதா பார்க்கவும்.
+சரி செய்த பின் ignition OFF → 5 வினாடி → ON, மீண்டும் DTC சோதிக்கவும்; 30 km/h-க்கு மேல் ஓட்டி உறுதி செய்யவும்.
+சரி செய்த பின் switch-ஐ 3 வினாடி அழுத்தி stored fault clear; 5 mph+ test drive செய்து lamp அணைகிறதா பார்க்கவும்.
+பல wheel speed sensor DTCs (C0200/C0205/C0210/C0215) ஒண்ணா set ஆகி இருந்தா, அந்த root cause-ஆல் இதுவும் set ஆகலாம்
+மற்ற DTCs இருந்தா, அதை முதலில் diagnose பண்ணி fix பண்ணுங்க — C1A50 பொதுவா அதனாலேயே resolve ஆகும்
+மற்ற electrical systems-லயும் symptoms இருக்கலாம் (low voltage-ஆல்)
+முதலில் battery / charging voltage சோதிக்கவும் — Hyundai/Kia-வில் குறைந்த voltage பல ABS code-களை உண்டாக்கும்.
+முதலில் battery voltage சோதிக்கவும் — Nissan TSB: பலவீனமான battery P1610 lock mode / no-start ஏற்படுத்தும்.
+முதலில் low-pressure side: fuel filter, in-tank strainer, air in fuel, lift pump.
+மேல steps-ல் root cause கிடைக்கலைனா ABS actuator/ECU fault confirம் பண்ணுங்க
+மேல steps-ல் root cause கிடைக்கலைனா ECU/actuator fault confirம் பண்ணுங்க
+வேற specific DTC இல்லாம C1A50 மட்டும் தனியா இருந்தா, Skid Control ECU/Brake Actuator assembly fault சந்தேகிக்கலாம்
+வேறு programmed key-ஆல் முயற்சிக்கவும்; key cylinder bezel-ல் உள்ள receiver 7P connector power / ground சோதிக்கவும்.
+⚠ Battery cable கழற்றிய பின் குறைந்தது 60 வினாடி காத்திருந்த பின்னரே வேலை செய்யவும் (manual DANGER notice).
+⚠ Engine torque reduction/delayed throttle response வரலாம் — VSC system, instability detect ஆனா engine torque cut பண்ணி individual wheel brake apply பண்ணும் logic-ஐ சார்ந்திருக்கும்
+⚠ Ignition OFF, battery negative கழற்றி service manual சொல்லும் நேரம் (பொதுவாக 30 வினாடி–3 நிமிடம்) காத்திருக்கவும்; squib-ஐ ohm-meter கொண்டு நேரடியாக அளக்க வேண்டாம் — SRS harness checker / dummy resistor பயன்படுத்தவும்.
+⚠ Ignition OFF, battery negative கழற்றி service manual சொல்லும் நேரம் (பொதுவாக 90 வினாடி+) காத்திருக்கவும்; Suzuki manual-ல் 'Disable the SRS' படி செய்யவும்.
+⚠ Ignition OFF, battery negative கழற்றி குறைந்தது 3 நிமிடம் காத்திருக்கவும்; SRS connector-களை probe செய்ய வேண்டாம்.
+⚠ P1621 / P1622 / P1623 பொருள் ECM தலைமுறைக்கு ஏற்ப மாறும் — உங்கள் மாடல் manual-ஐ உறுதி செய்யவும்.
+⚠ மற்ற system replace பண்ண முன்னாடி, underlying ABS/VSC DTCs முதலில் முழுசா diagnose பண்ணி fix பண்ணுங்க. அப்புறம் மட்டும் Skid Control ECU/Brake Actuator replace consider பண்ணுங்க.
+⚠ வேலை தொடங்கும் முன் ignition OFF, battery negative கழற்றி service manual சொல்லும் நேரம் (பொதுவாக 1–2 நிமிடம்) காத்திருக்கவும்.

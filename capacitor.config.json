@@ -1,0 +1,8 @@
+{
+  "appId": "com.enginespecs.app",
+  "appName": "Engine Specs",
+  "webDir": "app",
+  "android": {
+    "allowMixedContent": false
+  }
+}

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnostic Dashboard — Sample 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@400;600;700&family=Noto+Sans+Sinhala:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<!--
+  SAMPLE 2 — MODERN AUTOMOTIVE DIAGNOSTIC DASHBOARD
+  Icon rail / bottom nav, KPI tiles, category grid, tabbed DTC panel.
+  Data + helpers are inlined at build time from src/kb-data.js and src/kb-core.js.
+-->
+<style>
+:root{
+  --bg:#0a0e17; --bg2:#0f1522; --card:#141c2b; --card2:#1b2538; --line:#25324a; --text:#e8edf6; --dim:#8c9ab3;
+  --cy:#22d3ee; --cy-bg:rgba(34,211,238,.12); --vi:#a78bfa; --ok:#34d399; --warn:#fbbf24; --bad:#f87171; --info:#60a5fa;
+  --r:14px; --mono:'JetBrains Mono',ui-monospace,monospace;
+  --sans:'Inter','Noto Sans Tamil','Noto Sans Sinhala',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:radial-gradient(1200px 600px at 80% -10%,rgba(34,211,238,.08),transparent),var(--bg);color:var(--text);font:14px/1.55 var(--sans);-webkit-font-smoothing:antialiased;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:var(--cy)}
+
+/* ---- rail / bottom nav ---- */
+.rail{position:fixed;left:0;top:0;bottom:0;width:78px;background:var(--bg2);border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:6px;z-index:20}
+.rail .logo{font-size:24px;margin-bottom:10px}
+.rail button{width:62px;border:0;background:none;border-radius:12px;padding:8px 2px;display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--dim);font-size:10.5px;line-height:1.2}
+.rail button span{font-size:20px}
+.rail button.on{background:var(--cy-bg);color:var(--cy)}
+.app{margin-left:78px;padding:16px 24px 40px;max-width:1400px}
+
+/* ---- top bar ---- */
+.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.top h1{font-size:19px;margin:0;font-weight:800;letter-spacing:-.01em}
+.top h1 small{display:block;font-size:11.5px;color:var(--dim);font-weight:500}
+.veh{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+.veh label{display:flex;flex-direction:column;font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.06em}
+.veh select{background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:6px 8px;font:inherit;font-size:13px;min-width:90px}
+.seg{display:flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px}
+.seg button{border:0;background:none;border-radius:999px;padding:5px 12px;color:var(--dim);font-size:13px}
+.seg button.on{background:var(--cy);color:#04202a;font-weight:700}
+
+/* ---- cards ---- */
+.card{background:linear-gradient(180deg,var(--card),#121928);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.card h3{margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.07em;color:var(--dim);font-weight:600}
+.grid{display:grid;gap:14px}
+.g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:1.4fr 1fr}
+.notice{font-size:12px;color:#fde68a;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.3);border-radius:10px;padding:8px 12px;margin-bottom:14px}
+
+/* hero search */
+.hero{padding:20px}
+.sbox{display:flex;align-items:center;gap:10px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:4px 4px 4px 14px}
+.sbox:focus-within{border-color:var(--cy);box-shadow:0 0 0 3px var(--cy-bg)}
+.sbox input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--text);font:inherit;font-size:16px;padding:10px 0}
+.sbox button{background:var(--cy);color:#04202a;border:0;border-radius:9px;padding:10px 18px;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{border:1px solid var(--line);background:var(--card2);border-radius:999px;padding:4px 11px;font-family:var(--mono);font-size:12.5px;color:var(--text)}
+.chip:hover{border-color:var(--cy);color:var(--cy)}
+.chip.on{background:var(--cy-bg);border-color:var(--cy);color:var(--cy)}
+
+/* KPI */
+.kpi .n{font-size:30px;font-weight:800;letter-spacing:-.02em}
+.kpi .l{color:var(--dim);font-size:12.5px}
+.kpi .i{float:right;font-size:22px;opacity:.8}
+.bar{display:flex;height:10px;border-radius:6px;overflow:hidden;background:var(--card2);margin:10px 0 8px}
+.bar i{display:block;height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--dim)}
+.legend-item{display:flex;gap:6px;align-items:center}
+.legend-item small{display:none}
+
+/* category tiles */
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.tile{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:left;position:relative;min-height:96px;display:flex;flex-direction:column;gap:4px}
+.tile:hover{border-color:var(--cy);transform:translateY(-1px)}
+.tile .ic{font-size:22px}
+.tile .nm{font-weight:600;font-size:13px;line-height:1.3}
+.tile .ct{margin-top:auto;font-size:11px;color:var(--dim);font-family:var(--mono)}
+.tile.empty{opacity:.55}
+.tile.on{border-color:var(--cy);background:var(--cy-bg)}
+
+/* DTC workspace */
+.ws{display:grid;grid-template-columns:300px 1fr;gap:14px;align-items:start}
+.ws>*{min-width:0}
+.dlist{display:flex;flex-direction:column;gap:6px;max-height:calc(100vh - 200px);overflow:auto}
+.ditem{display:flex;gap:10px;align-items:center;background:var(--card2);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:10px;padding:9px 10px;text-align:left;width:100%}
+.ditem.on{border-color:var(--cy);background:var(--cy-bg)}
+.ditem .c{font-family:var(--mono);font-weight:700;min-width:54px}
+.ditem .t{font-size:12.5px;color:var(--dim);line-height:1.3}
+.sev-high{border-left-color:var(--bad)!important} .sev-medium{border-left-color:var(--warn)!important} .sev-low{border-left-color:var(--ok)!important}
+.dhead{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap}
+.bigcode{font-family:var(--mono);font-size:34px;font-weight:800;color:var(--cy);line-height:1}
+.dhead h2{margin:0 0 6px;font-size:19px}
+.tag{display:inline-flex;gap:4px;align-items:center;font-size:11.5px;border:1px solid var(--line);border-radius:999px;padding:2px 9px;margin:0 4px 4px 0;color:var(--dim)}
+.tag.high{color:var(--bad);border-color:rgba(248,113,113,.5)} .tag.medium{color:var(--warn);border-color:rgba(251,191,36,.5)} .tag.low{color:var(--ok);border-color:rgba(52,211,153,.5)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:16px 0 14px;overflow-x:auto}
+.tabs button{border:0;background:none;padding:9px 14px;color:var(--dim);border-bottom:2px solid transparent;white-space:nowrap;font-weight:600}
+.tabs button.on{color:var(--cy);border-bottom-color:var(--cy)}
+.blk{margin-bottom:16px}
+.blk h4{margin:0 0 6px;font-size:13.5px;color:var(--vi)}
+.blk ul,.blk ol{margin:0;padding-left:20px} .blk li{margin:3px 0}
+.safety{background:rgba(248,113,113,.09);border:1px solid rgba(248,113,113,.35);border-radius:10px;padding:10px 12px;margin-bottom:14px}
+.mini{width:100%;border-collapse:collapse;font-size:13px}
+.mini th,.mini td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.mini th{color:var(--dim);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em}
+.lvlf{display:inline-flex;gap:4px;margin-bottom:8px}
+.lv{font-size:10.5px;border-radius:6px;padding:1px 6px;margin-left:4px}
+.lv.beginner{background:rgba(52,211,153,.14);color:var(--ok)} .lv.advanced{background:rgba(251,191,36,.14);color:var(--warn)}
+.pending-val{color:var(--warn);font-size:12.5px}
+abbr.gl{text-decoration:underline dotted var(--dim);cursor:help}
+.empty-msg{color:var(--dim);padding:20px;text-align:center}
+
+/* special / manual cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.fcard{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:14px}
+.fcard h5{margin:0 0 6px;font-size:14.5px}
+.fcard p{margin:0 0 8px;color:var(--dim);font-size:13px}
+.fcard details summary{cursor:pointer;color:var(--cy);font-weight:600;font-size:13px}
+.fcard ol{padding-left:20px;margin:8px 0 0}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.cmp ul{margin:0;padding-left:18px}
+
+/* status badges */
+.st{display:inline-block;font-size:10.5px;padding:1px 6px;border-radius:6px;white-space:nowrap;vertical-align:middle;font-weight:600}
+.st-pub{background:rgba(52,211,153,.15);color:var(--ok)}
+.st-gen{background:rgba(96,165,250,.15);color:var(--info)}
+.st-ex{background:rgba(200,200,220,.12);color:#cfd3e0}
+.st-pend{background:rgba(251,191,36,.15);color:var(--warn)}
+
+.view{display:none} .view.on{display:block}
+
+@media (max-width:1000px){ .g4{grid-template-columns:repeat(2,1fr)} .g2{grid-template-columns:1fr} .ws{grid-template-columns:1fr} .dlist{flex-direction:row;overflow-x:auto;max-height:none;padding-bottom:4px} .ditem{min-width:210px} }
+@media (max-width:700px){
+  .rail{top:auto;right:0;width:auto;height:64px;flex-direction:row;justify-content:space-around;padding:4px 6px;border-right:0;border-top:1px solid var(--line)}
+  .rail .logo{display:none}
+  .rail button{width:auto;flex:1}
+  .app{margin-left:0;padding:12px 16px 90px}
+  .veh{margin-left:0;width:100%} .veh label{flex:1} .veh select{width:100%;min-width:0}
+  .cmp{grid-template-columns:1fr}
+  .kpi .n{font-size:24px}
+  .bigcode{font-size:28px}
+}
+</style>
+</head>
+<body>
+<nav class="rail" id="rail"></nav>
+<div class="app">
+  <div class="top">
+    <h1 id="ttl"></h1>
+    <div class="veh" id="veh"></div>
+    <div class="seg" id="langs"></div>
+  </div>
+  <div class="notice" id="notice"></div>
+
+  <section class="view" id="v-home"></section>
+  <section class="view" id="v-dtc"></section>
+  <section class="view" id="v-sys"></section>
+  <section class="view" id="v-special"></section>
+  <section class="view" id="v-manual"></section>
+</div>
+
+<!-- @include kb-data.js -->
+<!-- @include kb-core.js -->
+<script>
+/* =================== SAMPLE 2 APP =================== */
+(function(){
+  var DS = KB.DataStore, L = KB.L, U = KB.U, esc = KB.esc, badge = KB.badge, val = KB.val;
+  var T = {
+    title: {en:"Diagnostic Dashboard",ta:"Diagnostic Dashboard",si:"Diagnostic Dashboard"},
+    sub: {en:"Sample 2 · Modern dashboard layout",ta:"Sample 2 · நவீன dashboard வடிவம்",si:"Sample 2 · නවීන dashboard පිරිසැලසුම"},
+    nav_home: {en:"Home",ta:"முகப்பு",si:"මුල"}, nav_dtc: {en:"DTC",ta:"DTC",si:"DTC"},
+    nav_sys: {en:"Systems",ta:"அமைப்புகள்",si:"පද්ධති"}, nav_special: {en:"Special",ta:"சிறப்பு",si:"විශේෂ"}, nav_manual: {en:"Manual",ta:"Manual",si:"Manual"},
+    make: {en:"Make",ta:"Make",si:"Make"}, model: {en:"Model",ta:"Model",si:"Model"}, year: {en:"Year",ta:"வருடம்",si:"වර්ෂය"}, engine: {en:"Engine",ta:"எஞ்சின்",si:"එන්ජිම"},
+    go: {en:"Search",ta:"தேடு",si:"සොයන්න"},
+    quick: {en:"Quick codes",ta:"விரைவு codes",si:"ඉක්මන් codes"},
+    k_dtc: {en:"DTC records",ta:"DTC பதிவுகள்",si:"DTC වාර්තා"}, k_proc: {en:"Repair procedures",ta:"ரிப்பேர் முறைகள்",si:"අලුත්වැඩියා ක්‍රම"},
+    k_sf: {en:"Special functions",ta:"சிறப்பு செயல்பாடுகள்",si:"විශේෂ කාර්යයන්"}, k_cov: {en:"Items with confirmed data",ta:"உறுதிசெய்யப்பட்ட டேட்டா",si:"තහවුරු කළ දත්ත"},
+    coverage: {en:"Data quality across this vehicle",ta:"இந்த வாகனத்தின் டேட்டா தரம்",si:"මෙම වාහනයේ දත්ත ගුණාත්මකභාවය"},
+    systems: {en:"Vehicle systems",ta:"வாகன அமைப்புகள்",si:"වාහන පද්ධති"},
+    records: {en:"records",ta:"பதிவுகள்",si:"වාර්තා"},
+    t_over: {en:"Overview",ta:"கண்ணோட்டம்",si:"දළ විශ්ලේෂණය"}, t_diag: {en:"Diagnose",ta:"கண்டறிதல்",si:"විනිශ්චය"},
+    t_elec: {en:"Electrical",ta:"மின்",si:"විදුලි"}, t_rep: {en:"Repair",ta:"ரிப்பேர்",si:"අලුත්වැඩියාව"}, t_ver: {en:"Verify",ta:"சரிபார்ப்பு",si:"තහවුරු"},
+    all: {en:"All",ta:"அனைத்தும்",si:"සියල්ල"},
+    pick: {en:"Select a system to see its records.",ta:"பதிவுகளை பார்க்க ஒரு அமைப்பை தேர்ந்தெடுக்கவும்.",si:"වාර්තා බැලීමට පද්ධතියක් තෝරන්න."},
+    notFound: {en:"Not in sample data yet — the full app would load this code from the database.",ta:"இன்னும் மாதிரி டேட்டாவில் இல்லை — முழு app-இல் database-இல் இருந்து வரும்.",si:"තවම සාම්පල දත්තවල නැත — සම්පූර්ණ app එකේදී දත්ත ගබඩාවෙන් ලැබේ."},
+    showSteps: {en:"Show steps",ta:"படிகளை காட்டு",si:"පියවර පෙන්වන්න"},
+    procs: {en:"Linked procedures",ta:"இணைந்த முறைகள்",si:"සම්බන්ධිත ක්‍රම"},
+    filter: {en:"Filter",ta:"வடிகட்டு",si:"පෙරහන"}
+  };
+  var t = function(k){ return L(T[k]); };
+  var state = { view:"home", dtc:"P0087", tab:"over", level:"all", sys:null, sfFilter:"all" };
+  var veh = DS.vehicle(DS.meta().demoVehicleId);
+
+  /* ---------- chrome ---------- */
+  var NAV = [["home","🏠"],["dtc","🧾"],["sys","🧩"],["special","🛠️"],["manual","🔎"]];
+  function renderChrome(){
+    document.getElementById("ttl").innerHTML = "⚡ "+esc(t("title"))+"<small>"+esc(t("sub"))+"</small>";
+    document.getElementById("rail").innerHTML = '<div class="logo">⚡</div>' + NAV.map(function(n){
+      return '<button data-v="'+n[0]+'" class="'+(state.view===n[0]?"on":"")+'"><span>'+n[1]+'</span>'+esc(t("nav_"+n[0]))+'</button>';
+    }).join("");
+    document.getElementById("langs").innerHTML = KB.LANGS.map(function(l){ return '<button data-l="'+l.id+'" class="'+(KB.getLang()===l.id?"on":"")+'">'+l.label+'</button>'; }).join("");
+    document.getElementById("notice").textContent = L(DS.meta().notice);
+    /* cascaded vehicle selector (one vehicle in sample; ready for more) */
+    var tree = DS.vehicleTree(), make = Object.keys(tree)[0], model = Object.keys(tree[make])[0], year = Object.keys(tree[make][model])[0];
+    function sel(lbl, opts){ return '<label>'+esc(lbl)+'<select>'+opts.map(function(o){return '<option>'+esc(o)+'</option>';}).join("")+'</select></label>'; }
+    document.getElementById("veh").innerHTML = sel(t("make"),Object.keys(tree)) + sel(t("model"),Object.keys(tree[make])) + sel(t("year"),Object.keys(tree[make][model])) + sel(t("engine"),tree[make][model][year].map(function(v){return v.engine;}));
+  }
+  document.getElementById("rail").addEventListener("click", function(e){ var b=e.target.closest("button"); if(b) go(b.getAttribute("data-v")); });
+  document.getElementById("langs").addEventListener("click", function(e){ var l=e.target.getAttribute("data-l"); if(l) KB.setLang(l); });
+
+  function go(v){ state.view=v; render(); window.scrollTo(0,0); }
+  function render(){
+    renderChrome();
+    ["home","dtc","sys","special","manual"].forEach(function(v){ document.getElementById("v-"+v).classList.toggle("on", v===state.view); });
+    var el = document.getElementById("v-"+state.view);
+    el.innerHTML = ({home:vHome, dtc:vDTC, sys:vSys, special:vSpecial, manual:vManual})[state.view]();
+  }
+
+  /* ---------- helpers ---------- */
+  function li(items, ordered, filterLevel){
+    items = (items||[]).filter(function(i){ return !filterLevel || filterLevel==="all" || !i.level || i.level===filterLevel; });
+    if (!items.length) return '<div class="pending-val">—</div>';
+    var tag = ordered?"ol":"ul";
+    return '<'+tag+'>'+items.map(function(i){
+      var tx = KB.gloss(esc(L(i.text||i)));
+      return '<li>'+tx+(i.status?' '+badge(i.status,true):"")+(i.level?'<span class="lv '+i.level+'">'+esc(U(i.level))+'</span>':"")+'</li>';
+    }).join("")+'</'+tag+'>';
+  }
+  function blk(title, body){ return '<div class="blk"><h4>'+esc(title)+'</h4>'+body+'</div>'; }
+  function sysTags(arr){ return arr.map(function(s){ var c=DS.category(s); return '<span class="tag">'+c.icon+' '+esc(L(c.name))+'</span>'; }).join(""); }
+  function scanTag(v){ return v===true? '<span class="tag medium">📟 '+esc(U("scanner_req"))+'</span>' : v===false? '<span class="tag low">✋ '+esc(U("scanner_no"))+'</span>' : '<span class="tag">❔ '+esc(U("scanner_maybe"))+'</span>'; }
+
+  /* count every status-tagged item for the coverage widget */
+  function statusCounts(){
+    var c = {published:0,general:0,example:0,pending:0};
+    (function walk(o){
+      if (Array.isArray(o)) return o.forEach(walk);
+      if (o && typeof o==="object"){ if (typeof o.status==="string" && c[o.status]!=null) c[o.status]++; Object.keys(o).forEach(function(k){ if(k!=="status") walk(o[k]); }); }
+    })([KB_DATA.vehicles, KB_DATA.dtcs, KB_DATA.procedures, KB_DATA.specialFunctions]);
+    return c;
+  }
+
+  /* ---------- HOME ---------- */
+  function vHome(){
+    var sc = statusCounts(), tot = sc.published+sc.general+sc.example+sc.pending;
+    var pct = Math.round((sc.published+sc.general)/tot*100);
+    var h = '<div class="card hero"><form class="sbox" id="sform"><span>🔍</span><input id="sq" placeholder="'+esc(U("search_ph"))+'" autocomplete="off"><button>'+esc(t("go"))+'</button></form>';
+    h += '<div class="chips"><span style="color:var(--dim);font-size:12px;align-self:center">'+esc(t("quick"))+':</span>'+DS.dtcs().map(function(d){ return '<button class="chip" data-code="'+d.code+'">'+d.code+'</button>'; }).join("")+'</div></div>';
+    h += '<div class="grid g4" style="margin-top:14px">';
+    h += kpi("🧾", DS.dtcs().length, t("k_dtc")) + kpi("📘", DS.procedures().length, t("k_proc")) + kpi("🛠️", DS.specialFunctions().length, t("k_sf")) + kpi("✅", pct+"%", t("k_cov"));
+    h += '</div><div class="grid g2" style="margin-top:14px">';
+    h += '<div class="card"><h3>'+esc(t("systems"))+'</h3>'+tiles()+'</div>';
+    h += '<div class="card"><h3>'+esc(t("coverage"))+'</h3><div class="bar">'+
+      ['published','general','example','pending'].map(function(k){ var col={published:"var(--ok)",general:"var(--info)",example:"#9aa",pending:"var(--warn)"}[k]; return '<i style="width:'+(sc[k]/tot*100)+'%;background:'+col+'" title="'+k+': '+sc[k]+'"></i>'; }).join("")+'</div>';
+    h += '<div class="legend">'+['published','general','example','pending'].map(function(k){ return '<span class="legend-item">'+badge(k)+' <b>'+sc[k]+'</b></span>'; }).join("")+'</div>';
+    h += '<h3 style="margin-top:18px">'+esc(U("specs"))+'</h3><table class="mini"><tbody>'+veh.specs.map(function(s){ return '<tr><td>'+esc(L(s.k))+'</td><td>'+(s.v?esc(s.v):val("", "pending"))+'</td><td>'+badge(s.status,true)+'</td></tr>'; }).join("")+'</tbody></table></div>';
+    return h + '</div>';
+  }
+  function kpi(i,n,l){ return '<div class="card kpi"><span class="i">'+i+'</span><div class="n">'+n+'</div><div class="l">'+esc(l)+'</div></div>'; }
+  function tiles(active){
+    return '<div class="tiles">'+DS.categories().map(function(c){
+      var n = DS.categoryCounts(c.id), tot = n.dtc+n.proc+n.special;
+      return '<button class="tile'+(tot?"":" empty")+(active===c.id?" on":"")+'" data-sys="'+c.id+'"><span class="ic">'+c.icon+'</span><span class="nm">'+esc(L(c.name))+'</span><span class="ct">'+(tot? "📄 "+tot : "—")+'</span></button>';
+    }).join("")+'</div>';
+  }
+
+  /* ---------- DTC WORKSPACE ---------- */
+  function vDTC(){
+    var list = DS.dtcs(), d = DS.dtc(state.dtc);
+    var h = '<div class="card" style="margin-bottom:14px"><form class="sbox" id="sform"><span>🔍</span><input id="sq" placeholder="'+esc(U("search_ph"))+'" value="'+esc(state.dtc)+'" autocomplete="off"><button>'+esc(t("go"))+'</button></form></div>';
+    h += '<div class="ws"><div class="dlist">'+list.map(function(x){
+      return '<button class="ditem sev-'+x.severity+(d&&x.code===d.code?" on":"")+'" data-code="'+x.code+'"><span class="c">'+x.code+'</span><span class="t">'+esc(L(x.title))+'</span></button>';
+    }).join("")+'</div><div class="card">';
+    if (!d) return h + '<div class="empty-msg">🔎 <b>'+esc(state.dtc)+'</b><br>'+esc(DS.looksLikeDTC(state.dtc)? t("notFound") : U("no_results"))+'</div></div></div>';
+    h += '<div class="dhead"><div class="bigcode">'+d.code+'</div><div style="flex:1;min-width:220px"><h2>'+esc(L(d.title))+' '+badge(d.titleStatus,true)+'</h2>'+
+      '<span class="tag '+d.severity+'">● '+esc(U("severity"))+': '+esc(U("sev_"+d.severity))+'</span>'+sysTags(d.system)+'</div></div>';
+    var tabs = ["over","diag","elec","rep","ver"];
+    h += '<div class="tabs">'+tabs.map(function(k){ return '<button data-tab="'+k+'" class="'+(state.tab===k?"on":"")+'">'+esc(t("t_"+k))+'</button>'; }).join("")+'</div>';
+    h += ({over:tOver, diag:tDiag, elec:tElec, rep:tRep, ver:tVer})[state.tab](d);
+    return h + '</div></div>';
+  }
+  function tOver(d){
+    var h = d.safety? '<div class="safety">⚠ <b>'+esc(U("safety"))+':</b> '+esc(L(d.safety))+'</div>' : "";
+    h += blk(U("description"), '<p style="margin:0">'+KB.gloss(esc(L(d.meaning)))+'</p>');
+    h += blk(U("applic"), esc(L(d.applicability.text))+' '+badge(d.applicability.status,true));
+    h += '<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">'+blk(U("causes"), li(d.causes))+blk(U("symptoms"), li(d.symptoms))+'</div>';
+    return h;
+  }
+  function tDiag(d){
+    var f = '<div class="lvlf">'+["all","beginner","advanced"].map(function(l){ return '<button class="chip'+(state.level===l?" on":"")+'" data-level="'+l+'">'+esc(l==="all"?t("all"):U(l))+'</button>'; }).join("")+'</div>';
+    return f + blk(U("diagnosis"), li(d.diagnosis, true, state.level)) + blk(U("sensor"), li(d.sensorTest)) + blk(U("scanner"), li(d.scanner));
+  }
+  function tElec(d){
+    var h = blk(U("wiring"), li(d.wiring));
+    var p = d.pins;
+    h += blk(U("pins"), p.rows.length? badge(p.status)+'<table class="mini"><thead><tr><th>'+esc(U("item"))+'</th><th>'+esc(U("connector"))+'</th><th>'+esc(U("pin"))+'</th></tr></thead><tbody>'+p.rows.map(function(r){ return '<tr><td>'+esc(r.item)+'</td><td>'+val(r.connector, r.connector?"":"pending")+'</td><td>'+val(r.pin, r.pin?"":"pending")+'</td></tr>'; }).join("")+'</tbody></table>' : val("", "pending"));
+    var m = d.meterValues;
+    h += blk(U("meter"), m.rows.length? badge(m.status)+'<table class="mini"><thead><tr><th>'+esc(U("test"))+'</th><th>'+esc(U("expected"))+'</th></tr></thead><tbody>'+m.rows.map(function(r){ return '<tr><td>'+esc(L(r.test))+'</td><td>'+val(r.expected, r.expected?m.status:"pending")+'</td></tr>'; }).join("")+'</tbody></table>' : val("", "pending"));
+    return h;
+  }
+  function tRep(d){
+    var h = blk(U("repair"), li(d.repair, true));
+    h += blk(U("parts"), d.parts.length? '<table class="mini"><thead><tr><th>'+esc(U("parts"))+'</th><th>'+esc(U("part_no"))+'</th></tr></thead><tbody>'+d.parts.map(function(p){ return '<tr><td>'+esc(L(p.name))+'</td><td>'+val(p.partNo,p.status)+'</td></tr>'; }).join("")+'</tbody></table>' : "—");
+    var procs = DS.procedures().filter(function(p){ return p.relatedDtc.indexOf(d.code)>=0; });
+    if (procs.length) h += blk(t("procs"), '<div class="cards">'+procs.map(procCard).join("")+'</div>');
+    return h;
+  }
+  function tVer(d){
+    return blk(U("verify"), li(d.verify, true)) + blk(U("related"), d.related.length? d.related.map(function(c){ return '<button class="chip" data-code="'+c+'"'+(DS.dtc(c)?"":' style="opacity:.55"')+'>'+c+'</button>'; }).join(" ") : "—");
+  }
+  function procCard(p){
+    return '<div class="fcard"><h5>📘 '+esc(L(p.title))+'</h5><p><span class="lv '+p.level+'">'+esc(U(p.level))+'</span> ⏱ '+esc(p.time)+' · 🧰 '+esc(L(p.tools))+'</p>'+
+      '<div class="safety" style="font-size:12.5px;margin-bottom:8px">⚠ '+esc(L(p.warning))+'</div>'+
+      '<details><summary>'+esc(t("showSteps"))+' ('+p.steps.length+')</summary><ol>'+p.steps.map(function(s){ return '<li>'+esc(L(s.text))+' '+badge(s.status,true)+(s.value!==undefined?'<br>'+val(s.value,s.status):"")+'</li>'; }).join("")+'</ol></details></div>';
+  }
+
+  /* ---------- SYSTEMS ---------- */
+  function vSys(){
+    var h = '<div class="card">'+tiles(state.sys)+'</div><div style="margin-top:14px">';
+    if (!state.sys) return h + '<div class="card empty-msg">'+esc(t("pick"))+'</div></div>';
+    var c = DS.category(state.sys), dt = DS.dtcsBySystem(c.id), pr = c.id==="repair"? DS.procedures() : DS.proceduresBySystem(c.id), sp = c.id==="special"? DS.specialFunctions() : DS.specialBySystem(c.id);
+    h += '<div class="card"><h3>'+c.icon+' '+esc(L(c.name))+'</h3>';
+    if (!dt.length && !pr.length && !sp.length) return h + '<div class="empty-msg">'+esc(U("no_data"))+'</div></div></div>';
+    if (dt.length) h += '<div class="cards" style="margin-bottom:12px">'+dt.map(function(d){ return '<button class="ditem sev-'+d.severity+'" data-code="'+d.code+'"><span class="c">'+d.code+'</span><span class="t">'+esc(L(d.title))+'</span></button>'; }).join("")+'</div>';
+    if (pr.length) h += '<div class="cards" style="margin-bottom:12px">'+pr.map(procCard).join("")+'</div>';
+    if (sp.length) h += '<div class="cards">'+sp.map(sfCard).join("")+'</div>';
+    return h + '</div></div>';
+  }
+
+  /* ---------- SPECIAL FUNCTIONS ---------- */
+  function sfCard(s){
+    return '<div class="fcard"><h5>'+esc(L(s.title))+'</h5><div>'+scanTag(s.needsScanner)+'<span class="tag"><span class="lv '+s.level+'" style="margin:0">'+esc(U(s.level))+'</span></span></div><p>'+esc(L(s.why))+'</p>'+
+      '<details><summary>'+esc(t("showSteps"))+' ('+s.steps.length+')</summary><ol>'+s.steps.map(function(x){ return '<li>'+esc(L(x.text))+' '+badge(x.status,true)+'</li>'; }).join("")+'</ol></details></div>';
+  }
+  function vSpecial(){
+    var f = state.sfFilter, list = DS.specialFunctions().filter(function(s){ return f==="all" || (f==="scan" && s.needsScanner===true) || (f==="noscan" && s.needsScanner===false) || (f==="maybe" && s.needsScanner===null); });
+    var h = '<div class="safety">🔐 '+esc(U("no_bypass"))+'</div>';
+    h += '<div class="chips" style="margin-bottom:12px">'+[["all",t("all")],["scan","📟 "+U("scanner_req")],["noscan","✋ "+U("scanner_no")],["maybe","❔ "+U("scanner_maybe")]].map(function(x){ return '<button class="chip'+(f===x[0]?" on":"")+'" data-sf="'+x[0]+'" style="font-family:inherit">'+esc(x[1])+'</button>'; }).join("")+'</div>';
+    return h + '<div class="cards">'+list.map(sfCard).join("")+'</div>';
+  }
+
+  /* ---------- MANUAL ---------- */
+  function vManual(){
+    var g = DS.scannerGuide();
+    var h = '<div class="cmp"><div class="card" style="border-color:rgba(52,211,153,.4)"><h3 style="color:var(--ok)">✋ '+esc(U("manual_ok"))+'</h3>'+li(g.manualOk)+'</div><div class="card" style="border-color:rgba(251,191,36,.4)"><h3 style="color:var(--warn)">📟 '+esc(U("scanner_needed"))+'</h3>'+li(g.scannerNeeded)+'</div></div>';
+    h += '<div class="cards">'+DS.manualTests().map(function(m){
+      return '<div class="fcard"><h5>'+m.icon+' '+esc(L(m.title))+' '+badge("general",true)+'</h5><p>'+esc(L(m.intro))+'</p><details><summary>'+esc(t("showSteps"))+'</summary><ol>'+m.steps.map(function(s){ return '<li>'+esc(L(s))+'</li>'; }).join("")+'</ol></details></div>';
+    }).join("")+'</div>';
+    h += '<div class="card" style="margin-top:14px"><h3>📖 '+esc(U("glossary"))+'</h3><table class="mini"><tbody>'+DS.glossary().map(function(x){ return '<tr><td style="font-family:var(--mono);color:var(--cy);white-space:nowrap">'+esc(x.term)+'</td><td>'+esc(L(x.text))+'</td></tr>'; }).join("")+'</tbody></table></div>';
+    return h;
+  }
+
+  /* ---------- delegated events ---------- */
+  document.addEventListener("click", function(e){
+    var el = e.target.closest("[data-code],[data-tab],[data-level],[data-sys],[data-sf]"); if (!el) return;
+    if (el.dataset.code){ state.dtc = el.dataset.code; state.tab = "over"; go("dtc"); }
+    else if (el.dataset.tab){ state.tab = el.dataset.tab; render(); }
+    else if (el.dataset.level){ state.level = el.dataset.level; render(); }
+    else if (el.dataset.sys){ state.sys = el.dataset.sys; go("sys"); }
+    else if (el.dataset.sf){ state.sfFilter = el.dataset.sf; render(); }
+  });
+  document.addEventListener("submit", function(e){
+    if (e.target.id !== "sform") return; e.preventDefault();
+    var q = document.getElementById("sq").value.trim(); if (!q) return;
+    var r = DS.search(q);
+    state.dtc = DS.dtc(q) ? q.toUpperCase() : (r.dtcs[0] ? r.dtcs[0].code : q.toUpperCase());
+    state.tab = "over"; go("dtc");
+  });
+  KB.onLang(render);
+  document.documentElement.lang = KB.getLang();
+  render();
+})();
+</script>
+</body>
+</html>

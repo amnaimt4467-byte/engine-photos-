@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Step-by-Step Repair Guide — Sample 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Noto+Sans+Tamil:wght@400;600;700&family=Noto+Sans+Sinhala:wght@400;600;700&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+<!--
+  SAMPLE 3 — MECHANIC-FRIENDLY STEP-BY-STEP REPAIR & DIAGNOSIS
+  Big touch targets, one step at a time, beginner/advanced switch,
+  guided DTC flow (Understand → Quick checks → Tests → Repair → Verify).
+  Data + helpers are inlined at build time from src/kb-data.js and src/kb-core.js.
+-->
+<style>
+:root{
+  --bg:#111315; --card:#1c1f23; --card2:#262a30; --line:#343a42; --text:#f1f2f4; --dim:#a4abb5;
+  --or:#ff8a3d; --or-bg:rgba(255,138,61,.13); --ok:#4ade80; --warn:#facc15; --bad:#f87171; --info:#7dd3fc;
+  --mono:'Roboto Mono',ui-monospace,monospace;
+  --sans:'Nunito Sans','Noto Sans Tamil','Noto Sans Sinhala',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--text);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+.shell{max-width:760px;margin:0 auto;padding:0 16px 110px}
+
+/* header */
+header{position:sticky;top:0;z-index:10;background:rgba(17,19,21,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.hrow{max-width:760px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:10px 16px}
+.back{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--card);font-size:20px;flex:none}
+.back[hidden]{display:none}
+.htitle{flex:1;min-width:0;font-weight:800;font-size:17px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.htitle small{display:block;font-weight:600;font-size:11.5px;color:var(--dim)}
+.langs{display:flex;gap:4px}
+.langs button{min-width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--card);font-weight:800;font-size:15px;padding:0 8px}
+.langs button.on{background:var(--or);border-color:var(--or);color:#1a0d02}
+.modebar{max-width:760px;margin:0 auto;display:flex;gap:8px;padding:0 16px 10px;align-items:center;font-size:13px;color:var(--dim)}
+.toggle{display:flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px}
+.toggle button{border:0;background:none;border-radius:999px;padding:5px 12px;font-size:13px;font-weight:700;color:var(--dim)}
+.toggle button.on{background:var(--card2);color:var(--text)}
+.toggle button.on.b{color:var(--ok)} .toggle button.on.a{color:var(--warn)}
+
+/* generic */
+h2{font-size:22px;margin:18px 0 6px;line-height:1.3} h3{font-size:17px;margin:18px 0 8px}
+.lead{color:var(--dim);margin:0 0 14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px}
+.vehicle{display:flex;gap:12px;align-items:center;background:linear-gradient(135deg,#24201b,#1c1f23);border-color:#4a3a2b}
+.vehicle .ic{font-size:34px}
+.vehicle b{display:block;font-size:17px}
+.vehicle span{color:var(--dim);font-size:13.5px}
+.notice{font-size:13px;color:#fde68a;background:rgba(250,204,21,.07);border:1px dashed rgba(250,204,21,.35);border-radius:12px;padding:10px 12px;margin:12px 0}
+
+.big{display:flex;gap:14px;align-items:center;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:12px;min-height:88px}
+.big:hover,.big:focus-visible{border-color:var(--or);outline:none;background:#211f1d}
+.big .ic{font-size:34px;width:52px;text-align:center;flex:none}
+.big b{display:block;font-size:18px;line-height:1.3}
+.big span{color:var(--dim);font-size:14px}
+.big .arr{margin-left:auto;color:var(--or);font-size:22px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 22px;border-radius:14px;border:1px solid var(--line);background:var(--card2);font-weight:800;font-size:16px}
+.btn.pri{background:var(--or);border-color:var(--or);color:#1a0d02}
+.btn.ok{background:rgba(74,222,128,.14);border-color:rgba(74,222,128,.5);color:var(--ok)}
+.btn.bad{background:rgba(248,113,113,.12);border-color:rgba(248,113,113,.5);color:var(--bad)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row .btn{flex:1}
+
+/* code entry */
+.codein{display:flex;gap:10px}
+.codein input{flex:1;min-width:0;height:64px;border-radius:16px;border:2px solid var(--line);background:var(--card);color:var(--text);font:700 26px var(--mono);text-transform:uppercase;letter-spacing:.08em;padding:0 16px;text-align:center}
+.codein input:focus{outline:none;border-color:var(--or)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.chip{min-height:44px;padding:0 14px;border-radius:12px;border:1px solid var(--line);background:var(--card2);font:700 15px var(--mono)}
+.chip:hover{border-color:var(--or);color:var(--or)}
+
+/* wizard */
+.prog{display:flex;gap:4px;margin:16px 0 6px}
+.prog i{flex:1;height:6px;border-radius:3px;background:var(--card2)}
+.prog i.done{background:var(--or)} .prog i.cur{background:linear-gradient(90deg,var(--or),var(--card2))}
+.stepname{display:flex;justify-content:space-between;font-size:13px;color:var(--dim);margin-bottom:6px}
+.codehead{display:flex;gap:12px;align-items:center;margin:4px 0 8px}
+.codehead .c{font:800 30px var(--mono);color:var(--or)}
+.codehead .tt{font-weight:800;font-size:17px;line-height:1.3}
+.safety{background:rgba(248,113,113,.1);border:2px solid rgba(248,113,113,.5);border-radius:16px;padding:14px;margin:12px 0}
+.safety b{color:var(--bad)}
+.ack{display:flex;gap:10px;align-items:center;margin-top:10px;font-weight:700;cursor:pointer}
+.ack input{width:24px;height:24px;accent-color:var(--or)}
+.plain{font-size:17px}
+.lst{margin:0;padding-left:22px} .lst li{margin:6px 0}
+
+.check{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:10px}
+.check .n{display:inline-flex;width:30px;height:30px;border-radius:50%;background:var(--or-bg);color:var(--or);font-weight:800;align-items:center;justify-content:center;margin-right:8px;flex:none}
+.check .q{display:flex;align-items:flex-start;gap:4px;font-weight:600}
+.check .row{margin-top:12px}
+.check .row .btn{min-height:46px;font-size:15px}
+.check.okd{border-color:rgba(74,222,128,.5)} .check.bad{border-color:rgba(248,113,113,.6)}
+.found{background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.4);border-radius:14px;padding:12px;margin:10px 0}
+
+.lock{background:var(--card2);border:1px dashed var(--line);border-radius:14px;padding:14px;color:var(--dim)}
+.tbl{width:100%;border-collapse:collapse;font-size:14.5px;margin:6px 0 10px}
+.tbl th,.tbl td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
+.tbl th{color:var(--dim);font-size:12.5px;font-weight:700}
+details.x{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px}
+details.x>summary{padding:14px;font-weight:800;cursor:pointer;list-style:none;display:flex;gap:8px;align-items:center}
+details.x>summary::-webkit-details-marker{display:none}
+details.x>summary::after{content:"＋";margin-left:auto;color:var(--or)}
+details.x[open]>summary::after{content:"－"}
+details.x>div{padding:0 14px 14px}
+
+.vlist label{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:8px;cursor:pointer}
+.vlist input{width:26px;height:26px;accent-color:var(--ok);flex:none;margin-top:1px}
+
+.nav{position:fixed;left:0;right:0;bottom:0;background:rgba(17,19,21,.97);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom))}
+.nav .in{max-width:760px;margin:0 auto;display:flex;gap:10px}
+.nav .btn{flex:1}
+.nav[hidden]{display:none}
+
+.sfstep{font-size:18px;font-weight:600;min-height:90px}
+.stepbig{font:800 15px var(--sans);color:var(--or);margin-bottom:6px}
+.illus{background:#0c0e10;border:1px solid var(--line);border-radius:14px;padding:10px;margin:8px 0 12px;text-align:center}
+.illus svg{max-width:100%;height:auto}
+.illus small{display:block;color:var(--dim);font-size:12px;margin-top:4px}
+.donebox{text-align:center;padding:30px 10px}
+.donebox .ic{font-size:64px}
+
+/* status badges + glossary */
+.st{display:inline-block;font-size:11.5px;padding:1px 7px;border-radius:6px;white-space:nowrap;vertical-align:middle;font-weight:700}
+.st-pub{background:rgba(74,222,128,.14);color:var(--ok)}
+.st-gen{background:rgba(125,211,252,.13);color:var(--info)}
+.st-ex{background:rgba(200,200,210,.12);color:#d4d6dc}
+.st-pend{background:rgba(250,204,21,.14);color:var(--warn)}
+.pending-val{color:var(--warn);font-size:14px}
+.lv{font-size:12px;border-radius:6px;padding:1px 7px;font-weight:700}
+.lv.beginner{background:rgba(74,222,128,.14);color:var(--ok)} .lv.advanced{background:rgba(250,204,21,.14);color:var(--warn)}
+abbr.gl{text-decoration:underline dotted var(--or);text-underline-offset:3px;cursor:help}
+.fab{position:fixed;right:16px;bottom:96px;width:56px;height:56px;border-radius:50%;border:0;background:var(--card2);box-shadow:0 6px 20px rgba(0,0,0,.5);font-size:24px;z-index:15}
+.sheet{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:40;display:none;align-items:flex-end;justify-content:center}
+.sheet.on{display:flex}
+.sheet .in{background:var(--card);border-radius:20px 20px 0 0;max-width:760px;width:100%;max-height:80vh;overflow:auto;padding:18px 16px 30px}
+.sheet dt{font:800 15px var(--mono);color:var(--or);margin-top:12px} .sheet dd{margin:2px 0 0}
+</style>
+</head>
+<body>
+<header>
+  <div class="hrow">
+    <button class="back" id="back" aria-label="Back" hidden>←</button>
+    <div class="htitle" id="htitle"></div>
+    <div class="langs" id="langs"></div>
+  </div>
+  <div class="modebar"><span id="modeLbl"></span><div class="toggle" id="mode"></div></div>
+</header>
+<div class="shell" id="screen"></div>
+<div class="nav" id="nav" hidden><div class="in" id="navIn"></div></div>
+<button class="fab" id="fab" title="Glossary">📖</button>
+<div class="sheet" id="sheet"><div class="in" id="sheetIn"></div></div>
+
+<!-- @include kb-data.js -->
+<!-- @include kb-core.js -->
+<script>
+/* =================== SAMPLE 3 APP =================== */
+(function(){
+  var DS = KB.DataStore, L = KB.L, U = KB.U, esc = KB.esc, badge = KB.badge, val = KB.val;
+  var T = {
+    app: {en:"Repair Guide",ta:"ரிப்பேர் வழிகாட்டி",si:"අලුත්වැඩියා මාර්ගෝපදේශය"},
+    appSub: {en:"Sample 3 · Step-by-step layout",ta:"Sample 3 · படிப்படியான வடிவம்",si:"Sample 3 · පියවරෙන් පියවර පිරිසැලසුම"},
+    mode: {en:"Show:",ta:"காட்டு:",si:"පෙන්වන්න:"},
+    hello: {en:"What do you need today?",ta:"இன்று உங்களுக்கு என்ன வேண்டும்?",si:"අද ඔබට අවශ්‍ය කුමක්ද?"},
+    a_code: {en:"I have a fault code",ta:"என்னிடம் fault code இருக்கு",si:"මට fault code එකක් තියෙනවා"},
+    a_code_s: {en:"Enter the code and follow the steps",ta:"Code-ஐ போட்டு படிகளை பின்பற்றுங்கள்",si:"Code එක ඇතුළත් කර පියවර අනුගමනය කරන්න"},
+    a_sym: {en:"I see a problem (no code / no scanner)",ta:"பிரச்சனை தெரியுது (code / scanner இல்லை)",si:"ගැටලුවක් පේනවා (code / scanner නැත)"},
+    a_sym_s: {en:"Start from what the vehicle is doing",ta:"வாகனம் என்ன செய்கிறது என்பதில் இருந்து தொடங்குங்கள்",si:"වාහනය කරන දෙයින් ආරම්භ කරන්න"},
+    a_sf: {en:"Reset / special function",ta:"Reset / சிறப்பு செயல்பாடு",si:"Reset / විශේෂ කාර්යය"},
+    a_sf_s: {en:"Key, injector code, service reset, bleeding…",ta:"Key, injector code, service reset, bleeding…",si:"Key, injector code, service reset, bleeding…"},
+    a_learn: {en:"Learn testing (multimeter)",ta:"சோதனை கற்றுக்கொள்ளுங்கள் (மல்டிமீட்டர்)",si:"පරීක්ෂා කිරීම ඉගෙන ගන්න (මල්ටිමීටරය)"},
+    a_learn_s: {en:"Voltage, resistance, fuses, connectors",ta:"Voltage, resistance, fuse, connector",si:"Voltage, resistance, fuse, connector"},
+    enterCode: {en:"Type the fault code",ta:"Fault code-ஐ டைப் செய்யுங்கள்",si:"Fault code එක ටයිප් කරන්න"},
+    enterHint: {en:"Letter + 4 characters, e.g. P0087",ta:"எழுத்து + 4 எழுத்துகள், எ.கா. P0087",si:"අකුර + අක්ෂර 4, උදා. P0087"},
+    start: {en:"Start",ta:"தொடங்கு",si:"ආරම්භ කරන්න"},
+    orPick: {en:"or pick a sample code:",ta:"அல்லது மாதிரி code தேர்வு:",si:"නැතිනම් සාම්පල code එකක් තෝරන්න:"},
+    s1: {en:"Understand",ta:"புரிந்துகொள்",si:"තේරුම් ගන්න"}, s2: {en:"Quick checks",ta:"விரைவு சோதனை",si:"ඉක්මන් පරීක්ෂා"},
+    s3: {en:"Tests",ta:"சோதனைகள்",si:"පරීක්ෂණ"}, s4: {en:"Repair",ta:"ரிப்பேர்",si:"අලුත්වැඩියාව"}, s5: {en:"Verify",ta:"சரிபார்",si:"තහවුරු කරන්න"},
+    stepOf: {en:"Step {a} of {b}",ta:"படி {a} / {b}",si:"පියවර {a} / {b}"},
+    simple: {en:"In simple words",ta:"எளிய வார்த்தைகளில்",si:"සරල වචනවලින්"},
+    youMaySee: {en:"You may notice",ta:"நீங்கள் கவனிக்கலாம்",si:"ඔබට දැකිය හැක"},
+    ackSafety: {en:"I have read the safety warning",ta:"பாதுகாப்பு எச்சரிக்கையை படித்தேன்",si:"මම ආරක්ෂක අනතුරු ඇඟවීම කියෙව්වා"},
+    next: {en:"Next →",ta:"அடுத்து →",si:"ඊළඟ →"}, prev: {en:"← Back",ta:"← பின்",si:"← ආපසු"},
+    checkOk: {en:"✓ Looks OK",ta:"✓ சரியாக உள்ளது",si:"✓ හොඳයි"}, checkBad: {en:"✗ Problem found",ta:"✗ பிரச்சனை கண்டேன்",si:"✗ ගැටලුවක් හමු විය"},
+    foundMsg: {en:"Good — you found a likely cause. Go to Repair, then Verify.",ta:"நல்லது — காரணம் கிடைத்தது. Repair-க்கு சென்று பிறகு Verify செய்யுங்கள்.",si:"හොඳයි — විය හැකි හේතුව සොයා ගත්තා. Repair වෙත ගොස් පසුව Verify කරන්න."},
+    goRepair: {en:"Go to Repair",ta:"Repair-க்கு செல்",si:"Repair වෙත යන්න"},
+    whatCauses: {en:"Common causes (most likely first)",ta:"பொதுவான காரணங்கள் (அதிக வாய்ப்பு முதலில்)",si:"සුලබ හේතු (වැඩිම ඉඩ ඇති ඒවා මුලින්)"},
+    advLocked: {en:"These tests need more experience and tools. Switch to Advanced to see them, or ask a senior technician.",ta:"இந்த சோதனைகளுக்கு அதிக அனுபவமும் கருவிகளும் தேவை. பார்க்க Advanced-க்கு மாற்றவும், அல்லது மூத்த technician-இடம் கேளுங்கள்.",si:"මෙම පරීක්ෂණවලට වැඩි පළපුරුද්දක් සහ මෙවලම් අවශ්‍යයි. බැලීමට Advanced වෙත මාරු වන්න, නැතිනම් ජ්‍යෙෂ්ඨ technician කෙනෙකුගෙන් අහන්න."},
+    showAdv: {en:"Switch to Advanced",ta:"Advanced-க்கு மாற்று",si:"Advanced වෙත මාරු වන්න"},
+    linkedProc: {en:"Step-by-step procedure",ta:"படிப்படியான முறை",si:"පියවරෙන් පියවර ක්‍රමය"},
+    finish: {en:"Finish ✓",ta:"முடிந்தது ✓",si:"අවසන් ✓"},
+    doneT: {en:"Job complete",ta:"வேலை முடிந்தது",si:"වැඩය සම්පූර්ණයි"},
+    doneS: {en:"All verification checks ticked. Record the job and clear remaining codes.",ta:"எல்லா சரிபார்ப்புகளும் முடிந்தன. வேலையை பதிவு செய்து மீதமுள்ள code-களை clear செய்யுங்கள்.",si:"සියලු තහවුරු කිරීම් සලකුණු කළා. වැඩය සටහන් කර ඉතිරි codes clear කරන්න."},
+    home: {en:"Home",ta:"முகப்பு",si:"මුල් පිටුව"},
+    notFound: {en:"This code is not in the sample data yet. In the full app it would load from the database.",ta:"இந்த code இன்னும் மாதிரி டேட்டாவில் இல்லை. முழு app-இல் database-இல் இருந்து வரும்.",si:"මෙම code එක තවම සාම්පල දත්තවල නැත. සම්පූර්ණ app එකේදී දත්ත ගබඩාවෙන් ලැබේ."},
+    pickSym: {en:"What is the vehicle doing?",ta:"வாகனம் என்ன செய்கிறது?",si:"වාහනය කරන්නේ කුමක්ද?"},
+    likelyCodes: {en:"Codes that often go with this",ta:"இதனுடன் அடிக்கடி வரும் codes",si:"මේ සමඟ බොහෝ විට එන codes"},
+    checksNoScan: {en:"Checks you can do without a scanner",ta:"Scanner இல்லாமல் செய்யக்கூடிய சோதனைகள்",si:"Scanner නොමැතිව කළ හැකි පරීක්ෂා"},
+    pickSf: {en:"Choose a function",ta:"ஒரு செயல்பாட்டை தேர்வு செய்யுங்கள்",si:"කාර්යයක් තෝරන්න"},
+    haveScanner: {en:"This job needs a scanner. Do you have one connected?",ta:"இந்த வேலைக்கு scanner தேவை. உங்களிடம் இணைக்கப்பட்ட scanner உள்ளதா?",si:"මෙම වැඩයට scanner එකක් අවශ්‍යයි. ඔබට සම්බන්ධ කළ scanner එකක් තිබේද?"},
+    yes: {en:"Yes, continue",ta:"ஆம், தொடரவும்",si:"ඔව්, ඉදිරියට"}, no: {en:"No",ta:"இல்லை",si:"නැත"},
+    noScanMsg: {en:"This function cannot be done correctly by hand. Use a compatible scanner or send the vehicle to a workshop that has one.",ta:"இந்த செயல்பாட்டை கையால் சரியாக செய்ய முடியாது. பொருத்தமான scanner பயன்படுத்துங்கள் அல்லது scanner உள்ள workshop-க்கு அனுப்புங்கள்.",si:"මෙම කාර්යය අතින් නිවැරදිව කළ නොහැක. ගැළපෙන scanner එකක් භාවිතා කරන්න හෝ scanner ඇති workshop එකකට යවන්න."},
+    learnPick: {en:"Pick a test to learn",ta:"கற்க ஒரு சோதனையை தேர்வு செய்யுங்கள்",si:"ඉගෙන ගැනීමට පරීක්ෂණයක් තෝරන්න"},
+    whenScanner: {en:"When do I need a scanner?",ta:"Scanner எப்போது தேவை?",si:"Scanner අවශ්‍ය වන්නේ කවදාද?"},
+    illus: {en:"General illustration — not vehicle-specific",ta:"பொது விளக்கப்படம் — வாகனத்திற்கு உரியது அல்ல",si:"සාමාන්‍ය නිදර්ශනය — වාහනයට විශේෂිත නොවේ"},
+    parts: {en:"Parts you may need",ta:"தேவைப்படக்கூடிய பாகங்கள்",si:"අවශ්‍ය විය හැකි කොටස්"}
+  };
+  var t = function(k, vars){ var s = L(T[k]); if (vars) Object.keys(vars).forEach(function(v){ s = s.replace("{"+v+"}", vars[v]); }); return s; };
+  var veh = DS.vehicle(DS.meta().demoVehicleId);
+  var level = "beginner"; try { level = localStorage.getItem("kb_level") || "beginner"; } catch(e){}
+
+  /* ---------- screen stack ---------- */
+  var stack = [{s:"home"}];
+  function cur(){ return stack[stack.length-1]; }
+  function push(o){ stack.push(o); render(); window.scrollTo(0,0); }
+  function replace(o){ stack[stack.length-1] = o; render(); window.scrollTo(0,0); }
+  function pop(){ if (stack.length>1){ stack.pop(); render(); window.scrollTo(0,0); } }
+  document.getElementById("back").onclick = pop;
+
+  function render(){
+    var c = cur();
+    document.getElementById("back").hidden = stack.length<=1;
+    document.getElementById("htitle").innerHTML = esc(titleFor(c))+"<small>"+esc(veh.make+" "+veh.chassis+" "+veh.year+" · "+veh.engine)+"</small>";
+    document.getElementById("langs").innerHTML = KB.LANGS.map(function(l){ return '<button data-l="'+l.id+'" class="'+(KB.getLang()===l.id?"on":"")+'" title="'+l.label+'">'+l.short+'</button>'; }).join("");
+    document.getElementById("modeLbl").textContent = t("mode");
+    document.getElementById("mode").innerHTML = '<button class="b'+(level==="beginner"?" on":"")+'" data-lv="beginner">🟢 '+esc(U("beginner"))+'</button><button class="a'+(level==="advanced"?" on":"")+'" data-lv="advanced">🟡 '+esc(U("advanced"))+'</button>';
+    var nav = document.getElementById("nav"); nav.hidden = true; document.getElementById("navIn").innerHTML = "";
+    var fn = { home:sHome, code:sCode, guide:sGuide, done:sDone, sym:sSym, symd:sSymDetail, sf:sSf, sfrun:sSfRun, learn:sLearn, lesson:sLesson }[c.s];
+    document.getElementById("screen").innerHTML = fn(c);
+    if (c.s==="code"){ var inp = document.getElementById("codeIn"); if (inp) inp.focus(); }
+  }
+  function titleFor(c){
+    return ({home:t("app"), code:t("a_code"), guide:(c.code||""), done:t("doneT"), sym:t("a_sym"), symd:t("a_sym"), sf:t("a_sf"), sfrun:t("a_sf"), learn:t("a_learn"), lesson:t("a_learn")})[c.s] || t("app");
+  }
+  function setNav(html){ document.getElementById("nav").hidden = false; document.getElementById("navIn").innerHTML = html; }
+  function bigBtn(icon, title, sub, attrs){ return '<button class="big" '+attrs+'><span class="ic">'+icon+'</span><span><b>'+esc(title)+'</b><span>'+esc(sub||"")+'</span></span><span class="arr">›</span></button>'; }
+  function lst(items, ordered){
+    if (!items || !items.length) return '<p class="pending-val">—</p>';
+    var tag = ordered?"ol":"ul";
+    return '<'+tag+' class="lst">'+items.map(function(i){ return '<li>'+KB.gloss(esc(L(i.text||i)))+(i.status?' '+badge(i.status,true):"")+'</li>'; }).join("")+'</'+tag+'>';
+  }
+
+  /* ---------- HOME ---------- */
+  function sHome(){
+    var h = '<div class="card vehicle" style="margin-top:16px"><span class="ic">🚐</span><div><b>'+esc(veh.make+" "+veh.model)+'</b><span>'+esc(veh.chassis+" · "+veh.year+" · "+veh.engine+" · "+veh.fuel)+'</span></div></div>';
+    h += '<h2>'+esc(t("hello"))+'</h2>';
+    h += bigBtn("🔢", t("a_code"), t("a_code_s"), 'data-go="code"');
+    h += bigBtn("🩺", t("a_sym"), t("a_sym_s"), 'data-go="sym"');
+    h += bigBtn("🛠️", t("a_sf"), t("a_sf_s"), 'data-go="sf"');
+    h += bigBtn("🔎", t("a_learn"), t("a_learn_s"), 'data-go="learn"');
+    h += '<div class="notice">'+esc(L(DS.meta().notice))+'</div>';
+    return h;
+  }
+
+  /* ---------- CODE ENTRY ---------- */
+  function sCode(c){
+    var h = '<h2>'+esc(t("enterCode"))+'</h2><p class="lead">'+esc(t("enterHint"))+'</p>';
+    h += '<form class="codein" id="codeForm"><input id="codeIn" maxlength="5" autocomplete="off" inputmode="text" placeholder="P0087" value="'+esc(c.q||"")+'"><button class="btn pri">'+esc(t("start"))+'</button></form>';
+    if (c.err) h += '<div class="lock" style="margin-top:12px">🔎 <b>'+esc(c.q)+'</b> — '+esc(t("notFound"))+'</div>';
+    h += '<p class="lead" style="margin-top:16px">'+esc(t("orPick"))+'</p><div class="chips">'+DS.dtcs().map(function(d){ return '<button class="chip" data-dtc="'+d.code+'">'+d.code+'</button>'; }).join("")+'</div>';
+    return h;
+  }
+
+  /* ---------- GUIDED DTC FLOW ---------- */
+  var STEPS = ["s1","s2","s3","s4","s5"];
+  function sGuide(c){
+    var d = DS.dtc(c.code), i = c.step || 0;
+    var h = '<div class="prog">'+STEPS.map(function(_,k){ return '<i class="'+(k<i?"done":k===i?"cur":"")+'"></i>'; }).join("")+'</div>';
+    h += '<div class="stepname"><b>'+esc(t(STEPS[i]))+'</b><span>'+esc(t("stepOf",{a:i+1,b:STEPS.length}))+'</span></div>';
+    h += '<div class="codehead"><span class="c">'+d.code+'</span><span class="tt">'+esc(L(d.title))+' '+badge(d.titleStatus,true)+'</span></div>';
+    h += [gUnderstand, gChecks, gTests, gRepair, gVerify][i](d, c);
+    var canNext = true;
+    if (i===0 && d.safety && !c.ack) canNext = false;
+    if (i===4) canNext = (c.ticks||[]).filter(Boolean).length === d.verify.length;
+    setNav('<button class="btn" data-gstep="'+(i-1)+'"'+(i===0?" disabled":"")+'>'+esc(t("prev"))+'</button>'+
+      (i<4? '<button class="btn pri" data-gstep="'+(i+1)+'"'+(canNext?"":" disabled")+'>'+esc(t("next"))+'</button>'
+          : '<button class="btn pri" data-finish="1"'+(canNext?"":" disabled")+'>'+esc(t("finish"))+'</button>'));
+    return h;
+  }
+  function gUnderstand(d, c){
+    var h = '<h3>💬 '+esc(t("simple"))+'</h3><p class="plain">'+KB.gloss(esc(L(d.meaning)))+'</p>';
+    h += '<p>'+esc(L(d.applicability.text))+' '+badge(d.applicability.status,true)+'</p>';
+    h += '<h3>👀 '+esc(t("youMaySee"))+'</h3>'+lst(d.symptoms);
+    if (d.safety) h += '<div class="safety"><b>⚠ '+esc(U("safety"))+'</b><br>'+esc(L(d.safety))+'<label class="ack"><input type="checkbox" id="ack"'+(c.ack?" checked":"")+'> '+esc(t("ackSafety"))+'</label></div>';
+    return h;
+  }
+  function gChecks(d, c){
+    var res = c.res || {};
+    var steps = d.diagnosis.filter(function(s){ return s.level==="beginner"; });
+    var h = '<h3>🧭 '+esc(t("whatCauses"))+'</h3>'+lst(d.causes, true)+'<h3>✅ '+esc(t("s2"))+'</h3>';
+    steps.forEach(function(s, k){
+      var r = res[k];
+      h += '<div class="check'+(r==="ok"?" okd":r==="bad"?" bad":"")+'"><div class="q"><span class="n">'+(k+1)+'</span><span>'+KB.gloss(esc(L(s.text)))+' '+badge(s.status,true)+'</span></div>'+
+        '<div class="row"><button class="btn ok" data-res="'+k+':ok">'+esc(t("checkOk"))+'</button><button class="btn bad" data-res="'+k+':bad">'+esc(t("checkBad"))+'</button></div></div>';
+    });
+    if (Object.keys(res).some(function(k){ return res[k]==="bad"; })) h += '<div class="found">🎯 '+esc(t("foundMsg"))+'<div class="row" style="margin-top:10px"><button class="btn pri" data-gstep="3">'+esc(t("goRepair"))+'</button></div></div>';
+    return h;
+  }
+  function gTests(d){
+    var adv = d.diagnosis.filter(function(s){ return s.level==="advanced"; });
+    if (level !== "advanced") return '<div class="lock">🔒 '+esc(t("advLocked"))+'<div class="row" style="margin-top:12px"><button class="btn" data-lv="advanced">🟡 '+esc(t("showAdv"))+'</button></div></div>';
+    var h = '<h3>🔬 '+esc(U("diagnosis"))+'</h3>'+lst(adv, true);
+    if (d.sensorTest.length) h += det("📍 "+U("sensor"), lst(d.sensorTest));
+    if (d.scanner.length) h += det("📟 "+U("scanner"), lst(d.scanner));
+    if (d.wiring.length) h += det("〰️ "+U("wiring"), lst(d.wiring));
+    if (d.meterValues.rows.length) h += det("🔋 "+U("meter"), badge(d.meterValues.status)+'<table class="tbl"><thead><tr><th>'+esc(U("test"))+'</th><th>'+esc(U("expected"))+'</th></tr></thead><tbody>'+d.meterValues.rows.map(function(r){ return '<tr><td>'+esc(L(r.test))+'</td><td>'+val(r.expected, r.expected?d.meterValues.status:"pending")+'</td></tr>'; }).join("")+'</tbody></table>');
+    if (d.pins.rows.length) h += det("📌 "+U("pins"), badge(d.pins.status)+'<table class="tbl"><thead><tr><th>'+esc(U("item"))+'</th><th>'+esc(U("pin"))+'</th></tr></thead><tbody>'+d.pins.rows.map(function(r){ return '<tr><td>'+esc(r.item)+(r.connector?'<br><small style="color:var(--dim)">'+esc(r.connector)+'</small>':"")+'</td><td>'+val(r.pin, r.pin?"":"pending")+'</td></tr>'; }).join("")+'</tbody></table>');
+    return h;
+  }
+  function det(title, body, open){ return '<details class="x"'+(open?" open":"")+'><summary>'+esc(title)+'</summary><div>'+body+'</div></details>'; }
+  function gRepair(d){
+    var h = '<h3>🔧 '+esc(U("repair"))+'</h3>'+lst(d.repair, true);
+    DS.procedures().filter(function(p){ return p.relatedDtc.indexOf(d.code)>=0 && (level==="advanced" || p.level==="beginner"); }).forEach(function(p){
+      h += det("📘 "+t("linkedProc")+": "+L(p.title), '<p><span class="lv '+p.level+'">'+esc(U(p.level))+'</span> ⏱ '+esc(p.time)+' · 🧰 '+esc(L(p.tools))+'</p><div class="safety" style="margin-top:0">⚠ '+esc(L(p.warning))+'</div>'+
+        '<ol class="lst">'+p.steps.map(function(s){ return '<li>'+esc(L(s.text))+' '+badge(s.status,true)+(s.value!==undefined?'<br>'+val(s.value,s.status):"")+'</li>'; }).join("")+'</ol>', true);
+    });
+    if (d.parts.length) h += det("🧩 "+t("parts"), '<table class="tbl"><tbody>'+d.parts.map(function(p){ return '<tr><td>'+esc(L(p.name))+'</td><td>'+val(p.partNo,p.status)+'</td></tr>'; }).join("")+'</tbody></table>');
+    return h;
+  }
+  function gVerify(d, c){
+    var ticks = c.ticks || [];
+    var h = '<h3>🏁 '+esc(U("verify"))+'</h3><div class="vlist">'+d.verify.map(function(v,k){ return '<label><input type="checkbox" data-tick="'+k+'"'+(ticks[k]?" checked":"")+'><span>'+esc(L(v))+'</span></label>'; }).join("")+'</div>';
+    if (d.related.length) h += '<p style="color:var(--dim)">'+esc(U("related"))+':</p><div class="chips">'+d.related.map(function(r){ return DS.dtc(r)? '<button class="chip" data-dtc="'+r+'">'+r+'</button>' : '<span class="chip" style="opacity:.5;display:inline-flex;align-items:center">'+r+'</span>'; }).join("")+'</div>';
+    return h;
+  }
+  function sDone(c){
+    setNav('<button class="btn pri" data-home="1">'+esc(t("home"))+'</button>');
+    return '<div class="donebox"><div class="ic">✅</div><h2>'+esc(t("doneT"))+'</h2><p class="lead">'+esc(c.code)+' — '+esc(t("doneS"))+'</p></div>';
+  }
+
+  /* ---------- SYMPTOMS ---------- */
+  function sSym(){
+    return '<h2>'+esc(t("pickSym"))+'</h2>' + DS.symptoms().map(function(s){ return bigBtn(s.icon, L(s.title), s.dtcs.join(" · "), 'data-sym="'+s.id+'"'); }).join("");
+  }
+  function sSymDetail(c){
+    var s = null; DS.symptoms().forEach(function(x){ if (x.id===c.id) s=x; });
+    var h = '<h2>'+s.icon+' '+esc(L(s.title))+'</h2>';
+    h += '<h3>✋ '+esc(t("checksNoScan"))+'</h3>';
+    var procs = s.procedures.map(DS.procedure).filter(function(p){ return p && (level==="advanced" || p.level==="beginner"); });
+    procs.forEach(function(p){ h += det("📘 "+L(p.title), '<div class="safety" style="margin-top:0">⚠ '+esc(L(p.warning))+'</div><ol class="lst">'+p.steps.map(function(x){ return '<li>'+esc(L(x.text))+' '+badge(x.status,true)+'</li>'; }).join("")+'</ol>'); });
+    h += bigBtn("🔌", L(DS.manualTests()[4].title), L(DS.manualTests()[4].intro), 'data-lesson="fuse_relay"');
+    h += '<h3>🔢 '+esc(t("likelyCodes"))+'</h3>';
+    s.dtcs.forEach(function(code){ var d = DS.dtc(code); h += bigBtn('<span style="font:800 16px var(--mono);color:var(--or)">'+code+'</span>', L(d.title), "", 'data-dtc="'+code+'"'); });
+    return h;
+  }
+
+  /* ---------- SPECIAL FUNCTIONS (wizard) ---------- */
+  function sSf(){
+    var h = '<div class="safety" style="border-width:1px">🔐 '+esc(U("no_bypass"))+'</div><h2>'+esc(t("pickSf"))+'</h2>';
+    DS.specialFunctions().forEach(function(s){
+      var tag = s.needsScanner===true? "📟 "+U("scanner_req") : s.needsScanner===false? "✋ "+U("scanner_no") : "❔ "+U("scanner_maybe");
+      h += bigBtn(s.needsScanner===true?"📟":s.needsScanner===false?"✋":"❔", L(s.title), tag+" · "+U(s.level), 'data-sf="'+s.id+'"');
+    });
+    return h;
+  }
+  function sSfRun(c){
+    var s = null; DS.specialFunctions().forEach(function(x){ if (x.id===c.id) s=x; });
+    var h = '<h2>'+esc(L(s.title))+'</h2><p><span class="lv '+s.level+'">'+esc(U(s.level))+'</span></p><div class="card"><b>'+esc(U("why"))+'</b><br>'+esc(L(s.why))+'</div>';
+    if (s.group==="key" || s.group==="remote") h += '<div class="safety" style="border-width:1px">🔐 '+esc(U("no_bypass"))+'</div>';
+    if (s.needsScanner===true && c.scan!==true){
+      if (c.scan===false) return h + '<div class="lock">ℹ️ '+esc(t("noScanMsg"))+'</div>';
+      setNav('<button class="btn" data-scan="0">'+esc(t("no"))+'</button><button class="btn pri" data-scan="1">'+esc(t("yes"))+'</button>');
+      return h + '<div class="card" style="font-size:18px;font-weight:700">📟 '+esc(t("haveScanner"))+'</div>';
+    }
+    var i = c.step||0, st = s.steps[i];
+    h += '<div class="prog">'+s.steps.map(function(_,k){ return '<i class="'+(k<i?"done":k===i?"cur":"")+'"></i>'; }).join("")+'</div>';
+    h += '<div class="card"><div class="stepbig">'+esc(t("stepOf",{a:i+1,b:s.steps.length}))+'</div><div class="sfstep">'+esc(L(st.text))+'</div>'+badge(st.status)+'</div>';
+    setNav('<button class="btn" data-sfstep="'+(i-1)+'"'+(i===0?" disabled":"")+'>'+esc(t("prev"))+'</button>'+(i<s.steps.length-1?'<button class="btn pri" data-sfstep="'+(i+1)+'">'+esc(t("next"))+'</button>':'<button class="btn pri" data-home="1">'+esc(t("finish"))+'</button>'));
+    return h;
+  }
+
+  /* ---------- LEARN TESTING ---------- */
+  function sLearn(){
+    var g = DS.scannerGuide();
+    var h = '<h2>'+esc(t("learnPick"))+'</h2>';
+    DS.manualTests().forEach(function(m){ h += bigBtn(m.icon, L(m.title), L(m.intro), 'data-lesson="'+m.id+'"'); });
+    h += det("📟 "+t("whenScanner"), '<p><b style="color:var(--ok)">✋ '+esc(U("manual_ok"))+'</b></p>'+lst(g.manualOk)+'<p><b style="color:var(--warn)">📟 '+esc(U("scanner_needed"))+'</b></p>'+lst(g.scannerNeeded), true);
+    return h;
+  }
+  function sLesson(c){
+    var m = null; DS.manualTests().forEach(function(x){ if (x.id===c.id) m=x; });
+    var h = '<h2>'+m.icon+' '+esc(L(m.title))+' '+badge("general",true)+'</h2><p class="plain">'+esc(L(m.intro))+'</p>';
+    if (m.id==="voltage" || m.id==="vdrop") h += '<div class="illus">'+meterSVG(m.id)+'<small>'+esc(t("illus"))+'</small></div>';
+    m.steps.forEach(function(s,k){ h += '<div class="check"><div class="q"><span class="n">'+(k+1)+'</span><span>'+esc(L(s))+'</span></div></div>'; });
+    return h;
+  }
+  /* simple, generic multimeter hook-up drawing (not vehicle-specific) */
+  function meterSVG(kind){
+    var drop = kind==="vdrop";
+    return '<svg viewBox="0 0 360 170" width="360" role="img" aria-label="multimeter connection">'+
+      '<rect x="20" y="30" width="90" height="120" rx="12" fill="#2a2f36" stroke="#555"/><rect x="32" y="44" width="66" height="30" rx="4" fill="#9fe39f"/>'+
+      '<text x="65" y="65" text-anchor="middle" font-family="monospace" font-size="15" fill="#123">'+(drop?"0.08 V":"12.6 V")+'</text>'+
+      '<text x="65" y="100" text-anchor="middle" font-size="12" fill="#ccc">V⎓</text>'+
+      '<circle cx="45" cy="130" r="6" fill="#111" stroke="#888"/><circle cx="85" cy="130" r="6" fill="#d33" stroke="#888"/>'+
+      (drop
+        ? '<rect x="200" y="50" width="130" height="18" rx="4" fill="#444"/><text x="265" y="44" text-anchor="middle" font-size="11" fill="#bbb">ground wire / strap</text>'+
+          '<path d="M85 130 C140 130 180 60 205 59" stroke="#d33" stroke-width="3" fill="none"/><path d="M45 130 C120 160 300 140 325 66" stroke="#ddd" stroke-width="3" fill="none"/>'+
+          '<text x="265" y="100" text-anchor="middle" font-size="11" fill="#bbb">load ON</text>'
+        : '<rect x="220" y="60" width="110" height="70" rx="8" fill="#333" stroke="#666"/><text x="275" y="100" text-anchor="middle" font-size="13" fill="#ddd">12 V battery</text>'+
+          '<text x="244" y="55" font-size="16" fill="#f66">+</text><text x="300" y="55" font-size="16" fill="#ccc">−</text>'+
+          '<path d="M85 130 C150 130 200 40 248 62" stroke="#d33" stroke-width="3" fill="none"/><path d="M45 130 C120 165 280 150 305 62" stroke="#ddd" stroke-width="3" fill="none"/>')+
+      '</svg>';
+  }
+
+  /* ---------- events ---------- */
+  document.addEventListener("click", function(e){
+    var el = e.target.closest("[data-l],[data-lv],[data-go],[data-dtc],[data-gstep],[data-res],[data-finish],[data-home],[data-sym],[data-sf],[data-scan],[data-sfstep],[data-lesson]");
+    if (!el) return;
+    var c = cur(), ds = el.dataset;
+    if (ds.l){ KB.setLang(ds.l); return; }
+    if (ds.lv){ level = ds.lv; try{ localStorage.setItem("kb_level", level); }catch(x){} render(); return; }
+    if (ds.go){ push({s:ds.go}); return; }
+    if (ds.dtc){ var d = DS.dtc(ds.dtc); if (d) push({s:"guide", code:d.code, step:0}); return; }
+    if (ds.gstep!==undefined){ c.step = Math.max(0, Math.min(4, +ds.gstep)); render(); window.scrollTo(0,0); return; }
+    if (ds.res){ var p = ds.res.split(":"); c.res = c.res||{}; c.res[p[0]] = p[1]; render(); return; }
+    if (ds.finish){ replace({s:"done", code:c.code}); return; }
+    if (ds.home){ stack = [{s:"home"}]; render(); window.scrollTo(0,0); return; }
+    if (ds.sym){ push({s:"symd", id:ds.sym}); return; }
+    if (ds.sf){ push({s:"sfrun", id:ds.sf, step:0}); return; }
+    if (ds.scan){ c.scan = ds.scan==="1"; render(); return; }
+    if (ds.sfstep!==undefined){ c.step = +ds.sfstep; render(); return; }
+    if (ds.lesson){ push({s:"lesson", id:ds.lesson}); return; }
+  });
+  document.addEventListener("change", function(e){
+    var c = cur();
+    if (e.target.id==="ack"){ c.ack = e.target.checked; render(); }
+    if (e.target.dataset && e.target.dataset.tick!==undefined){ c.ticks = c.ticks||[]; c.ticks[+e.target.dataset.tick] = e.target.checked; render(); }
+  });
+  document.addEventListener("submit", function(e){
+    if (e.target.id!=="codeForm") return; e.preventDefault();
+    var q = document.getElementById("codeIn").value.trim().toUpperCase(); if (!q) return;
+    if (DS.dtc(q)) push({s:"guide", code:q, step:0}); else replace({s:"code", q:q, err:true});
+  });
+  document.getElementById("fab").onclick = function(){
+    document.getElementById("sheetIn").innerHTML = '<h3 style="margin-top:0">📖 '+esc(U("glossary"))+'</h3><dl>'+DS.glossary().map(function(g){ return '<dt>'+esc(g.term)+'</dt><dd>'+esc(L(g.text))+'</dd>'; }).join("")+'</dl><div class="row" style="margin-top:16px"><button class="btn" id="closeSheet">✕</button></div>';
+    document.getElementById("sheet").classList.add("on");
+  };
+  document.getElementById("sheet").addEventListener("click", function(e){ if (e.target.id==="sheet" || e.target.id==="closeSheet") this.classList.remove("on"); });
+
+  KB.onLang(render);
+  document.documentElement.lang = KB.getLang();
+  render();
+})();
+</script>
+</body>
+</html>

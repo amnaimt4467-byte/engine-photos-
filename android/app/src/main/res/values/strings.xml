@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Engine Specs</string>
+    <string name="title_activity_main">Engine Specs</string>
+    <string name="package_name">com.enginespecs.app</string>
+    <string name="custom_url_scheme">com.enginespecs.app</string>
+</resources>

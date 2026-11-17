@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vehicle Database — Sample 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Tamil:wght@400;600;700&family=Noto+Sans+Sinhala:wght@400;600;700&family=Noto+Sans+Mono:wght@500;700&display=swap" rel="stylesheet">
+<!--
+  SAMPLE 1 — TRADITIONAL VEHICLE DATABASE STRUCTURE
+  Sidebar tree (Make → Model → Year → Engine → System) + table-based record pages.
+  Data + helpers are inlined at build time from src/kb-data.js and src/kb-core.js.
+-->
+<style>
+:root{
+  --bg:#12161c; --panel:#1a2029; --panel2:#212935; --line:#2e3846; --text:#e6e9ee; --dim:#9aa5b4;
+  --accent:#4ea3ff; --accent-bg:rgba(78,163,255,.12); --ok:#3ccf7a; --warn:#ffb547; --bad:#ff6b6b; --info:#7fb6ff;
+  --mono:'Noto Sans Mono',ui-monospace,monospace;
+  --sans:'Noto Sans','Noto Sans Tamil','Noto Sans Sinhala',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--text);font:14px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+button{font:inherit;color:inherit}
+
+/* ---- header ---- */
+header{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:12px;padding:10px 16px;background:#0d1116;border-bottom:1px solid var(--line)}
+.menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:6px;padding:4px 10px;font-size:18px;cursor:pointer}
+.brand{font-weight:700;white-space:nowrap}
+.brand small{display:block;font-weight:400;color:var(--dim);font-size:11px}
+.search{flex:1;display:flex;max-width:560px}
+.search input{flex:1;min-width:0;background:var(--panel);border:1px solid var(--line);border-right:0;border-radius:6px 0 0 6px;color:var(--text);padding:8px 10px;font:inherit}
+.search button{background:var(--accent);color:#06121f;border:0;border-radius:0 6px 6px 0;padding:0 14px;font-weight:700;cursor:pointer}
+.langs{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.langs button{background:var(--panel);border:0;padding:6px 10px;cursor:pointer;color:var(--dim)}
+.langs button.on{background:var(--accent);color:#06121f;font-weight:700}
+
+/* ---- layout ---- */
+.wrap{display:flex;min-height:calc(100vh - 57px)}
+aside{width:290px;flex:none;background:var(--panel);border-right:1px solid var(--line);padding:12px 0;overflow:auto;max-height:calc(100vh - 57px);position:sticky;top:57px}
+main{flex:1;min-width:0;padding:18px 22px 60px}
+.side-h{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);padding:10px 16px 4px}
+details>summary{list-style:none;cursor:pointer;padding:5px 16px;display:flex;gap:6px;align-items:center}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"▸";color:var(--dim);width:10px}
+details[open]>summary::before{content:"▾"}
+.lvl1>summary{font-weight:700}
+.lvl2{padding-left:12px} .lvl3{padding-left:24px} .lvl4{padding-left:36px}
+.tree-link{display:flex;gap:8px;align-items:center;padding:4px 16px 4px 52px;color:var(--text);font-size:13px;border-left:3px solid transparent}
+.tree-link:hover{background:var(--panel2);text-decoration:none}
+.tree-link.on{background:var(--accent-bg);border-left-color:var(--accent);color:#fff}
+.tree-link .cnt{margin-left:auto;font-size:11px;color:var(--dim);font-family:var(--mono)}
+.tree-link.plain{padding-left:16px}
+
+/* ---- content ---- */
+.crumb{color:var(--dim);font-size:12px;margin-bottom:8px}
+.crumb a{color:var(--dim)} .crumb b{color:var(--text)}
+h1{font-size:22px;margin:0 0 4px} h2{font-size:16px;margin:24px 0 8px;color:var(--accent)}
+.sub{color:var(--dim);margin:0 0 14px}
+.notice{border:1px solid #6b5a2a;background:rgba(255,181,71,.08);color:#f3d9a6;padding:8px 12px;border-radius:6px;font-size:12.5px;margin-bottom:14px}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:12px}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--panel2);font-size:12px;color:var(--dim);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+tbody tr.click{cursor:pointer} tbody tr.click:hover td{background:var(--panel2)}
+.rec th{width:220px;white-space:normal}
+.code{font-family:var(--mono);font-weight:700;color:var(--accent)}
+ul.l,ol.l{margin:0;padding-left:20px} ul.l li,ol.l li{margin:2px 0}
+.tbl-scroll{overflow-x:auto}
+.pill{display:inline-block;font-size:11px;padding:1px 7px;border-radius:10px;border:1px solid var(--line);color:var(--dim);margin-right:4px;white-space:nowrap}
+.sev-high{color:var(--bad);border-color:var(--bad)} .sev-medium{color:var(--warn);border-color:var(--warn)} .sev-low{color:var(--ok);border-color:var(--ok)}
+.lvl-b{color:var(--ok);border-color:#285c3e} .lvl-a{color:var(--warn);border-color:#6b5a2a}
+.safety{border-left:4px solid var(--bad);background:rgba(255,107,107,.08);padding:8px 12px;border-radius:0 6px 6px 0}
+.pending-val{color:var(--warn);font-size:12.5px}
+abbr.gl{text-decoration:underline dotted var(--dim);cursor:help}
+
+/* status badges */
+.st{display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;white-space:nowrap;vertical-align:middle;font-weight:600}
+.st-pub{background:rgba(60,207,122,.14);color:var(--ok)}
+.st-gen{background:rgba(127,182,255,.14);color:var(--info)}
+.st-ex{background:rgba(180,180,200,.14);color:#c9c9d6}
+.st-pend{background:rgba(255,181,71,.14);color:var(--warn)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12px;color:var(--dim);margin:6px 0 16px}
+.legend-item{display:flex;gap:6px;align-items:center}
+
+/* collapsible record section */
+.sec{border:1px solid var(--line);border-radius:6px;margin-bottom:8px;background:var(--panel)}
+.sec>summary{padding:9px 12px;font-weight:600}
+.sec>div{padding:0 12px 12px}
+
+@media (max-width:860px){
+  .menu-btn{display:block}
+  aside{position:fixed;left:0;top:57px;bottom:0;z-index:30;max-height:none;transform:translateX(-100%);transition:transform .2s;box-shadow:4px 0 20px rgba(0,0,0,.5)}
+  aside.open{transform:none}
+  main{padding:14px 16px 60px}
+  header{flex-wrap:wrap}
+  .search{order:3;flex-basis:100%;max-width:none}
+  .brand small{display:none}
+  .rec th{width:120px}
+  .rec, .rec tbody, .rec tr, .rec th, .rec td{display:block;width:100%}
+  .rec th{border-bottom:0;padding-bottom:2px}
+}
+</style>
+</head>
+<body>
+<header>
+  <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+  <div class="brand">🔧 <span id="brandName"></span><small id="brandSub"></small></div>
+  <form class="search" id="searchForm" role="search">
+    <input id="q" autocomplete="off">
+    <button id="qBtn" type="submit"></button>
+  </form>
+  <div class="langs" id="langs"></div>
+</header>
+<div class="wrap">
+  <aside id="side"></aside>
+  <main id="main"></main>
+</div>
+
+<!-- @include kb-data.js -->
+<!-- @include kb-core.js -->
+<script>
+/* =================== SAMPLE 1 APP =================== */
+(function(){
+  var DS = KB.DataStore, L = KB.L, U = KB.U, esc = KB.esc, badge = KB.badge, val = KB.val;
+  var T = { /* layout-specific labels */
+    brand: {en:"Vehicle Diagnostic Database",ta:"வாகன பழுது தரவுத்தளம்",si:"වාහන රෝග විනිශ්චය දත්ත ගබඩාව"},
+    brandSub: {en:"Sample 1 · Traditional database layout",ta:"Sample 1 · பாரம்பரிய database வடிவம்",si:"Sample 1 · සාම්ප්‍රදායික දත්ත ගබඩා පිරිසැලසුම"},
+    search: {en:"Search",ta:"தேடு",si:"සොයන්න"},
+    vehicles: {en:"Vehicles",ta:"வாகனங்கள்",si:"වාහන"},
+    tools: {en:"Reference",ta:"குறிப்புகள்",si:"යොමු"},
+    overview: {en:"Vehicle overview",ta:"வாகன கண்ணோட்டம்",si:"වාහන දළ විශ්ලේෂණය"},
+    dtcIndex: {en:"DTC index",ta:"DTC பட்டியல்",si:"DTC දර්ශකය"},
+    home: {en:"Home",ta:"முகப்பு",si:"මුල් පිටුව"},
+    spec: {en:"Specification",ta:"விவரம்",si:"පිරිවිතරය"},
+    value: {en:"Value",ta:"மதிப்பு",si:"අගය"},
+    status: {en:"Status",ta:"நிலை",si:"තත්ත්වය"},
+    procs: {en:"Repair procedures",ta:"ரிப்பேர் முறைகள்",si:"අලුත්වැඩියා ක්‍රම"},
+    func: {en:"Function",ta:"செயல்பாடு",si:"කාර්යය"},
+    level: {en:"Level",ta:"நிலை",si:"මට්ටම"},
+    results: {en:"Search results for",ta:"தேடல் முடிவுகள்:",si:"සෙවුම් ප්‍රතිඵල:"},
+    notFoundDtc: {en:"This code is not in the sample data yet. In the full app, the record would be loaded from the database.",ta:"இந்த code இன்னும் மாதிரி டேட்டாவில் இல்லை. முழு app-இல் database-இல் இருந்து எடுக்கப்படும்.",si:"මෙම code එක තවම සාම්පල දත්තවල නැත. සම්පූර්ණ app එකේදී දත්ත ගබඩාවෙන් ලබා ගනී."},
+    openRecord: {en:"Open record",ta:"பதிவை திற",si:"වාර්තාව විවෘත කරන්න"},
+    level_col: {en:"Level",ta:"நிலை",si:"මට්ටම"}
+  };
+  var t = function(k){ return L(T[k]); };
+  var VID = DS.meta().demoVehicleId;
+  var veh = DS.vehicle(VID);
+
+  /* ---------- router (#/view/arg) ---------- */
+  function route(){
+    var h = (location.hash || "#/vehicle").slice(2).split("/");
+    var view = h[0], arg = decodeURIComponent(h[1] || "");
+    renderSide(view, arg);
+    var m = document.getElementById("main");
+    if (view === "dtc") m.innerHTML = viewDTC(arg);
+    else if (view === "dtcs") m.innerHTML = viewDTCIndex();
+    else if (view === "cat") m.innerHTML = viewCategory(arg);
+    else if (view === "proc") m.innerHTML = viewProc(arg);
+    else if (view === "special") m.innerHTML = viewSpecial(arg);
+    else if (view === "manual") m.innerHTML = viewManual();
+    else if (view === "glossary") m.innerHTML = viewGlossary();
+    else if (view === "search") m.innerHTML = viewSearch(arg);
+    else m.innerHTML = viewVehicle();
+    document.getElementById("side").classList.remove("open");
+    window.scrollTo(0,0);
+  }
+  window.addEventListener("hashchange", route);
+
+  /* ---------- sidebar tree ---------- */
+  function renderSide(view, arg){
+    var tree = DS.vehicleTree(), h = '<div class="side-h">'+esc(t("vehicles"))+'</div>';
+    Object.keys(tree).forEach(function(make){
+      h += '<details class="lvl1" open><summary>🚗 '+esc(make)+'</summary>';
+      Object.keys(tree[make]).forEach(function(model){
+        h += '<details class="lvl2" open><summary>'+esc(model)+'</summary>';
+        Object.keys(tree[make][model]).forEach(function(year){
+          h += '<details class="lvl3" open><summary>'+esc(year)+'</summary>';
+          tree[make][model][year].forEach(function(v){
+            h += '<details class="lvl4" open><summary><b>'+esc(v.engine)+'</b></summary>';
+            h += link("#/vehicle", "📄 "+t("overview"), view==="vehicle");
+            DS.categories().forEach(function(c){
+              var n = DS.categoryCounts(c.id), total = n.dtc+n.proc+n.special;
+              h += link("#/cat/"+c.id, c.icon+" "+L(c.name), view==="cat"&&arg===c.id, total||"–");
+            });
+            h += '</details>';
+          });
+          h += '</details>';
+        });
+        h += '</details>';
+      });
+      h += '</details>';
+    });
+    h += '<div class="side-h">'+esc(t("tools"))+'</div>';
+    h += link("#/dtcs","🗂️ "+t("dtcIndex"),view==="dtcs",DS.dtcs().length,true);
+    h += link("#/manual","🔎 "+U("manual_title"),view==="manual",null,true);
+    h += link("#/special","🛠️ "+U("special_title"),view==="special"&&!arg,null,true);
+    h += link("#/glossary","📖 "+U("glossary"),view==="glossary",null,true);
+    document.getElementById("side").innerHTML = h;
+  }
+  function link(href, label, on, cnt, plain){
+    return '<a class="tree-link'+(on?" on":"")+(plain?" plain":"")+'" href="'+href+'">'+esc(label)+(cnt!=null?'<span class="cnt">'+cnt+'</span>':"")+'</a>';
+  }
+
+  /* ---------- shared bits ---------- */
+  function crumbs(parts){
+    return '<div class="crumb"><a href="#/vehicle">'+esc(t("home"))+'</a> › '+esc(veh.make)+' › '+esc(veh.chassis)+' › '+veh.year+' › '+esc(veh.engine)+
+      parts.map(function(p,i){ return ' › '+(i===parts.length-1?'<b>'+esc(p)+'</b>':esc(p)); }).join("")+'</div>';
+  }
+  function head(title, sub){
+    return '<h1>'+title+'</h1>'+(sub?'<p class="sub">'+sub+'</p>':"")+
+      '<div class="notice">'+esc(L(DS.meta().notice))+'</div>';
+  }
+  function sev(s){ return '<span class="pill sev-'+s+'">'+esc(U("sev_"+s))+'</span>'; }
+  function lvl(l){ return '<span class="pill '+(l==="beginner"?"lvl-b":"lvl-a")+'">'+esc(U(l))+'</span>'; }
+  function sysNames(arr){ return arr.map(function(s){ var c=DS.category(s); return c? c.icon+" "+esc(L(c.name)):s; }).join(", "); }
+  function stList(items, ordered){ /* list of {status,text} */
+    if (!items || !items.length) return '<span class="pending-val">—</span>';
+    var tag = ordered?"ol":"ul";
+    return '<'+tag+' class="l">'+items.map(function(i){
+      var tx = i.text? KB.gloss(esc(L(i.text))) : KB.gloss(esc(L(i)));
+      return '<li>'+tx+(i.status?' '+badge(i.status,true):"")+(i.level?' '+lvl(i.level):"")+'</li>';
+    }).join("")+'</'+tag+'>';
+  }
+  function scannerPill(v){
+    if (v===true) return '<span class="pill sev-medium">📟 '+esc(U("scanner_req"))+'</span>';
+    if (v===false) return '<span class="pill sev-low">✋ '+esc(U("scanner_no"))+'</span>';
+    return '<span class="pill">❔ '+esc(U("scanner_maybe"))+'</span>';
+  }
+
+  /* ---------- views ---------- */
+  function viewVehicle(){
+    var h = crumbs([t("overview")]) + head(esc(veh.make+" "+veh.model+" · "+veh.chassis+" · "+veh.year), esc(veh.engine+" · "+veh.fuel));
+    h += '<div class="legend"><b>'+esc(U("legend"))+':</b>'+KB.legendHTML()+'</div>';
+    h += '<h2>'+esc(U("specs"))+'</h2><div class="tbl-scroll"><table><thead><tr><th>'+esc(t("spec"))+'</th><th>'+esc(t("value"))+'</th><th>'+esc(t("status"))+'</th></tr></thead><tbody>';
+    veh.specs.forEach(function(s){ h += '<tr><td>'+esc(L(s.k))+'</td><td>'+(s.v?esc(s.v)+(s.status==="pending"?'<br>'+val("", "pending"):""):val(s.v,s.status))+'</td><td>'+badge(s.status)+'</td></tr>'; });
+    h += '</tbody></table></div>';
+    h += '<h2>'+esc(U("system"))+'</h2><div class="tbl-scroll"><table><thead><tr><th>#</th><th>'+esc(U("system"))+'</th><th>DTC</th><th>'+esc(t("procs"))+'</th><th>'+esc(U("special_title"))+'</th></tr></thead><tbody>';
+    DS.categories().forEach(function(c,i){
+      var n = DS.categoryCounts(c.id);
+      h += '<tr class="click" onclick="location.hash=\'#/cat/'+c.id+'\'"><td>'+(i+1)+'</td><td>'+c.icon+' '+esc(L(c.name))+'</td><td>'+(n.dtc||"–")+'</td><td>'+(n.proc||"–")+'</td><td>'+(n.special||"–")+'</td></tr>';
+    });
+    return h + '</tbody></table></div>';
+  }
+
+  function dtcTable(list){
+    if (!list.length) return '<p class="pending-val">'+esc(U("no_data"))+'</p>';
+    var h = '<div class="tbl-scroll"><table><thead><tr><th>'+esc(U("dtc"))+'</th><th>'+esc(U("description"))+'</th><th>'+esc(U("system"))+'</th><th>'+esc(U("severity"))+'</th></tr></thead><tbody>';
+    list.forEach(function(d){
+      h += '<tr class="click" onclick="location.hash=\'#/dtc/'+d.code+'\'"><td class="code">'+d.code+'</td><td>'+esc(L(d.title))+' '+badge(d.titleStatus,true)+'</td><td>'+sysNames(d.system)+'</td><td>'+sev(d.severity)+'</td></tr>';
+    });
+    return h + '</tbody></table></div>';
+  }
+  function procTable(list){
+    if (!list.length) return '';
+    var h = '<div class="tbl-scroll"><table><thead><tr><th>'+esc(t("procs"))+'</th><th>'+esc(t("level_col"))+'</th><th>'+esc(U("time"))+'</th><th>DTC</th></tr></thead><tbody>';
+    list.forEach(function(p){ h += '<tr class="click" onclick="location.hash=\'#/proc/'+p.id+'\'"><td>'+esc(L(p.title))+'</td><td>'+lvl(p.level)+'</td><td>'+esc(p.time)+'</td><td>'+p.relatedDtc.map(function(c){return '<span class="code">'+c+'</span>';}).join(" ")+'</td></tr>'; });
+    return h + '</tbody></table></div>';
+  }
+  function specialTable(list){
+    if (!list.length) return '';
+    var h = '<div class="tbl-scroll"><table><thead><tr><th>'+esc(t("func"))+'</th><th>Scanner</th><th>'+esc(t("level_col"))+'</th></tr></thead><tbody>';
+    list.forEach(function(s){ h += '<tr class="click" onclick="location.hash=\'#/special/'+s.id+'\'"><td>'+esc(L(s.title))+'</td><td>'+scannerPill(s.needsScanner)+'</td><td>'+lvl(s.level)+'</td></tr>'; });
+    return h + '</tbody></table></div>';
+  }
+
+  function viewCategory(id){
+    var c = DS.category(id); if (!c) return viewVehicle();
+    var dt = DS.dtcsBySystem(id), pr = id==="repair"? DS.procedures() : DS.proceduresBySystem(id), sp = id==="special"? DS.specialFunctions() : DS.specialBySystem(id);
+    var h = crumbs([L(c.name)]) + head(c.icon+" "+esc(L(c.name)));
+    if (!dt.length && !pr.length && !sp.length) return h + '<p class="pending-val">'+esc(U("no_data"))+'</p>';
+    if (dt.length) h += '<h2>DTC</h2>'+dtcTable(dt);
+    if (pr.length) h += '<h2>'+esc(t("procs"))+'</h2>'+procTable(pr);
+    if (sp.length) h += '<h2>'+esc(U("special_title"))+'</h2>'+specialTable(sp);
+    return h;
+  }
+
+  function viewDTCIndex(){
+    return crumbs([t("dtcIndex")]) + head(esc(t("dtcIndex"))) + dtcTable(DS.dtcs());
+  }
+
+  function viewDTC(code){
+    var d = DS.dtc(code);
+    if (!d) return crumbs([code]) + head('<span class="code">'+esc(code)+'</span>') + '<p class="pending-val">'+esc(t("notFoundDtc"))+'</p>';
+    var h = crumbs([t("dtcIndex"), d.code]) + head('<span class="code">'+d.code+'</span> — '+esc(L(d.title))+' '+badge(d.titleStatus), sev(d.severity)+' '+sysNames(d.system));
+    if (d.safety) h += '<div class="safety"><b>⚠ '+esc(U("safety"))+':</b> '+esc(L(d.safety))+'</div><br>';
+
+    /* main record sheet — one row per field */
+    h += '<table class="rec"><tbody>';
+    h += row(U("dtc"), '<span class="code">'+d.code+'</span>');
+    h += row(U("description"), KB.gloss(esc(L(d.meaning))));
+    h += row(U("applic"), esc(L(d.applicability.text))+' '+badge(d.applicability.status,true));
+    h += row(U("system"), sysNames(d.system));
+    h += row(U("causes"), stList(d.causes));
+    h += row(U("symptoms"), stList(d.symptoms));
+    h += '</tbody></table>';
+
+    /* longer sections are collapsible */
+    h += sec(U("diagnosis"), stList(d.diagnosis, true), true);
+    h += sec(U("wiring"), stList(d.wiring));
+    h += sec(U("pins"), pinTable(d.pins));
+    h += sec(U("sensor"), stList(d.sensorTest));
+    h += sec(U("meter"), meterTable(d.meterValues));
+    h += sec(U("scanner"), stList(d.scanner));
+    h += sec(U("repair"), stList(d.repair, true));
+    h += sec(U("parts"), partsTable(d.parts));
+    h += sec(U("verify"), stList(d.verify, true));
+    h += sec(U("related"), d.related.length? d.related.map(function(c){ return DS.dtc(c)? '<a class="code" href="#/dtc/'+c+'">'+c+'</a>' : '<span class="code" style="opacity:.6">'+c+'</span>'; }).join(" · ") : "—", true);
+    var procs = DS.procedures().filter(function(p){ return p.relatedDtc.indexOf(d.code)>=0; });
+    if (procs.length) h += '<h2>'+esc(t("procs"))+'</h2>'+procTable(procs);
+    return h;
+  }
+  function row(k, v){ return '<tr><th>'+esc(k)+'</th><td>'+v+'</td></tr>'; }
+  function sec(title, body, open){ return '<details class="sec"'+(open?" open":"")+'><summary>'+esc(title)+'</summary><div>'+body+'</div></details>'; }
+  function pinTable(p){
+    if (!p.rows.length) return val("", "pending");
+    var h = '<div style="margin-bottom:6px">'+badge(p.status)+'</div><div class="tbl-scroll"><table><thead><tr><th>'+esc(U("item"))+'</th><th>'+esc(U("connector"))+'</th><th>'+esc(U("pin"))+'</th><th>'+esc(U("ecm_pin"))+'</th></tr></thead><tbody>';
+    p.rows.forEach(function(r){ var st = p.status; h += '<tr><td>'+esc(r.item)+'</td><td>'+val(r.connector, r.connector?"":st)+'</td><td>'+val(r.pin, r.pin?"":st)+'</td><td>'+val(r.ecmPin, "pending")+'</td></tr>'; });
+    return h + '</tbody></table></div>';
+  }
+  function meterTable(m){
+    if (!m.rows.length) return val("", "pending");
+    var h = '<div style="margin-bottom:6px">'+badge(m.status)+'</div><div class="tbl-scroll"><table><thead><tr><th>'+esc(U("test"))+'</th><th>'+esc(U("expected"))+'</th></tr></thead><tbody>';
+    m.rows.forEach(function(r){ h += '<tr><td>'+esc(L(r.test))+'</td><td>'+val(r.expected, r.expected?m.status:"pending")+'</td></tr>'; });
+    return h + '</tbody></table></div>';
+  }
+  function partsTable(parts){
+    if (!parts.length) return "—";
+    var h = '<div class="tbl-scroll"><table><thead><tr><th>'+esc(U("parts"))+'</th><th>'+esc(U("part_no"))+'</th></tr></thead><tbody>';
+    parts.forEach(function(p){ h += '<tr><td>'+esc(L(p.name))+'</td><td>'+val(p.partNo, p.status)+'</td></tr>'; });
+    return h + '</tbody></table></div>';
+  }
+
+  function viewProc(id){
+    var p = DS.procedure(id); if (!p) return viewVehicle();
+    var h = crumbs([t("procs"), L(p.title)]) + head(esc(L(p.title)), lvl(p.level));
+    h += '<table class="rec"><tbody>'+row(U("time"), esc(p.time))+row(U("tools"), esc(L(p.tools)))+row(U("related"), p.relatedDtc.map(function(c){return '<a class="code" href="#/dtc/'+c+'">'+c+'</a>';}).join(" "))+'</tbody></table>';
+    h += '<div class="safety"><b>⚠ '+esc(U("safety"))+':</b> '+esc(L(p.warning))+'</div>';
+    h += '<h2>'+esc(U("steps"))+'</h2><div class="tbl-scroll"><table><thead><tr><th>#</th><th>'+esc(U("steps"))+'</th><th>'+esc(t("status"))+'</th></tr></thead><tbody>';
+    p.steps.forEach(function(s,i){ h += '<tr><td>'+(i+1)+'</td><td>'+esc(L(s.text))+(s.value!==undefined?'<br>'+val(s.value, s.status):"")+'</td><td>'+badge(s.status,true)+'</td></tr>'; });
+    return h + '</tbody></table></div>';
+  }
+
+  function viewSpecial(id){
+    if (id){
+      var s = null; DS.specialFunctions().forEach(function(x){ if(x.id===id) s=x; });
+      if (s){
+        var h = crumbs([U("special_title"), L(s.title)]) + head(esc(L(s.title)), scannerPill(s.needsScanner)+' '+lvl(s.level));
+        if (s.group==="key"||s.group==="remote") h += '<div class="safety">🔐 '+esc(U("no_bypass"))+'</div><br>';
+        h += '<table class="rec"><tbody>'+row(U("why"), esc(L(s.why)))+'</tbody></table>';
+        h += '<h2>'+esc(U("steps"))+'</h2><div class="tbl-scroll"><table><thead><tr><th>#</th><th>'+esc(U("steps"))+'</th><th>'+esc(t("status"))+'</th></tr></thead><tbody>';
+        s.steps.forEach(function(st,i){ h += '<tr><td>'+(i+1)+'</td><td>'+esc(L(st.text))+'</td><td>'+badge(st.status,true)+'</td></tr>'; });
+        return h + '</tbody></table></div>';
+      }
+    }
+    return crumbs([U("special_title")]) + head("🛠️ "+esc(U("special_title"))) + '<div class="safety">🔐 '+esc(U("no_bypass"))+'</div><br>' + specialTable(DS.specialFunctions());
+  }
+
+  function viewManual(){
+    var g = DS.scannerGuide();
+    var h = crumbs([U("manual_title")]) + head("🔎 "+esc(U("manual_title")));
+    h += '<table class="rec"><tbody>'+row("✋ "+U("manual_ok"), stList(g.manualOk))+row("📟 "+U("scanner_needed"), stList(g.scannerNeeded))+'</tbody></table>';
+    DS.manualTests().forEach(function(m){
+      h += '<details class="sec"><summary>'+m.icon+' '+esc(L(m.title))+' '+badge("general",true)+'</summary><div><p>'+esc(L(m.intro))+'</p>'+stList(m.steps,true)+'</div></details>';
+    });
+    return h;
+  }
+
+  function viewGlossary(){
+    var h = crumbs([U("glossary")]) + head("📖 "+esc(U("glossary")));
+    h += '<table><tbody>'; DS.glossary().forEach(function(g){ h += row(g.term, esc(L(g.text))); }); return h + '</tbody></table>';
+  }
+
+  function viewSearch(q){
+    var r = DS.search(q);
+    var h = crumbs([t("results")+" "+q]) + head(esc(t("results"))+' “'+esc(q)+'”');
+    if (!r.dtcs.length && !r.procedures.length && !r.special.length){
+      return h + '<p class="pending-val">'+esc(DS.looksLikeDTC(q)? t("notFoundDtc") : U("no_results"))+'</p>';
+    }
+    if (r.dtcs.length) h += '<h2>DTC</h2>'+dtcTable(r.dtcs);
+    if (r.procedures.length) h += '<h2>'+esc(t("procs"))+'</h2>'+procTable(r.procedures);
+    if (r.special.length) h += '<h2>'+esc(U("special_title"))+'</h2>'+specialTable(r.special);
+    return h;
+  }
+
+  /* ---------- header wiring ---------- */
+  document.getElementById("searchForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var q = document.getElementById("q").value.trim(); if (!q) return;
+    location.hash = DS.dtc(q) ? "#/dtc/"+q.toUpperCase() : "#/search/"+encodeURIComponent(q);
+  });
+  document.getElementById("menuBtn").onclick = function(){ document.getElementById("side").classList.toggle("open"); };
+
+  function renderChrome(){
+    document.getElementById("brandName").textContent = t("brand");
+    document.getElementById("brandSub").textContent = t("brandSub");
+    document.getElementById("q").placeholder = U("search_ph");
+    document.getElementById("qBtn").textContent = t("search");
+    document.getElementById("langs").innerHTML = KB.LANGS.map(function(l){
+      return '<button class="'+(KB.getLang()===l.id?"on":"")+'" data-l="'+l.id+'" title="'+l.label+'">'+l.label+'</button>';
+    }).join("");
+  }
+  document.getElementById("langs").addEventListener("click", function(e){ var l = e.target.getAttribute("data-l"); if (l) KB.setLang(l); });
+  KB.onLang(function(){ renderChrome(); route(); });
+  document.documentElement.lang = KB.getLang();
+  renderChrome(); route();
+})();
+</script>
+</body>
+</html>

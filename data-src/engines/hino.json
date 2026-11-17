@@ -1,0 +1,293 @@
+[
+ {
+  "key": "hino_j05e",
+  "make": "Hino",
+  "name": "Hino J05E (5.1L common-rail diesel)",
+  "vehicles": "Hino 300 high-HP, Ranger / 500 (FC, FD, GD), 155 / 195",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2005–2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4 OHC 16v"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "5123cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Fuel System",
+      {
+       "v": "Denso common rail, VNT turbo, EGR, DPR"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Hino 300 high-HP, Ranger / 500 (FC, FD, GD), 155 / 195"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "Hino engine spec sheets (J05E) + motofork J05E",
+       "v": "112 × 130 mm"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "Hino engine spec sheets (J05E) + motofork J05E",
+       "v": "J05E-UJ: 151 kW @ 2600, 600 N·m · J05E-UH: 139 kW, 510 N·m"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "Hino engine spec sheet (J05E)",
+       "v": "20.5 L"
+      }
+     ],
+     [
+      "Coolant Capacity",
+      {
+       "u": 1,
+       "src": "Hino engine spec sheet (J05E)",
+       "v": "9.0–9.5 L (engine)"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "DPR / DPF blockage",
+      {
+       "u": 1,
+       "src": "KATO WORKS Hino list + Hino J05E TSB (P2458, P24A2, DPR cleaner)",
+       "v": "DPR அடைப்பு P2463 (flash 92) — manual regeneration / DPR cleaning"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "DTC படிக்க / Clear (Hino)",
+      {
+       "u": 1,
+       "src": "Hino workshop manuals (Hino-DX) + KATO WORKS Hino ECU error code list (flash codes)",
+       "v": "Hino-DX (PC diagnosis tool) மூலம் engine ECU code + freeze frame. Diagnosis switch / connector ground செய்தால் check engine lamp flash code (2-digit) காட்டும் (flash எண் கீழே code பட்டியலில்)."
+      }
+     ],
+     [
+      "Injector மாற்றம் — QR / ID code பதிவு",
+      {
+       "u": 1,
+       "src": "Hino CRS service manual note (QR code) + Hino 338 manual P1601",
+       "v": "Injector அல்லது engine ECU மாற்றினால் Hino diagnostic tool மூலம் injector QR (ID) code-ஐ ECU-ல் பதிவு செய்ய வேண்டும் (P1601 injector adjustment data error)."
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "hino_j08e",
+  "make": "Hino",
+  "name": "Hino J08E (7.7L common-rail diesel)",
+  "vehicles": "Ranger / 500 (FG, FM, GH), Hino 238 / 258 / 268 / 338",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "2003–2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I6 OHC 24v"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "7684cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Fuel System",
+      {
+       "v": "Denso common rail (HP4 pump), VNT turbo, EGR"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Ranger / 500 (FG, FM, GH), Hino 238 / 258 / 268 / 338"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "Hino J08C/J08E spec sheet + toyotazambia Hino 500 spec + Denso J05D/J08E CRS manual",
+       "v": "112 × 130 mm"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "Hino J08C/J08E spec sheet + toyotazambia Hino 500 spec + Denso J05D/J08E CRS manual",
+       "v": "J08E: 191–206 kW (260–280 PS), ~ 745–883 N·m"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "Hino J08C/J08E spec sheet",
+       "v": "25.5–27.5 L (J08C/J08E sheet)"
+      }
+     ],
+     [
+      "Firing Order",
+      {
+       "u": 1,
+       "src": "Hino J08 engine data (workshop excerpt)",
+       "v": "1-4-2-6-3-5"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "DTC படிக்க / Clear (Hino)",
+      {
+       "u": 1,
+       "src": "Hino workshop manuals (Hino-DX) + KATO WORKS Hino ECU error code list (flash codes)",
+       "v": "Hino-DX (PC diagnosis tool) மூலம் engine ECU code + freeze frame. Diagnosis switch / connector ground செய்தால் check engine lamp flash code (2-digit) காட்டும் (flash எண் கீழே code பட்டியலில்)."
+      }
+     ],
+     [
+      "Injector மாற்றம் — QR / ID code பதிவு",
+      {
+       "u": 1,
+       "src": "Hino CRS service manual note (QR code) + Hino 338 manual P1601",
+       "v": "Injector அல்லது engine ECU மாற்றினால் Hino diagnostic tool மூலம் injector QR (ID) code-ஐ ECU-ல் பதிவு செய்ய வேண்டும் (P1601 injector adjustment data error)."
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "hino_w04d",
+  "make": "Hino",
+  "name": "Hino W04D (4.0L diesel, mechanical / early)",
+  "vehicles": "Dutro (WU300 / 340 / 410), Toyota Dyna",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "காலம் (Years)",
+      {
+       "v": "1983–2011"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4 OHV 8v"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "4009cc"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Fuel System",
+      {
+       "v": "Direct injection, in-line / distributor pump (mechanical)"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Dutro (WU300 / 340 / 410), Toyota Dyna"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "Toyota W engine (Wikipedia) + Hino W04D-J workshop manual",
+       "v": "104 × 118 mm"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "Toyota W engine (Wikipedia) + Hino W04D-J workshop manual",
+       "v": "~130 hp"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "Engine DTC availability",
+      {
+       "u": 1,
+       "src": "Hino W04D-J workshop manual (Dutro WU series)",
+       "v": "Mechanical injection W04D — engine ECU DTC இல்லை (பிற்கால N04C common-rail-க்கு மட்டும்)."
+      }
+     ]
+    ]
+   }
+  }
+ }
+]

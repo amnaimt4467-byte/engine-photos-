@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<title>Engine Specs</title>
+<!--
+  ENGINE SPECS — app shell
+  Everything is local: no CDN, no web fonts, no network calls. It must run
+  offline inside the Android app and also when opened as a plain file.
+
+  Load order matters:
+    vendor/capacitor.js  the @capacitor/core runtime (needed to reach native plugins inside the app)
+    native.js          Native   (plugin access in the app; null in a browser)
+    settings.js        user preferences (language, theme, text size …)
+    data/catalog.js    CATALOG  (brands, models, year/engine entries, engine index — generated)
+    data.js            KB_DATA  (demo pack for the HiAce 1KD-FTV, categories, glossary)
+    core.js            KB       (DataStore, translations helper, badges, units)
+    i18n.js            I18N     (app UI text in en / ta / si)
+    dtc.js             DTC      (layered code lookup; loads data/dtc-lib.js on first use)
+    voice.js           Voice    (spoken code → search, read answers aloud)
+    app.js             APP      (router, header, tabs, shared helpers)
+    screens.js         home, vehicle picker, vehicle, system
+    screens-dtc.js     DTC lookup, search results, code page, browse
+    screens-guide.js   step-by-step diagnosis, special functions, testing lessons
+    screen-settings.js settings
+-->
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<header class="top">
+  <div class="hrow">
+    <button class="back" id="back" aria-label="Back" hidden>←</button>
+    <div class="htitle" id="htitle"></div>
+  </div>
+</header>
+<main id="main"></main>
+<nav class="tabs"><div class="in" id="tabsIn"></div></nav>
+
+<script src="js/vendor/capacitor.js"></script>
+<script src="js/native.js"></script>
+<script src="js/settings.js"></script>
+<script src="data/catalog.js"></script>
+<script src="js/data.js"></script>
+<script src="js/core.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/dtc.js"></script>
+<script src="js/voice.js"></script>
+<script src="js/app.js"></script>
+<script src="js/screens.js"></script>
+<script src="js/screens-dtc.js"></script>
+<script src="js/screens-guide.js"></script>
+<script src="js/screen-settings.js"></script>
+<script>APP.render();</script>
+</body>
+</html>

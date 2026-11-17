@@ -1,0 +1,17 @@
+node_modules/
+*.log
+.DS_Store
+
+# Android build outputs (the android/ project itself is committed)
+android/.gradle/
+android/build/
+android/app/build/
+android/capacitor-cordova-android-plugins/build/
+android/local.properties
+android/app/src/main/assets/public/
+*.apk
+*.aab
+*.keystore
+# the one exception: the shared key for TEST builds (see android/app/build.gradle)
+!android/app/test-signing.keystore
+*.jks

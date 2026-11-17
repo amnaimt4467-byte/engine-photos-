@@ -1,0 +1,2600 @@
+[
+ {
+  "key": "kia_d4fa",
+  "make": "Kia",
+  "name": "Kia U1 1.5 CRDi (D4FA)",
+  "vehicles": "Rio, Cerato",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2005-2020"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1493cc (1.5L)"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "Engine Family",
+      {
+       "v": "U1"
+      }
+     ],
+     [
+      "Variant",
+      {
+       "v": "CRDi"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Rio, Cerato"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "75 x 84.5 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "17.8:1"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "79–110 hp / 170–235 N·m"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "5.7 L"
+      }
+     ],
+     [
+      "Engine Oil (Grade)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "0W-30 / 5W-30"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Chain"
+      }
+     ],
+     [
+      "Hydraulic Lifters",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "ஆம்"
+      }
+     ],
+     [
+      "Engine Lifespan (approx.)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "~350,000 km"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ESC: Steering angle sensor (SAS) calibration",
+      {
+       "u": 1,
+       "src": "YOUCANIC Hyundai list (C1259/C1260 SAS electrical / signal)",
+       "v": "SAS / HECU / steering column மாற்றியதும் அல்லது wheel alignment-க்குப் பின் GDS/KDS-ல் 'SAS calibration' (wheels straight, engine running) செய்யவும்; இல்லையெனில் C1260 / ESC lamp."
+      }
+     ],
+     [
+      "ABS/SRS low-voltage check first",
+      {
+       "u": 1,
+       "src": "go-parts C1102 / C1103 (Hyundai/Kia)",
+       "v": "Hyundai/Kia-வில் battery 12.4 V-க்கு கீழ் / charging குறைவு C1102 / C1103 / B1102 போன்ற false code-களை உண்டாக்கும் — part மாற்றும் முன் battery & alternator சோதிக்கவும்."
+      }
+     ],
+     [
+      "CRDi rail pressure code — diagnosis order (P1185 / P1186 / P0087 / P0088)",
+      {
+       "u": 1,
+       "src": "go-parts P1185 / P1186 Hyundai & Kia CRDi pages",
+       "v": "P1186 / P0087 (அழுத்தம் குறைவு): முதலில் tank-க்குள் உள்ள fuel strainer, fuel filter, air in fuel; பின் injector leak-off. P1185 / P0088 (அழுத்தம் அதிகம்): pump-ல் உள்ள pressure regulator (IMV / SCV), rail pressure sensor. இரண்டும் மாறி மாறி வந்தால் regulator நிலையற்றது — regulator-ஐ முதலில் சந்தேகிக்கவும்."
+      }
+     ],
+     [
+      "Key teaching / ECM–SMARTRA neutralise (Hyundai / Kia)",
+      {
+       "u": 1,
+       "src": "Hyundai Elantra / Kia Rio repair info 'Programming and relearning' (virgin / learnt / neutral, PIN 6 digits, neutralising) + Kia SMARTRA training (max 8 keys) + Hyundai ED immobiliser (SMARTRA3) training",
+       "v": "GDS / Hi-Scan → Immobilizer → Key teaching: dealer-இடமிருந்து பெறும் 6-digit PIN code உள்ளிடவும். ECM 'virgin' அல்லது 'neutral' நிலையில் இருக்கும் போது மட்டுமே teaching ஏற்கப்படும்; SMARTRA3 உள்ள மாடல்களில் முதலில் SMARTRA, பின் key teach ஆகும். அதிகபட்சம் 8 key. 'Neutralise' = PIN (6) + user password (4) அழிப்பு, ECM key teaching தவிர lock. பழைய ECM-ல் பதிவான key-கள் புதிய ECM-க்கு செல்லாது — எல்லா key-களையும் மீண்டும் teach செய்யவும்."
+      }
+     ],
+     [
+      "Immobiliser limp home (owner 4-digit password)",
+      {
+       "u": 1,
+       "src": "Hyundai Atos owner's manual (limp home: 30 s, 8 s, 1 hour lock-out) + Kia owner's manual limp home procedure + Hyundai Tiburon limp home ('0' = 10 key cycles) + Hyundai TSB 06-90-009 (4-digit password ≠ 6-digit PIN)",
+       "v": "முன்பே dealer பதிவு செய்த 4-digit user password இருந்தால் மட்டும்: ignition ON → immobiliser indicator 5 முறை blink ஆகி அணையும் → password-ஐ ignition ON/OFF சுழற்சிகள் மூலம் உள்ளிடவும் (owner's manual படி; '0' = 10 சுழற்சி). சரியானால் சுமார் 30 வினாடிக்குள் engine start செய்ய வேண்டும்; engine நின்றால் 8 வினாடிக்குள் மீண்டும் start செய்யலாம். 3 முறை தவறினால் சுமார் 1 மணி நேரம் காத்திருக்க வேண்டும். பின் உடனே dealer-இடம் key / immobiliser பழுது சரி செய்யவும். (4-digit password ≠ 6-digit PIN.)"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "Swirl flaps / EGR",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Soot அடைப்பு — ~50,000 km-க்கு ஒருமுறை clean"
+      }
+     ],
+     [
+      "Timing chains",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "100,000–150,000 km-ல் wear/stretch"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "kia_d4fb",
+  "make": "Kia",
+  "name": "Kia U2 1.6 CRDi (D4FB)",
+  "vehicles": "Ceed, Cerato, Sportage",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2006-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1582cc (1.6L)"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "Engine Family",
+      {
+       "v": "U2"
+      }
+     ],
+     [
+      "Variant",
+      {
+       "v": "CRDi"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Ceed, Cerato, Sportage"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "77.2 x 84.5 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "17.3:1 (U1) / 17.0:1 (U2)"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "90–136 hp / 235–300 N·m"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "5.7 L"
+      }
+     ],
+     [
+      "Engine Oil (Grade)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "0W-30 / 5W-30"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Chain"
+      }
+     ],
+     [
+      "Hydraulic Lifters",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "ஆம்"
+      }
+     ],
+     [
+      "Engine Lifespan (approx.)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "~350,000 km"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ESC: Steering angle sensor (SAS) calibration",
+      {
+       "u": 1,
+       "src": "YOUCANIC Hyundai list (C1259/C1260 SAS electrical / signal)",
+       "v": "SAS / HECU / steering column மாற்றியதும் அல்லது wheel alignment-க்குப் பின் GDS/KDS-ல் 'SAS calibration' (wheels straight, engine running) செய்யவும்; இல்லையெனில் C1260 / ESC lamp."
+      }
+     ],
+     [
+      "ABS/SRS low-voltage check first",
+      {
+       "u": 1,
+       "src": "go-parts C1102 / C1103 (Hyundai/Kia)",
+       "v": "Hyundai/Kia-வில் battery 12.4 V-க்கு கீழ் / charging குறைவு C1102 / C1103 / B1102 போன்ற false code-களை உண்டாக்கும் — part மாற்றும் முன் battery & alternator சோதிக்கவும்."
+      }
+     ],
+     [
+      "CRDi rail pressure code — diagnosis order (P1185 / P1186 / P0087 / P0088)",
+      {
+       "u": 1,
+       "src": "go-parts P1185 / P1186 Hyundai & Kia CRDi pages",
+       "v": "P1186 / P0087 (அழுத்தம் குறைவு): முதலில் tank-க்குள் உள்ள fuel strainer, fuel filter, air in fuel; பின் injector leak-off. P1185 / P0088 (அழுத்தம் அதிகம்): pump-ல் உள்ள pressure regulator (IMV / SCV), rail pressure sensor. இரண்டும் மாறி மாறி வந்தால் regulator நிலையற்றது — regulator-ஐ முதலில் சந்தேகிக்கவும்."
+      }
+     ],
+     [
+      "Key teaching / ECM–SMARTRA neutralise (Hyundai / Kia)",
+      {
+       "u": 1,
+       "src": "Hyundai Elantra / Kia Rio repair info 'Programming and relearning' (virgin / learnt / neutral, PIN 6 digits, neutralising) + Kia SMARTRA training (max 8 keys) + Hyundai ED immobiliser (SMARTRA3) training",
+       "v": "GDS / Hi-Scan → Immobilizer → Key teaching: dealer-இடமிருந்து பெறும் 6-digit PIN code உள்ளிடவும். ECM 'virgin' அல்லது 'neutral' நிலையில் இருக்கும் போது மட்டுமே teaching ஏற்கப்படும்; SMARTRA3 உள்ள மாடல்களில் முதலில் SMARTRA, பின் key teach ஆகும். அதிகபட்சம் 8 key. 'Neutralise' = PIN (6) + user password (4) அழிப்பு, ECM key teaching தவிர lock. பழைய ECM-ல் பதிவான key-கள் புதிய ECM-க்கு செல்லாது — எல்லா key-களையும் மீண்டும் teach செய்யவும்."
+      }
+     ],
+     [
+      "Immobiliser limp home (owner 4-digit password)",
+      {
+       "u": 1,
+       "src": "Hyundai Atos owner's manual (limp home: 30 s, 8 s, 1 hour lock-out) + Kia owner's manual limp home procedure + Hyundai Tiburon limp home ('0' = 10 key cycles) + Hyundai TSB 06-90-009 (4-digit password ≠ 6-digit PIN)",
+       "v": "முன்பே dealer பதிவு செய்த 4-digit user password இருந்தால் மட்டும்: ignition ON → immobiliser indicator 5 முறை blink ஆகி அணையும் → password-ஐ ignition ON/OFF சுழற்சிகள் மூலம் உள்ளிடவும் (owner's manual படி; '0' = 10 சுழற்சி). சரியானால் சுமார் 30 வினாடிக்குள் engine start செய்ய வேண்டும்; engine நின்றால் 8 வினாடிக்குள் மீண்டும் start செய்யலாம். 3 முறை தவறினால் சுமார் 1 மணி நேரம் காத்திருக்க வேண்டும். பின் உடனே dealer-இடம் key / immobiliser பழுது சரி செய்யவும். (4-digit password ≠ 6-digit PIN.)"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "Swirl flaps / EGR",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Soot அடைப்பு — ~50,000 km-க்கு ஒருமுறை clean"
+      }
+     ],
+     [
+      "Timing chains",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "100,000–150,000 km-ல் wear/stretch"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "kia_d4ha",
+  "make": "Kia",
+  "name": "Kia R 2.0 CRDi (D4HA)",
+  "vehicles": "Sportage, Sorento",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2010-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1995cc (2.0L)"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "Engine Family",
+      {
+       "v": "R"
+      }
+     ],
+     [
+      "Variant",
+      {
+       "v": "CRDi"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Sportage, Sorento"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "mymotorlist.com — Hyundai-Kia D4HA (FAQ)",
+       "v": "136–184 hp / 320–400 N·m"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com — Hyundai-Kia D4HA (FAQ)",
+       "v": "8.8 L"
+      }
+     ],
+     [
+      "Engine Oil (Grade)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com — Hyundai-Kia D4HA (FAQ)",
+       "v": "5W-30 / 5W-40"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "mymotorlist.com — Hyundai-Kia D4HA (FAQ)",
+       "v": "Chain"
+      }
+     ],
+     [
+      "Hydraulic Lifters",
+      {
+       "u": 1,
+       "src": "mymotorlist.com — Hyundai-Kia D4HA (FAQ)",
+       "v": "ஆம் (valve adjust தேவையில்லை)"
+      }
+     ],
+     [
+      "Engine Lifespan (approx.)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com — Hyundai-Kia D4HA (FAQ)",
+       "v": "~400,000 km"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ESC: Steering angle sensor (SAS) calibration",
+      {
+       "u": 1,
+       "src": "YOUCANIC Hyundai list (C1259/C1260 SAS electrical / signal)",
+       "v": "SAS / HECU / steering column மாற்றியதும் அல்லது wheel alignment-க்குப் பின் GDS/KDS-ல் 'SAS calibration' (wheels straight, engine running) செய்யவும்; இல்லையெனில் C1260 / ESC lamp."
+      }
+     ],
+     [
+      "ABS/SRS low-voltage check first",
+      {
+       "u": 1,
+       "src": "go-parts C1102 / C1103 (Hyundai/Kia)",
+       "v": "Hyundai/Kia-வில் battery 12.4 V-க்கு கீழ் / charging குறைவு C1102 / C1103 / B1102 போன்ற false code-களை உண்டாக்கும் — part மாற்றும் முன் battery & alternator சோதிக்கவும்."
+      }
+     ],
+     [
+      "CRDi rail pressure code — diagnosis order (P1185 / P1186 / P0087 / P0088)",
+      {
+       "u": 1,
+       "src": "go-parts P1185 / P1186 Hyundai & Kia CRDi pages",
+       "v": "P1186 / P0087 (அழுத்தம் குறைவு): முதலில் tank-க்குள் உள்ள fuel strainer, fuel filter, air in fuel; பின் injector leak-off. P1185 / P0088 (அழுத்தம் அதிகம்): pump-ல் உள்ள pressure regulator (IMV / SCV), rail pressure sensor. இரண்டும் மாறி மாறி வந்தால் regulator நிலையற்றது — regulator-ஐ முதலில் சந்தேகிக்கவும்."
+      }
+     ],
+     [
+      "Key teaching / ECM–SMARTRA neutralise (Hyundai / Kia)",
+      {
+       "u": 1,
+       "src": "Hyundai Elantra / Kia Rio repair info 'Programming and relearning' (virgin / learnt / neutral, PIN 6 digits, neutralising) + Kia SMARTRA training (max 8 keys) + Hyundai ED immobiliser (SMARTRA3) training",
+       "v": "GDS / Hi-Scan → Immobilizer → Key teaching: dealer-இடமிருந்து பெறும் 6-digit PIN code உள்ளிடவும். ECM 'virgin' அல்லது 'neutral' நிலையில் இருக்கும் போது மட்டுமே teaching ஏற்கப்படும்; SMARTRA3 உள்ள மாடல்களில் முதலில் SMARTRA, பின் key teach ஆகும். அதிகபட்சம் 8 key. 'Neutralise' = PIN (6) + user password (4) அழிப்பு, ECM key teaching தவிர lock. பழைய ECM-ல் பதிவான key-கள் புதிய ECM-க்கு செல்லாது — எல்லா key-களையும் மீண்டும் teach செய்யவும்."
+      }
+     ],
+     [
+      "Immobiliser limp home (owner 4-digit password)",
+      {
+       "u": 1,
+       "src": "Hyundai Atos owner's manual (limp home: 30 s, 8 s, 1 hour lock-out) + Kia owner's manual limp home procedure + Hyundai Tiburon limp home ('0' = 10 key cycles) + Hyundai TSB 06-90-009 (4-digit password ≠ 6-digit PIN)",
+       "v": "முன்பே dealer பதிவு செய்த 4-digit user password இருந்தால் மட்டும்: ignition ON → immobiliser indicator 5 முறை blink ஆகி அணையும் → password-ஐ ignition ON/OFF சுழற்சிகள் மூலம் உள்ளிடவும் (owner's manual படி; '0' = 10 சுழற்சி). சரியானால் சுமார் 30 வினாடிக்குள் engine start செய்ய வேண்டும்; engine நின்றால் 8 வினாடிக்குள் மீண்டும் start செய்யலாம். 3 முறை தவறினால் சுமார் 1 மணி நேரம் காத்திருக்க வேண்டும். பின் உடனே dealer-இடம் key / immobiliser பழுது சரி செய்யவும். (4-digit password ≠ 6-digit PIN.)"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "Head gasket (early)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com — Hyundai-Kia D4HA",
+       "v": "ஆரம்ப ஆண்டு engine-களில் குறைந்த km-லேயே head gasket பஞ்சர்"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "kia_d4hb",
+  "make": "Kia",
+  "name": "Kia R 2.2 CRDi (D4HB)",
+  "vehicles": "Carnival, Sorento",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2010-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "2199cc (2.2L)"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Diesel"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "Engine Family",
+      {
+       "v": "R"
+      }
+     ],
+     [
+      "Variant",
+      {
+       "v": "CRDi"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Carnival, Sorento"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "85.4 x 96 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "16.0:1"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "150–200 hp / 412–441 N·m"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "7.4 / 7.8 L"
+      }
+     ],
+     [
+      "Engine Oil (Grade)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "5W-30 / 5W-40"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Chain"
+      }
+     ],
+     [
+      "Hydraulic Lifters",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "ஆம்"
+      }
+     ],
+     [
+      "Engine Lifespan (approx.)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "~450,000 km"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ESC: Steering angle sensor (SAS) calibration",
+      {
+       "u": 1,
+       "src": "YOUCANIC Hyundai list (C1259/C1260 SAS electrical / signal)",
+       "v": "SAS / HECU / steering column மாற்றியதும் அல்லது wheel alignment-க்குப் பின் GDS/KDS-ல் 'SAS calibration' (wheels straight, engine running) செய்யவும்; இல்லையெனில் C1260 / ESC lamp."
+      }
+     ],
+     [
+      "ABS/SRS low-voltage check first",
+      {
+       "u": 1,
+       "src": "go-parts C1102 / C1103 (Hyundai/Kia)",
+       "v": "Hyundai/Kia-வில் battery 12.4 V-க்கு கீழ் / charging குறைவு C1102 / C1103 / B1102 போன்ற false code-களை உண்டாக்கும் — part மாற்றும் முன் battery & alternator சோதிக்கவும்."
+      }
+     ],
+     [
+      "CRDi rail pressure code — diagnosis order (P1185 / P1186 / P0087 / P0088)",
+      {
+       "u": 1,
+       "src": "go-parts P1185 / P1186 Hyundai & Kia CRDi pages",
+       "v": "P1186 / P0087 (அழுத்தம் குறைவு): முதலில் tank-க்குள் உள்ள fuel strainer, fuel filter, air in fuel; பின் injector leak-off. P1185 / P0088 (அழுத்தம் அதிகம்): pump-ல் உள்ள pressure regulator (IMV / SCV), rail pressure sensor. இரண்டும் மாறி மாறி வந்தால் regulator நிலையற்றது — regulator-ஐ முதலில் சந்தேகிக்கவும்."
+      }
+     ],
+     [
+      "Key teaching / ECM–SMARTRA neutralise (Hyundai / Kia)",
+      {
+       "u": 1,
+       "src": "Hyundai Elantra / Kia Rio repair info 'Programming and relearning' (virgin / learnt / neutral, PIN 6 digits, neutralising) + Kia SMARTRA training (max 8 keys) + Hyundai ED immobiliser (SMARTRA3) training",
+       "v": "GDS / Hi-Scan → Immobilizer → Key teaching: dealer-இடமிருந்து பெறும் 6-digit PIN code உள்ளிடவும். ECM 'virgin' அல்லது 'neutral' நிலையில் இருக்கும் போது மட்டுமே teaching ஏற்கப்படும்; SMARTRA3 உள்ள மாடல்களில் முதலில் SMARTRA, பின் key teach ஆகும். அதிகபட்சம் 8 key. 'Neutralise' = PIN (6) + user password (4) அழிப்பு, ECM key teaching தவிர lock. பழைய ECM-ல் பதிவான key-கள் புதிய ECM-க்கு செல்லாது — எல்லா key-களையும் மீண்டும் teach செய்யவும்."
+      }
+     ],
+     [
+      "Immobiliser limp home (owner 4-digit password)",
+      {
+       "u": 1,
+       "src": "Hyundai Atos owner's manual (limp home: 30 s, 8 s, 1 hour lock-out) + Kia owner's manual limp home procedure + Hyundai Tiburon limp home ('0' = 10 key cycles) + Hyundai TSB 06-90-009 (4-digit password ≠ 6-digit PIN)",
+       "v": "முன்பே dealer பதிவு செய்த 4-digit user password இருந்தால் மட்டும்: ignition ON → immobiliser indicator 5 முறை blink ஆகி அணையும் → password-ஐ ignition ON/OFF சுழற்சிகள் மூலம் உள்ளிடவும் (owner's manual படி; '0' = 10 சுழற்சி). சரியானால் சுமார் 30 வினாடிக்குள் engine start செய்ய வேண்டும்; engine நின்றால் 8 வினாடிக்குள் மீண்டும் start செய்யலாம். 3 முறை தவறினால் சுமார் 1 மணி நேரம் காத்திருக்க வேண்டும். பின் உடனே dealer-இடம் key / immobiliser பழுது சரி செய்யவும். (4-digit password ≠ 6-digit PIN.)"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "Bosch CP4 + piezo",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "தரம் குறைந்த diesel தாங்காது — pump fail ஆனால் துகள் injector-ஐ அடைக்கும்"
+      }
+     ],
+     [
+      "EGR / glow relay",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "~100,000 km-ல் EGR அடைப்பு; glow plug relay fail"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "kia_g3la",
+  "make": "Kia",
+  "name": "Kia Kappa 1.0 MPI (G3LA)",
+  "vehicles": "Picanto, Morning",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2011-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I3"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "998cc (1.0L)"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "No"
+      }
+     ],
+     [
+      "Engine Family",
+      {
+       "v": "Kappa"
+      }
+     ],
+     [
+      "Variant",
+      {
+       "v": "MPI"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Picanto, Morning"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "71 x 84 mm (3-cyl)"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "10.5:1"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "67 hp / 95 N·m"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "3.2 L"
+      }
+     ],
+     [
+      "Engine Oil (Grade)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "5W-30"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Chain"
+      }
+     ],
+     [
+      "Hydraulic Lifters",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "ஆம்"
+      }
+     ],
+     [
+      "Engine Lifespan (approx.)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "~280,000 km"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ESC: Steering angle sensor (SAS) calibration",
+      {
+       "u": 1,
+       "src": "YOUCANIC Hyundai list (C1259/C1260 SAS electrical / signal)",
+       "v": "SAS / HECU / steering column மாற்றியதும் அல்லது wheel alignment-க்குப் பின் GDS/KDS-ல் 'SAS calibration' (wheels straight, engine running) செய்யவும்; இல்லையெனில் C1260 / ESC lamp."
+      }
+     ],
+     [
+      "ABS/SRS low-voltage check first",
+      {
+       "u": 1,
+       "src": "go-parts C1102 / C1103 (Hyundai/Kia)",
+       "v": "Hyundai/Kia-வில் battery 12.4 V-க்கு கீழ் / charging குறைவு C1102 / C1103 / B1102 போன்ற false code-களை உண்டாக்கும் — part மாற்றும் முன் battery & alternator சோதிக்கவும்."
+      }
+     ],
+     [
+      "Key teaching / ECM–SMARTRA neutralise (Hyundai / Kia)",
+      {
+       "u": 1,
+       "src": "Hyundai Elantra / Kia Rio repair info 'Programming and relearning' (virgin / learnt / neutral, PIN 6 digits, neutralising) + Kia SMARTRA training (max 8 keys) + Hyundai ED immobiliser (SMARTRA3) training",
+       "v": "GDS / Hi-Scan → Immobilizer → Key teaching: dealer-இடமிருந்து பெறும் 6-digit PIN code உள்ளிடவும். ECM 'virgin' அல்லது 'neutral' நிலையில் இருக்கும் போது மட்டுமே teaching ஏற்கப்படும்; SMARTRA3 உள்ள மாடல்களில் முதலில் SMARTRA, பின் key teach ஆகும். அதிகபட்சம் 8 key. 'Neutralise' = PIN (6) + user password (4) அழிப்பு, ECM key teaching தவிர lock. பழைய ECM-ல் பதிவான key-கள் புதிய ECM-க்கு செல்லாது — எல்லா key-களையும் மீண்டும் teach செய்யவும்."
+      }
+     ],
+     [
+      "Immobiliser limp home (owner 4-digit password)",
+      {
+       "u": 1,
+       "src": "Hyundai Atos owner's manual (limp home: 30 s, 8 s, 1 hour lock-out) + Kia owner's manual limp home procedure + Hyundai Tiburon limp home ('0' = 10 key cycles) + Hyundai TSB 06-90-009 (4-digit password ≠ 6-digit PIN)",
+       "v": "முன்பே dealer பதிவு செய்த 4-digit user password இருந்தால் மட்டும்: ignition ON → immobiliser indicator 5 முறை blink ஆகி அணையும் → password-ஐ ignition ON/OFF சுழற்சிகள் மூலம் உள்ளிடவும் (owner's manual படி; '0' = 10 சுழற்சி). சரியானால் சுமார் 30 வினாடிக்குள் engine start செய்ய வேண்டும்; engine நின்றால் 8 வினாடிக்குள் மீண்டும் start செய்யலாம். 3 முறை தவறினால் சுமார் 1 மணி நேரம் காத்திருக்க வேண்டும். பின் உடனே dealer-இடம் key / immobiliser பழுது சரி செய்யவும். (4-digit password ≠ 6-digit PIN.)"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "Noise/vibration",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "மிகப் பொதுவான புகார்"
+      }
+     ],
+     [
+      "Overheating",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Radiator சுத்தமாக வைக்கவும்"
+      }
+     ],
+     [
+      "Timing chain",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "100,000–120,000 km-ல் stretch (active driving)"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "kia_g3lc",
+  "make": "Kia",
+  "name": "Kia Kappa 1.0 T-GDi (G3LC)",
+  "vehicles": "Stonic, Rio",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2018-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I3"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "998cc (1.0L)"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "Engine Family",
+      {
+       "v": "Kappa"
+      }
+     ],
+     [
+      "Variant",
+      {
+       "v": "T-GDi"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Stonic, Rio"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "71 x 84 mm (3-cyl)"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "10.0:1"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "100–120 hp / 172 N·m"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "3.9 L"
+      }
+     ],
+     [
+      "Engine Oil (Grade)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "5W-30"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Chain"
+      }
+     ],
+     [
+      "Hydraulic Lifters",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "ஆம்"
+      }
+     ],
+     [
+      "Engine Lifespan (approx.)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "~220,000 km"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ESC: Steering angle sensor (SAS) calibration",
+      {
+       "u": 1,
+       "src": "YOUCANIC Hyundai list (C1259/C1260 SAS electrical / signal)",
+       "v": "SAS / HECU / steering column மாற்றியதும் அல்லது wheel alignment-க்குப் பின் GDS/KDS-ல் 'SAS calibration' (wheels straight, engine running) செய்யவும்; இல்லையெனில் C1260 / ESC lamp."
+      }
+     ],
+     [
+      "ABS/SRS low-voltage check first",
+      {
+       "u": 1,
+       "src": "go-parts C1102 / C1103 (Hyundai/Kia)",
+       "v": "Hyundai/Kia-வில் battery 12.4 V-க்கு கீழ் / charging குறைவு C1102 / C1103 / B1102 போன்ற false code-களை உண்டாக்கும் — part மாற்றும் முன் battery & alternator சோதிக்கவும்."
+      }
+     ],
+     [
+      "Key teaching / ECM–SMARTRA neutralise (Hyundai / Kia)",
+      {
+       "u": 1,
+       "src": "Hyundai Elantra / Kia Rio repair info 'Programming and relearning' (virgin / learnt / neutral, PIN 6 digits, neutralising) + Kia SMARTRA training (max 8 keys) + Hyundai ED immobiliser (SMARTRA3) training",
+       "v": "GDS / Hi-Scan → Immobilizer → Key teaching: dealer-இடமிருந்து பெறும் 6-digit PIN code உள்ளிடவும். ECM 'virgin' அல்லது 'neutral' நிலையில் இருக்கும் போது மட்டுமே teaching ஏற்கப்படும்; SMARTRA3 உள்ள மாடல்களில் முதலில் SMARTRA, பின் key teach ஆகும். அதிகபட்சம் 8 key. 'Neutralise' = PIN (6) + user password (4) அழிப்பு, ECM key teaching தவிர lock. பழைய ECM-ல் பதிவான key-கள் புதிய ECM-க்கு செல்லாது — எல்லா key-களையும் மீண்டும் teach செய்யவும்."
+      }
+     ],
+     [
+      "Immobiliser limp home (owner 4-digit password)",
+      {
+       "u": 1,
+       "src": "Hyundai Atos owner's manual (limp home: 30 s, 8 s, 1 hour lock-out) + Kia owner's manual limp home procedure + Hyundai Tiburon limp home ('0' = 10 key cycles) + Hyundai TSB 06-90-009 (4-digit password ≠ 6-digit PIN)",
+       "v": "முன்பே dealer பதிவு செய்த 4-digit user password இருந்தால் மட்டும்: ignition ON → immobiliser indicator 5 முறை blink ஆகி அணையும் → password-ஐ ignition ON/OFF சுழற்சிகள் மூலம் உள்ளிடவும் (owner's manual படி; '0' = 10 சுழற்சி). சரியானால் சுமார் 30 வினாடிக்குள் engine start செய்ய வேண்டும்; engine நின்றால் 8 வினாடிக்குள் மீண்டும் start செய்யலாம். 3 முறை தவறினால் சுமார் 1 மணி நேரம் காத்திருக்க வேண்டும். பின் உடனே dealer-இடம் key / immobiliser பழுது சரி செய்யவும். (4-digit password ≠ 6-digit PIN.)"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "Noise/vibration",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "சத்தம், அதிர்வு — பொதுவான புகார்"
+      }
+     ],
+     [
+      "Overheating",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Overheat-ல் gasket சேதம், leak"
+      }
+     ],
+     [
+      "Timing chain",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Stretch — சில ~100,000 km-ல் மாற்றம்"
+      }
+     ],
+     [
+      "Chain tensioner rattle",
+      {
+       "u": 1,
+       "src": "carchecker.pro",
+       "v": "40–60k km-ல் cold start-ல் rattle"
+      }
+     ],
+     [
+      "GDI carbon",
+      {
+       "u": 1,
+       "src": "carchecker.pro",
+       "v": "Intake valve-ல் carbon படிவு"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "kia_g4fa",
+  "make": "Kia",
+  "name": "Kia Gamma 1.4 MPI (G4FA)",
+  "vehicles": "Rio, Ceed",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2007-2020"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1396cc (1.4L)"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "No"
+      }
+     ],
+     [
+      "Engine Family",
+      {
+       "v": "Gamma"
+      }
+     ],
+     [
+      "Variant",
+      {
+       "v": "MPI"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Rio, Ceed"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "77 x 75 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "10.5:1"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "99–109 hp / 135–137 N·m"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "3.7 L"
+      }
+     ],
+     [
+      "Engine Oil (Grade)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "0W-30 / 5W-30"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Chain"
+      }
+     ],
+     [
+      "Hydraulic Lifters",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "இல்லை"
+      }
+     ],
+     [
+      "Engine Lifespan (approx.)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "~300,000 km"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ESC: Steering angle sensor (SAS) calibration",
+      {
+       "u": 1,
+       "src": "YOUCANIC Hyundai list (C1259/C1260 SAS electrical / signal)",
+       "v": "SAS / HECU / steering column மாற்றியதும் அல்லது wheel alignment-க்குப் பின் GDS/KDS-ல் 'SAS calibration' (wheels straight, engine running) செய்யவும்; இல்லையெனில் C1260 / ESC lamp."
+      }
+     ],
+     [
+      "ABS/SRS low-voltage check first",
+      {
+       "u": 1,
+       "src": "go-parts C1102 / C1103 (Hyundai/Kia)",
+       "v": "Hyundai/Kia-வில் battery 12.4 V-க்கு கீழ் / charging குறைவு C1102 / C1103 / B1102 போன்ற false code-களை உண்டாக்கும் — part மாற்றும் முன் battery & alternator சோதிக்கவும்."
+      }
+     ],
+     [
+      "Key teaching / ECM–SMARTRA neutralise (Hyundai / Kia)",
+      {
+       "u": 1,
+       "src": "Hyundai Elantra / Kia Rio repair info 'Programming and relearning' (virgin / learnt / neutral, PIN 6 digits, neutralising) + Kia SMARTRA training (max 8 keys) + Hyundai ED immobiliser (SMARTRA3) training",
+       "v": "GDS / Hi-Scan → Immobilizer → Key teaching: dealer-இடமிருந்து பெறும் 6-digit PIN code உள்ளிடவும். ECM 'virgin' அல்லது 'neutral' நிலையில் இருக்கும் போது மட்டுமே teaching ஏற்கப்படும்; SMARTRA3 உள்ள மாடல்களில் முதலில் SMARTRA, பின் key teach ஆகும். அதிகபட்சம் 8 key. 'Neutralise' = PIN (6) + user password (4) அழிப்பு, ECM key teaching தவிர lock. பழைய ECM-ல் பதிவான key-கள் புதிய ECM-க்கு செல்லாது — எல்லா key-களையும் மீண்டும் teach செய்யவும்."
+      }
+     ],
+     [
+      "Immobiliser limp home (owner 4-digit password)",
+      {
+       "u": 1,
+       "src": "Hyundai Atos owner's manual (limp home: 30 s, 8 s, 1 hour lock-out) + Kia owner's manual limp home procedure + Hyundai Tiburon limp home ('0' = 10 key cycles) + Hyundai TSB 06-90-009 (4-digit password ≠ 6-digit PIN)",
+       "v": "முன்பே dealer பதிவு செய்த 4-digit user password இருந்தால் மட்டும்: ignition ON → immobiliser indicator 5 முறை blink ஆகி அணையும் → password-ஐ ignition ON/OFF சுழற்சிகள் மூலம் உள்ளிடவும் (owner's manual படி; '0' = 10 சுழற்சி). சரியானால் சுமார் 30 வினாடிக்குள் engine start செய்ய வேண்டும்; engine நின்றால் 8 வினாடிக்குள் மீண்டும் start செய்யலாம். 3 முறை தவறினால் சுமார் 1 மணி நேரம் காத்திருக்க வேண்டும். பின் உடனே dealer-இடம் key / immobiliser பழுது சரி செய்யவும். (4-digit password ≠ 6-digit PIN.)"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "Catalyst debris",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Catalyst துகள் cylinder-க்குள் போய் scuffing / seizure"
+      }
+     ],
+     [
+      "Thin liners",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Overheat-ல் liner oval ஆகி oil consumption"
+      }
+     ],
+     [
+      "Timing chain",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "2014-க்கு முன் lamellar chain ~150,000 km-ல் stretch"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "kia_g4fc",
+  "make": "Kia",
+  "name": "Kia Gamma 1.6 MPI (G4FC)",
+  "vehicles": "Cerato, Rio",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2007-2020"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1591cc (1.6L)"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "No"
+      }
+     ],
+     [
+      "Engine Family",
+      {
+       "v": "Gamma"
+      }
+     ],
+     [
+      "Variant",
+      {
+       "v": "MPI"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Cerato, Rio"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "77 x 85.4 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "11:1 (mymotorlist) — ⚠ G4FG 10.5:1"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "122–130 hp / 155 N·m"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "3.3 L"
+      }
+     ],
+     [
+      "Engine Oil (Grade)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "0W-30 / 5W-30"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Chain + hydraulic tensioner"
+      }
+     ],
+     [
+      "Hydraulic Lifters",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "இல்லை (periodic valve adjust)"
+      }
+     ],
+     [
+      "Engine Lifespan (approx.)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "180,000+ km"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ESC: Steering angle sensor (SAS) calibration",
+      {
+       "u": 1,
+       "src": "YOUCANIC Hyundai list (C1259/C1260 SAS electrical / signal)",
+       "v": "SAS / HECU / steering column மாற்றியதும் அல்லது wheel alignment-க்குப் பின் GDS/KDS-ல் 'SAS calibration' (wheels straight, engine running) செய்யவும்; இல்லையெனில் C1260 / ESC lamp."
+      }
+     ],
+     [
+      "ABS/SRS low-voltage check first",
+      {
+       "u": 1,
+       "src": "go-parts C1102 / C1103 (Hyundai/Kia)",
+       "v": "Hyundai/Kia-வில் battery 12.4 V-க்கு கீழ் / charging குறைவு C1102 / C1103 / B1102 போன்ற false code-களை உண்டாக்கும் — part மாற்றும் முன் battery & alternator சோதிக்கவும்."
+      }
+     ],
+     [
+      "Key teaching / ECM–SMARTRA neutralise (Hyundai / Kia)",
+      {
+       "u": 1,
+       "src": "Hyundai Elantra / Kia Rio repair info 'Programming and relearning' (virgin / learnt / neutral, PIN 6 digits, neutralising) + Kia SMARTRA training (max 8 keys) + Hyundai ED immobiliser (SMARTRA3) training",
+       "v": "GDS / Hi-Scan → Immobilizer → Key teaching: dealer-இடமிருந்து பெறும் 6-digit PIN code உள்ளிடவும். ECM 'virgin' அல்லது 'neutral' நிலையில் இருக்கும் போது மட்டுமே teaching ஏற்கப்படும்; SMARTRA3 உள்ள மாடல்களில் முதலில் SMARTRA, பின் key teach ஆகும். அதிகபட்சம் 8 key. 'Neutralise' = PIN (6) + user password (4) அழிப்பு, ECM key teaching தவிர lock. பழைய ECM-ல் பதிவான key-கள் புதிய ECM-க்கு செல்லாது — எல்லா key-களையும் மீண்டும் teach செய்யவும்."
+      }
+     ],
+     [
+      "Immobiliser limp home (owner 4-digit password)",
+      {
+       "u": 1,
+       "src": "Hyundai Atos owner's manual (limp home: 30 s, 8 s, 1 hour lock-out) + Kia owner's manual limp home procedure + Hyundai Tiburon limp home ('0' = 10 key cycles) + Hyundai TSB 06-90-009 (4-digit password ≠ 6-digit PIN)",
+       "v": "முன்பே dealer பதிவு செய்த 4-digit user password இருந்தால் மட்டும்: ignition ON → immobiliser indicator 5 முறை blink ஆகி அணையும் → password-ஐ ignition ON/OFF சுழற்சிகள் மூலம் உள்ளிடவும் (owner's manual படி; '0' = 10 சுழற்சி). சரியானால் சுமார் 30 வினாடிக்குள் engine start செய்ய வேண்டும்; engine நின்றால் 8 வினாடிக்குள் மீண்டும் start செய்யலாம். 3 முறை தவறினால் சுமார் 1 மணி நேரம் காத்திருக்க வேண்டும். பின் உடனே dealer-இடம் key / immobiliser பழுது சரி செய்யவும். (4-digit password ≠ 6-digit PIN.)"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "Chain noise (cold)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Cold start-ல் chain சத்தம், சூடானதும் நிற்கும்"
+      }
+     ],
+     [
+      "Valve cover gasket",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Oil leak — பலவீனமான இடம்"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "kia_g4fg",
+  "make": "Kia",
+  "name": "Kia Gamma 1.6 MPI (G4FG)",
+  "vehicles": "Cerato, Soul, Seltos",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2012-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1591cc (1.6L)"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "No"
+      }
+     ],
+     [
+      "Engine Family",
+      {
+       "v": "Gamma"
+      }
+     ],
+     [
+      "Variant",
+      {
+       "v": "MPI"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Cerato, Soul, Seltos"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "77 x 85.4 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "10.5:1"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "123–132 hp / 150–158 N·m"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "3.7 L"
+      }
+     ],
+     [
+      "Engine Oil (Grade)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "0W-30 / 5W-30"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Chain (2014 முதல் bush-roller)"
+      }
+     ],
+     [
+      "Hydraulic Lifters",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "இல்லை"
+      }
+     ],
+     [
+      "Engine Lifespan (approx.)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "~300,000 km"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ESC: Steering angle sensor (SAS) calibration",
+      {
+       "u": 1,
+       "src": "YOUCANIC Hyundai list (C1259/C1260 SAS electrical / signal)",
+       "v": "SAS / HECU / steering column மாற்றியதும் அல்லது wheel alignment-க்குப் பின் GDS/KDS-ல் 'SAS calibration' (wheels straight, engine running) செய்யவும்; இல்லையெனில் C1260 / ESC lamp."
+      }
+     ],
+     [
+      "ABS/SRS low-voltage check first",
+      {
+       "u": 1,
+       "src": "go-parts C1102 / C1103 (Hyundai/Kia)",
+       "v": "Hyundai/Kia-வில் battery 12.4 V-க்கு கீழ் / charging குறைவு C1102 / C1103 / B1102 போன்ற false code-களை உண்டாக்கும் — part மாற்றும் முன் battery & alternator சோதிக்கவும்."
+      }
+     ],
+     [
+      "Key teaching / ECM–SMARTRA neutralise (Hyundai / Kia)",
+      {
+       "u": 1,
+       "src": "Hyundai Elantra / Kia Rio repair info 'Programming and relearning' (virgin / learnt / neutral, PIN 6 digits, neutralising) + Kia SMARTRA training (max 8 keys) + Hyundai ED immobiliser (SMARTRA3) training",
+       "v": "GDS / Hi-Scan → Immobilizer → Key teaching: dealer-இடமிருந்து பெறும் 6-digit PIN code உள்ளிடவும். ECM 'virgin' அல்லது 'neutral' நிலையில் இருக்கும் போது மட்டுமே teaching ஏற்கப்படும்; SMARTRA3 உள்ள மாடல்களில் முதலில் SMARTRA, பின் key teach ஆகும். அதிகபட்சம் 8 key. 'Neutralise' = PIN (6) + user password (4) அழிப்பு, ECM key teaching தவிர lock. பழைய ECM-ல் பதிவான key-கள் புதிய ECM-க்கு செல்லாது — எல்லா key-களையும் மீண்டும் teach செய்யவும்."
+      }
+     ],
+     [
+      "Immobiliser limp home (owner 4-digit password)",
+      {
+       "u": 1,
+       "src": "Hyundai Atos owner's manual (limp home: 30 s, 8 s, 1 hour lock-out) + Kia owner's manual limp home procedure + Hyundai Tiburon limp home ('0' = 10 key cycles) + Hyundai TSB 06-90-009 (4-digit password ≠ 6-digit PIN)",
+       "v": "முன்பே dealer பதிவு செய்த 4-digit user password இருந்தால் மட்டும்: ignition ON → immobiliser indicator 5 முறை blink ஆகி அணையும் → password-ஐ ignition ON/OFF சுழற்சிகள் மூலம் உள்ளிடவும் (owner's manual படி; '0' = 10 சுழற்சி). சரியானால் சுமார் 30 வினாடிக்குள் engine start செய்ய வேண்டும்; engine நின்றால் 8 வினாடிக்குள் மீண்டும் start செய்யலாம். 3 முறை தவறினால் சுமார் 1 மணி நேரம் காத்திருக்க வேண்டும். பின் உடனே dealer-இடம் key / immobiliser பழுது சரி செய்யவும். (4-digit password ≠ 6-digit PIN.)"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "Catalyst debris",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Catalyst துகள் cylinder-க்குள் போய் scuffing / seizure"
+      }
+     ],
+     [
+      "Thin liners",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Overheat-ல் liner oval ஆகி oil consumption"
+      }
+     ],
+     [
+      "Timing chain",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "2014-க்கு முன் lamellar chain ~150,000 km-ல் stretch"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "kia_g4fj",
+  "make": "Kia",
+  "name": "Kia Gamma 1.6 T-GDi (G4FJ)",
+  "vehicles": "Sportage, Cerato GT, Proceed GT",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2013-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1591cc (1.6L)"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "Engine Family",
+      {
+       "v": "Gamma"
+      }
+     ],
+     [
+      "Variant",
+      {
+       "v": "T-GDi"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Sportage, Cerato GT, Proceed GT"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "77 x 85.4 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "9.5:1"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "177–204 hp / 265 N·m"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "5.1 L"
+      }
+     ],
+     [
+      "Engine Oil (Grade)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "0W-30 / 5W-30"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Chain (Dual CVVT)"
+      }
+     ],
+     [
+      "Hydraulic Lifters",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "இல்லை"
+      }
+     ],
+     [
+      "Engine Lifespan (approx.)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "~250,000 km"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ESC: Steering angle sensor (SAS) calibration",
+      {
+       "u": 1,
+       "src": "YOUCANIC Hyundai list (C1259/C1260 SAS electrical / signal)",
+       "v": "SAS / HECU / steering column மாற்றியதும் அல்லது wheel alignment-க்குப் பின் GDS/KDS-ல் 'SAS calibration' (wheels straight, engine running) செய்யவும்; இல்லையெனில் C1260 / ESC lamp."
+      }
+     ],
+     [
+      "ABS/SRS low-voltage check first",
+      {
+       "u": 1,
+       "src": "go-parts C1102 / C1103 (Hyundai/Kia)",
+       "v": "Hyundai/Kia-வில் battery 12.4 V-க்கு கீழ் / charging குறைவு C1102 / C1103 / B1102 போன்ற false code-களை உண்டாக்கும் — part மாற்றும் முன் battery & alternator சோதிக்கவும்."
+      }
+     ],
+     [
+      "Key teaching / ECM–SMARTRA neutralise (Hyundai / Kia)",
+      {
+       "u": 1,
+       "src": "Hyundai Elantra / Kia Rio repair info 'Programming and relearning' (virgin / learnt / neutral, PIN 6 digits, neutralising) + Kia SMARTRA training (max 8 keys) + Hyundai ED immobiliser (SMARTRA3) training",
+       "v": "GDS / Hi-Scan → Immobilizer → Key teaching: dealer-இடமிருந்து பெறும் 6-digit PIN code உள்ளிடவும். ECM 'virgin' அல்லது 'neutral' நிலையில் இருக்கும் போது மட்டுமே teaching ஏற்கப்படும்; SMARTRA3 உள்ள மாடல்களில் முதலில் SMARTRA, பின் key teach ஆகும். அதிகபட்சம் 8 key. 'Neutralise' = PIN (6) + user password (4) அழிப்பு, ECM key teaching தவிர lock. பழைய ECM-ல் பதிவான key-கள் புதிய ECM-க்கு செல்லாது — எல்லா key-களையும் மீண்டும் teach செய்யவும்."
+      }
+     ],
+     [
+      "Immobiliser limp home (owner 4-digit password)",
+      {
+       "u": 1,
+       "src": "Hyundai Atos owner's manual (limp home: 30 s, 8 s, 1 hour lock-out) + Kia owner's manual limp home procedure + Hyundai Tiburon limp home ('0' = 10 key cycles) + Hyundai TSB 06-90-009 (4-digit password ≠ 6-digit PIN)",
+       "v": "முன்பே dealer பதிவு செய்த 4-digit user password இருந்தால் மட்டும்: ignition ON → immobiliser indicator 5 முறை blink ஆகி அணையும் → password-ஐ ignition ON/OFF சுழற்சிகள் மூலம் உள்ளிடவும் (owner's manual படி; '0' = 10 சுழற்சி). சரியானால் சுமார் 30 வினாடிக்குள் engine start செய்ய வேண்டும்; engine நின்றால் 8 வினாடிக்குள் மீண்டும் start செய்யலாம். 3 முறை தவறினால் சுமார் 1 மணி நேரம் காத்திருக்க வேண்டும். பின் உடனே dealer-இடம் key / immobiliser பழுது சரி செய்யவும். (4-digit password ≠ 6-digit PIN.)"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "Spark plug / piston (early)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "ஆரம்ப ஆண்டுகளில் spark plug உடைந்து cylinder சேதம்; detonation-ல் piston fail (சில 50,000 km-க்கு முன்)"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "விரைவில் தேய்ந்து oil leak — மாற்றுவது விலை அதிகம்"
+      }
+     ],
+     [
+      "Thin liners",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Liner distort ஆகி oil consumption வேகமாக அதிகரிக்கும்"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "kia_g4fp",
+  "make": "Kia",
+  "name": "Kia Smartstream 1.6 T-GDi (G4FP)",
+  "vehicles": "Sportage, Seltos, K5",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2020-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1598cc (1.6L)"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "Yes"
+      }
+     ],
+     [
+      "Engine Family",
+      {
+       "v": "Smartstream"
+      }
+     ],
+     [
+      "Variant",
+      {
+       "v": "T-GDi"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Sportage, Seltos, K5"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "mymotorlist.com — Kia G4FP (FAQ)",
+       "v": "180–204 hp / 265 N·m"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com — Kia G4FP (FAQ)",
+       "v": "4.5 L"
+      }
+     ],
+     [
+      "Engine Oil (Grade)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com — Kia G4FP (FAQ)",
+       "v": "5W-30"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "mymotorlist.com — Kia G4FP (FAQ)",
+       "v": "Chain"
+      }
+     ],
+     [
+      "Hydraulic Lifters",
+      {
+       "u": 1,
+       "src": "mymotorlist.com — Kia G4FP (FAQ)",
+       "v": "இல்லை (periodic valve adjust)"
+      }
+     ],
+     [
+      "Engine Lifespan (approx.)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com — Kia G4FP (FAQ)",
+       "v": "~240,000 km"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ESC: Steering angle sensor (SAS) calibration",
+      {
+       "u": 1,
+       "src": "YOUCANIC Hyundai list (C1259/C1260 SAS electrical / signal)",
+       "v": "SAS / HECU / steering column மாற்றியதும் அல்லது wheel alignment-க்குப் பின் GDS/KDS-ல் 'SAS calibration' (wheels straight, engine running) செய்யவும்; இல்லையெனில் C1260 / ESC lamp."
+      }
+     ],
+     [
+      "ABS/SRS low-voltage check first",
+      {
+       "u": 1,
+       "src": "go-parts C1102 / C1103 (Hyundai/Kia)",
+       "v": "Hyundai/Kia-வில் battery 12.4 V-க்கு கீழ் / charging குறைவு C1102 / C1103 / B1102 போன்ற false code-களை உண்டாக்கும் — part மாற்றும் முன் battery & alternator சோதிக்கவும்."
+      }
+     ],
+     [
+      "Key teaching / ECM–SMARTRA neutralise (Hyundai / Kia)",
+      {
+       "u": 1,
+       "src": "Hyundai Elantra / Kia Rio repair info 'Programming and relearning' (virgin / learnt / neutral, PIN 6 digits, neutralising) + Kia SMARTRA training (max 8 keys) + Hyundai ED immobiliser (SMARTRA3) training",
+       "v": "GDS / Hi-Scan → Immobilizer → Key teaching: dealer-இடமிருந்து பெறும் 6-digit PIN code உள்ளிடவும். ECM 'virgin' அல்லது 'neutral' நிலையில் இருக்கும் போது மட்டுமே teaching ஏற்கப்படும்; SMARTRA3 உள்ள மாடல்களில் முதலில் SMARTRA, பின் key teach ஆகும். அதிகபட்சம் 8 key. 'Neutralise' = PIN (6) + user password (4) அழிப்பு, ECM key teaching தவிர lock. பழைய ECM-ல் பதிவான key-கள் புதிய ECM-க்கு செல்லாது — எல்லா key-களையும் மீண்டும் teach செய்யவும்."
+      }
+     ],
+     [
+      "Immobiliser limp home (owner 4-digit password)",
+      {
+       "u": 1,
+       "src": "Hyundai Atos owner's manual (limp home: 30 s, 8 s, 1 hour lock-out) + Kia owner's manual limp home procedure + Hyundai Tiburon limp home ('0' = 10 key cycles) + Hyundai TSB 06-90-009 (4-digit password ≠ 6-digit PIN)",
+       "v": "முன்பே dealer பதிவு செய்த 4-digit user password இருந்தால் மட்டும்: ignition ON → immobiliser indicator 5 முறை blink ஆகி அணையும் → password-ஐ ignition ON/OFF சுழற்சிகள் மூலம் உள்ளிடவும் (owner's manual படி; '0' = 10 சுழற்சி). சரியானால் சுமார் 30 வினாடிக்குள் engine start செய்ய வேண்டும்; engine நின்றால் 8 வினாடிக்குள் மீண்டும் start செய்யலாம். 3 முறை தவறினால் சுமார் 1 மணி நேரம் காத்திருக்க வேண்டும். பின் உடனே dealer-இடம் key / immobiliser பழுது சரி செய்யவும். (4-digit password ≠ 6-digit PIN.)"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "CVVD",
+      {
+       "u": 1,
+       "src": "mymotorlist.com — Kia G4FP (FAQ)",
+       "v": "CVVD system — reliability இன்னும் தெரியவில்லை"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "kia_g4kn",
+  "make": "Kia",
+  "name": "Kia Smartstream 2.5 GDi (G4KN)",
+  "vehicles": "K5, Sorento",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2020-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "2497cc (2.5L)"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "No"
+      }
+     ],
+     [
+      "Engine Family",
+      {
+       "v": "Smartstream"
+      }
+     ],
+     [
+      "Variant",
+      {
+       "v": "GDi"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "K5, Sorento"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "88.5 x 101.5 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "13.0:1"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "194 hp / 246 N·m"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "6.0 L"
+      }
+     ],
+     [
+      "Engine Oil (Grade)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "5W-30"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Chain"
+      }
+     ],
+     [
+      "Hydraulic Lifters",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "ஆம்"
+      }
+     ],
+     [
+      "Engine Lifespan (approx.)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "~250,000 km"
+      }
+     ],
+     [
+      "Fuel System",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Dual injection (direct + port), 2019 முதல், Theta family"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ESC: Steering angle sensor (SAS) calibration",
+      {
+       "u": 1,
+       "src": "YOUCANIC Hyundai list (C1259/C1260 SAS electrical / signal)",
+       "v": "SAS / HECU / steering column மாற்றியதும் அல்லது wheel alignment-க்குப் பின் GDS/KDS-ல் 'SAS calibration' (wheels straight, engine running) செய்யவும்; இல்லையெனில் C1260 / ESC lamp."
+      }
+     ],
+     [
+      "ABS/SRS low-voltage check first",
+      {
+       "u": 1,
+       "src": "go-parts C1102 / C1103 (Hyundai/Kia)",
+       "v": "Hyundai/Kia-வில் battery 12.4 V-க்கு கீழ் / charging குறைவு C1102 / C1103 / B1102 போன்ற false code-களை உண்டாக்கும் — part மாற்றும் முன் battery & alternator சோதிக்கவும்."
+      }
+     ],
+     [
+      "Key teaching / ECM–SMARTRA neutralise (Hyundai / Kia)",
+      {
+       "u": 1,
+       "src": "Hyundai Elantra / Kia Rio repair info 'Programming and relearning' (virgin / learnt / neutral, PIN 6 digits, neutralising) + Kia SMARTRA training (max 8 keys) + Hyundai ED immobiliser (SMARTRA3) training",
+       "v": "GDS / Hi-Scan → Immobilizer → Key teaching: dealer-இடமிருந்து பெறும் 6-digit PIN code உள்ளிடவும். ECM 'virgin' அல்லது 'neutral' நிலையில் இருக்கும் போது மட்டுமே teaching ஏற்கப்படும்; SMARTRA3 உள்ள மாடல்களில் முதலில் SMARTRA, பின் key teach ஆகும். அதிகபட்சம் 8 key. 'Neutralise' = PIN (6) + user password (4) அழிப்பு, ECM key teaching தவிர lock. பழைய ECM-ல் பதிவான key-கள் புதிய ECM-க்கு செல்லாது — எல்லா key-களையும் மீண்டும் teach செய்யவும்."
+      }
+     ],
+     [
+      "Immobiliser limp home (owner 4-digit password)",
+      {
+       "u": 1,
+       "src": "Hyundai Atos owner's manual (limp home: 30 s, 8 s, 1 hour lock-out) + Kia owner's manual limp home procedure + Hyundai Tiburon limp home ('0' = 10 key cycles) + Hyundai TSB 06-90-009 (4-digit password ≠ 6-digit PIN)",
+       "v": "முன்பே dealer பதிவு செய்த 4-digit user password இருந்தால் மட்டும்: ignition ON → immobiliser indicator 5 முறை blink ஆகி அணையும் → password-ஐ ignition ON/OFF சுழற்சிகள் மூலம் உள்ளிடவும் (owner's manual படி; '0' = 10 சுழற்சி). சரியானால் சுமார் 30 வினாடிக்குள் engine start செய்ய வேண்டும்; engine நின்றால் 8 வினாடிக்குள் மீண்டும் start செய்யலாம். 3 முறை தவறினால் சுமார் 1 மணி நேரம் காத்திருக்க வேண்டும். பின் உடனே dealer-இடம் key / immobiliser பழுது சரி செய்யவும். (4-digit password ≠ 6-digit PIN.)"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "Catalyst debris",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Catalyst block-க்கு அருகில் — துகள் combustion chamber-க்கு போகலாம்"
+      }
+     ],
+     [
+      "Lifters",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Oil தரத்திற்கு sensitive"
+      }
+     ],
+     [
+      "Data",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "புதிய engine — failure statistics குறைவு"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "kia_g4nh",
+  "make": "Kia",
+  "name": "Kia Smartstream 2.0 MPI (G4NH)",
+  "vehicles": "Sportage",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2020-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "I4"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "1999cc (2.0L)"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "No"
+      }
+     ],
+     [
+      "Engine Family",
+      {
+       "v": "Smartstream"
+      }
+     ],
+     [
+      "Variant",
+      {
+       "v": "MPI"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Sportage"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "81 x 97 mm"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "12.5:1 (Atkinson)"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "149 hp / 180 N·m"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "4.0 L"
+      }
+     ],
+     [
+      "Engine Oil (Grade)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "5W-30"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Chain"
+      }
+     ],
+     [
+      "Hydraulic Lifters",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "ஆம்"
+      }
+     ],
+     [
+      "Engine Lifespan (approx.)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "~250,000 km"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ESC: Steering angle sensor (SAS) calibration",
+      {
+       "u": 1,
+       "src": "YOUCANIC Hyundai list (C1259/C1260 SAS electrical / signal)",
+       "v": "SAS / HECU / steering column மாற்றியதும் அல்லது wheel alignment-க்குப் பின் GDS/KDS-ல் 'SAS calibration' (wheels straight, engine running) செய்யவும்; இல்லையெனில் C1260 / ESC lamp."
+      }
+     ],
+     [
+      "ABS/SRS low-voltage check first",
+      {
+       "u": 1,
+       "src": "go-parts C1102 / C1103 (Hyundai/Kia)",
+       "v": "Hyundai/Kia-வில் battery 12.4 V-க்கு கீழ் / charging குறைவு C1102 / C1103 / B1102 போன்ற false code-களை உண்டாக்கும் — part மாற்றும் முன் battery & alternator சோதிக்கவும்."
+      }
+     ],
+     [
+      "Key teaching / ECM–SMARTRA neutralise (Hyundai / Kia)",
+      {
+       "u": 1,
+       "src": "Hyundai Elantra / Kia Rio repair info 'Programming and relearning' (virgin / learnt / neutral, PIN 6 digits, neutralising) + Kia SMARTRA training (max 8 keys) + Hyundai ED immobiliser (SMARTRA3) training",
+       "v": "GDS / Hi-Scan → Immobilizer → Key teaching: dealer-இடமிருந்து பெறும் 6-digit PIN code உள்ளிடவும். ECM 'virgin' அல்லது 'neutral' நிலையில் இருக்கும் போது மட்டுமே teaching ஏற்கப்படும்; SMARTRA3 உள்ள மாடல்களில் முதலில் SMARTRA, பின் key teach ஆகும். அதிகபட்சம் 8 key. 'Neutralise' = PIN (6) + user password (4) அழிப்பு, ECM key teaching தவிர lock. பழைய ECM-ல் பதிவான key-கள் புதிய ECM-க்கு செல்லாது — எல்லா key-களையும் மீண்டும் teach செய்யவும்."
+      }
+     ],
+     [
+      "Immobiliser limp home (owner 4-digit password)",
+      {
+       "u": 1,
+       "src": "Hyundai Atos owner's manual (limp home: 30 s, 8 s, 1 hour lock-out) + Kia owner's manual limp home procedure + Hyundai Tiburon limp home ('0' = 10 key cycles) + Hyundai TSB 06-90-009 (4-digit password ≠ 6-digit PIN)",
+       "v": "முன்பே dealer பதிவு செய்த 4-digit user password இருந்தால் மட்டும்: ignition ON → immobiliser indicator 5 முறை blink ஆகி அணையும் → password-ஐ ignition ON/OFF சுழற்சிகள் மூலம் உள்ளிடவும் (owner's manual படி; '0' = 10 சுழற்சி). சரியானால் சுமார் 30 வினாடிக்குள் engine start செய்ய வேண்டும்; engine நின்றால் 8 வினாடிக்குள் மீண்டும் start செய்யலாம். 3 முறை தவறினால் சுமார் 1 மணி நேரம் காத்திருக்க வேண்டும். பின் உடனே dealer-இடம் key / immobiliser பழுது சரி செய்யவும். (4-digit password ≠ 6-digit PIN.)"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "Electric thermostat",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Fail ஆனால் overheat"
+      }
+     ],
+     [
+      "Low oil",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Oil குறைவு → engine seizure report ஆகியுள்ளது"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "key": "kia_g6du",
+  "make": "Kia",
+  "name": "Kia Lambda II 3.5 MPI (G6DU)",
+  "vehicles": "Carnival, Sorento",
+  "status": "pending",
+  "sections": {
+   "general_specs": {
+    "rows": [
+     [
+      "அறிமுகம் (Year)",
+      {
+       "v": "2015-2026"
+      }
+     ],
+     [
+      "Cylinders",
+      {
+       "v": "V6"
+      }
+     ],
+     [
+      "Displacement",
+      {
+       "v": "3470cc (3.5L)"
+      }
+     ],
+     [
+      "Fuel",
+      {
+       "v": "Petrol"
+      }
+     ],
+     [
+      "Turbo",
+      {
+       "v": "No"
+      }
+     ],
+     [
+      "Engine Family",
+      {
+       "v": "Lambda II"
+      }
+     ],
+     [
+      "Variant",
+      {
+       "v": "MPI"
+      }
+     ],
+     [
+      "பயன்படுத்திய வாகனங்கள்",
+      {
+       "v": "Carnival, Sorento"
+      }
+     ],
+     [
+      "Bore x Stroke",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "92 x 87 mm (V6)"
+      }
+     ],
+     [
+      "Compression Ratio",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "10.6:1"
+      }
+     ],
+     [
+      "Power / Torque",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "250–272 hp / 331 N·m"
+      }
+     ],
+     [
+      "Engine Oil (Capacity)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "6.1 L"
+      }
+     ],
+     [
+      "Engine Oil (Grade)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "5W-30"
+      }
+     ],
+     [
+      "Timing Drive",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Chain"
+      }
+     ],
+     [
+      "Hydraulic Lifters",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "ஆம்"
+      }
+     ],
+     [
+      "Engine Lifespan (approx.)",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "~300,000 km"
+      }
+     ],
+     [
+      "Family",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Smartstream G3.5 MPi, Lambda family, 2020 முதல்; Korea-வில் LPi gas version"
+      }
+     ]
+    ]
+   },
+   "special_functions": {
+    "rows": [
+     [
+      "ESC: Steering angle sensor (SAS) calibration",
+      {
+       "u": 1,
+       "src": "YOUCANIC Hyundai list (C1259/C1260 SAS electrical / signal)",
+       "v": "SAS / HECU / steering column மாற்றியதும் அல்லது wheel alignment-க்குப் பின் GDS/KDS-ல் 'SAS calibration' (wheels straight, engine running) செய்யவும்; இல்லையெனில் C1260 / ESC lamp."
+      }
+     ],
+     [
+      "ABS/SRS low-voltage check first",
+      {
+       "u": 1,
+       "src": "go-parts C1102 / C1103 (Hyundai/Kia)",
+       "v": "Hyundai/Kia-வில் battery 12.4 V-க்கு கீழ் / charging குறைவு C1102 / C1103 / B1102 போன்ற false code-களை உண்டாக்கும் — part மாற்றும் முன் battery & alternator சோதிக்கவும்."
+      }
+     ],
+     [
+      "Key teaching / ECM–SMARTRA neutralise (Hyundai / Kia)",
+      {
+       "u": 1,
+       "src": "Hyundai Elantra / Kia Rio repair info 'Programming and relearning' (virgin / learnt / neutral, PIN 6 digits, neutralising) + Kia SMARTRA training (max 8 keys) + Hyundai ED immobiliser (SMARTRA3) training",
+       "v": "GDS / Hi-Scan → Immobilizer → Key teaching: dealer-இடமிருந்து பெறும் 6-digit PIN code உள்ளிடவும். ECM 'virgin' அல்லது 'neutral' நிலையில் இருக்கும் போது மட்டுமே teaching ஏற்கப்படும்; SMARTRA3 உள்ள மாடல்களில் முதலில் SMARTRA, பின் key teach ஆகும். அதிகபட்சம் 8 key. 'Neutralise' = PIN (6) + user password (4) அழிப்பு, ECM key teaching தவிர lock. பழைய ECM-ல் பதிவான key-கள் புதிய ECM-க்கு செல்லாது — எல்லா key-களையும் மீண்டும் teach செய்யவும்."
+      }
+     ],
+     [
+      "Immobiliser limp home (owner 4-digit password)",
+      {
+       "u": 1,
+       "src": "Hyundai Atos owner's manual (limp home: 30 s, 8 s, 1 hour lock-out) + Kia owner's manual limp home procedure + Hyundai Tiburon limp home ('0' = 10 key cycles) + Hyundai TSB 06-90-009 (4-digit password ≠ 6-digit PIN)",
+       "v": "முன்பே dealer பதிவு செய்த 4-digit user password இருந்தால் மட்டும்: ignition ON → immobiliser indicator 5 முறை blink ஆகி அணையும் → password-ஐ ignition ON/OFF சுழற்சிகள் மூலம் உள்ளிடவும் (owner's manual படி; '0' = 10 சுழற்சி). சரியானால் சுமார் 30 வினாடிக்குள் engine start செய்ய வேண்டும்; engine நின்றால் 8 வினாடிக்குள் மீண்டும் start செய்யலாம். 3 முறை தவறினால் சுமார் 1 மணி நேரம் காத்திருக்க வேண்டும். பின் உடனே dealer-இடம் key / immobiliser பழுது சரி செய்யவும். (4-digit password ≠ 6-digit PIN.)"
+      }
+     ]
+    ]
+   },
+   "common_problems": {
+    "rows": [
+     [
+      "Overheating",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "Aluminium parts — cooling system-ஐ கவனிக்கவும்"
+      }
+     ],
+     [
+      "Oil consumption",
+      {
+       "u": 1,
+       "src": "mymotorlist.com engine page",
+       "v": "இந்த series-ன் முக்கிய பிரச்சனை"
+      }
+     ]
+    ]
+   }
+  }
+ }
+]
